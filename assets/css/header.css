@@ -1,0 +1,41 @@
+.d-none{
+    display: none;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.d-center{
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 600px){
+    #header{
+        height: 80px;
+        padding-inline: 16px;
+        padding-block: 20px;
+    }
+    #header img{
+        width: 32px;
+    }
+
+    .headMenu{
+        height: 40px;
+        width: 40px;
+        border-radius: 22px;
+        outline: 2px solid #2A3647;
+    }
+
+    .headMenu p{
+        width: 20.68px;
+        height: 10.54px;
+        font-size: 14px;
+        color: #29ABE2;
+        font-weight: 700;
+        margin: 0;
+        text-align: center;
+    }
+}
