@@ -8,3 +8,15 @@
     --highlight-color: #28abe2;
   }
   
+  .d-none{
+    display: none;
+  }
+
+  .d-flex{
+    display: flex;
+  }
+
+  .d-center{
+    justify-content: center;
+    align-items: center;
+  }

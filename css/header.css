@@ -112,7 +112,7 @@ main {
     background-color: transparent !important;
   }
   
-  @media (max-width: 1026px) {
+  @media (max-width: 1024px) {
     main {
       width: 100vw;
     }

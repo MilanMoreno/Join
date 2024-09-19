@@ -1,0 +1,78 @@
+.addTask{
+    background-color: #2A3647;
+    width: 160px;
+    height: 48px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 700;
+    border: 1px solid #2A3647;
+    align-items: center;
+}
+
+.addTask:hover{
+    background-color: #29ABE2;
+    border: 1px solid #29ABE2;
+    width: 160px;
+    height: 48px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.addPlus{
+    height: 32px!important;
+    width: 32px!important;
+}
+
+.header{
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 84.4785px;
+}
+
+.findTask{
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    background-color: #FFFFFF;
+    width: 280px;
+    padding-inline: 16px;
+    padding-block: 8px;   
+    
+}
+
+#findTaskInput{
+    border: none;
+    height: 32px;
+    width: 280px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#findTaskInput::placeholder {
+    color: #D1D1D1;
+  }
+
+.findTaskImg{
+    width: 48px;
+    height: 32px;
+    align-items: center;
+    justify-content: end;  
+    border-left: 1px solid #D1D1D1;  
+    
+}
+
+.taskSearch{
+    height: 17.58px;
+}
+
+.headerRight{
+    width: 504px;
+    justify-content: space-between;
+}
+
+.columnHeadLine{
+    padding-inline: 84.4785px;
+    justify-content: space-between;
+}
