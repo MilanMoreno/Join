@@ -76,3 +76,19 @@
     padding-inline: 84.4785px;
     justify-content: space-between;
 }
+
+.columnHead{
+    justify-content: space-between;
+    width: 244px;
+    height: 24px;
+    
+}
+
+.columnHead h2{
+    font-size: 20px;
+    margin: 0;
+}
+
+.c-pointer:hover{
+    cursor: pointer;
+}

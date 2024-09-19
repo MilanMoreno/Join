@@ -90,10 +90,16 @@
           <h1>Board</h1> <div class="d-flex headerRight"><div class="findTask d-flex"><input id="findTaskInput" type="text" placeholder="Find Task"><div class="findTaskImg d-flex" onclick="searchTask()"><img class="taskSearch" src="./assets/img/icon_search.svg" alt="Search"></div></div><button class="addTask d-flex d-center" onclick="openAddTask()">Add task <img class="addPlus" src="./assets/img/icon_add.svg" alt=""></button></div>
         </div>
         <div class="columnHeadLine d-flex">
-            <div class="columnHead d-flex"><h2>To do</h2><img onclick="openAddTask('To do')" src="./assets/img/plusbutton.svg" alt="Add"></div>
-            <div class="columnHead d-flex"><h2>In Progress</h2><img onclick="openAddTask('In Progress')" src="./assets/img/plusbutton.svg" alt="Add"></div>
-            <div class="columnHead d-flex"><h2>Await feedback</h2><img onclick="openAddTask('Await feedback')" src="./assets/img/plusbutton.svg" alt="Add"></div>
+            <div class="columnHead d-flex"><h2>To do</h2><img class="c-pointer" onclick="openAddTask('To do')" src="./assets/img/plusbutton.svg" alt="Add"></div>
+            <div class="columnHead d-flex"><h2>In Progress</h2><img class="c-pointer" onclick="openAddTask('In Progress')" src="./assets/img/plusbutton.svg" alt="Add"></div>
+            <div class="columnHead d-flex"><h2>Await feedback</h2><img class="c-pointer" onclick="openAddTask('Await feedback')" src="./assets/img/plusbutton.svg" alt="Add"></div>
             <div class="columnHead d-flex"><h2>Done</h2></div>
+        </div>
+        <div class="taskCoulumn">
+            <div id="toDo"></div>
+            <div id="inProgress"></div>
+            <div id="awaitFeedback"></div>
+            <div id="done"></div>
         </div>
 
         
