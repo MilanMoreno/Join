@@ -5,7 +5,7 @@ let highlightKey = null;//Speichert den zuletzt hinzugefügten oder bearbeiteten
 let colorPosition = 0; //Die Variable, die die aktuelle Position in der Farbauswahl nachverfolgt.
 let loadedColors = [];//Ein Array, das generierte Farben speichert.
 
-const colors = create_Colors(20);//durch die Funktion create_Colors wird dies mit einer Liste von 20 generierten Farben initialisiert.
+
 
 async function loadData() {
     try {
