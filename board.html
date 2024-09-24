@@ -87,7 +87,26 @@
 </div>
       <section class="content-section">
         <div class="header d-flex">
-          <h1>Board</h1> <div class="d-flex headerRight"><div class="findTask d-flex"><input id="findTaskInput" type="text" placeholder="Find Task"><div class="findTaskImg d-flex" onclick="searchTask()"><img class="taskSearch" src="./assets/img/icon_search.svg" alt="Search"></div></div><button class="addTask d-flex d-center" onclick="openAddTask()">Add task <img class="addPlus" src="./assets/img/icon_add.svg" alt=""></button></div>
+          <h1>Board</h1>
+          <div class="d-flex headerRight">
+            <div class="findTask">
+                <input class="findTaskInput" oninput="filterTask()" id="findTaskInput" type="text" placeholder="Find Task">
+                <div class="findTaskImg d-flex" onclick="searchTask()">
+                    <img class="taskSearch" src="./assets/img/icon_search.svg" alt="Search">
+                </div>
+            </div>
+            <button class="addTask d-flex d-center" onclick="openAddTask()">
+                Add task <img class="addPlus" src="./assets/img/icon_add.svg" alt="">
+            </button>
+        </div>
+        </div>
+        <div class="mobileSearch">
+        <div class="findTaskMobile">
+            <input class="findTaskInput" oninput="filterTask()" id="findTaskInputMobile" type="text" placeholder="Find Task">
+            <div class="findTaskImg d-flex" onclick="searchTask()">
+                <img class="taskSearch" src="./assets/img/icon_search.svg" alt="Search">
+            </div>
+        </div>
         </div>
         <div class="columnHeadLine d-flex">
             <div class="column d-flex">
