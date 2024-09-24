@@ -13,17 +13,17 @@ h2 {
     color: white;
   }
   
-  .None{
+  .hidElement{
     display: none !important;
   }
   
-  .wrapper_Layout {
+  .layout-wrapper {
     height: 90vh;
     width: 100%;
     display: flex;
   }
   
-  .contact_People {
+  .contacts {
     width: 35%;
     height: 100%;
     overflow-y: auto;
@@ -58,7 +58,7 @@ h2 {
     padding: 0 24px 0 24px;
   }
   
-  .specific_Content {
+  .contentDetails {
     width: 100%;
     height: auto;
     padding: 24px 12px 0 12px;
@@ -67,14 +67,14 @@ h2 {
     gap: 12px;
   }
   
-  .add_Contact {
+  .ContactAdd {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 32px 0 12px 0;
   }
   
-  .add_Contact_Button {
+  .enterContactButton {
     background-color: rgb(9, 25, 49);
     color: white;
     display: flex;
@@ -87,12 +87,12 @@ h2 {
     border: none;
   }
   
-  .add_Contact_Button img {
+  .enterContactButton img {
     height: 24px;
     width: 24px;
   }
   
-  .add_Contact_Button:hover {
+  .enterContactButton:hover {
     cursor: pointer;
   }
   
@@ -105,7 +105,8 @@ h2 {
       transform: translateX(0);
     }
   }
-
+  
+  /* CSS for sliding out to the right */
   @keyframes slideOut {
     from {
       transform: translateX(0);
@@ -167,7 +168,7 @@ h2 {
     transition: opacity 0.5s;
   }
   
-  .pop_Up {
+  .popUp {
     height: 50vh;
     width: 60vw;
     border-radius: 24px;
@@ -181,7 +182,7 @@ h2 {
     transition: transform 0.5s ease-in-out;
   }
   
-  .popUp_Logo {
+  .popUp-icon {
     background-color: rgb(9, 25, 49);
     width: 40%;
     height: 100%;
@@ -191,12 +192,12 @@ h2 {
     justify-content: center;
   }
   
-  .logos {
+  .logo {
     object-fit: cover;
     height: 100%;
   }
   
-  .logo_Box {
+  .logo-box {
     height: 88px;
     width: 100%;
     display: flex;
@@ -205,13 +206,13 @@ h2 {
     padding: 0 12px 0 12px;
   }
   
-  .edit_Logo {
+  .edit-logo {
     object-fit: cover;
     width: 200px;
     padding: 0 12px 12px 12px;
   }
   
-  .edit_Logo-box {
+  .logoEditBox {
     width: 80%;
     display: flex;
     align-items: center;
@@ -219,7 +220,7 @@ h2 {
     padding: 0 0 0 12px;
   }
   
-  .popUp-content {
+  .popupContainer {
     background-color: white;
     flex: 1;
     height: 100%;
@@ -228,7 +229,7 @@ h2 {
     align-items: center;
   }
   
-  .close_Button {
+  .exit-btn {
     width: 100%;
     height: 50px;
     display: flex;
@@ -237,30 +238,17 @@ h2 {
     padding: 0 24px 0 0;
   }
   
-  .close_Button img {
+  .exit-btn img {
     object-fit: cover;
     height: 32px;
     width: 32px;
   }
   
-  .close_Button img:hover {
+  .exit-btn img:hover {
     cursor: pointer;
   }
-  .h2-span {
-    display: flex;
-    justify-content: space-between;
-  }
-  .profile-bld {
-    height: 120px;
-    width: 120px;
-  }
   
-  .text {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-  }
-  .take_Inputs {
+  .image_inputs {
     display: flex;
     align-items: center;
     flex: 1;
@@ -268,7 +256,11 @@ h2 {
     width: 100%;
   }
   
-
+  .profile-pic {
+    height: 120px;
+    width: 120px;
+  }
+  
   .return-mobilePopUp {
     display: flex;
     justify-content: end;
@@ -292,16 +284,25 @@ h2 {
     border: 1px solid rgb(203, 203, 203);
   }
   
+  .h2-span {
+    display: flex;
+    justify-content: space-between;
+  }
   
+  .text {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
   
-  .contact_Button {
+  .contact_btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 32px 0 0 0;
   }
   
-  .contact_Button button {
+  .contact_btn button {
     height: 48px;
     border-radius: 8px;
     display: flex;
@@ -312,44 +313,44 @@ h2 {
     font-size: larger;
   }
   
-  .contact_Button button:last-child {
+  .contact_btn button:last-child {
     border: none;
   }
   
-  .add_Contact_Button:hover {
+  .enterContactButton:hover {
     background-color: rgb(41, 171, 226);
     transition: 150ms;
     color: white;
   }
   
-  .contact_button img {
+  .contact_btn img {
     object-fit: cover;
     height: 24px;
     width: 24px;
   }
   
-  .cancel-Button {
+  .quit-Btn {
     background-color: white;
   }
   
-  .break_Up_Button:hover {
+  .quit-Btn:hover {
     cursor: pointer;
     border: 2.5px solid rgb(41, 171, 226);
     color: rgb(41, 171, 226);
   }
   
-  .break_Up_Button:hover img {
+  .quit-Btn:hover img {
     filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
       brightness(100%) contrast(100%);
   }
   
-  .initial_Letter {
+  .letter {
     border-bottom: 0.5px solid grey;
     margin: 0;
     padding: 12px 0 12px 0;
   }
   
-  .contact_Card {
+  .contactCard {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -373,13 +374,13 @@ h2 {
     cursor: pointer;
   }
   
-  .name_Email {
+  .fullName-email {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
   
-  .user_Email {
+  .email {
     text-decoration: none;
     color: rgb(0, 124, 238);
     font-size: smaller;
