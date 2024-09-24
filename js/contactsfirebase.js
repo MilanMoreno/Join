@@ -18,7 +18,7 @@
 
   const db=getDatabase(app);
 
-  document.getElementById("submit").addEventListener('click', function(e){
+  document.getElementById("ContactAddForm").addEventListener('click', function(e){
     e.preventDefault();
     set(ref(db,'user/'+ document.getElementById("name").value),{
 
