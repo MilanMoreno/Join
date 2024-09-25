@@ -1,143 +1,212 @@
-.addTask{
-    background-color: #2A3647;
-    width: 160px;
-    height: 48px;
-    border-radius: 10px;
-    color: #FFFFFF;
-    font-size: 21px;
-    font-weight: 700;
-    border: 1px solid #2A3647;
-    align-items: center;
-}
-
-.addTask:hover{
-    background-color: #29ABE2;
-    border: 1px solid #29ABE2;
-    width: 160px;
-    height: 48px;
-    border-radius: 10px;
-    color: #FFFFFF;
-    font-size: 21px;
-    font-weight: 700;
-}
-
-.addPlus{
-    height: 32px!important;
-    width: 32px!important;
-}
-
-.header{
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 84.4785px;
-}
-
-.findTask{
+.addTask {
     display: flex;
-    border-radius: 10px;
-    border: 1px solid #A8A8A8;
-    background-color: #FFFFFF;
-    width: 280px;
-    padding-inline: 16px;
-    padding-block: 8px;   
+  background-color: #2a3647;
+  width: 160px;
+  height: 48px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  border: 1px solid #2a3647;
+  align-items: center;
 }
 
-.findTaskMobile{
-    display: none;
-    border-radius: 10px;
-    border: 1px solid #A8A8A8;
-    background-color: #FFFFFF;
-    width: 396px;
-    padding-inline: 16px;
-    padding-block: 8px;   
+.addTask:hover {
+  background-color: #29abe2;
+  border: 1px solid #29abe2;
+  width: 160px;
+  height: 48px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
 }
 
-.findTaskInput{
-    border: none;
-    height: 32px;
-    width: 280px;
-    font-size: 20px;
-    font-weight: 400;
+.addPlus {
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.header {
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 84.4785px;
+}
+
+.findTask {
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #a8a8a8;
+  background-color: #ffffff;
+  width: 280px;
+  padding-inline: 16px;
+  padding-block: 8px;
+}
+
+.findTaskMobile {
+  display: none;
+  border-radius: 10px;
+  border: 1px solid #a8a8a8;
+  background-color: #ffffff;
+  width: auto;
+  padding-inline: 16px;
+  padding-block: 8px;
+}
+
+.findTaskInput {
+  border: none;
+  height: 32px;
+  width: 280px;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .findTaskInput::placeholder {
-    color: #D1D1D1;
-  }
-
-.findTaskImg{
-    width: 48px;
-    height: 32px;
-    align-items: center;
-    justify-content: end;  
-    border-left: 1px solid #D1D1D1;  
-    
+  color: #d1d1d1;
 }
 
-.taskSearch{
-    height: 17.58px;
+.findTaskImg {
+  width: 48px;
+  height: 32px;
+  align-items: center;
+  justify-content: end;
+  border-left: 1px solid #d1d1d1;
 }
 
-.headerRight{
-    width: 504px;
-    justify-content: space-between;
+.taskSearch {
+  height: 17.58px;
 }
 
-.columnHeadLine{
-    padding-inline: 84.4785px;
-    justify-content: space-between;
-    flex-wrap: wrap
-    ;
+.headerRight {
+  width: 504px;
+  justify-content: space-between;
 }
 
-.columnHead{
-    justify-content: space-between;
-    width: 244px;
-    height: 24px;
+.columnHeadLine {
+  padding-inline: 84.4785px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 16px;
 }
 
-.column{
-    flex-direction: column;
+.columnHead {
+  justify-content: space-between;
+  width: 244px;
+  height: 24px;
+  padding-bottom: 8px;
 }
 
-.columnHead h2{
-    font-size: 20px;
-    margin: 0;
+.column {
+  flex-direction: column;
 }
 
-.c-pointer:hover{
-    cursor: pointer;
+.columnHead h2 {
+  font-size: 20px;
+  margin: 0;
 }
 
-.taskCoulumn{
-    padding-inline: 84.4785px;
-    justify-content: space-between;
+.c-pointer:hover {
+  cursor: pointer;
 }
 
-.noTask{
-max-width: 246px;
-width: fill;
-height: 48px;
-background-color: #E7E7E7;
-border: 1px dashed #A8A8A8;
-border-radius: 10px;
-justify-content: center;
-align-items: center;
-color: #A8A8A8;
+.taskCoulumn {
+  padding-inline: 84.4785px;
+  justify-content: space-between;
 }
 
+.noTask {
+  max-width: 246px;
+  width: fill;
+  height: 48px;
+  background-color: #e7e7e7;
+  border: 1px dashed #a8a8a8;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  color: #a8a8a8;
+}
 
-@media (max-width: 1024px){
-  .findTask{
+.addTaskMobile {
+    display: none;
+  background-color: #2a3647;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  border: 1px solid #2a3647;
+  align-items: center;
+}
+
+.addTaskMobile:hover {
+  background-color: #29abe2;
+  border: 1px solid #29abe2;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .findTask {
     display: none;
   }
-  .findTaskMobile{
+
+  .findTaskMobile {
     display: flex;
-    width: 364px;
+    width: 100%;
+    box-sizing: border-box
   }
-  .mobileSearch{
-    padding-inline: 84.4785px;
+
+  .header{
+    padding-inline: 16px;
   }
-  .findTaskInput{
-    width: 326px;
+
+  .columnHeadLine{
+    padding-inline: 16px;
   }
+
+  .mobileSearch {
+    padding-inline: 16px;
+    padding-bottom: 24px;
+  }
+
+  .headerRight{
+    flex-direction: row-reverse;
+  }
+
+  .findTaskInput {
+    width: 100%;
+  }
+
+  .addTask{
+    display: none;
+  }
+
+  .addTaskMobile {
+    display: flex;
+  }
+
+  .headerMobile{
+    font-size: 47px;
+  }
+}
+
+
+@media (max-width: 700px){
+    .column{
+        width: 100%;
+    }
+
+    .columnHead{
+        width: 100%;
+    }
+
+    .noTask{
+        max-width: 100%;
+    }
 }

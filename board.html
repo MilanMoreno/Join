@@ -87,7 +87,7 @@
 </div>
       <section class="content-section">
         <div class="header d-flex">
-          <h1>Board</h1>
+          <h1 class="headerMobile">Board</h1>
           <div class="d-flex headerRight">
             <div class="findTask">
                 <input class="findTaskInput" oninput="filterTask()" id="findTaskInput" type="text" placeholder="Find Task">
@@ -95,8 +95,11 @@
                     <img class="taskSearch" src="./assets/img/icon_search.svg" alt="Search">
                 </div>
             </div>
-            <button class="addTask d-flex d-center" onclick="openAddTask()">
+            <button class="addTask d-center" onclick="openAddTask()">
                 Add task <img class="addPlus" src="./assets/img/icon_add.svg" alt="">
+            </button>
+            <button class="addTaskMobile d-center" onclick="openAddTask()">
+                <img class="addPlus" src="./assets/img/icon_add.svg" alt="">
             </button>
         </div>
         </div>
