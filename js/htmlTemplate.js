@@ -1,10 +1,10 @@
 function addTaskTemplate() {
   return /*html*/ `
-    <div class="addTaskContent">
+    <div class="addTaskContent d-flex">
         <div class="addTaskHeader d-flex">
-            <h1>AddTask</h1>
+            <h1 class="addTaskHeader">Add Task</h1>
         </div>
-        <div class="d-flex">
+        <div class="d-flex d-space addTaskBody">
         <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
             <input id="addTasktitleInput" type="text" placeholder="Enter a title" required>

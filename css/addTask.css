@@ -10,8 +10,10 @@
 }
 
 .addTaskContent{
+    flex-direction: column;
     padding-inline:  84.478px;
     font-size: 20px;
+    max-width: 976.25px;
 }
 
 .addTaskContent h1{
@@ -19,15 +21,20 @@
 }
 
 .addTaskLeft {
-    width: 440px;
+    width: auto;
+    max-width: 440px;
     flex-direction: column;
-    margin-right: 48.25px;
+}
+
+.addTaskBody{
+        column-gap: 5px;
+    
 }
 
 .addTaskRight{
+    max-width: auto;
     width: 440px;
     flex-direction: column;
-    margin-left: 48.25px;
 }
 
 .addTaskContent input{
@@ -128,4 +135,51 @@
 
 .addTaskNote{
     height: 24px;
+}
+
+#addTitleInput{
+    width: auto;
+}
+
+#addTaskDiscription{
+    width: auto;
+}
+
+#addTaskContactSelect{
+    width: auto;
+}
+
+@media (max-width: 1024px){
+    .addTaskBody{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .middleLine{
+        display: none;
+    }
+
+    .addTaskHeader{
+        font-size: 47px;
+    }
+
+    .addTaskContent{
+        font-size: 16px;
+    }
+
+    .addTaskContent input{
+        font-size: 16px;
+    }
+
+    .addTaskContent textarea{
+        font-size: 16px;
+    }
+
+    .addTaskContent button{
+        font-size: 16px;
+    }
+
+    .addTaskContent select{
+        font-size: 16px;
+    }
 }
