@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    <!--Stylesheets-->
+    <!--<link rel="stylesheet" href="./css/legal-Help_privacy.css" />-->
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/summary.css">
+    <script src="js/remotestaorage.js"></script><style type="text/css" id="operaUserStyle"></style>
+  </head>
+  <body onload="start()">
+    <div w3-include-html="./assets/templates/side_menu.html">
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <script src="./js/init.js"></script>
+  
+
+  
+    <section id="containerSidebar" class="container-sidebar">
+      <img src="./assets/img/logo.svg" class="sidebar-logo d-none-mobile" alt="logo_join">
+      <nav>
+        <a id="link-summary" href="./summary.html" class="bg-focus"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
+        <a id="link-task" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
+        <a id="link-board" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
+        <a id="link-contact" href="./contacts.html"><img src="./assets/img/icon_contacts.svg" alt="contacts">Contacts</a>
+      </nav>
+      <div class="nav-bottom-link d-none-mobile">
+        <a href="./privacy-police.html" onclick="save_Url()">Privacy Policy</a>
+        <a href="./legal_notice.html">Legal notice</a>
+      </div>
+    </section>
+  
+
+</div>
+    <main>
+      <div w3-include-html="./assets/templates/header.html" class="header-sticky">
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <script src="./js/init.js"></script>
+  
+
+  
+    <header id="header">
+      <img src="./assets/img/logo_coloured.svg" alt="Join logo" class="logo-mobile">
+      <p class="header-text d-none-mobile">Kanban Project Management Tool</p>
+      <div class="header-right">
+        <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
+        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
+      </div>
+    </header>
+    <section id="header-menu-dropdown" class="d-noneHead">
+      <div class="header-dropdown-menu">
+        <a href="./legal_notice.html">Legal Notice</a>
+        <a href="./privacy-police.html">Privacy Policy</a>
+        <a href="./index.html">Log out</a>
+      </div>
+    </section>
+  
+
+</div>
+      <div class="primary-area">
+        <section class="lead-section">
+          <div>
+            <h1>Join 360</h1>
+          </div>
+          <div class="spacer"></div>
+          <div>
+            <h5>Key Metrics at a Glance</h5>
+          </div>
+          <div class="spacer-mobile"></div>
+        </section>
+
+        <section class="content-summary">
+          <div class="left-summary-area">
+            <div class="card-interactive-div">
+              <div class="card hover-right" onmouseover="modifyPencilImage()" onmouseout="resetPencilImg()" onclick="loadBoardPage()">
+                <img id="pencil-img" src="./assets/img/pencil-darkblue.png" alt="Pencil logo">
+                <div class="details-card">
+                  <h2 id="todo">1</h2>
+                  <p>To-do</p>
+                </div>
+              </div>
+              <div class="card hover-left" onmouseover="updateCheckImage()" onmouseout="resetCheckImg()" onclick="loadBoardPage()">
+                <img id="check-img" src="./assets/img/check-darkblue.png" alt="Check logo">
+                <div class="details-card">
+                  <h2 id="done">0</h2>
+                  <p>Done</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="super-card hover-bottom" onclick="loadBoardPage()">
+              <div class="big-left-panel">
+                <img src="./assets/img/icon_Upp2.svg" alt="Arrows up">
+                <div class="details-card">
+                  <h2 id="high-priority">1</h2>
+                  <p>Urgent</p>
+                </div>
+              </div>
+
+              <div class="p-super-card"></div>
+
+              <div class="big-right-panel">
+                <h3 id="end-date">
+            No urgent to-dos
+        </h3>
+                <h4>Upcoming Deadline</h4>
+              </div>
+            </div>
+
+            <div class="card-interactive-div">
+              <div class="card-end" onclick="setupBoardPage()">
+                <h2 id="assignments">2</h2>
+                <h4>Task in Board</h4>
+              </div>
+
+              <div class="card-end" onclick="setupBoardPage()">
+                <h2 id="ongoing-task">0</h2>
+                <h4>Task in Progress</h4>
+              </div>
+
+              <div class="card-end" onclick="setupBoardPage()">
+                <h2 id="pending-response">1</h2>
+                <h4>Awaiting Feedback</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-summary-area d-none-mobile">
+            <div id="salutation-text">
+            <h2>Good morning</h2>
+        </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!--JS-->
+    <script src="./js/header.js"></script>
+    <script src="./js/summary.js"></script>
+    <script src="./js/init.js"></script>
+  
+
+</body></html>

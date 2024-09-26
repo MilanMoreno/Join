@@ -1,3 +1,168 @@
+/*let contactList = []; // Zwischenspeicherung von Kontakten
+let currentContacts = []; // Liste der geladenen Kontakte
+let currentEditId = null; // ID des aktuellen bearbeiteten Kontakts
+let colorIndex = 0; // Speichert den aktuellen Farbindex
+let colors = []; // Generierte Farben
+let BASE_URL = 'https://your-firebase-url/'; // Ersetzen Sie mit Ihrer Firebase-URL
+
+// Daten von Firebase laden und anzeigen
+async function loadData() {
+    try {
+        const [contactsResponse, colorIndexResponse] = await Promise.all([
+            fetch(`${BASE_URL}.json`), 
+            fetch(`${BASE_URL}colorIndex.json`)
+        ]);
+
+        const contactsData = await contactsResponse.json();
+        currentContacts = contactsData.contact || {};
+        renderContacts(currentContacts);
+
+        const colorIndexData = await colorIndexResponse.json();
+        if (colorIndexData !== null) colorIndex = colorIndexData;
+    } catch (error) {
+        console.error('Fehler beim Laden der Daten:', error);
+    }
+}
+
+// Kontakte rendern und gruppieren
+function renderContacts(contacts) {
+    const groupedContacts = groupAndSortContacts(contacts);
+    const contentElement = document.getElementById('contacts');
+    contentElement.innerHTML = '';
+
+    Object.keys(groupedContacts).sort().forEach(letter => {
+        contentElement.innerHTML += `<h3 class="letter">${letter}</h3>`;
+        groupedContacts[letter].forEach(contact => displayContact(contentElement, contact));
+    });
+
+    highlightNewContact();
+}
+
+// Kontakte nach Buchstaben gruppieren und sortieren
+function groupAndSortContacts(contacts) {
+    return Object.values(contacts).reduce((groups, contact) => {
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+        if (!groups[firstLetter]) groups[firstLetter] = [];
+        groups[firstLetter].push(contact);
+        groups[firstLetter].sort((a, b) => a.name.localeCompare(b.name));
+        return groups;
+    }, {});
+}
+
+// Einzelnen Kontakt anzeigen
+function displayContact(container, contact) {
+    const contactColor = contact.color || getRandomColor();
+    container.innerHTML += `
+        <div onclick="showContactInfo('${contact.id}')" id="${contact.id}" class="contactCard">
+            <div class="single_letter" style="background-color: ${contactColor};">${contact.name[0]}</div>
+            <div class="fullName-email">
+                <span>${contact.name}</span>
+                <a class="email" href="mailto:${contact.email}">${contact.email}</a>
+            </div>
+        </div>
+    `;
+}
+
+// Kontaktinfo anzeigen und Hintergrund hervorheben
+function showContactInfo(contactId) {
+    const contact = currentContacts[contactId];
+    if (!contact) return;
+
+    setContactDetails(contact);
+    highlightContact(contactId);
+    displayDetailedContact(contact, contactId);
+}
+
+// Kontaktinfo im Bearbeitungsformular und Profilansicht anzeigen
+function setContactDetails(contact) {
+    document.getElementById('letterForPopUp').innerHTML = contact.name[0];
+    document.getElementById('editEmail').value = contact.email;
+    document.getElementById('editTel').value = contact.telefonnummer;
+    document.getElementById('editName').value = contact.name;
+}
+
+// Neues Kontaktobjekt speichern
+async function addContact() {
+    const newContact = collectFormData();
+    contactList.push(newContact);
+    await saveContact('contact', newContact);
+    loadData(); // Nach dem Speichern erneut laden
+}
+
+// Kontakt bearbeiten
+async function updateContact() {
+    const updatedContact = collectFormData();
+    await updateFirebaseContact(currentEditId, updatedContact);
+    loadData(); // Nach dem Update erneut laden
+}
+
+// Kontakt von Firebase löschen
+async function eraseContact(id) {
+    await deleteFirebaseContact(id);
+    loadData(); // Nach dem Löschen erneut laden
+}
+
+// Neuen Kontakt zur Firebase hinzufügen
+async function saveContact(path, data) {
+    await fetch(`${BASE_URL}${path}.json`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+}
+
+// Kontakt in Firebase aktualisieren
+async function updateFirebaseContact(contactId, data) {
+    await fetch(`${BASE_URL}contact/${contactId}.json`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+}
+
+// Kontakt in Firebase löschen
+async function deleteFirebaseContact(contactId) {
+    await fetch(`${BASE_URL}contact/${contactId}.json`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+    });
+}
+
+// Formularwerte sammeln und Kontaktobjekt erstellen
+function collectFormData() {
+    const email = document.getElementById('editEmail').value;
+    const name = document.getElementById('editName').value;
+    const tel = document.getElementById('editTel').value;
+    return { email, name, telefonnummer: tel, color: getNextColor() };
+}
+
+// Zufällige Farbe generieren
+function getRandomColor() {
+    const letters = '89ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * letters.length)];
+    }
+    return color;
+}
+
+// Nächste Farbe aus der Farbliste holen
+function getNextColor() {
+    const color = colors[colorIndex % colors.length];
+    colorIndex++;
+    saveColorIndex();
+    return color;
+}
+
+// Farbindex in Firebase speichern
+async function saveColorIndex() {
+    await fetch(`${BASE_URL}colorIndex.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(colorIndex),
+    });
+}
+*/
 let list = [];//Ein Array, das Kontakte speichert, bevor sie an den Server gesendet werden
 let content = [];//Speichert die geladenen Kontaktdaten
 let editkey = null;//Speichert die ID des aktuell bearbeiteten Kontakts.

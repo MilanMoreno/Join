@@ -191,8 +191,8 @@
                   <input required="" id="tel" placeholder="Phone" type="tel">
                   <input required="" id="name" placeholder="Name" type="text">
                   <div class="contact_btn">
-                    <button type="button" onclick="togglePopUp('close')" class="quit-Btn">Cancel <img src="./contact-assets/img/close.png" alt=""></button>
-                    <button type="submit" id="submit"class="enterContactButton">Create Contact <img class="check" src="./contact-assets/img/check.png" alt=""></button>
+                    <button type="text" onclick="togglePopUp('close')" class="quit-Btn">Cancel <img src="./contact-assets/img/close.png" alt=""></button>
+                    <button type="text" id="submit"class="enterContactButton">Create Contact <img class="check" src="./contact-assets/img/check.png" alt=""></button>
                   </div>
                 </form>
               </div><!--check fal-->
@@ -238,7 +238,102 @@
   </main>
 
 
-
-
+  <script type="module">
+    // Importiere die Firebase-Funktionen
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+  
+    // Firebase-Konfiguration
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-Jc-sbVYfxNmL-VDeR-dR3i49UpVCdHU",
+      authDomain: "creative33-9f884.firebaseapp.com",
+      projectId: "creative33-9f884",
+      storageBucket: "creative33-9f884.appspot.com",
+      messagingSenderId: "975089235329",
+      appId: "1:975089235329:web:ac23de9311076f9d886480"
+    };
+  
+    // Firebase initialisieren
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+  
+    // Event Listener für Formular-Submit
+    document.getElementById("ContactAddForm").addEventListener('submit', addContact);
+  
+    // Kontakt hinzufügen und in Firebase speichern
+    function addContact(e) {
+      e.preventDefault();
+      const contact = getFormData();
+      saveContactToDB(contact).then(() => {
+        alert("Kontakt erfolgreich hinzugefügt!");
+        clearInputFields();
+        fetchContacts();
+      }).catch((error) => console.error("Fehler beim Hinzufügen des Kontakts: ", error));
+    }
+  
+    // Formulardaten erfassen und als Objekt zurückgeben
+    function getFormData() {
+      return {
+        username: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        PhoneNumber: document.getElementById("tel").value
+      };
+    }
+  
+    // Kontakt in Firebase-Datenbank speichern
+    function saveContactToDB(contact) {
+      return set(ref(db, 'user/' + contact.username), contact);
+    }
+  
+    // Eingabefelder leeren
+    function clearInputFields() {
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("tel").value = "";
+    }
+  
+    // Kontakte aus Firebase abrufen und anzeigen
+    function fetchContacts() {
+      getContactsFromDB().then((contacts) => {
+        displayContacts(contacts);
+      }).catch((error) => console.error("Fehler beim Abrufen der Kontakte: ", error));
+    }
+  
+    // Alle Kontakte aus Firebase abrufen
+    function getContactsFromDB() {
+      const dbRef = ref(db);
+      return get(child(dbRef, 'user')).then((snapshot) => snapshot.exists() ? snapshot.val() : {});
+    }
+  
+    // Kontakte im HTML anzeigen
+    function displayContacts(contactsData) {
+      const contactsList = document.getElementById("contacts");
+      contactsList.innerHTML = "";
+      for (const key in contactsData) {
+        displayContact(contactsData[key]);
+      }
+    }
+  
+    // Einzelnen Kontakt anzeigen
+    function displayContact(contact) {
+      const contactsList = document.getElementById("contacts");
+      const contactCard = document.createElement("div");
+      contactCard.classList.add("contactCard");
+      contactCard.innerHTML = `
+        <div class="single_letter" style="background-color: #AFA53D;">${contact.username.charAt(0).toUpperCase()}</div>
+        <div class="fullName-email">
+          <span>${contact.username}</span>
+          <a class="email" href="#">${contact.email}</a>
+          <p>${contact.PhoneNumber}</p>
+        </div>`;
+      contactsList.appendChild(contactCard);
+    }
+  
+    // Beim Laden der Seite alle Kontakte abrufen und anzeigen
+    window.onload = function() {
+      fetchContacts();
+    };
+  </script>
+  
 
 </body></html>
