@@ -21,8 +21,7 @@
 }
 
 .addTaskLeft {
-    width: auto;
-    max-width: 440px;
+    width: 440px;
     flex-direction: column;
 }
 
@@ -32,7 +31,6 @@
 }
 
 .addTaskRight{
-    max-width: auto;
     width: 440px;
     flex-direction: column;
 }
@@ -149,6 +147,21 @@
     width: auto;
 }
 
+.colormedium{
+    background-color: #FFA800!important;
+    color:#FFFFFF!important;
+}
+
+.colorurgent{
+    background-color: #FF3D00!important;
+    color: #FFFFFF!important;
+}
+
+.colorlow{
+    background-color: #7AE229!important;
+    color: #FFFFFF!important;
+}
+
 @media (max-width: 1024px){
     .addTaskBody{
         flex-direction: column;
@@ -165,6 +178,7 @@
 
     .addTaskContent{
         font-size: 16px;
+        width: 100%;
     }
 
     .addTaskContent input{
@@ -182,4 +196,36 @@
     .addTaskContent select{
         font-size: 16px;
     }
+
+    body{
+        width: 100vw;
+    }
+
+    .contentsection{
+        width: 100vw;
+    }
+
+    .addTaskLeft{
+        max-width: auto;
+        width: auto;
+    }
+
+    .addTaskRight{
+        max-width: auto;
+        width: auto;
+    }
+    .clear{
+        display: none!important;
+    }
+
+    .addTaskSubmit{
+        flex-direction: row-reverse;
+    }
+
+    /* .addTaskFooter{
+        position: absolute;
+        bottom: 117px;
+        background-color: #F6F7F8;
+        padding-inline: 50px;
+    } */
 }

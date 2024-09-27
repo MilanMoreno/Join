@@ -21,9 +21,9 @@ function addTaskTemplate() {
             <input type="date" name="Date" id="addTaskDate" required>
             <p>Prio</p>
             <div class="d-flex d-space">
-                <button>Urgent <img src="./assets/img/icon_PrioAltaRed.svg" alt=""></button>
-                <button>Medium <img src="./assets/img/icon_PrioMediaOrange.svg" alt=""></button>
-                <button>Low <img src="./assets/img/icon_PrioBajaGreen.svg" alt=""></button></div>
+                <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
            <select name="Category" id="addTaskCategory" required>
                 <option value="">Select task Category</option>
@@ -40,7 +40,7 @@ function addTaskTemplate() {
             </div>
             <div class="addTaskSubmit d-flex d-space">
                 <button class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button class="createTask d-flex">Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button onclick="addTask()" class="createTask d-flex">Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
