@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+  }
+  
+  h1, h2 {
+      text-align: center;
+  }
+  
+  form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+  }
+  
+  label {
+      display: block;
+      margin-bottom: 8px;
+  }
+  
+  input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+  }
+  
+  button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #5cb85c;
+      color: #fff;
+      cursor: pointer;
+  }
+  
+  button[type="button"] {
+      background-color: #d9534f;
+  }
+  
+  button:hover {
+      background-color: #4cae4c;
+  }
+  
+  #contacts {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+  }
+  
+  .contactCard {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+  }
+  
+  .single_letter {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%;
+  }
+  
+  .fullName-email {
+      flex-grow: 1;
+      padding-left: 15px;
+  }
+  
+  .fullName-email span {
+      display: block;
+      font-size: 16px;
+  }
+  
+  .fullName-email a {
+      display: block;
+      color: #007bff;
+      text-decoration: none;
+  }
+  
+  .fullName-email p {
+      margin: 5px 0 0;
+      font-size: 14px;
+  }
+  
+  button {
+      margin-left: 10px;
+  }
+  
+  .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+  }
+  
+  .hideElement {
+      display: none;
+  }
+  </style>
+</head>
+<body>
+    <h1>Contact Management System</h1>
+    <form id="contactForm">
+        <h2>Add New Contact</h2>
+        <label for="username">Name:</label>
+        <input type="text" id="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <label for="PhoneNumber">Phone Number:</label>
+        <input type="tel" id="PhoneNumber" required>
+        <button type="submit">Add Contact</button>
+    </form>
+
+    <h2>Contacts List</h2>
+    <div id="contacts"></div>
+
+    <!-- Pop-up für die Bearbeitung des Kontakts -->
+    <div id="editContactPopup" class="popup hideElement">
+        <form id="editContactForm">
+            <h2>Edit Contact</h2>
+            <input type="hidden" id="editContactKey">
+            <label for="editName">Name:</label>
+            <input type="text" id="editName" required>
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail" required>
+            <label for="editTel">Phone:</label>
+            <input type="tel" id="editTel" required>
+            <button type="submit">Update Contact</button>
+            <button type="button" onclick="toggleEditPopup('close')">Cancel</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js"></script>
+    <script src="script.js"></script>
+
+
+<script>
+    // Firebase-Konfiguration
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Firebase initialisieren
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Kontakt hinzufügen
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const PhoneNumber = document.getElementById("PhoneNumber").value;
+
+    // Firebase-Referenz erstellen und Daten speichern
+    firebase.database().ref('user/' + username).set({
+        username,
+        email,
+        PhoneNumber
+    }).then(() => {
+        alert("Kontakt erfolgreich hinzugefügt!");
+        fetchContacts();
+        document.getElementById("contactForm").reset(); // Formular zurücksetzen
+    }).catch((error) => {
+        console.error("Fehler beim Hinzufügen des Kontakts: ", error);
+    });
+});
+
+// Kontakte laden und anzeigen
+function fetchContacts() {
+    const contactsRef = firebase.database().ref('user');
+    contactsRef.once('value', (snapshot) => {
+        const contactsContainer = document.getElementById('contacts');
+        contactsContainer.innerHTML = ''; // Vorherige Kontakte löschen
+        snapshot.forEach((childSnapshot) => {
+            const contact = childSnapshot.val();
+            displayContact(contact);
+        });
+    });
+}
+
+// Anzeige von Kontakten mit Edit- und Delete-Buttons
+function displayContact(contact) {
+    const contactsList = document.getElementById("contacts");
+    const contactCard = document.createElement("div");
+    contactCard.classList.add("contactCard");
+    contactCard.innerHTML = `
+        <div class="single_letter" style="background-color: #AFA53D;">${contact.username.charAt(0).toUpperCase()}</div>
+        <div class="fullName-email">
+            <span>${contact.username}</span>
+            <a class="email" href="#">${contact.email}</a>
+            <p>${contact.PhoneNumber}</p>
+            <button onclick='editContact(${JSON.stringify(contact)})'>Edit</button>
+            <button onclick='deleteContact("${contact.username}")'>Delete</button>
+        </div>`;
+    contactsList.appendChild(contactCard);
+}
+
+// Funktion zum Bearbeiten eines Kontakts
+function editContact(contact) {
+    toggleEditPopup('open'); // Pop-up zum Bearbeiten öffnen
+    document.getElementById('editContactKey').value = contact.username; // Kontaktname als Schlüssel
+    document.getElementById('editName').value = contact.username;
+    document.getElementById('editEmail').value = contact.email;
+    document.getElementById('editTel').value = contact.PhoneNumber;
+}
+
+// Kontakt aktualisieren und in Firebase speichern
+document.getElementById('editContactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const updatedContact = {
+        username: document.getElementById('editName').value,
+        email: document.getElementById('editEmail').value,
+        PhoneNumber: document.getElementById('editTel').value
+    };
+    const contactKey = document.getElementById('editContactKey').value;
+
+    // Kontakt in der Firebase aktualisieren
+    firebase.database().ref('user/' + contactKey).set(updatedContact)
+    .then(() => {
+        alert("Kontakt erfolgreich aktualisiert!");
+        toggleEditPopup('close');
+        fetchContacts(); // Kontakte neu laden
+    })
+    .catch((error) => console.error("Fehler beim Aktualisieren des Kontakts: ", error));
+});
+
+// Funktion zum Löschen eines Kontakts
+function deleteContact(contactKey) {
+    firebase.database().ref('user/' + contactKey).remove() // Kontakt aus Firebase löschen
+    .then(() => {
+        alert("Kontakt erfolgreich gelöscht!");
+        fetchContacts(); // Kontakte neu laden
+    })
+    .catch((error) => console.error("Fehler beim Löschen des Kontakts: ", error));
+}
+
+// Popup-Steuerung
+function toggleEditPopup(action) {
+    const editPopup = document.getElementById('editContactPopup');
+    if (action === 'open') {
+        editPopup.classList.remove('hideElement');
+    } else {
+        editPopup.classList.add('hideElement');
+    }
+}
+
+// Beim Laden der Seite Kontakte abrufen
+window.onload = fetchContacts;
+</script>
+</body>
+</html>

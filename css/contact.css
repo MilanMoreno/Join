@@ -13,7 +13,7 @@ h2 {
     color: white;
   }
   
-  .hidElement{
+  .dNone{
     display: none !important;
   }
   
@@ -469,3 +469,7 @@ h2 {
     text-decoration: none;
   }
   
+
+
+
+

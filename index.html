@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-    <script></script>
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="remoteStorage.js"></script>
-</head>
-<body onload="onloadFunc()">
+    <title>Join</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login-signup.css">
     
-</body>
-</html>
+
+      </style>
+  </head>
+  <body onload="UserLoading()">
+    <img class="logo-launch" src="./assets/img/logo_coloured.svg" alt="logo of Join">
+    <section class="container-login-signup dflex-c-c screen-animation">
+        <div class="log-in-overlay dflex-c-c column">
+            <div class="dflex-c-c column">
+                <h1>Log in</h1>
+                <div class="text-segment"></div>
+            </div>
+            <form class="input-container dflex-c-c column" action="./summary.html"></form>
+                <input id="inputEmailLogIn" class="inputfield" type="email" placeholder="Email" required="">
+                <input id="inputPasswordLogIn" class="inputfield" type="password" placeholder="Password" required="">
+                <div id="Loginerror" class="d-none"></div>
+                <div class="checkbox-login">
+                    <input type="checkbox" name="remember-me" class="cursor-pointer">
+                    <span>Remember me</span>
+                </div>
+                <div class="footer-link dflex-c-c">
+                    <button onclick="login()" type="submit" class="btn-small cursor-pointer">Log in</button>
+                    <a onclick="guestLogin()" href="./summary.html">
+                        <button type="button" class="btn-outline cursor-pointer">Guest Log in</button>
+                    </a>
+                </div>
+            
+        </div>
+    </section>
+    <section class="login-head screen-animation">
+        <div class="login-head-top-right dflex-c-c">
+            <span>Not a Join user?</span>
+            <a href="./sign_up.html">
+                <button class="btn-small fz-16px cursor-pointer">Sign up</button>
+            </a>
+        </div>
+    </section>
+    <section class="login-footer dflex-c-c screen-animation">
+        <a href="./privacy-police.html">Privacy Policy</a>
+        <a href="./legal_notice.html">Legal Notice</a>
+    </section>
+
+
+
+</script>
+</body></html>
