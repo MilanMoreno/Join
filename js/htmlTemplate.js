@@ -27,12 +27,20 @@ function addTaskTemplate() {
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
            <select name="Category" id="addTaskCategory" required>
                 <option value="">Select task Category</option>
-                <option value="">Technical Task</option>
-                <option value="">User Story</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
            </select>
             <p>Subtasks</p>
-            <div onclick="openAddSubTask()" class="d-flex subTask"><input id="subTaskAdd" type="text" placeholder="Add new subtask"><img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt=""><div id="activSubTask" class="d-none d-center"><img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt=""><div class="middleLineShort"></div><img onclick="addSubTask()" class="subTaskCheck" src="./assets/img/check.png" alt=""></div></div>
-            <div id="subTaskView"></div>
+            <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
+                <input id="subTaskAdd" type="text" placeholder="Add new subtask">
+                <img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt="">
+                <div id="activSubTask" class="d-none d-center">
+                    <img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt="">
+                    <div class="middleLineShort"></div>
+                    <img onclick="addSubTask()" class="subTaskCheck" src="./assets/img/check.png" alt="">
+                </div>
+            </div>
+            <ul id="subTaskView"></ul>
         </div>
 </div>
         <div class="addTaskFooter d-flex d-space">

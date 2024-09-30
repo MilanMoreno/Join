@@ -1,5 +1,5 @@
 let task = []
-let baseUrl = "https://creative33-9f884-default-rtdb.firebaseio.com/task"
+let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/"
 
 function renderAddTask(){
     let contentSection = document.getElementById("addTaskSide");
@@ -10,11 +10,9 @@ function renderAddTask(){
 }
 
 let prio = ""
+const subTask = [];
 
 function addTask(){
-    let subTask = [];
-
-
     const task = {
         Title: document.getElementById("addTasktitleInput").value,
         Category: document.getElementById("addTaskCategory").value,
@@ -25,32 +23,25 @@ function addTask(){
         Subtask: [subTask],
         PositionID: "todo"
       };
-
       const jsonString = JSON.stringify(task);
+      postData(task.Title, jsonString);
 console.log(jsonString);
-
+clearForm(prio);
 }
 
 
 function setPrio(p){
     const prios = p;
-
     if(prio == p){
     prio = '';}else{
         prio = p
     };
-
     if(document.getElementById(`${p}`).classList.contains (`color${p}`)){
         removeClasslist(p);
     }else{
         removeOtherClasslist();
         addClasslist(p);
-    }
-
-    
-
-
-    
+    }  
 }
 
 
@@ -84,7 +75,56 @@ function removeOtherClasslist(p){
 
 
 function openAddSubTask(){
-    document.getElementById("activSubTask").classList.remove ("d-none")
-    document.getElementById("activSubTask").classList.add ("d-flex")
-    document.getElementById("subTaskPlus").classList.add ("d-none")
+    document.getElementById("activSubTask").classList.remove ("d-none");
+    document.getElementById("activSubTask").classList.add ("d-flex");
+    document.getElementById("subTaskPlus").classList.add ("d-none");
+
+}
+
+function cancelSubTask(){
+    document.getElementById("subTaskAdd").value = "";
+    document.getElementById("activSubTask").classList.add ("d-none");
+    document.getElementById("activSubTask").classList.remove ("d-flex");
+    document.getElementById("subTaskPlus").classList.remove ("d-none");
+    event.stopPropagation();
+}
+
+
+function addSubTask(){
+    let show = document.getElementById("subTaskView");
+    let value = document.getElementById("subTaskAdd").value ;
+    show.innerHTML += `<li>${value}</li>`;
+    subTask.push (`${value}`);
+
+    
+    cancelSubTask();
+    event.stopPropagation();
+}
+
+
+function clearForm(prio){
+    document.getElementById("addTasktitleInput").value = '';
+    document.getElementById("addTaskDiscription").value = '';
+    document.getElementById("addTaskContactSelect").value = '';
+    document.getElementById("addTaskDate").value = '';
+    document.getElementById("addTaskCategory").value = '';
+    document.getElementById("subTaskAdd").value = '';
+    document.getElementById("subTaskView").innerHTML = '';
+    removeOtherClasslist(prio);
+}
+
+// firebase 
+
+async function postData(path="", data={}) {
+    let response = await fetch(BASE_URL + path + ".json",{
+        method: "POST",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: data
+    });
+
+    return responseToJson = await response.json();
+
+    
 }

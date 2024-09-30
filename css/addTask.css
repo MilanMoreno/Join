@@ -224,6 +224,7 @@
     height: 24px;
     width: 24px;
     padding-right: 8px;
+    z-index: 1;
 }
 
 .subTaskCheck{
@@ -231,6 +232,7 @@
     width: 16px;
     padding-left: 10px;
     padding-right: 16px;
+    z-index: 1;
 }
 
 #subTaskAdd{
@@ -263,6 +265,8 @@
     height: 24px;
     border: 1px solid #D1D1D1;
 }
+
+
 
 @media (max-width: 1024px){
     .addTaskBody{
