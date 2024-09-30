@@ -21,10 +21,10 @@ function addTask(){
         Prio: prio,
         AssignedTo: [document.getElementById("addTaskContactSelect").value],
         Subtask: [subTask],
-        PositionID: "todo"
+        PositionID: "toDo"
       };
       const jsonString = JSON.stringify(task);
-      postData(task.Title, jsonString);
+      postData(task.Title, task);
 console.log(jsonString);
 clearForm(prio);
 }
@@ -115,13 +115,16 @@ function clearForm(prio){
 
 // firebase 
 
+
 async function postData(path="", data={}) {
+    const title = data.Title;
+    path = title;
     let response = await fetch(BASE_URL + path + ".json",{
-        method: "POST",
-        header: {
+        method: "PUT",
+        headers: {
             "Content-Type": "application/json"
         },
-        body: data
+        body: JSON.stringify(data)
     });
 
     return responseToJson = await response.json();
