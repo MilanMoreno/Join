@@ -81,3 +81,10 @@ function removeOtherClasslist(p){
     document.getElementById(`lowColor`).classList = ``
     document.getElementById(`lowWhite`).classList = `d-none`
 }
+
+
+function openAddSubTask(){
+    document.getElementById("activSubTask").classList.remove ("d-none")
+    document.getElementById("activSubTask").classList.add ("d-flex")
+    document.getElementById("subTaskPlus").classList.add ("d-none")
+}

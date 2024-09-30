@@ -31,7 +31,8 @@ function addTaskTemplate() {
                 <option value="">User Story</option>
            </select>
             <p>Subtasks</p>
-            <input type="text" placeholder="Add new subtask">
+            <div onclick="openAddSubTask()" class="d-flex subTask"><input id="subTaskAdd" type="text" placeholder="Add new subtask"><img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt=""><div id="activSubTask" class="d-none d-center"><img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt=""><div class="middleLineShort"></div><img onclick="addSubTask()" class="subTaskCheck" src="./assets/img/check.png" alt=""></div></div>
+            <div id="subTaskView"></div>
         </div>
 </div>
         <div class="addTaskFooter d-flex d-space">

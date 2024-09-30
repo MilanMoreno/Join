@@ -145,6 +145,58 @@
 
 #addTaskContactSelect{
     width: auto;
+    padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+      background: url('../assets/img/arrow_drop_down.png') no-repeat right 15px center;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+}
+
+#addTaskContactSelect:focus{
+    width: auto;
+    padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+      background: url('../assets/img/arrow_drop_up.png') no-repeat right 15px center;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+}
+
+#addTaskCategory{
+    width: auto;
+    padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+      background: url('../assets/img/arrow_drop_down.png') no-repeat right 15px center;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+}
+
+#addTaskCategory:focus{
+    width: auto;
+    padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+      background: url('../assets/img/arrow_drop_up.png') no-repeat right 15px center;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
 }
 
 .colormedium{
@@ -160,6 +212,56 @@
 .colorlow{
     background-color: #7AE229!important;
     color: #FFFFFF!important;
+}
+
+.subTaskPlus{
+    height: 24px;
+    width: 24px;
+    padding-right: 16px;
+}
+
+.subTaskCross{
+    height: 24px;
+    width: 24px;
+    padding-right: 8px;
+}
+
+.subTaskCheck{
+    height: 14px;
+    width: 16px;
+    padding-left: 10px;
+    padding-right: 16px;
+}
+
+#subTaskAdd{
+    border: none;
+    height: 24px;
+    margin: 0;
+    width: 100%;
+}
+
+#subTaskAdd:focus{
+    border: none;
+    outline: none;
+}
+
+.subTask{
+    background-color: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    height: 48px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subTaskPlus:hover{
+    cursor: pointer;
+}
+
+.middleLineShort{
+    width: 0;
+    height: 24px;
+    border: 1px solid #D1D1D1;
 }
 
 @media (max-width: 1024px){
@@ -197,6 +299,7 @@
         font-size: 16px;
     }
 
+  
     body{
         width: 100vw;
     }
