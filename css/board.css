@@ -151,6 +151,56 @@
   font-weight: 700;
 }
 
+.card{
+  width: 214px;
+  background-color: #FFFFFF;
+  padding: 16px;
+  border-radius: 24px;
+  box-shadow: 0px 0px 10px 3px #00000014;
+  margin-block: 10px;
+}
+
+.technical{
+  background-color: #1FD7C1;
+}
+
+.user{
+  background-color: #0038FF;
+}
+
+.cardAssigned{}
+
+.cardText{
+  width: 220px;
+  color: #A8A8A8;
+  font-size: 16px;
+  text-wrap: wrap;
+  margin: 0;
+  margin-bottom: 24px;
+}
+
+.cardTitle{
+  color: #2A3647;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.cardCategory{
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding-inline: 16px;
+  padding-block: 4px;
+  width: fit-content;
+}
+
+.cardBalken{}
+
+.card{}
+
+.cardFooter{}
+
+.cardPrio{}
+
 @media (max-width: 1024px) {
   .findTask {
     display: none;

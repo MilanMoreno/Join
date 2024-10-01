@@ -62,15 +62,16 @@ function render() {
 }
 
 
-function fillTemplate(title, category, text, zuteilung, prio){
-    let priosrc = checkPrio(prio)
-
-    return /*html*/ `<div>
-        <div>${category}</div>
-        <h3>${title}</h3>
-        <p>${text}</p>
-        <div>balken und text</div>
-        <div><div>zugeteilt</div><img src="${priosrc}"></div>
+function fillTemplate(title, category, text, assigned, prio){
+    let priosrc = checkPrio(prio);
+    let catClass= checkCategory(category);
+    let content = limitTextLength(text);
+    return /*html*/ `<div class="card">
+        <div class="cardCategory ${catClass}">${category}</div>
+        <h3 class="cardTitle">${title}</h3>
+        <p class="cardText">${content}</p>
+        <div class="cardBalken">balken und text</div>
+        <div class="cardFooter d-flex d-space"><div class="cardAssigned">zugeteilt</div><img class="cardPrio" src="${priosrc}"></div>
     </div>`;
 }
 
@@ -79,11 +80,6 @@ function checkPrio(prio){
     const urgent = "./assets/img/icon_PrioAltaRed.svg";
     const medium = "./assets/img/icon_PrioMediaOrange.svg";
     const low = "./assets/img/icon_PrioBajaGreen.svg";
-
-    // Variable für die Bild-URL, basierend auf `prio`
-    let prioImgSrc = "";
-
-    // Prüfe den Wert von `prio` und weise die entsprechende Bild-URL zu
     if (prio === "urgent") {
         prioImgSrc = urgent;
     } else if (prio === "medium") {
@@ -91,8 +87,30 @@ function checkPrio(prio){
     } else if (prio === "low") {
         prioImgSrc = low;
     } else {
-        prioImgSrc = ""; // Optional: Standardbild oder leer lassen, falls `prio` unbekannt ist
+        prioImgSrc = "";
+    } return prioImgSrc;
+}
+
+
+function checkCategory(category){
+    if (category === "Technical Task") {
+        catClass = "technical";
+    } else if (category === "User Story") {
+        catClass = "user";
+    } else if (category === ""){
+        catClass = ""; 
     }
 
-    return prioImgSrc;
+    return catClass;
+}
+
+
+function limitTextLength(text) {
+
+   if (text.length > 50) {
+        content = text.slice(0, 50) + "...";
+    } else {
+        content = text;
+    }
+    return content;
 }
