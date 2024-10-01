@@ -19,6 +19,7 @@
     <script src="./js/contact.js"></script>
     <script src="./js/contact_Mobile.js"></script>
     <script src="contactsfirebase.js"></script>
+    <script src="./js/contacttest.js"></script>
   </head>
 
 <body onload="loadData()">
@@ -91,69 +92,20 @@
   
 
 </div>
+
+
     <div class="layout-wrapper" id="layout-wrapper">
       <section id="contactList" class="contacts">
         <div class="ContactAdd">
           <button onclick="togglePopUp('open', key = false)" class="enterContactButton position-fixed">Add new Contact
             <img src="./contact-assets/img/addPerson.png" alt=""></button>
         </div>
-        <div class="list" id="contacts"><h3 class="letter">A</h3>
-        <div onclick="showContactInfo()('-91ZL79OWhkklgbPgo6t1')" id="-91ZL79OWhkklgbPgo6t1" class="contactCard">
-             <div id="letter-91ZL79OWhkklgbPgo6t1" class="single_letter" id="" style="background-color: #AFA53D;">A</div>
-             <div class="fullName-email">
-               <span>Annette Lopez</span>
-               <a class="email" href="#">annette@gmail.com</a>
-             </div>
-        </div>
     
-        <div onclick="showContactInfo()('-FirebaseID')" id="FirebaseID" class="contactCard">
-             <div id="letter-FirebaseID" class="single_letter" style="background-color: #D4DDE5;">B</div>
-             <div class="fullName-email">
-               <span>Betina Moreno</span>
-               <a class="email" href="#">beti@web.de</a>
-             </div>
-        </div>
-    <h3 class="letter">B</h3>
-        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
-             <div id="letter-FirebaseID" class="single_letter" style="background-color: #CAC764;">D</div>
-             <div class="fullName-email">
-               <span>Dorothea Muñoz</span>
-               <a class="email" href="#">doram@yahoo.de</a>
-             </div>
-        </div>
-    <h3 class="letter">E</h3>
-        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
-             <div id="letter-FirebaseID" class="single_letter" style="background-color: #AD906E;">E</div>
-             <div class="fullName-email">
-               <span>Emily Müller</span>
-               <a class="email" href="#">emi@gmail.com</a>
-             </div>
-        </div>
-    <h3 class="letter">I</h3>
-        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
-             <div id="letter-FirebaseID" class="single_letter" style="background-color: #35CE5E;">I</div>
-             <div class="fullName-email">
-               <span>Idalgo Gonzales</span>
-               <a class="email" href="#">idalgo@yahoo.com</a>
-             </div>
-        </div>
-    <h3 class="letter">M</h3>
-        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
-             <div id="letter-FirebaseID" class="single_letter" style="background-color: #E9B278;">M</div>
-             <div class="fullName-email">
-               <span>Mika Navarro</span>
-               <a class="email" href="#">mika@web.de</a>
-             </div>
-        </div>
-    <h3 class="letter">M</h3>
-        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
-             <div id="letter-FirebaseID" class="single_letter" style="background-color: #74B0A3;">T</div>
-             <div class="fullName-email">
-               <span>Tilmann Helm</span>
-               <a class="email" href="#">tilmann@gmail.com</a>
-             </div>
-        </div>
-    </div>
+        <div class="list" id="contacts"><h3 class="letter"></h3>
+
+
+          
+
       </section>
 
       
@@ -240,7 +192,7 @@
       </div>
     </div>
   </main>
- 
+  
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
@@ -318,20 +270,24 @@ for (const key in contactsData) {
 }
 
 // Einzelnen Kontakt anzeigen
-function displayContact(contact) {
-const contactsList = document.getElementById("contacts");
-const contactCard = document.createElement("div");
-contactCard.classList.add("contactCard");
-contactCard.innerHTML = `
-    <div class="single_letter" style="background-color: #AFA53D;">${contact.username.charAt(0).toUpperCase()}</div>
-    <div class="fullName-email">
-        <span>${contact.username}</span>
-        <a class="email" href="#" onclick="infoNeuContact('${contact.username}', '${contact.email}', '${contact.PhoneNumber}')">${contact.email}</a>
-    </div>
-`;
-contactsList.appendChild(contactCard);
-}
 
+function displayContact(contact) {
+    const contactsList = document.getElementById("contacts");
+    const contactCard = document.createElement("div");
+    contactCard.classList.add("contactCard");
+    
+    // Hier fügst du den Event Listener hinzu
+    contactCard.onclick = () => infoNeuContact(contact.username, contact.email, contact.PhoneNumber);
+    
+    contactCard.innerHTML = `
+        <div class="single_letter" style="background-color: #AFA53D;">${contact.username.charAt(0).toUpperCase()}</div>
+        <div class="fullName-email">
+            <span>${contact.username}</span>
+            <a class="email" href="#">${contact.email}</a>
+        </div>
+    `;
+    contactsList.appendChild(contactCard);
+}
 // Informationen eines neuen Kontakts anzeigen
 function infoNeuContact(name, email, phone) {
 const contentDiv = document.getElementById("content");
@@ -351,6 +307,69 @@ function showContactMobile() {
     document.getElementById('contentSection').classList.add('dNone');
     document.getElementById('contactList').classList.remove('displayNone');
 }
+
+
 </script>
 </body>
 </html>
+
+
+
+   <!--
+        <div onclick="showContactInfo()('-91ZL79OWhkklgbPgo6t1')" id="-91ZL79OWhkklgbPgo6t1" class="contactCard">
+             <div id="letter-91ZL79OWhkklgbPgo6t1" class="single_letter" id="" style="background-color: #AFA53D;">A</div>
+             <div class="fullName-email">
+               <span>Annette Lopez</span>
+               <a class="email" href="#">annette@gmail.com</a>
+             </div>
+        </div>
+    
+       <div onclick="showContactInfo()('-FirebaseID')" id="FirebaseID" class="contactCard">
+             <div id="letter-FirebaseID" class="single_letter" style="background-color: #D4DDE5;">B</div>
+             <div class="fullName-email">
+               <span>Betina Moreno</span>
+               <a class="email" href="#">beti@web.de</a>
+             </div>
+        </div>
+    <h3 class="letter">B</h3>
+        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
+             <div id="letter-FirebaseID" class="single_letter" style="background-color: #CAC764;">D</div>
+             <div class="fullName-email">
+               <span>Dorothea Muñoz</span>
+               <a class="email" href="#">doram@yahoo.de</a>
+             </div>
+        </div>
+    <h3 class="letter">E</h3>
+        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
+             <div id="letter-FirebaseID" class="single_letter" style="background-color: #AD906E;">E</div>
+             <div class="fullName-email">
+               <span>Emily Müller</span>
+               <a class="email" href="#">emi@gmail.com</a>
+             </div>
+        </div>
+    <h3 class="letter">I</h3>
+        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
+             <div id="letter-FirebaseID" class="single_letter" style="background-color: #35CE5E;">I</div>
+             <div class="fullName-email">
+               <span>Idalgo Gonzales</span>
+               <a class="email" href="#">idalgo@yahoo.com</a>
+             </div>
+        </div>
+    <h3 class="letter">M</h3>
+        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
+             <div id="letter-FirebaseID" class="single_letter" style="background-color: #E9B278;">M</div>
+             <div class="fullName-email">
+               <span>Mika Navarro</span>
+               <a class="email" href="#">mika@web.de</a>
+             </div>
+        </div>
+    <h3 class="letter">M</h3>
+        <div onclick="showContactInfo()('-FirebaseID')" id="-FirebaseID" class="contactCard">
+             <div id="letter-FirebaseID" class="single_letter" style="background-color: #74B0A3;">T</div>
+             <div class="fullName-email">
+               <span>Tilmann Helm</span>
+               <a class="email" href="#">tilmann@gmail.com</a>
+             </div>
+        </div>
+    </div>--->
+            
