@@ -1,3 +1,35 @@
+let contacts = []
+let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/user";
+
+
+async function loadContacts() {
+    try {const response = await fetch(`${Second_URL}.json`);
+        if (!response.ok) {throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
+        }const contactData = await response.json();
+        if (!contactData) {
+            console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
+            return;
+        }contacts.length = 0;
+        for (const key in contactData) {
+            if (contactData.hasOwnProperty(key)) {
+                contacts.push(contactData[key]);
+            }}console.log("Geladene Aufgaben:", contacts);
+    } catch (error) {console.error('Fehler beim Laden der Daten:', error);
+    }generateAssingTo();
+}
+
+   
+ function generateAssingTo(){
+        let assigned = ""
+
+        for (let i = 0; i < contacts.length; i++) {
+            const element = contacts[i].username;
+            assigned += `<option>${element}</option>`
+        }
+        document.getElementById("addTaskContactSelect").innerHTML += assigned
+       
+    }
+
 function addTaskTemplate() {
   return /*html*/ `
     <div class="addTaskContent d-flex">
@@ -54,4 +86,8 @@ function addTaskTemplate() {
         </div>
     </div>
     `;
+    
 }
+
+
+

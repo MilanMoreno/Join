@@ -1,5 +1,7 @@
 let task = []
+
 let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/"
+
 
 function renderAddTask(){
     let contentSection = document.getElementById("addTaskSide");
@@ -7,6 +9,7 @@ function renderAddTask(){
 
     contentSection.innerHTML = '';
     contentSection.innerHTML = addTaskTemplate();
+    loadContacts();
 }
 
 let prio = ""
