@@ -201,6 +201,37 @@
 
 .cardPrio{}
 
+#detailCard{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.progress-container {
+  width: 128px;
+  background-color: #f3f3f3; /* Hintergrundfarbe des Containers */
+  border-radius: 8px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Der eigentliche Fortschrittsbalken */
+.progress-bar {
+  height: 100%;
+  background-color: #4589FF; /* Neue Farbe des Fortschrittsbalkens */
+  width: 0%; /* Initialer Wert */
+  border-radius: 25px;
+  transition: width 0.4s; /* Weiche Animation */
+}
+
+/* Stil für die Subtasks */
+.subtask-container {
+  margin: 10px 0;
+}
+
 @media (max-width: 1024px) {
   .findTask {
     display: none;
