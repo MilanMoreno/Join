@@ -191,6 +191,7 @@
   padding-inline: 16px;
   padding-block: 4px;
   width: fit-content;
+  height: 21px;
 }
 
 .cardBalken{}
@@ -201,13 +202,14 @@
 
 .cardPrio{}
 
-#detailCard{
+#overlay{
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
 }
+
 
 .progress-container {
   width: 128px;

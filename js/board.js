@@ -24,6 +24,7 @@ function render() {
         const element = task[i];
         contentHTML = fillTemplate(task[i].Title, task[i].Category, task[i].Description, task[i].AssignedTo, task[i].Prio, i);
         document.getElementById(`${task[i].PositionID}`).innerHTML += contentHTML;
+        updateProgress(i);
     }
 }
 
@@ -35,8 +36,8 @@ function fillTemplate(title, category, text, assigned, prio, id){
     let content = limitTextLength(text);
 
     return /*html*/ `
-    <div class="card" onclick="openDetailCard(id)">
-        <div class="cardCategory ${catClass}">${category}</div>
+    <div class="card" onclick="openDetailCard(${id})">
+        <div class="cardCategory ${catClass} d-flex d-center">${category}</div>
         <h3 class="cardTitle">${title}</h3>
         <p class="cardText">${content}</p>
         <div class="cardBalken d-flex">
@@ -50,22 +51,9 @@ function fillTemplate(title, category, text, assigned, prio, id){
             <img class="cardPrio" src="${priosrc}">
         </div>
 
-        <!-- Subtasks Container -->
-        <div id="subtasksContainer${id}" class="subtask-container">
-            <input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"> Subtask 1<br>
-            <input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"> Subtask 2<br>
-            <input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"> Subtask 3<br>
-            <input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"> Subtask 4<br>
-
-            <!-- Dynamische Liste von Subtasks -->
-            <ul id="subTaskView${id}">
-                <li>Subtask 1</li>
-                <li>Subtask 2</li>
-                <li>Subtask 3</li>
-                <li>Subtask 4</li>
-            </ul>
         </div>
     </div>`;
+    
 }
 
 // Fortschrittsaktualisierungsfunktion, die auf die spezifische Karte abzielt
@@ -73,10 +61,10 @@ function updateProgress(id) {
     // IDs für das spezifische Element erstellen
     let progressBarID = "progressBar" + id;
     let progressTextID = "progressText" + id;
-    let subTaskViewID = "subTaskView" + id;
+    let subTaskViewID = "subtasksContainer" + id;
 
     // Ermitteln der gesamten Anzahl an Subtasks für die spezifische Karte
-    const totalSubtasks = document.getElementById(subTaskViewID).children.length;
+    const totalSubtasks = task[id].Subtask[0].length;
 
     // Zählen der abgehakten Subtasks (Checkboxen) für die spezifische Karte
     const completedSubtasks = document.querySelectorAll(`.subtask-checkbox-${id}:checked`).length;
@@ -137,27 +125,82 @@ function limitTextLength(text) {
 
 
 function openDetailCard(id) {
-    let contentSection = document.getElementById("detailCard")
+    let contentSection = document.getElementById("overlay")
     let assign = filterContact(id);
     let cardSubTask = filterSubTask(id);
-
+    let catClass = checkCategory(task[id].Category);
+    let formattedDate = formatDateToDDMMYYYY(task[id].DueDate);
+    let priosrc = checkPrio(task[id].Prio);
+    contentSection.innerHTML = ""
     contentSection.innerHTML = /*html*/`
-        <div>
-            <div><div>${task.id.Category}</div><p onclick="closeDetailCard()">X</p></div>
-            <h2>${task.id.title}</h2>
+        <div id="detailCard" class="detailCard">
+            <div class="d-flex d-space"><div class="detailCardCategory ${catClass} d-flex d-center">${task[id].Category}</div><img onclick="closeDetailCard()" class="closeCard" src="./assets/img/icon_closeVectorBlack.svg" alt=""></div>
+            <h2>${task[id].Title}</h2>
             <div>
-                <p>${task.id.Description}</p>
-                <div><p>DueDate:</p><p>${task.id.DueDate}</p> </div>
-                <div><p>Priority:</p><p>${task.id.Prio}<img src="" alt=""></p></div>
+                <p class="detailDescription">${task[id].Description}</p>
+                <div class="d-flex detailDate"><p class="detailDue">DueDate:</p><p>${formattedDate}</p> </div>
+                <div class="d-flex detailPrio"><p class="detailPr">Priority:</p><p class="d-flex dPrio">${task[id].Prio}<img class="detailPrioImg" src="${priosrc}" alt=""></p></div>
             </div>
             <ul>
-                <p>Assigned To:</p>
+                <p class="detailAssign">Assigned To:</p>
                 ${assign}
             </ul>
-            <p>Subtasks</p>
-            <ul>
-                ${cardSubTasks}
-            </ul>
+            <p class="detailSubtask">Subtasks</p>
+            <ul id="subtasksContainer${id}" class="subtask-container">
+                ${cardSubTask}
+        </ul>
+        <div class="d-flex detailDeleteEdit">
+            <div class="deleteEdit d-flex"><img src="./assets/img/delete.svg" alt=""><p>Delete</p></div>
+            <div class="detailMiddleline"></div>
+            <div class="deleteEdit d-flex"><img src="./assets/img/edit.svg" alt=""><p>Edit</p></div>
+        </div>
         </div>   
     `
+
+   document.getElementById("overlay").classList.remove("d-none");
+   document.getElementById("overlay").classList.add("d-flex") ; 
+}
+
+
+function formatDateToDDMMYYYY(dateString) {
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+}
+
+
+function filterContact(id){
+    let tasks = task
+let contact = ""
+
+    for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
+        const element = tasks[id].AssignedTo[i];
+        contact += `<li class="assignList d-flex">${element}</li>`
+    }
+
+    return contact
+}
+
+
+function filterSubTask(id){
+    let subTask = ""
+
+    for (let i = 0; i < task[id].Subtask[0].length; i++) {
+        const element = task[id].Subtask[0][i];
+        subTask += `<li class="d-flex subtaskList"><input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"><p>${element}</p></li> `
+    }
+
+    return subTask
+}
+
+
+
+function closeDetailCard(event) {
+    const overlay = document.getElementById("overlay");
+    const detailCard = document.getElementById("overlay");
+
+    // Überprüft, ob das Klick-Event auf das Overlay und nicht auf die Detailkarte (oder deren Kinder) erfolgt ist
+    if (event.target === overlay) {
+        document.getElementById("overlay").classList.add("d-none"); 
+        document.getElementById("overlay").classList.remove("d-flex");  // Versteckt das Overlay
+    }
 }
