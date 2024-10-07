@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Pop-up</title>
+    <style>
+      /* Stil für das Overlay, das den gesamten Bildschirm abdeckt */
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Halbdurchsichtiges Schwarz */
+        display: none; /* Standardmäßig ausgeblendet */
+        justify-content: center;
+        align-items: center;
+        z-index: 999; /* Über allen anderen Inhalten */
+      }
+
+      /* Stil für das Pop-up */
+      #contactFormContainer {
+        background-color: #fff; /* Weißer Hintergrund */
+        border-radius: 16px;
+        padding: 24px;
+        width: 50%; /* 50% der Bildschirmbreite */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schattenwurf */
+        position: relative; /* Position relativ zum Elterncontainer */
+      }
+
+      /* Standard Button Styles */
+      .enterContactButton {
+        background-color: rgb(9, 25, 49);
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: larger;
+        padding: 8px 12px 8px 12px;
+        border: none;
+      }
+
+      .enterContactButton:hover {
+        cursor: pointer;
+        background-color: rgb(41, 171, 226);
+        transition: 150ms;
+      }
+
+      .quit-Btn {
+        background-color: white;
+        border: 2.5px solid rgb(41, 171, 226);
+        color: rgb(41, 171, 226);
+        cursor: pointer;
+      }
+      
+      .quit-Btn:hover {
+        background-color: rgb(41, 171, 226);
+        color: white;
+      }
+    </style>
+</head>
+<body>
+
+
+    <script>
+      
+    </script>
+</body>
+</html>

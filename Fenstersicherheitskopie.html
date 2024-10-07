@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Pop-up</title>
+    <style>
+
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); 
+        display: none; 
+        justify-content: center;
+        align-items: center;
+        z-index: 999; 
+      }
+
+      
+      #contactFormContainer {
+        background-color: #fff; 
+        border-radius: 16px;
+        padding: 24px;
+        width: 50%; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative; }
+
+      .enterContactButton {
+        background-color: rgb(9, 25, 49);
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: larger;
+        padding: 8px 12px 8px 12px;
+        border: none;
+      }
+
+      .enterContactButton:hover {
+        cursor: pointer;
+        background-color: rgb(41, 171, 226);
+        transition: 150ms;
+      }
+
+      .quit-Btn {
+        background-color: white;
+        border: 2.5px solid rgb(41, 171, 226);
+        color: rgb(41, 171, 226);
+        cursor: pointer;
+      }
+      
+      .quit-Btn:hover {
+        background-color: rgb(41, 171, 226);
+        color: white;
+      }
+    </style>
+</head>
+<body>
+   
+    <button onclick="toggleContactForm()" class="enterContactButton position-fixed">Add New Contact
+        <img src="./contact-assets/img/addPerson.png" alt="Add Contact">
+    </button>
+
+    <div id="overlay" onclick="closeOnOutsideClick(event)">
+        <div id="contactFormContainer">
+           
+            <div class="return-mobilePopUp">
+                <img onclick="toggleContactForm()" src="./contact-assets/img/close.png" alt="Close">
+            </div>
+            <div class="popupContainer">
+                <div class="pic_inputs">
+                    <div>
+                        <img class="profile-pic" src="./contact-assets/img/empty-profil.png" alt="Profile Picture">
+                    </div>
+                    <div class="contact_input">
+                        <form class="form" id="ContactAddForm" onsubmit="ContactAdd(event)">
+                            <input required="" id="email" placeholder="Email" type="email">
+                            <input required="" id="tel" placeholder="Phone" type="tel">
+                            <input required="" id="name" placeholder="Name" type="text">
+                            <div class="contact_btn">
+                                <button type="button" onclick="toggleContactForm()" class="quit-Btn">Cancel</button>
+                                <button type="submit" id="submit" class="enterContactButton">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+     
+      function toggleContactForm() {
+        const overlay = document.getElementById('overlay');
+        
+  
+        if (overlay.style.display === 'none' || overlay.style.display === '') {
+          overlay.style.display = 'flex'; 
+          overlay.style.display = 'none';
+        }
+      }
+
+     
+      function closeOnOutsideClick(event) {
+        const overlay = document.getElementById('overlay');
+        const formContainer = document.getElementById('contactFormContainer');
+
+       
+        if (event.target === overlay) {
+          overlay.style.display = 'none';
+        }
+      }
+
+    
+      function ContactAdd(event) {
+        event.preventDefault(); 
+        console.log("Kontakt wurde hinzugefügt!");
+        toggleContactForm(); 
+      }
+    </script>
+</body>
+</html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-16">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join project 361</title>
 <!--Favicon-->
@@ -16,12 +14,12 @@
 <!--JS-->
 <script src="./js/header.js"></script>
 <style type="text/css" id="operaUserStyle"></style>
-
+<script src="./js/remotestaorage.js"></script>
 <script src="./js/contact.js"></script>
 <script src="./js/contact_Mobile.js"></script>
 
-
-
+<script src="./js/contacttest.js"></script>
+<script type="module" src="path/to/your/firebase-delete-script.js"></script>
 </head>
 
 <body onload="loadData()">
@@ -205,164 +203,173 @@
     </div>
   </main>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-    import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyB-Jc-sbVYfxNmL-VDeR-dR3i49UpVCdHU",
-      authDomain: "creative33-9f884.firebaseapp.com",
-      projectId: "creative33-9f884",
-      databaseURL: "https://creative33-9f884-default-rtdb.firebaseio.com",
-      storageBucket: "creative33-9f884.appspot.com",
-      messagingSenderId: "975089235329",
-      appId: "1:975089235329:web:ac23de9311076f9d886480"
-    };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+  
+    <!-- Das Overlay und das Pop-up-Fenster -->
+    <div id="overlay" onclick="closeOnOutsideClick(event)">
+      <div id="contactFormContainer">
+          <!-- Schließen-Button oben rechts -->
+          <div class="return-mobilePopUp">
+              <img onclick="toggleContactForm()" src="./contact-assets/img/close.png" alt="Close">
+          </div>
+          <div class="popupContainer">
+              <div class="pic_inputs">
+                  <div>
+                      <img class="profile-pic" src="./contact-assets/img/empty-profil.png" alt="Profile Picture">
+                  </div>
+                  <div class="contact_input">
+                      <form class="form" id="ContactAddForm" onsubmit="ContactAdd(event)">
+                          <input required="" id="email" placeholder="Email" type="email">
+                          <input required="" id="tel" placeholder="Phone" type="tel">
+                          <input required="" id="name" placeholder="Name" type="text">
+                          <div class="contact_btn">
+                              <button type="button" onclick="toggleContactForm()" class="quit-Btn">Cancel</button>
+                              <button type="submit" id="submit" class="enterContactButton">Save</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
-    document.getElementById("ContactAddForm").addEventListener('submit', addContact);
-
-    function addContact(e) {
-      e.preventDefault();
-      const contact = getFormData();
-      saveContactToDB(contact).then(() => {
-        alert("Kontakt erfolgreich hinzugefügt!");
-        clearInputFields();
-        fetchContacts();
-      }).catch((error) => console.error("Fehler beim Hinzufügen des Kontakts: ", error));
-    }
-
-    function getFormData() {
-      return {
-        username: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        PhoneNumber: document.getElementById("tel").value
-      };
-    }
-
-    function saveContactToDB(contact) {
-      return set(ref(db, 'user/' + contact.username), contact);
-    }
-
-    function clearInputFields() {
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("tel").value = "";
-    }
-
-    function fetchContacts() {
-      getContactsFromDB().then((contacts) => {
-        displayContacts(contacts);
-      }).catch((error) => console.error("Fehler beim Abrufen der Kontakte: ", error));
-    }
-
-    function getContactsFromDB() {
-      const dbRef = ref(db);
-      return get(child(dbRef, 'user')).then((snapshot) => snapshot.exists() ? snapshot.val() : {});
-    }
-
-    function displayContacts(contactsData) {
-      const contactsList = document.getElementById("contacts");
-      contactsList.innerHTML = "";
-      for (const key in contactsData) {
-        displayContact(contactsData[key]);
-      }
-    }
-
-    function displayContact(contact) {
-      const contactsList = document.getElementById("contacts");
-      const contactCard = document.createElement("div");
-      contactCard.classList.add("contactCard");
-
-      contactCard.onclick = () => infoNeuContact(contact.username, contact.email, contact.PhoneNumber);
-
-      contactCard.innerHTML = `
-            <div class="single_letter" style="background-color: #AFA53D;">${contact.username.charAt(0).toUpperCase()}</div>
-            <div class="fullName-email">
-                <span>${contact.username}</span>
-                <a class="email" href="#">${contact.email}</a>
-            </div>
-            <div>
-             
-                <button onclick="deleteContact('${contact.username}')" id="DelBtn" class="deleteButton">Delete</button>
-            </div>
-        `;
-      contactsList.appendChild(contactCard);
-    }
-
-    function infoNeuContact(name, email, phone) {
-      const contentDiv = document.getElementById("content");
-      contentDiv.innerHTML = `
-            <h3>Kontaktinformationen</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Telefonnummer:</strong> ${phone}</p>
-            <div>
-             <button onclick="window.location.href='PERFEKT.html'" class="editButton">Edit</button>
-<button type="button" id="submix" class ="dangerbtn">Delete x</button>
-<button onclick="deleteContact('contact', '-O4qBwSkkjy6CHJx9O1e')">XXX</button>
-<button onclick="deleteContact(path ='contact',keyForEdit)"type="button" class="">Delete endlich</button>
-                <button onclick="togglePopUp('open', key = false)" id="submi" class ="deleteButton">Delete V</button>
-      <button onclick="deleteContact('contact', 'TestDelete1')">DDDD</button>
-    
-            </div>
-        `;
-    }
-
+  <script>
    
 
-    function deleteContact(username) {
-      console.log("Lösche Kontakt: ", username);
 
-
-      remove(ref(db, 'user/' + username))
-        .then(() => {
-          alert(`Kontakt ${username} erfolgreich gelöscht!`);
-          fetchContacts();
-        })
-        .catch((error) => {
-          console.error("Fehler beim Löschen des Kontakts: ", error);
-        });
-    }
-
-    window.onload = function () {
+  </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+  import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-Jc-sbVYfxNmL-VDeR-dR3i49UpVCdHU",
+    authDomain: "creative33-9f884.firebaseapp.com",
+    projectId: "creative33-9f884",
+    databaseURL: "https://creative33-9f884-default-rtdb.firebaseio.com",
+    storageBucket: "creative33-9f884.appspot.com",
+    messagingSenderId: "975089235329",
+    appId: "1:975089235329:web:ac23de9311076f9d886480"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  
+  document.getElementById("ContactAddForm").addEventListener('submit', addContact);
+  
+  function addContact(e) {
+    e.preventDefault();
+    const contact = getFormData();
+    saveContactToDB(contact).then(() => {
+      alert("Kontakt erfolgreich hinzugefügt!");
+      clearInputFields();
       fetchContacts();
+    }).catch((error) => console.error("Fehler beim Hinzufügen des Kontakts: ", error));
+  }
+  
+  function getFormData() {
+    return {
+      username: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      PhoneNumber: document.getElementById("tel").value
     };
-
-    function showContactMobile() {
-      document.getElementById('contentSection').classList.add('dNone');
-      document.getElementById('contactList').classList.remove('displayNone');
+  }
+  
+  function saveContactToDB(contact) {
+    return set(ref(db, 'user/' + contact.username), contact);
+  }
+  
+  function clearInputFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("tel").value = "";
+  }
+  
+  function fetchContacts() {
+    getContactsFromDB().then((contacts) => {
+      displayContacts(contacts);
+    }).catch((error) => console.error("Fehler beim Abrufen der Kontakte: ", error));
+  }
+  
+  function getContactsFromDB() {
+    const dbRef = ref(db);
+    return get(child(dbRef, 'user')).then((snapshot) => snapshot.exists() ? snapshot.val() : {});
+  }
+  
+  function displayContacts(contactsData) {
+    const contactsList = document.getElementById("contacts");
+    contactsList.innerHTML = "";
+    for (const key in contactsData) {
+      displayContact(contactsData[key]);
     }
+  }
+  
+  function displayContact(contact) {
+    const contactsList = document.getElementById("contacts");
+    const contactCard = document.createElement("div");
+    contactCard.classList.add("contactCard");
+  
+    contactCard.onclick = () => infoNeuContact(contact.username, contact.email, contact.PhoneNumber);
+  
+    contactCard.innerHTML = `
+          <div class="single_letter" style="background-color: #AFA53D;">${contact.username.charAt(0).toUpperCase()}</div>
+          <div class="fullName-email">
+              <span>${contact.username}</span>
+              <a class="email" href="#">${contact.email}</a>
+          </div>
+          <div>
+           
+              <button onclick="deleteContact('${contact.username}')" id="DelBtn" class="deleteButton">Delete</button>
+          </div>
+      `;
+    contactsList.appendChild(contactCard);
+  }
+  
+  function infoNeuContact(name, email, phone) {
+    const contentDiv = document.getElementById("content");
+    contentDiv.innerHTML = `
+          <h3>Kontaktinformationen</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Telefonnummer:</strong> ${phone}</p>
+          <div>
+   
+  <button onclick="deleteContact('user', 'username')"class="enterContactButton">Löschen</button>
+  <!-- Der Button, der das Pop-up öffnet -->
+  <button onclick="toggleContactForm()" class="enterContactButton position-fixed">Infos aktualisieren
+      <img src="./contact-assets/img/addPerson.png" alt="Add Contact">
+  </button>
+  
+          </div>
+      `;
+  }
+  
+  
+  window.onload = function () {
+    fetchContacts();
+  };
+  
+  function showContactMobile() {
+    document.getElementById('contentSection').classList.add('dNone');
+    document.getElementById('contactList').classList.remove('displayNone');
+  }
+  
+  
+  async function deleteContact(username) {
+  try {
+  const contactRef = ref(db, `user/${username}`); 
+  await remove(contactRef); 
+  console.log(`Kontakt ${username} erfolgreich gelöscht!`);
+  } catch (error) {
+  console.error('Fehler beim Löschen des Kontakts:', error);
+  }
+  }
+  
+  
+  
+  
   </script>
-  <script>
-
-    document.getElementById('submix').onclick = function () {
-      firebase.database().ref('user/dsasa').remove();
-    }
-
-
-    
-      async function deleteContact(path = 'user', id) {
-    try {
-        const url = `${BASE_URL}${path}/${id}.json`;
-        let response = await fetch(url, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json",
-            },
-        });
-        if (!response.ok) {
-            throw new Error('Fehler beim Löschen des Kontakts');
-        }
-        window.location.reload();
-    } catch (error) {
-        console.error('Fehler beim Löschen des Kontakts:', error.message);
-    }
-}
-  </script>
-
 </body>
 
 </html>

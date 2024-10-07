@@ -87,3 +87,38 @@ function showContactMobile() {
 function contactsBgMenu() {
     document.getElementById('link-contact').classList.add('bg-focus');
 }
+
+
+
+
+
+
+      // Funktion zum Öffnen/Schließen des Pop-ups
+      function toggleContactForm() {
+        const overlay = document.getElementById('overlay');
+        
+        // Umschalten zwischen ein- und ausgeblendetem Zustand
+        if (overlay.style.display === 'none' || overlay.style.display === '') {
+          overlay.style.display = 'flex'; // Flex-Layout zum Zentrieren des Pop-ups
+        } else {
+          overlay.style.display = 'none';
+        }
+      }
+
+      // Funktion zum Schließen des Pop-ups durch Klick außerhalb des Fensters
+      function closeOnOutsideClick(event) {
+        const overlay = document.getElementById('overlay');
+        const formContainer = document.getElementById('contactFormContainer');
+
+        // Überprüfen, ob der Klick außerhalb des Pop-ups erfolgt ist
+        if (event.target === overlay) {
+          overlay.style.display = 'none';
+        }
+      }
+
+      // Dummy-Funktion für das Formular-Submit
+      function ContactAdd(event) {
+        event.preventDefault(); // Verhindert das automatische Neuladen der Seite
+        console.log("Kontakt wurde hinzugefügt!");
+        toggleContactForm(); // Schließt das Pop-up nach dem Hinzufügen des Kontakts
+      }
