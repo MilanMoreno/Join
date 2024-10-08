@@ -286,7 +286,7 @@ function checkPlaceholderVisibility() {
 
   for (const section of sections) {
       const hasContent = section.container.querySelectorAll('.card').length > 0;
-      section.placeholder.style.display = hasContent ? 'none' : 'block';
+      section.placeholder.style.display = hasContent ? 'none' : 'flex';
   }
 }
 
