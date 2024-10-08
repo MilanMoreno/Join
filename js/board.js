@@ -1,42 +1,53 @@
-let task = [] ;
-let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task";
-
+let task = [];
+let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
 async function loadTask() {
-    try {const response = await fetch(`${BASE_URL}.json`);
-        if (!response.ok) {throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
-        }const taskData = await response.json();
-        if (!taskData) {
-            console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
-            return;
-        }task.length = 0;
-        for (const key in taskData) {
-            if (taskData.hasOwnProperty(key)) {
-                task.push(taskData[key]);
-            }}console.log("Geladene Aufgaben:", task);
-    } catch (error) {console.error('Fehler beim Laden der Daten:', error);
-    }render();}
-
-
-function render() {
-    console.log(task)
-    for (let i = 0; i < task.length; i++) {
-        const element = task[i];
-        contentHTML = fillTemplate(task[i].Title, task[i].Category, task[i].Description, task[i].AssignedTo, task[i].Prio, i);
-        document.getElementById(`${task[i].PositionID}`).innerHTML += contentHTML;
-        updateProgress(i);
+  try {
+    const response = await fetch(`${BASE_URL}.json`);
+    if (!response.ok) {
+      throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
     }
+    const taskData = await response.json();
+    if (!taskData) {
+      console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
+      return;
+    }
+    task.length = 0;
+    for (const key in taskData) {
+      if (taskData.hasOwnProperty(key)) {
+        task.push(taskData[key]);
+      }
+    }
+  } catch (error) {
+    console.error("Fehler beim Laden der Daten:", error);
+  }
+  render();
 }
 
+function render() {
+  for (let i = 0; i < task.length; i++) {
+    const element = task[i];
+    contentHTML = fillTemplate(
+      task[i].Title,
+      task[i].Category,
+      task[i].Description,
+      task[i].AssignedTo,
+      task[i].Prio,
+      i
+    );
+    document.getElementById(`${task[i].PositionID}`).innerHTML += contentHTML;
+    updateProgress(i);
+  }
+  checkPlaceholderVisibility()
+}
 
-// Template für die Karten, das eindeutige IDs und Klassen verwendet
-function fillTemplate(title, category, text, assigned, prio, id){
-    let priosrc = checkPrio(prio);
-    let catClass = checkCategory(category);
-    let content = limitTextLength(text);
+function fillTemplate(title, category, text, assigned, prio, id) {
+  let priosrc = checkPrio(prio);
+  let catClass = checkCategory(category);
+  let content = limitTextLength(text);
 
-    return /*html*/ `
-    <div class="card" onclick="openDetailCard(${id})">
+  return /*html*/ `
+    <div class="card" id="${title}" draggable="true" ondragstart="drag(event, ${id}, '${title}')" onclick="openDetailCard(${id})">
         <div class="cardCategory ${catClass} d-flex d-center">${category}</div>
         <h3 class="cardTitle">${title}</h3>
         <p class="cardText">${content}</p>
@@ -53,93 +64,109 @@ function fillTemplate(title, category, text, assigned, prio, id){
 
         </div>
     </div>`;
-    
 }
 
-// Fortschrittsaktualisierungsfunktion, die auf die spezifische Karte abzielt
 function updateProgress(id) {
-    // IDs für das spezifische Element erstellen
-    let progressBarID = "progressBar" + id;
-    let progressTextID = "progressText" + id;
-    let subTaskViewID = "subtasksContainer" + id;
-
-    // Ermitteln der gesamten Anzahl an Subtasks für die spezifische Karte
-    const totalSubtasks = task[id].Subtask[0].length;
-
-    // Zählen der abgehakten Subtasks (Checkboxen) für die spezifische Karte
-    const completedSubtasks = document.querySelectorAll(`.subtask-checkbox-${id}:checked`).length;
-
-    // Berechnen des Fortschritts in Prozent
-    const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
-
-    // Überprüfen, ob das Fortschrittsbalken-Element vorhanden ist, bevor es aktualisiert wird
-    const progressBarElement = document.getElementById(progressBarID);
-    if (progressBarElement) {
-        progressBarElement.style.width = `${progressPercentage}%`;
-    }
-
-    // Aktualisieren des Fortschrittstextes
-    const progressTextElement = document.getElementById(progressTextID);
-    if (progressTextElement) {
-        progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
-    }
+  let progressBarID = "progressBar" + id;
+  let progressTextID = "progressText" + id;
+  const totalSubtasks = task[id].Subtask[0].length;
+  const completedSubtasks = document.querySelectorAll(
+    `.subtask-checkbox-${id}:checked`
+  ).length;
+  const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+  const progressBarElement = document.getElementById(progressBarID);
+  if (progressBarElement) {
+    progressBarElement.style.width = `${progressPercentage}%`;
+  }
+  const progressTextElement = document.getElementById(progressTextID);
+  if (progressTextElement) {
+    progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
+  }
 }
 
-
-function checkPrio(prio){
-    const urgent = "./assets/img/icon_PrioAltaRed.svg";
-    const medium = "./assets/img/icon_PrioMediaOrange.svg";
-    const low = "./assets/img/icon_PrioBajaGreen.svg";
-    if (prio === "urgent") {
-        prioImgSrc = urgent;
-    } else if (prio === "medium") {
-        prioImgSrc = medium;
-    } else if (prio === "low") {
-        prioImgSrc = low;
-    } else {
-        prioImgSrc = "";
-    } return prioImgSrc;
+function checkPrio(prio) {
+  const urgent = "./assets/img/icon_PrioAltaRed.svg";
+  const medium = "./assets/img/icon_PrioMediaOrange.svg";
+  const low = "./assets/img/icon_PrioBajaGreen.svg";
+  if (prio === "urgent") {
+    prioImgSrc = urgent;
+  } else if (prio === "medium") {
+    prioImgSrc = medium;
+  } else if (prio === "low") {
+    prioImgSrc = low;
+  } else {
+    prioImgSrc = "";
+  }
+  return prioImgSrc;
 }
 
-
-function checkCategory(category){
-    if (category === "Technical Task") {
-        catClass = "technical";
-    } else if (category === "User Story") {
-        catClass = "user";
-    } else if (category === ""){
-        catClass = ""; 
-    }
-    return catClass;
+function checkCategory(category) {
+  if (category === "Technical Task") {
+    catClass = "technical";
+  } else if (category === "User Story") {
+    catClass = "user";
+  } else if (category === "") {
+    catClass = "";
+  }
+  return catClass;
 }
-
 
 function limitTextLength(text) {
-   if (text.length > 50) {
-        content = text.slice(0, 50) + "...";
-    } else {
-        content = text;
-    }
-    return content;
+  if (text.length > 50) {
+    content = text.slice(0, 50) + "...";
+  } else {
+    content = text;
+  }
+  return content;
 }
 
-
 function openDetailCard(id) {
-    let contentSection = document.getElementById("overlay")
-    let assign = filterContact(id);
-    let cardSubTask = filterSubTask(id);
-    let catClass = checkCategory(task[id].Category);
-    let formattedDate = formatDateToDDMMYYYY(task[id].DueDate);
-    let priosrc = checkPrio(task[id].Prio);
-    contentSection.innerHTML = ""
-    contentSection.innerHTML = /*html*/`
+  let contentSection = document.getElementById("overlay");
+  let assign = filterContact(id);
+  let cardSubTask = filterSubTask(id);
+  let catClass = checkCategory(task[id].Category);
+  let formattedDate = formatDateToDDMMYYYY(task[id].DueDate);
+  let priosrc = checkPrio(task[id].Prio);
+  fillDetailTemplate(
+    id,
+    contentSection,
+    assign,
+    cardSubTask,
+    catClass,
+    formattedDate,
+    priosrc
+  );
+  document.getElementById("overlay").classList.remove("d-none");
+  document.getElementById("overlay").classList.add("d-flex");
+}
+
+function fillDetailTemplate(
+  id,
+  contentSection,
+  assign,
+  cardSubTask,
+  catClass,
+  formattedDate,
+  priosrc
+) {
+  contentSection.innerHTML = "";
+  contentSection.innerHTML = /*html*/ `
         <div id="detailCard" class="detailCard">
-            <div class="d-flex d-space"><div class="detailCardCategory ${catClass} d-flex d-center">${task[id].Category}</div><img onclick="closeDetailCard()" class="closeCard" src="./assets/img/icon_closeVectorBlack.svg" alt=""></div>
+            <div class="d-flex d-space">
+                <div class="detailCardCategory ${catClass} d-flex d-center">${task[id].Category}</div>
+                <img onclick="closeDetailCardX()" class="closeCard" src="./assets/img/icon_closeVectorBlack.svg" alt="">
+            </div>
             <h2>${task[id].Title}</h2>
             <div>
                 <p class="detailDescription">${task[id].Description}</p>
-                <div class="d-flex detailDate"><p class="detailDue">DueDate:</p><p>${formattedDate}</p> </div>
-                <div class="d-flex detailPrio"><p class="detailPr">Priority:</p><p class="d-flex dPrio">${task[id].Prio}<img class="detailPrioImg" src="${priosrc}" alt=""></p></div>
+                <div class="d-flex detailDate">
+                    <p class="detailDue">DueDate:</p>
+                    <p>${formattedDate}</p> 
+                </div>
+                <div class="d-flex detailPrio">
+                    <p class="detailPr">Priority:</p>
+                    <p class="d-flex dPrio">${task[id].Prio}<img class="detailPrioImg" src="${priosrc}" alt=""></p>
+                </div>
             </div>
             <ul>
                 <p class="detailAssign">Assigned To:</p>
@@ -150,57 +177,148 @@ function openDetailCard(id) {
                 ${cardSubTask}
         </ul>
         <div class="d-flex detailDeleteEdit">
-            <div class="deleteEdit d-flex"><img src="./assets/img/delete.svg" alt=""><p>Delete</p></div>
+            <div class="deleteEdit d-flex">
+                <img src="./assets/img/delete.svg" alt="">
+                <p>Delete</p>
+            </div>
             <div class="detailMiddleline"></div>
-            <div class="deleteEdit d-flex"><img src="./assets/img/edit.svg" alt=""><p>Edit</p></div>
+            <div class="deleteEdit d-flex">
+                <img src="./assets/img/edit.svg" alt="">
+                <p>Edit</p>
+            </div>
         </div>
         </div>   
-    `
-
-   document.getElementById("overlay").classList.remove("d-none");
-   document.getElementById("overlay").classList.add("d-flex") ; 
+    `;
 }
-
 
 function formatDateToDDMMYYYY(dateString) {
-    const [year, month, day] = dateString.split("-");
-    return `${day}/${month}/${year}`;
+  const [year, month, day] = dateString.split("-");
+  return `${day}/${month}/${year}`;
 }
 
+function filterContact(id) {
+  let tasks = task;
+  let contact = "";
 
-function filterContact(id){
-    let tasks = task
-let contact = ""
+  for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
+    const element = tasks[id].AssignedTo[i];
+    contact += `<li class="assignList d-flex">${element}</li>`;
+  }
 
-    for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
-        const element = tasks[id].AssignedTo[i];
-        contact += `<li class="assignList d-flex">${element}</li>`
-    }
-
-    return contact
+  return contact;
 }
 
+function filterSubTask(id) {
+  let subTask = "";
 
-function filterSubTask(id){
-    let subTask = ""
+  for (let i = 0; i < task[id].Subtask[0].length; i++) {
+    const element = task[id].Subtask[0][i];
+    subTask += `<li class="d-flex subtaskList"><input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"><p>${element}</p></li> `;
+  }
 
-    for (let i = 0; i < task[id].Subtask[0].length; i++) {
-        const element = task[id].Subtask[0][i];
-        subTask += `<li class="d-flex subtaskList"><input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"><p>${element}</p></li> `
-    }
-
-    return subTask
+  return subTask;
 }
-
-
 
 function closeDetailCard(event) {
-    const overlay = document.getElementById("overlay");
-    const detailCard = document.getElementById("overlay");
+  const overlay = document.getElementById("overlay");
+  const detailCard = document.getElementById("overlay");
 
-    // Überprüft, ob das Klick-Event auf das Overlay und nicht auf die Detailkarte (oder deren Kinder) erfolgt ist
-    if (event.target === overlay) {
-        document.getElementById("overlay").classList.add("d-none"); 
-        document.getElementById("overlay").classList.remove("d-flex");  // Versteckt das Overlay
-    }
+  if (event.target === overlay) {
+    document.getElementById("overlay").classList.add("d-none");
+    document.getElementById("overlay").classList.remove("d-flex");
+  }
 }
+
+function closeDetailCardX() {
+  document.getElementById("overlay").classList.add("d-none");
+  document.getElementById("overlay").classList.remove("d-flex");
+}
+
+
+function checkPlaceholderVisibility() {
+  const sections = [
+      { container: document.getElementById('toDo'), placeholder: document.getElementById('toDoPlaceholder') },
+      { container: document.getElementById('inProgress'), placeholder: document.getElementById('progressPlaceholder') },
+      { container: document.getElementById('awaitFeedback'), placeholder: document.getElementById('feedbackPlaceholder') },
+      { container: document.getElementById('done'), placeholder: document.getElementById('donePlaceholder') }
+  ];
+
+  for (const section of sections) {
+      const hasContent = section.container.querySelectorAll('.card').length > 0;
+      section.placeholder.style.display = hasContent ? 'none' : 'block';
+  }
+}
+
+
+let draggedElement;
+let idUpdate;
+let savedTitle;
+
+function drag(event, id, name) {
+    draggedElement = event.target; 
+    idUpdate = id
+    savedTitle = name
+    task = task
+    event.dataTransfer.setData("text", event.target.id); 
+}
+
+
+function allowDrop(event) {
+    event.preventDefault();
+    event.currentTarget.classList.add('drag-over');
+}
+
+function dragLeave(event) {
+    event.currentTarget.classList.remove('drag-over');
+}
+
+function drop(event) {
+    event.preventDefault();
+    event.currentTarget.classList.remove('drag-over');
+
+    
+    if (draggedElement && event.currentTarget !== draggedElement.parentNode) {
+        event.currentTarget.appendChild(draggedElement);
+        checkPlaceholderVisibility(); 
+    }
+   
+    const dropTargetID = event.currentTarget.id;
+    updateTaskPosition(dropTargetID);
+
+
+}
+
+function updateTaskPosition(dropTargetID){
+  task[idUpdate].PositionID = dropTargetID;
+  task = task[idUpdate]
+  updatePosition(task.Title, task);
+}
+
+
+// async function updatePosition(){
+//   let path = `${savedTitle}`
+//   const response = await fetch(BASE_URL + path + ".JSON",{
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(task),
+//     });
+
+//     return response.json();
+//   }
+    
+  async function updatePosition(path = "", data = {}) {
+    const title = savedTitle;
+    path = title;
+    let response = await fetch(BASE_URL + path + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  
+    return (responseToJson = await response.json());
+  }
+

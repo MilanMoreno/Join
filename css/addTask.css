@@ -1,335 +1,332 @@
-.red{
-    color: #FF8190;
-    ;
+.red {
+  color: #ff8190;
 }
 
-.middleLine{
-    width: 0;
-    height: 424px;
-    border: 1px solid #D1D1D1;
+.middleLine {
+  width: 0;
+  height: 424px;
+  border: 1px solid #d1d1d1;
 }
 
-.addTaskContent{
-    flex-direction: column;
-    padding-inline:  84.478px;
-    font-size: 20px;
-    max-width: 976.25px;
+.addTaskContent {
+  flex-direction: column;
+  padding-inline: 84.478px;
+  font-size: 20px;
+  max-width: 976.25px;
 }
 
-.addTaskContent h1{
-    margin-bottom: 40px;
+.addTaskContent h1 {
+  margin-bottom: 40px;
 }
 
 .addTaskLeft {
-    width: 440px;
-    flex-direction: column;
+  width: 440px;
+  flex-direction: column;
 }
 
-.addTaskBody{
-        column-gap: 5px;
-    
+.addTaskBody {
+  column-gap: 5px;
 }
 
-.addTaskRight{
-    width: 440px;
-    flex-direction: column;
+.addTaskRight {
+  width: 440px;
+  flex-direction: column;
 }
 
-.addTaskContent input{
-    border-radius: 10px;
-    height: 48px;
-    padding-inline: 21px;
-    padding-block: 12px;
-    border: 1px solid #D1D1D1;
-    margin-bottom: 8px;
-    margin-top: 4px;
-    font-size: 20px;
+.addTaskContent input {
+  border-radius: 10px;
+  height: 48px;
+  padding-inline: 21px;
+  padding-block: 12px;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  font-size: 20px;
 }
 
 .addTaskContent input::placeholder {
-    color: #D1D1D1;
- }
+  color: #d1d1d1;
+}
 
-.addTaskContent textarea{
-    border-radius: 10px;
-    height: 120px;
-    padding-inline: 21px;
-    padding-block: 12px;
-    border: 1px solid #D1D1D1;  
-    margin-bottom: 8px;
-    margin-top: 4px;
-    font-size: 20px;
+.addTaskContent textarea {
+  border-radius: 10px;
+  height: 120px;
+  padding-inline: 21px;
+  padding-block: 12px;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  font-size: 20px;
 }
 
 .addTaskContent textarea::placeholder {
-    color: #D1D1D1;
- }
-
-.addTaskContent select{
-    border-radius: 10px;
-    height: 48px;
-    padding-inline: 21px;
-    padding-block: 12px;
-    border: 1px solid #D1D1D1;   
-    margin-bottom: 8px;
-    margin-top: 4px;
-    font-size: 20px;
+  color: #d1d1d1;
 }
 
-.createTask{
-    background-color: #2A3647 !important;
-    color: #FFFFFF;
-    width: 183px !important;
-    align-items: center;
-    justify-content: center;
+.addTaskContent select {
+  border-radius: 10px;
+  height: 48px;
+  padding-inline: 21px;
+  padding-block: 12px;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  font-size: 20px;
 }
 
-.clear{
-    background-color: #F6F7F8 !important;
-    color: #2A3647;
-    width: 110px !important;
-    align-items: center;
-    justify-content: center;
+.createTask {
+  background-color: #2a3647 !important;
+  color: #ffffff;
+  width: 183px !important;
+  align-items: center;
+  justify-content: center;
 }
 
-.addTaskContent button{
-    height: 56px;
-    width: 136px;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-    border: 1px solid #D1D1D1;
-    margin-bottom: 8px;
-    margin-top: 4px;
-    font-size: 20px;
+.clear {
+  background-color: #f6f7f8 !important;
+  color: #2a3647;
+  width: 110px !important;
+  align-items: center;
+  justify-content: center;
 }
 
-.addTaskContent button:hover{
-    cursor: pointer;
-    box-shadow: 0px 0px 4px 0px #0000001A;
+.addTaskContent button {
+  height: 56px;
+  width: 136px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  font-size: 20px;
 }
 
-.addTaskContent p{
-    margin: 0;
+.addTaskContent button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 4px 0px #0000001a;
 }
 
-.note{
-    font-size: 16px;
-    vertical-align: sub;
+.addTaskContent p {
+  margin: 0;
 }
 
-.addTaskFooter{
-    margin-top: 146px;
+.note {
+  font-size: 16px;
+  vertical-align: sub;
 }
 
-.addTaskSubmit{
-    width: 309px;
+.addTaskFooter {
+  margin-top: 146px;
 }
 
-.addTaskSubmit img{
-    height: 24px;
-    width: 24px;
-    margin-left: 3px;
+.addTaskSubmit {
+  width: 309px;
 }
 
-.addTaskNote{
-    height: 24px;
+.addTaskSubmit img {
+  height: 24px;
+  width: 24px;
+  margin-left: 3px;
 }
 
-#addTitleInput{
-    width: auto;
+.addTaskNote {
+  height: 24px;
 }
 
-#addTaskDiscription{
-    width: auto;
+#addTitleInput {
+  width: auto;
 }
 
-#addTaskContactSelect{
-    width: auto;
-    padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
-      background: url('../assets/img/arrow_drop_down.png') no-repeat right 15px center;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+#addTaskDiscription {
+  width: auto;
 }
 
-#addTaskContactSelect:focus{
-    width: auto;
-    padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
-      background: url('../assets/img/arrow_drop_up.png') no-repeat right 15px center;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+#addTaskContactSelect {
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
+    center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
-#addTaskCategory{
-    width: auto;
-    padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
-      background: url('../assets/img/arrow_drop_down.png') no-repeat right 15px center;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+#addTaskContactSelect:focus {
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
-#addTaskCategory:focus{
-    width: auto;
-    padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-      -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-      -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
-      background: url('../assets/img/arrow_drop_up.png') no-repeat right 15px center;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+#addTaskCategory {
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
+    center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
-.colormedium{
-    background-color: #FFA800!important;
-    color:#FFFFFF!important;
+#addTaskCategory:focus {
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
+  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
+  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
-.colorurgent{
-    background-color: #FF3D00!important;
-    color: #FFFFFF!important;
+.colormedium {
+  background-color: #ffa800 !important;
+  color: #ffffff !important;
 }
 
-.colorlow{
-    background-color: #7AE229!important;
-    color: #FFFFFF!important;
+.colorurgent {
+  background-color: #ff3d00 !important;
+  color: #ffffff !important;
 }
 
-.subTaskPlus{
-    height: 24px;
-    width: 24px;
-    padding-right: 16px;
+.colorlow {
+  background-color: #7ae229 !important;
+  color: #ffffff !important;
 }
 
-.subTaskCross{
-    height: 24px;
-    width: 24px;
-    padding-right: 8px;
-    z-index: 1;
+.subTaskPlus {
+  height: 24px;
+  width: 24px;
+  padding-right: 16px;
 }
 
-.subTaskCheck{
-    height: 14px;
-    width: 16px;
-    padding-left: 10px;
-    padding-right: 16px;
-    z-index: 1;
+.subTaskCross {
+  height: 24px;
+  width: 24px;
+  padding-right: 8px;
+  z-index: 1;
 }
 
-#subTaskAdd{
-    border: none;
-    height: 24px;
-    margin: 0;
+.subTaskCheck {
+  height: 14px;
+  width: 16px;
+  padding-left: 10px;
+  padding-right: 16px;
+  z-index: 1;
+}
+
+#subTaskAdd {
+  border: none;
+  height: 24px;
+  margin: 0;
+  width: 100%;
+}
+
+#subTaskAdd:focus {
+  border: none;
+  outline: none;
+}
+
+.subTask {
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  height: 48px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subTaskPlus:hover {
+  cursor: pointer;
+}
+
+.middleLineShort {
+  width: 0;
+  height: 24px;
+  border: 1px solid #d1d1d1;
+}
+
+@media (max-width: 1024px) {
+  .addTaskBody {
+    flex-direction: column;
     width: 100%;
-}
+  }
 
-#subTaskAdd:focus{
-    border: none;
-    outline: none;
-}
+  .middleLine {
+    display: none;
+  }
 
-.subTask{
-    background-color: #FFFFFF;
-    border: 1px solid #D1D1D1;
-    border-radius: 10px;
-    height: 48px;
-    align-items: center;
-    justify-content: space-between;
-}
+  .addTaskHeader {
+    font-size: 47px;
+  }
 
-.subTaskPlus:hover{
-    cursor: pointer;
-}
+  .addTaskContent {
+    font-size: 16px;
+    width: 100%;
+  }
 
-.middleLineShort{
-    width: 0;
-    height: 24px;
-    border: 1px solid #D1D1D1;
-}
+  .addTaskContent input {
+    font-size: 16px;
+  }
 
+  .addTaskContent textarea {
+    font-size: 16px;
+  }
 
+  .addTaskContent button {
+    font-size: 16px;
+  }
 
-@media (max-width: 1024px){
-    .addTaskBody{
-        flex-direction: column;
-        width: 100%;
-    }
+  .addTaskContent select {
+    font-size: 16px;
+  }
 
-    .middleLine{
-        display: none;
-    }
+  body {
+    width: 100vw;
+  }
 
-    .addTaskHeader{
-        font-size: 47px;
-    }
+  .contentsection {
+    width: 100vw;
+  }
 
-    .addTaskContent{
-        font-size: 16px;
-        width: 100%;
-    }
+  .addTaskLeft {
+    max-width: auto;
+    width: auto;
+  }
 
-    .addTaskContent input{
-        font-size: 16px;
-    }
+  .addTaskRight {
+    max-width: auto;
+    width: auto;
+  }
+  .clear {
+    display: none !important;
+  }
 
-    .addTaskContent textarea{
-        font-size: 16px;
-    }
+  .addTaskSubmit {
+    flex-direction: row-reverse;
+  }
 
-    .addTaskContent button{
-        font-size: 16px;
-    }
-
-    .addTaskContent select{
-        font-size: 16px;
-    }
-
-  
-    body{
-        width: 100vw;
-    }
-
-    .contentsection{
-        width: 100vw;
-    }
-
-    .addTaskLeft{
-        max-width: auto;
-        width: auto;
-    }
-
-    .addTaskRight{
-        max-width: auto;
-        width: auto;
-    }
-    .clear{
-        display: none!important;
-    }
-
-    .addTaskSubmit{
-        flex-direction: row-reverse;
-    }
-
-    /* .addTaskFooter{
+  /* .addTaskFooter{
         position: absolute;
         bottom: 117px;
         background-color: #F6F7F8;
