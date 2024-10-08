@@ -127,3 +127,7 @@ ul {
   gap: 10px;
   align-items: center;
 }
+
+#overlay{
+  z-index: 99;
+}

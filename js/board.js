@@ -45,6 +45,7 @@ function fillTemplate(title, category, text, assigned, prio, id) {
   let priosrc = checkPrio(prio);
   let catClass = checkCategory(category);
   let content = limitTextLength(text);
+  let initials = getInitials(assigned);
 
   return /*html*/ `
     <div class="card" id="${title}" draggable="true" ondragstart="drag(event, ${id}, '${title}')" onclick="openDetailCard(${id})">
@@ -58,12 +59,51 @@ function fillTemplate(title, category, text, assigned, prio, id) {
             <div class="progress-text" id="progressText${id}">0/0 Subtasks</div>
         </div>
         <div class="cardFooter d-flex d-space">
-            <div class="cardAssigned">${assigned}</div>
+            <div class="initials-container">${initials}</div>
             <img class="cardPrio" src="${priosrc}">
         </div>
 
         </div>
     </div>`;
+}
+
+function getInitials(names){
+let initial = ""
+  for (let i = 0; i < names.length; i++) {
+    const element = names[i];
+    const color = getRandomColor();
+    
+ 
+  const nameParts = element.split(' ');
+  const initials = nameParts.map(part => part.charAt(0)).join('');
+  ini = initials.toUpperCase();
+  initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`
+  
+}
+return initial
+}
+
+function getInitialsDetail(names){
+  let initial = ""
+        const color = getRandomColor();
+      
+   
+    const nameParts = names.split(' ');
+    const initials = nameParts.map(part => part.charAt(0)).join('');
+    ini = initials.toUpperCase();
+    initial += `<div class="initialsDetails" style="background-color: ${color};">${ini}</div>`
+    
+  
+  return initial
+  }
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 function updateProgress(id) {
@@ -202,7 +242,8 @@ function filterContact(id) {
 
   for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
     const element = tasks[id].AssignedTo[i];
-    contact += `<li class="assignList d-flex">${element}</li>`;
+    const initial = getInitialsDetail(element);
+    contact += `<li class="assignList d-flex">${initial}${element}</li>`;
   }
 
   return contact;

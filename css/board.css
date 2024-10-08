@@ -231,6 +231,55 @@
   margin-bottom: 20px;
 }
 
+.dropSection{
+  min-height: 400px;
+}
+
+.drag-over {
+  border: 2px dashed #e7e7e7; 
+}
+
+.initials {
+  width: 32px;
+  height: 32px;
+  border-radius: 45px;
+  border: 1px solid #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: -10px;
+  position: relative;
+  z-index: 1;
+}
+
+.initialsDetails{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 12px;
+  position: relative;
+}
+
+.initials-container {
+  display: flex;
+  position: relative;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.assignList{
+  gap: 16px;
+}
+
 @media (max-width: 1024px) {
   .findTask {
     display: none;
@@ -288,12 +337,4 @@
   .noTask {
     max-width: 100%;
   }
-}
-
-.dropSection{
-  min-height: 400px;
-}
-
-.drag-over {
-  border: 2px dashed #e7e7e7; 
 }
