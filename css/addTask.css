@@ -266,6 +266,37 @@
   border: 1px solid #d1d1d1;
 }
 
+#urgentWhite{
+  width: 20px;
+  height: auto;
+}
+
+#urgentColor{
+  width: 20px;
+  height: auto;
+}
+
+#mediumWhite{
+  width: 20px;
+  height: auto;
+}
+
+#mediumColor{
+  width: 20px;
+  height: auto;
+}
+
+#lowWhite{
+  width: 20px;
+  height: auto;
+  rotate: 180deg;
+}
+
+#lowColor{
+  width: 20px;
+  height: auto;
+}
+
 @media (max-width: 1024px) {
   .addTaskBody {
     flex-direction: column;
@@ -325,6 +356,9 @@
   .addTaskSubmit {
     flex-direction: row-reverse;
   }
+
+
+
 
   /* .addTaskFooter{
         position: absolute;
