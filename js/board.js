@@ -39,6 +39,7 @@ function render() {
     updateProgress(i);
   }
   checkPlaceholderVisibility()
+
 }
 
 function fillTemplate(title, category, text, assigned, prio, id) {
@@ -110,9 +111,7 @@ function updateProgress(id) {
   let progressBarID = "progressBar" + id;
   let progressTextID = "progressText" + id;
   const totalSubtasks = task[id].Subtask[0].length;
-  const completedSubtasks = document.querySelectorAll(
-    `.subtask-checkbox-${id}:checked`
-  ).length;
+  const completedSubtasks = numberOfChecked(id);
   const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
   const progressBarElement = document.getElementById(progressBarID);
   if (progressBarElement) {
@@ -122,6 +121,22 @@ function updateProgress(id) {
   if (progressTextElement) {
     progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
   }
+  
+}
+
+function numberOfChecked(id){
+  let count = 0
+  for (let i = 0; i < task[id].checkboxState[0].length; i++) {
+    const element = task[id].checkboxState[0][i].checked;
+    if (element === true) {
+      count = count+1 
+    } else { count =  count+0 }
+    
+  }
+ 
+  
+
+  return count;
 }
 
 function checkPrio(prio) {
@@ -254,11 +269,27 @@ function filterSubTask(id) {
 
   for (let i = 0; i < task[id].Subtask[0].length; i++) {
     const element = task[id].Subtask[0][i];
-    subTask += `<li class="d-flex subtaskList"><input type="checkbox" class="subtask-checkbox-${id}" onclick="updateProgress('${id}')"><p>${element}</p></li> `;
+    const checkedTask = task[id].checkboxState[0][i].checked
+    const checked = filterCheckBox(checkedTask);
+    subTask += `<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id}" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;
   }
 
   return subTask;
 }
+
+function filterCheckBox(checked){
+  if (checked === true) { return "checked"
+  } else {
+    return "unchecked"
+  }
+}
+
+
+function updatecheckbox(id, i){
+  updateCheckboxStateInFirebase(i, id);
+  updateProgress(id);
+}
+
 
 function closeDetailCard(event) {
   const overlay = document.getElementById("overlay");
@@ -336,19 +367,25 @@ function updateTaskPosition(dropTargetID){
 }
 
 
-// async function updatePosition(){
-//   let path = `${savedTitle}`
-//   const response = await fetch(BASE_URL + path + ".JSON",{
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(task),
-//     });
-
-//     return response.json();
-//   }
+async function updateCheckboxStateInFirebase(checkboxId, taskId) {
+  const checkbox = document.getElementById(`${taskId}${checkboxId}`);
+  const checkboxState = { checked: checkbox.checked };
+  task[taskId].checkboxState[0][checkboxId] = checkboxState;
+  const data = task[taskId].checkboxState[0]
+  const taskTitle = task[taskId].Title
+  await fetch(`https://creative33-9f884-default-rtdb.firebaseio.com/task/${taskTitle}/checkboxState/0.json`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => console.log('Checkbox state updated:', data))
+  .catch(error => console.error('Error updating checkbox state:', error));
+}
     
+
   async function updatePosition(path = "", data = {}) {
     const title = savedTitle;
     path = title;
@@ -361,5 +398,10 @@ function updateTaskPosition(dropTargetID){
     });
   
     return (responseToJson = await response.json());
+  }
+
+
+  function updateCeckBoxState(){
+
   }
 

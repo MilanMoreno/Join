@@ -12,6 +12,7 @@ function renderAddTask() {
 
 let prio = "";
 const subTask = [];
+const checkBox = [];
 
 function addTask() {
   const task = {
@@ -23,6 +24,7 @@ function addTask() {
     AssignedTo: [document.getElementById("addTaskContactSelect").value],
     Subtask: [subTask],
     PositionID: "toDo",
+    checkboxState: [checkBox]
   };
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
@@ -92,6 +94,7 @@ function addSubTask() {
   let value = document.getElementById("subTaskAdd").value;
   show.innerHTML += `<li>${value}</li>`;
   subTask.push(`${value}`);
+  checkBox.push("false")
 
   cancelSubTask();
   event.stopPropagation();
