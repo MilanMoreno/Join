@@ -76,7 +76,7 @@ main {
     display: none;
   }
    
-  .logo-mobile {
+  .logo-small-screen {
     display: none;
   }
    
@@ -108,7 +108,7 @@ main {
     background-color: #2b3b59;
   }
   
-  .header-text {
+  .header-description {
     margin: 0 !important;
   }
  
@@ -123,7 +123,7 @@ main {
       display: none;
     }
   
-    .logo-mobile {
+    .logo-small-screen {
       display: flex;
       height: 39px;
       width: 32px;

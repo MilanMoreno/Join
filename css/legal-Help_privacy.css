@@ -4,7 +4,7 @@
     box-sizing: border-box;
   }
   
-  .header-sticky {
+  .fixed-header {
     position: sticky;
     top: 0;
   }
