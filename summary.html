@@ -3,10 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <!--Favicon-->
+   
     <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    <!--Stylesheets-->
-    <!--<link rel="stylesheet" href="./css/legal-Help_privacy.css" />-->
+    
+    
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
-    <script src="./js/init.js"></script>
+  
   
 
   
@@ -67,7 +67,7 @@
 
   
     <header id="header">
-      <img src="./assets/img/logo_coloured.svg" alt="Join logo" class="logo-small-screen">
+      <img src="imgs/join_logo.png" alt=" logo" class="mobile-logo">
       <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
@@ -99,15 +99,15 @@
         <section class="content-summary">
           <div class="left-summary-area">
             <div class="card-interactive-div">
-              <div class="card hover-right" onmouseover="modifyPencilImage()" onmouseout="resetPencilImg()" onclick="loadBoardPage()">
+              <div class="card hover-right">
                 <img id="pencil-img" src="./assets/img/pencil-darkblue.png" alt="Pencil logo">
                 <div class="details-card">
                   <h2 id="todo">1</h2>
                   <p>To-do</p>
                 </div>
               </div>
-           <div class="card hover-left" onmouseover="updateCheckImage()" onmouseout="resetCheckImg()" onclick="loadBoardPage()">
-                  <!---- <img id="check-img" src="./assets/img/check-darkblue.png" alt="Check logo">-->
+           <div class="card hover-left" >
+                >
                 <div class="details-card">
                   <h2 id="done">0</h2>
                   <p>Done</p>
@@ -115,7 +115,7 @@
               </div>
             </div>
 
-            <div class="super-card hover-bottom" onclick="loadBoardPage()">
+            <div class="super-card hover-bottom">
               <div class="big-left-panel">
                 <img src="./assets/img/icon_Upp2.svg" alt="Arrows up">
                 <div class="details-card">
@@ -135,17 +135,17 @@
             </div>
 
             <div class="card-interactive-div">
-              <div class="card-end" onclick="setupBoardPage()">
+              <div class="card-end">
                 <h2 id="assignments">2</h2>
                 <h4>Task in Board</h4>
               </div>
 
-              <div class="card-end" onclick="setupBoardPage()">
+              <div class="card-end">
                 <h2 id="ongoing-task">0</h2>
                 <h4>Task in Progress</h4>
               </div>
 
-              <div class="card-end" onclick="setupBoardPage()">
+              <div class="card-end">
                 <h2 id="pending-response">1</h2>
                 <h4>Awaiting Feedback</h4>
               </div>
@@ -161,10 +161,8 @@
       </div>
     </main>
 
-    <!--JS-->
-    <script src="./js/header.js"></script>
-    <script src="./js/summary.js"></script>
-    <script src="./js/init.js"></script>
+ 
+    
   
 
 </body></html>
