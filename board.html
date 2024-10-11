@@ -39,7 +39,8 @@
       <link rel="stylesheet" href="./css/font.css" />
       <link rel="stylesheet" href="./css/style.css" />
       <meta charset="UTF-8" />
-      <script src="./js/init.js"></script>
+     
+      <script src="./js/dropDownMenuAndGoBack.js"></script>
 
       <section id="Sidebar" class="sidebar">
         <img
@@ -93,7 +94,7 @@
         <meta charset="UTF-8" />
         <script src="./js/init.js"></script>
 
-        <header id="header">
+        <!--<header id="header">
           <img
             src="imgs/mobile-header-logo.png"
             alt="Join logo"
@@ -124,7 +125,36 @@
             <a href="./privacy-police.html">Privacy Policy</a>
             <a href="./index.html">Log out</a>
           </div>
-        </section>
+        </section>--
+        
+      Die Veränderung bewirkt , dass rechts oben man draufklicken kann und ein Menü angezeigt wird 
+      und damit du im Responsiv weniger arbeit hast weil ich mir die Arbeit gemacht habe...---->
+
+      <header id="header">
+        <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
+        <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
+        <div class="header-right">
+          <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
+          <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
+        </div>
+  
+        </header>
+  
+      </section>
+      <section id="headerDropdownOption" class="d-noneHead">
+        <div class="headerDropdownOption">
+          <a href="./legal_notice.html">Legal Notice</a>
+          <a href="./privacy-police.html">Privacy Policy</a>
+          <a href="./index.html">Log out</a>
+        </div>
+      </section>
+    
+
+
+
+
+
+
       </div>
       <section class="content-section">
         <div class="header d-flex">
