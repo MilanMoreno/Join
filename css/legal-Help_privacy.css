@@ -88,6 +88,13 @@
     padding-left: 30px;
   }
   
+  .allTheText{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px;
+    padding-bottom: 80px;
+  }
   @media (max-width: 1024px) {
     .content-section {
       padding: 48px clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem) 128px
