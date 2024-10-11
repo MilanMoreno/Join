@@ -66,7 +66,7 @@
 
   
     <header id="header">
-      <img src="./assets/img/logo_coloured.svg" alt="Join logo" class="logo-small-screen">
+      <img src="imgs/mobile-header-logo.png" alt="Join logo" class="logo-small-screen">
       <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
@@ -85,14 +85,25 @@
 </div>
       <section class="content-section">
         <div class="header">
-          <h1>Privacy Police</h1>
+          <h1 class="responsiceH1">Privacy Police</h1>
+
+<!----
+          
+function showContactMobile() {
+  document.getElementById('content-area').classList.add('dNone');
+  document.getElementById('mycontacts').classList.remove('displayNone');
+
+}
+<div id="responsiveContactBackButton" class="returnToContacts">
+          <img class="closeMobile" onclick="showContactMobile()" src="imgs/icon_close.png">
+        </div>-->
           <button onclick="goToLastPage()">
             <img src="./assets/img/icon_back.svg" alt="">
           </button>
         </div>
 
         <div>
-          <h1>Datenschutzerklärung</h1>
+          <h1 class="responsiveH1">Datenschutzerklärung</h1>
           <h2 id="m716">Präambel</h2>
           <p>
             Mit der folgenden Datenschutzerklärung möchten wir Sie darüber
@@ -619,5 +630,17 @@
       </section>
     </main>
    
+<script>
+function goToLastPage() {
+    history.back();
+  }
+  
+  function showDropdownMenu() {
+    document
+      .getElementById("container-header-dropdown-menu")
+      .classList.toggle("d-block");
+  }
+  
 
+</script>
 </body></html>

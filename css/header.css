@@ -76,7 +76,7 @@ main {
     display: none;
   }
    
-  .mobile-logo {
+  .logo-small-screen {
     display: none;
   }
    
@@ -84,7 +84,7 @@ main {
     background-color: transparent !important;
   }
 
-  .header-dropdown-menu {
+  .headerDropdownOption {
     position: fixed;
     top: 97px;
     right: 40px;
@@ -98,13 +98,13 @@ main {
     z-index: 1;
   }
   
-  .header-dropdown-menu a {
+  .headerDropdownOption a {
     text-decoration: none;
     padding: 8px 16px;
     color: var(--lightgrey);
   }
   
-  .header-dropdown-menu a:hover {
+  .headerDropdownOption a:hover {
     background-color: #2b3b59;
   }
   
@@ -137,7 +137,7 @@ main {
         height: 10vh;
     }
   
-    .header-dropdown-menu {
+    .headerDropdownOption {
       top: 80px;
       right: 0;
     }
