@@ -1,556 +1,470 @@
 h2 {
-    border-right: solid 2px rgb(41, 171, 226);
-    font-size: xxx-large;
-    padding-right: 48px;
-  }
-  .header-sticky {
-    position: sticky;
-    top: 0;
-  }
-  
-  .blueBackground {
-    background-color: rgb(42, 54, 71);
-    color: white;
-  }
-  
-  .dNone{
-    display: non !important;
-  }
-  
-  .layout-wrapper {
-    height: 90vh;
-    width: 100%;
-    display: flex;
-  }
-  
-  .contacts {
-    width: 35%;
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 0 12px 0 12px 0;
-    padding: 0 12px 0 12px;
-  }
-  
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
-  .content-section {
-    flex: 1;
-    height: 90vh;
-    padding: 0 24px 0 24px;
-  }
-  
-  .contentDetails {
-    width: 100%;
-    height: auto;
-    padding: 24px 12px 0 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .ContactAdd {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 0 12px 0;
-  }
-  
-  .enterContactButton {
-    background-color: rgb(9, 25, 49);
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    height: 40px;
-    border-radius: 12px;
-    font-size: larger;
-    padding: 8px 12px 8px 12px;
-    border: none;
-  }
-  
-  .enterContactButton img {
-    height: 24px;
-    width: 24px;
-  }
-  
-  .enterContactButton:hover {
-    cursor: pointer;
-  }
-  
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-    }
-  
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  /* CSS for sliding out to the right */
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-    }
-  
-    to {
-      transform: translateX(100%);
-    }
-  }
-  
-  .letter_For_PopUp {
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-size: 48px;
-    background-color: orange;
-    color: white;
-    border: white 1px solid;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .popUp.slide-in {
-    animation: slideIn 0.5s forwards;
-  }
-  
-  .popUp.slide-out {
-    animation: slideOut 0.5s forwards;
-  }
-  
-  .bg-popUp.show {
-    opacity: 1;
-  }
-  
-  .bg-popUp.hide {
-    opacity: 0;
-  }
-  
-  .bg-focus {
-    background-color: #091931;
-  }
-  
-  .bg-popUp {
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  
-  .popUp {
-    height: 50vh;
-    width: 60vw;
-    border-radius: 24px;
-    z-index: 2;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  border-right: solid 2px rgb(41, 171, 226);
+  font-size: xxx-large;
+  padding-right: 48px;
+}
+.fixed-header {
+  position: sticky;
+  top: 0;
+}
+
+.blueBackground {
+  background-color: rgb(42, 54, 71);
+  color: white;
+}
+
+.displayNone {
+  display: none !important;
+}
+
+.layout-wrapper {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+}
+
+.contacts {
+  width: 35%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 0 12px 0;
+  padding: 0 12px 0 12px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.content-section {
+  flex: 1;
+  height: 90vh;
+  padding: 0 24px 0 24px;
+}
+
+.moreAboutContent {
+  width: 100%;
+  height: auto;
+  padding: 24px 12px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.addContact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0 12px 0;
+}
+
+.addContactButton {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: larger;
+  padding: 8px 12px 8px 12px;
+  border: none;
+}
+
+.addContactButton img {
+  height: 24px;
+  width: 24px;
+}
+
+.addContactButton:hover {
+  cursor: pointer;
+}
+
+@keyframes slideIn {
+  from {
     transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .popUp-icon {
-    background-color: rgb(9, 25, 49);
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    justify-content: center;
-  }
-  
-  .logo {
-    object-fit: cover;
-    height: 100%;
-  }
-  
-  .logo-box {
-    height: 88px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 0 12px 0 12px;
-  }
-  
-  .edit-logo {
-    object-fit: cover;
-    width: 200px;
-    padding: 0 12px 12px 12px;
-  }
-  
-  .logoEditBox {
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0 0 12px;
-  }
-  
-  .popupContainer {
-    background-color: white;
-    flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .exit-btn {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    padding: 0 24px 0 0;
-  }
-  
-  .exit-btn img {
-    object-fit: cover;
-    height: 32px;
-    width: 32px;
-  }
-  
-  .exit-btn img:hover {
-    cursor: pointer;
-  }
-  
-  .image_inputs {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-  
-  .profile-pic {
-    height: 120px;
-    width: 120px;
-  }
-  
-  .return-mobilePopUp {
-    display: flex;
-    justify-content: end;
-  }
-  
-  .return-mobilePopUp img {
-    filter: brightness(1000%) saturate(0%);
-    object-fit: cover;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 320px;
-  }
-  
-  .form input {
-    height: 32px;
-    border-radius: 8px;
-    border: 1px solid rgb(203, 203, 203);
-  }
-  
-  .h2-span {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .text {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-  }
-  
-  .contact_btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 32px 0 0 0;
-  }
-  
-  .contact_btn button {
-    height: 48px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 12px;
-    gap: 4px;
-    font-size: larger;
-  }
-  
-  .contact_btn button:last-child {
-    border: none;
-  }
-  
-  .enterContactButton:hover {
-    background-color: rgb(41, 171, 226);
-    transition: 150ms;
-    color: white;
-  }
-  
-  .contact_btn img {
-    object-fit: cover;
-    height: 24px;
-    width: 24px;
-  }
-  
-  .quit-Btn {
-    background-color: white;
-  }
-  
-  .quit-Btn:hover {
-    cursor: pointer;
-    border: 2.5px solid rgb(41, 171, 226);
-    color: rgb(41, 171, 226);
-  }
-  
-  .quit-Btn:hover img {
-    filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
-      brightness(100%) contrast(100%);
-  }
-  
-  .letter {
-    border-bottom: 0.5px solid grey;
-    margin: 0;
-    padding: 12px 0 12px 0;
-  }
-  
-  .contactCard {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 12px 12px 12px;
-    border-radius: 12px;
-  }
-  
-  .single_letter {
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-size: larger;
-    text-transform: uppercase;
-  }
-  
-  .single_letter:hover {
-    cursor: pointer;
-  }
-  
-  .fullName-email {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .email {
-    text-decoration: none;
-    color: rgb(0, 124, 238);
-    font-size: smaller;
-  }
-  
-  .single-letter {
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-size: 48px;
-    background-color: orange;
-    color: white;
-    border: white 1px solid;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  h4 {
-    margin: 0;
-    font-size: 36px;
-  }
-  
-  .contact-profile {
-    display: flex;
-    align-items: center;
-    gap: 80px;
-    padding: 24px 0 24px 0;
-  }
-  
-  .h4_edit-delete {
-    display: flex;
-    align-items: self-start;
-    flex-direction: column;
-  }
-  
-  .edit-delete {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    padding: 12px 0 0 0;
-  }
-  
-  .edit-delete :first-child:hover {
-    color: rgb(65, 157, 241);
-    filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
-      brightness(100%) contrast(100%);
-    cursor: pointer;
-  }
-  
-  .edit-delete :nth-child(2):hover {
-    color: rgb(65, 157, 241);
-    filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
-      brightness(100%) contrast(100%);
-    cursor: pointer;
-  }
-  
-  .edit-delete img {
-    height: 24px;
-    width: 24px;
-    object-fit: cover;
-  }
-  
-  .edit-delete img:hover {
-    cursor: pointer;
-    filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
-      brightness(100%) contrast(100%);
-  }
-  
-  .edit-delete span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .pers-info {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .pers-info a {
-    color: rgb(65, 157, 241);
-    text-decoration: none;
   }
 
+  to {
+    transform: translateX(0);
+  }
+}
 
+/* CSS for sliding out to the right */
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
 
-    
-     .form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 320px;
-    }
-    
-    .form input {
-      height: 32px;
-      border-radius: 8px;
-      border: 1px solid rgb(203, 203, 203);
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    .visible {
-      display: flex;
-      flex-direction: column;
-    }
+  to {
+    transform: translateX(100%);
+  }
+}
 
+.letter_For_PopUp {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 48px;
+  background-color: orange;
+  color: white;
+  border: white 1px solid;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
+.popUp.slide-in {
+  animation: slideIn 0.5s forwards;
+}
 
+.popUp.slide-out {
+  animation: slideOut 0.5s forwards;
+}
 
+.bg-popUp.show {
+  opacity: 1;
+}
 
+.bg-popUp.hide {
+  opacity: 0;
+}
 
-         /* Stil für das Overlay, das den gesamten Bildschirm abdeckt */
-         #overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-color: rgba(0, 0, 0, 0.5); /* Halbdurchsichtiges Schwarz */
-          display: none; /* Standardmäßig ausgeblendet */
-          justify-content: center;
-          align-items: center;
-          z-index: 999; /* Über allen anderen Inhalten */
-        }
-  
-        /* Stil für das Pop-up */
-        #contactFormContainer {
-          background-color: #fff; /* Weißer Hintergrund */
-          border-radius: 16px;
-          padding: 24px;
-          width: 50%; /* 50% der Bildschirmbreite */
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schattenwurf */
-          position: relative; /* Position relativ zum Elterncontainer */
-        }
-  
-        /* Standard Button Styles */
-        .enterContactButton {
-          background-color: rgb(9, 25, 49);
-          color: white;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          height: 40px;
-          border-radius: 12px;
-          font-size: larger;
-          padding: 8px 12px 8px 12px;
-          border: none;
-        }
-  
-        .enterContactButton:hover {
-          cursor: pointer;
-          background-color: rgb(41, 171, 226);
-          transition: 150ms;
-        }
-  
-        .quit-Btn {
-          background-color: white;
-          border: 2.5px solid rgb(41, 171, 226);
-          color: rgb(41, 171, 226);
-          cursor: pointer;
-        }
-        
-        .quit-Btn:hover {
-          background-color: rgb(41, 171, 226);
-          color: white;
-        }
+.bg-focus {
+  background-color: #091931;
+}
+
+.bg-popUp {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.popUp {
+  height: 50vh;
+  width: 60vw;
+  border-radius: 24px;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.popUp-logo {
+  background-color: rgb(9, 25, 49);
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}
+
+.logo {
+  object-fit: cover;
+  height: 100%;
+}
+
+.logo-box {
+  height: 88px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0 12px 0 12px;
+}
+
+.edit-logo {
+  object-fit: cover;
+  width: 200px;
+  padding: 0 12px 12px 12px;
+}
+
+.edit-logo-box {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 0 12px;
+}
+
+.popUp-content {
+  background-color: white;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-button {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 24px 0 0;
+}
+
+.close-button img {
+  object-fit: cover;
+  height: 32px;
+  width: 32px;
+}
+
+.close-button img:hover {
+  cursor: pointer;
+}
+
+.pic_inputs {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.profile-pic {
+  height: 120px;
+  width: 120px;
+}
+
+.return-mobilePopUp {
+  display: flex;
+  justify-content: end;
+}
+
+.return-mobilePopUp img {
+  filter: brightness(1000%) saturate(0%);
+  object-fit: cover;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+}
+
+.form input {
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgb(203, 203, 203);
+}
+
+.h2-span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.contact_button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 0 0 0;
+}
+
+.contact_button button {
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12px;
+  gap: 4px;
+  font-size: larger;
+}
+
+.contact_button button:last-child {
+  border: none;
+}
+
+.addContactButton:hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+.contact_button img {
+  object-fit: cover;
+  height: 24px;
+  width: 24px;
+}
+
+.cancel-Button {
+  background-color: white;
+}
+
+.cancel-Button:hover {
+  cursor: pointer;
+  border: 2.5px solid rgb(41, 171, 226);
+  color: rgb(41, 171, 226);
+}
+
+.cancel-Button:hover img {
+  filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
+    brightness(100%) contrast(100%);
+}
+
+.letter {
+  border-bottom: 0.5px solid grey;
+  margin: 0;
+  padding: 12px 0 12px 0;
+}
+
+.contactCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px 12px 12px;
+  border-radius: 12px;
+}
+
+.one_letter {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: larger;
+  text-transform: uppercase;
+}
+
+.one_letter:hover {
+  cursor: pointer;
+}
+
+.fullName-email {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.email {
+  text-decoration: none;
+  color: rgb(0, 124, 238);
+  font-size: smaller;
+}
+
+.single-letter {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 48px;
+  background-color: orange;
+  color: white;
+  border: white 1px solid;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+h4 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.contact-profile {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 24px 0 24px 0;
+}
+
+.h4_edit-delete {
+  display: flex;
+  align-items: self-start;
+  flex-direction: column;
+}
+
+.edit-delete {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 12px 0 0 0;
+}
+
+.edit-delete :first-child:hover {
+  color: rgb(65, 157, 241);
+  filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
+    brightness(100%) contrast(100%);
+  cursor: pointer;
+}
+
+.edit-delete :nth-child(2):hover {
+  color: rgb(65, 157, 241);
+  filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
+    brightness(100%) contrast(100%);
+  cursor: pointer;
+}
+
+.edit-delete img {
+  height: 24px;
+  width: 24px;
+  object-fit: cover;
+}
+
+.edit-delete img:hover {
+  cursor: pointer;
+  filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
+    brightness(100%) contrast(100%);
+}
+
+.edit-delete span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pers-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pers-info a {
+  color: rgb(65, 157, 241);
+  text-decoration: none;
+}

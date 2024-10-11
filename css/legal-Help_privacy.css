@@ -4,7 +4,7 @@
     box-sizing: border-box;
   }
   
-  .header-sticky {
+  .fixed-header {
     position: sticky;
     top: 0;
   }
@@ -97,5 +97,29 @@
     h1 {
       font-size: 47px !important;
     }
+  }
+  
+  .responsiveH1 {
+    font-size: 3rem; /* Standardgröße für größere Bildschirme */
+    text-align: center; /* Falls du es mittig ausrichten möchtest */
+  }
+  
+  /* Für Tablets und mittlere Bildschirme */
+  @media (max-width: 768px) {
+    .responsiveH1 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  /* Für Smartphones und kleine Bildschirme */
+  @media (max-width: 480px) {
+    .responsiveH1 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Optional, um das h1 responsive zu skalieren, basierend auf der Viewport-Breite */
+  .responsiveH1 {
+    font-size: calc(1.5rem + 2vw); /* Dynamische Anpassung an die Bildschirmgröße */
   }
   

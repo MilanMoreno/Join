@@ -41,31 +41,30 @@
       <meta charset="UTF-8" />
       <script src="./js/init.js"></script>
 
-      <section id="containerSidebar" class="container-sidebar">
+      <section id="Sidebar" class="sidebar">
         <img
           src="./assets/img/logo.svg"
-          class="sidebar-logo d-none-mobile"
+          class="logomenubar d-none-mobile"
           alt="logo_join"
         />
         <nav>
-          <a id="link-summary" href="./summary.html"
+          <a id="summary-link" href="./summary.html"
             ><img src="./assets/img/icon_summary.svg" alt="Summary" />Summary</a
           >
-          <a id="link-task" href="./add_task.html"
+          <a id="task-link" href="./add_task.html"
             ><img src="./assets/img/icon_addTask.svg" alt="addtask" />Add
             Task</a
           >
-          <a id="link-board" href="./board.html"
+          <a id="board-link" href="./board.html"
             ><img src="./assets/img/icon_board.svg" alt="board" />Board</a
           >
           <a id="link-contact" href="./contacts.html"
             ><img
               src="./assets/img/icon_contacts.svg"
               alt="contacts"
-            />Contacts</a
-          >
+            />Contacts</a>
         </nav>
-        <div class="nav-bottom-link d-none-mobile">
+        <div class="bottom-menu-link d-none-mobile">
           <a href="./privacy-police.html" onclick="saveTheUrl()"
             >Privacy Policy</a
           >
@@ -76,7 +75,7 @@
     <main>
       <div
         w3-include-html="./assets/templates/header.html"
-        class="header-sticky"
+        class="fixed-header"
       >
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,11 +95,11 @@
 
         <header id="header">
           <img
-            src="./assets/img/logo_coloured.svg"
+            src="imgs/mobile-header-logo.png"
             alt="Join logo"
-            class="logo-mobile"
+            class="logo-small-screen"
           />
-          <p class="header-text d-none-mobile">
+          <p class="header-description d-none-mobile">
             Kanban Project Management Tool
           </p>
           <div class="header-right">
@@ -119,7 +118,7 @@
             </div>
           </div>
         </header>
-        <section id="container-header-dropdown-menu" class="d-noneHead">
+        <section class="d-noneHead">
           <div class="header-dropdown-menu">
             <a href="./legal_notice.html">Legal Notice</a>
             <a href="./privacy-police.html">Privacy Policy</a>

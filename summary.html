@@ -3,15 +3,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <!--Favicon-->
+   
     <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    <!--Stylesheets-->
-    <!--<link rel="stylesheet" href="./css/legal-Help_privacy.css" />-->
+    
+    
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/summary.css">
   <style type="text/css" id="operaUserStyle"></style>
+  
   </head>
   <body>
     <div w3-include-html="./assets/templates/side_menu.html">
@@ -20,26 +21,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <
+    
     <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
     
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
-    <script src="./js/init.js"></script>
+  
   
 
   
-    <section id="containerSidebar" class="container-sidebar">
-      <img src="./assets/img/logo.svg" class="sidebar-logo d-none-mobile" alt="logo_join">
+    <section id="Sidebar" class="sidebar">
+      <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
       <nav>
-        <a id="link-summary" href="./summary.html" class="bg-focus"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
-        <a id="link-task" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
-        <a id="link-board" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
+        <a id="summary-link" href="./summary.html" class="bg-focus"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
+        <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
+        <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
         <a id="link-contact" href="./contacts.html"><img src="./assets/img/icon_contacts.svg" alt="contacts">Contacts</a>
       </nav>
-      <div class="nav-bottom-link d-none-mobile">
+      <div class="bottom-menu-link d-none-mobile">
         <a href="./privacy-police.html" onclick="">Privacy Policy</a>
         <a href="./legal_notice.html">Legal notice</a>
       </div>
@@ -48,7 +49,7 @@
 
 </div>
     <main>
-      <div w3-include-html="./assets/templates/header.html" class="header-sticky">
+      <div w3-include-html="./assets/templates/header.html" class="fixed-header">
 
   
     <meta charset="UTF-8">
@@ -66,8 +67,8 @@
 
   
     <header id="header">
-      <img src="./assets/img/logo_coloured.svg" alt="Join logo" class="logo-mobile">
-      <p class="header-text d-none-mobile">Kanban Project Management Tool</p>
+      <img src="imgs/mobile-header-logo.png" alt=" logo" class="mobile-logo">
+      <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
         <div onclick="" class="header-right-user dflex-c-c cp" id="userInitials"><div>M</div></div>
@@ -98,15 +99,15 @@
         <section class="content-summary">
           <div class="left-summary-area">
             <div class="card-interactive-div">
-              <div class="card hover-right" onmouseover="modifyPencilImage()" onmouseout="resetPencilImg()" onclick="loadBoardPage()">
+              <div class="card hover-right">
                 <img id="pencil-img" src="./assets/img/pencil-darkblue.png" alt="Pencil logo">
                 <div class="details-card">
                   <h2 id="todo">1</h2>
                   <p>To-do</p>
                 </div>
               </div>
-           <div class="card hover-left" onmouseover="updateCheckImage()" onmouseout="resetCheckImg()" onclick="loadBoardPage()">
-                  <!---- <img id="check-img" src="./assets/img/check-darkblue.png" alt="Check logo">-->
+           <div class="card hover-left" >
+                >
                 <div class="details-card">
                   <h2 id="done">0</h2>
                   <p>Done</p>
@@ -114,7 +115,7 @@
               </div>
             </div>
 
-            <div class="super-card hover-bottom" onclick="loadBoardPage()">
+            <div class="super-card hover-bottom">
               <div class="big-left-panel">
                 <img src="./assets/img/icon_Upp2.svg" alt="Arrows up">
                 <div class="details-card">
@@ -134,17 +135,17 @@
             </div>
 
             <div class="card-interactive-div">
-              <div class="card-end" onclick="setupBoardPage()">
+              <div class="card-end">
                 <h2 id="assignments">2</h2>
                 <h4>Task in Board</h4>
               </div>
 
-              <div class="card-end" onclick="setupBoardPage()">
+              <div class="card-end">
                 <h2 id="ongoing-task">0</h2>
                 <h4>Task in Progress</h4>
               </div>
 
-              <div class="card-end" onclick="setupBoardPage()">
+              <div class="card-end">
                 <h2 id="pending-response">1</h2>
                 <h4>Awaiting Feedback</h4>
               </div>
@@ -160,10 +161,8 @@
       </div>
     </main>
 
-    <!--JS-->
-    <script src="./js/header.js"></script>
-    <script src="./js/summary.js"></script>
-    <script src="./js/init.js"></script>
+ 
+    
   
 
 </body></html>

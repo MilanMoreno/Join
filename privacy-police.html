@@ -31,15 +31,15 @@
   
 
   
-    <section id="containerSidebar" class="container-sidebar">
-      <img src="./assets/img/logo.svg" class="sidebar-logo d-none-mobile" alt="logo_join">
+    <section id="Sidebar" class="sidebar">
+      <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
       <nav>
         <a id="link-summary" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
-        <a id="link-task" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
-        <a id="link-board" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
+        <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
+        <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
         <a id="link-contact" href="./contacts.html"><img src="./assets/img/icon_contacts.svg" alt="contacts">Contacts</a>
       </nav>
-      <div class="nav-bottom-link d-none-mobile">
+      <div class="bottom-menu-link d-none-mobile">
         <a href="./privacy-police.html" onclick="saveTheUrl()">Privacy Policy</a>
         <a href="./legal_notice.html">Legal notice</a>
       </div>
@@ -48,7 +48,7 @@
 
 </div>
     <main>
-      <div w3-include-html="./assets/templates/header.html" class="header-sticky">
+      <div w3-include-html="./assets/templates/header.html" class="fixed-header">
 
   
     <meta charset="UTF-8">
@@ -66,14 +66,14 @@
 
   
     <header id="header">
-      <img src="./assets/img/logo_coloured.svg" alt="Join logo" class="logo-mobile">
-      <p class="header-text d-none-mobile">Kanban Project Management Tool</p>
+      <img src="imgs/mobile-header-logo.png" alt="Join logo" class="logo-small-screen">
+      <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
         <div onclick="DropdownMenuZeigen()" class="header-right-user dflex-c-c cp" id="userInitials"><div>S</div></div>
       </div>
     </header>
-    <section id="container-header-dropdown-menu" class="d-noneHead">
+    <section class="d-noneHead">
       <div class="header-dropdown-menu">
         <a href="./legal_notice.html">Legal Notice</a>
         <a href="./privacy-police.html">Privacy Policy</a>
@@ -85,14 +85,25 @@
 </div>
       <section class="content-section">
         <div class="header">
-          <h1>Privacy Police</h1>
+          <h1 class="responsiceH1">Privacy Police</h1>
+
+<!----
+          
+function showContactMobile() {
+  document.getElementById('content-area').classList.add('dNone');
+  document.getElementById('mycontacts').classList.remove('displayNone');
+
+}
+<div id="responsiveContactBackButton" class="returnToContacts">
+          <img class="closeMobile" onclick="showContactMobile()" src="imgs/icon_close.png">
+        </div>-->
           <button onclick="goToLastPage()">
             <img src="./assets/img/icon_back.svg" alt="">
           </button>
         </div>
 
         <div>
-          <h1>Datenschutzerklärung</h1>
+          <h1 class="responsiveH1">Datenschutzerklärung</h1>
           <h2 id="m716">Präambel</h2>
           <p>
             Mit der folgenden Datenschutzerklärung möchten wir Sie darüber
@@ -619,5 +630,17 @@
       </section>
     </main>
    
+<script>
+function goToLastPage() {
+    history.back();
+  }
+  
+  function showDropdownMenu() {
+    document
+      .getElementById("container-header-dropdown-menu")
+      .classList.toggle("d-block");
+  }
+  
 
+</script>
 </body></html>
