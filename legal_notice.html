@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
-    <script src="./js/init.js"></script>
-  
+   
+    <script src=".js/dropDownMenuAndGoBack.js"></script>
 
   
     <section id="Sidebar" class="sidebar">
@@ -71,19 +71,19 @@
       <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
-        <div onclick="DropdownMenuANZEIGEN()" class="header-right-user dflex-c-c cp" id="userInitials">M</div>
+        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
       </div>
 
+      </header>
 
-      <!---->
-    </header>
-    <section class="d-noneHead">
-      <div class="header-dropdown-menu">
+    <section id="headerDropdownOption" class="d-noneHead">
+      <div class="headerDropdownOption">
         <a href="./legal_notice.html">Legal Notice</a>
         <a href="./privacy-police.html">Privacy Policy</a>
         <a href="./index.html">Log out</a>
       </div>
     </section>
+  
   
 
 </div>
@@ -195,16 +195,39 @@
         <p>Date: sept, 2024</p><br> <br>
       </section>
     </main>
-   
-  <script>function goToLastPage() {
+    <script>
+function goToLastPage() {
     history.back();
   }
-  
-  function showDropdownMenu() {
-    document
-      .getElementById("container-header-dropdown-menu")
-      .classList.toggle("d-block");
-  }
-  </script>
+      function showDropdownMenu() {
+        document
+          .getElementById("headerDropdownOption")
+          .classList.toggle("d-block");
+      }
+      // Funktion, um das Dropdown-Menü anzuzeigen oder zu verbergen
+    function showDropdownMenu() {
+      document
+        .getElementById("headerDropdownOption")
+        .classList.toggle("d-block");
+    
+      // Eventlistener hinzufügen, um auf Klicks außerhalb zu reagieren
+      document.addEventListener("click", handleOutsideClick);
+    }
+    
+    // Funktion, um zu prüfen, ob außerhalb des Menüs geklickt wurde
+    function handleOutsideClick(event) {
+      const dropdownMenu = document.getElementById("headerDropdownOption");
+      const userButton = document.getElementById("userInitials");
+    
+      // Wenn der Klick nicht im Dropdown oder im Button stattfand, Menü schließen
+      if (!dropdownMenu.contains(event.target) && !userButton.contains(event.target)) {
+        dropdownMenu.classList.remove("d-block");
+    
+        // Eventlistener wieder entfernen, um unnötige Checks zu vermeiden
+        document.removeEventListener("click", handleOutsideClick);
+      }
+    }
+    
+    </script>
 
 </body></html>
