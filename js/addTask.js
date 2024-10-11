@@ -13,6 +13,7 @@ function renderAddTask() {
 let prio = "";
 const subTask = [];
 const checkBox = [];
+let selectedCheckboxes = [];
 
 function addTask() {
   const task = {
@@ -21,7 +22,7 @@ function addTask() {
     Description: document.getElementById("addTaskDiscription").value,
     DueDate: document.getElementById("addTaskDate").value,
     Prio: prio,
-    AssignedTo: [document.getElementById("addTaskContactSelect").value],
+    AssignedTo: selectedCheckboxes,
     Subtask: [subTask],
     PositionID: "toDo",
     checkboxState: [checkBox]
@@ -29,7 +30,30 @@ function addTask() {
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
   console.log(jsonString);
-  clearForm(prio);
+  renderAddTask();
+}
+
+
+
+// Funktion zum Aktualisieren der ausgewählten Checkboxen
+function updateSelectedCheckboxes() {
+  
+    // Leere das Array, um die aktuellen Werte zu speichern
+    selectedCheckboxes = []; 
+
+    // Hole alle Checkboxen im Dokument
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // Überprüfe jede Checkbox
+    checkboxes.forEach(checkbox => {
+        // Wenn die Checkbox ausgewählt ist, füge die ID zum Array hinzu
+        if (checkbox.checked) {
+            selectedCheckboxes.push(checkbox.id);
+        }
+    });
+
+    // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
+    console.log(selectedCheckboxes);
 }
 
 function setPrio(p) {
@@ -100,16 +124,7 @@ function addSubTask() {
   event.stopPropagation();
 }
 
-function clearForm(prio) {
-  document.getElementById("addTasktitleInput").value = "";
-  document.getElementById("addTaskDiscription").value = "";
-  document.getElementById("addTaskContactSelect").value = "";
-  document.getElementById("addTaskDate").value = "";
-  document.getElementById("addTaskCategory").value = "";
-  document.getElementById("subTaskAdd").value = "";
-  document.getElementById("subTaskView").innerHTML = "";
-  removeOtherClasslist(prio);
-}
+
 
 // firebase
 

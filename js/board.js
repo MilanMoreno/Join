@@ -399,9 +399,3 @@ async function updateCheckboxStateInFirebase(checkboxId, taskId) {
   
     return (responseToJson = await response.json());
   }
-
-
-  function updateCeckBoxState(){
-
-  }
-

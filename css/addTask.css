@@ -146,9 +146,9 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
     center;
   background-color: #fff;
@@ -161,9 +161,9 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -175,9 +175,9 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
     center;
   background-color: #fff;
@@ -190,9 +190,9 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  appearance: none; /* Entfernt das native Aussehen des Select-Elements */
-  -webkit-appearance: none; /* Entfernt das native Aussehen in Webkit-Browsern */
-  -moz-appearance: none; /* Entfernt das native Aussehen in Mozilla-Browsern */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -297,6 +297,147 @@
   height: auto;
 }
 
+.assingedField{
+  height: 48px;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.assingedField img{
+  margin-left: -20px;
+  height: 5px;
+  width: 8px;
+}
+
+.assingedInput{
+  width: 100%;
+}
+
+#assinged::placeholder{
+  color: #000000;
+}
+
+.assingedInput:focus ~ .icon{
+  transform: rotate(180deg);
+}
+
+
+#assinged:focus::placeholder {
+  color: transparent;
+}
+
+.assingUser {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.assingLeft{
+  align-items: center;
+  gap: 15px;
+  margin-left: 15px;
+}
+
+#assingedList{
+  max-height: 250px;
+  width: 100%;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.assingedList:hover{
+  cursor: pointer;
+}
+
+.assingedCheck{
+  margin-right: 15px;
+}
+
+
+.container {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkmark input:checked{
+width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    border: 2px solid black;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 80% 0); 
+  }
+
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+.checkmark {
+  position: absolute;
+  top: 15px;
+  left: 380px;
+  height: 16px;
+  width: 16px;
+  border: 2px solid #000000;
+  border-radius: 4px;
+}
+
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+
+.container input:checked ~ .checkmark {
+  width: 16px;
+    height: 16px;
+    border: 2px solid black;
+    clip-path: polygon(70% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 0%);
+}
+
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+
+.container .checkmark:after {
+  left: 6px;
+  top: -5px;
+  width: 5px;
+  height: 15px;
+  border: solid #000000;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+
+.container input:checked ~ .checkmark {
+  border-top-right-radius: 4px;
+}
+
 @media (max-width: 1024px) {
   .addTaskBody {
     flex-direction: column;
@@ -356,14 +497,4 @@
   .addTaskSubmit {
     flex-direction: row-reverse;
   }
-
-
-
-
-  /* .addTaskFooter{
-        position: absolute;
-        bottom: 117px;
-        background-color: #F6F7F8;
-        padding-inline: 50px;
-    } */
 }

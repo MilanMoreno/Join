@@ -22,7 +22,8 @@ async function loadContacts() {
   } catch (error) {
     console.error("Fehler beim Laden der Daten:", error);
   }
-  generateAssingTo();
+
+
 }
 
 function generateAssingTo() {
@@ -30,10 +31,61 @@ function generateAssingTo() {
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i].username;
-    assigned += `<option>${element}</option>`;
+    const circle = generateCircle(element);
+    assigned += `
+    <div class="d-flex assingUser">
+    <label class="container">
+      <div class="d-flex assingLeft">
+        <div>${circle}</div>
+        <p>${element}</p>
+      </div>
+      
+  <input id="${element}" type="checkbox" onclick="updateSelectedCheckboxes()">
+  <span class="checkmark"></span>
+</label>
+    </div>`;
   }
-  document.getElementById("addTaskContactSelect").innerHTML += assigned;
+  document.getElementById("assingedList").innerHTML = assigned;
+  document.getElementById("assingedList").classList.remove ("d-none")
 }
+
+function generateCircle(names){
+  let initial = ""
+        const color = getRandomColor();
+      
+   
+    const nameParts = names.split(' ');
+    const initials = nameParts.map(part => part.charAt(0)).join('');
+    ini = initials.toUpperCase();
+    initial += `<div class="initialsDetails" style="background-color: ${color};">${ini}</div>`
+    
+  
+  return initial
+  }
+
+  function getInitialsDetail(names){
+    let initial = ""
+          const color = getRandomColor();
+        
+     
+      const nameParts = names.split(' ');
+      const initials = nameParts.map(part => part.charAt(0)).join('');
+      ini = initials.toUpperCase();
+      initial += `<div class="initialsDetails" style="background-color: ${color};">${ini}</div>`
+      
+    
+    return initial
+    }
+  
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
 
 function addTaskTemplate() {
   return /*html*/ `
@@ -48,9 +100,8 @@ function addTaskTemplate() {
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
             <p>Assigned to</p>
-            <select id="addTaskContactSelect">
-                <option value="">Select contacts to assign</option>
-            </select>
+            <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
+            <div id="assingedList" class="assingedList d-none"></div>
         </div>
         <div class="middleLine"></div>
         <div class="addTaskRight d-flex">
@@ -85,7 +136,7 @@ function addTaskTemplate() {
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
             <div class="addTaskSubmit d-flex d-space">
-                <button class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
+                <button onclick="renderAddTask()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
                 <button onclick="addTask()" class="createTask d-flex">Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
