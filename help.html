@@ -1,11 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hilfe</title>
+    <title>Join project 361</title>
+
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+ 
+    
+   
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/responsive_contact.css">
+    
+   
+    <style type="text/css" id="operaUserStyle"></style>
+    
+    <script src="./js/contact.js"></script>
+    <script src="./js/contact_Mobile.js"></script>
+    <script src="js/contactsfirebase.js"></script>
+    
+ 
+    <style>  .d-block {
+      display: block;
+    }</style>
+  </head>
+
+<body onload="fetchData()">
+  <div w3-include-html="./assets/templates/side_menu.html">
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <script src="./js/init.js"></script>
+  
+
+  
+    <section id="Sidebar" class="sidebar">
+      <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
+      <nav>
+        <a id="summarylink" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
+        <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="Addtask">Add Task</a>
+        <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="Board">Board</a>
+        <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg" alt="Contacts">Contacts</a>
+      </nav>
+      <div class="bottom-menu-link d-none-mobile">
+        <a href="./privacy-police.html" onclick="saveTheUrl()">Privacy Policy</a>
+        <a href="./legal_notice.html">Legal notice</a>
+      </div>
+    </section>
+  
+
+</div>
+  <main>
+    <div w3-include-html="./assets/templates/header.html" class="fixed-header">
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+   
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/legal-Help_privacy.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    
+  
+
+    <header id="header">
+      <img src="imgs/mobile-header-logo.png" alt="Join logo" class="logo-small-screen">
+      <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
+      <div class="header-right">
+        <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
+        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
+      </div>
+
+      </header>
+
+    <section id="headerDropdownOption" class="d-noneHead">
+      <div class="headerDropdownOption">
+        <a href="./legal_notice.html">Legal Notice</a>
+        <a href="./privacy-police.html">Privacy Policy</a>
+        <a href="./index.html">Log out</a>
+      </div>
+    </section>
+  <style>
+    
+  </style>
+  </head>
+
+
 </head>
 <body>
-    
+   <h1> Help</h1>
+   <p>
+   Welcome to the support page for Join, your guide to navigating our kanban project management tool. In this section, we’ll give you an introduction to Join, explain its advantages, and walk you through how to use it.
+
+   <h2>What is Join?</h2>
+   <p>
+   Join is a project management tool based on the kanban methodology, created by a group of passionate students during their web development bootcamp at the Developer Akademie.
+   
+   Kanban, which translates to “signboard” in Japanese, is a powerful approach for visualizing tasks, reducing work-in-progress, and boosting efficiency. Join integrates kanban principles, offering users a simple and visual way to organize their projects and track progress.
+   
+   Please note that Join was developed for educational purposes and is not meant for commercial use. While we aim to deliver the best user experience, we cannot guarantee ongoing availability, reliability, or accuracy of the tool.
+</p>
+   
+<h2>How to use Join</h2>
+
+   Here’s a step-by-step guide to getting started with Join:
+   
+   Navigating the Board
+   <p>After logging in, you’ll see a default board that represents your project. The board is divided into four sections: “To Do”, “In Progress”, “Awaiting Feedback”, and “Done”.
+</p>
+   Adding Contacts
+   Join allows you to collaborate with others by adding contacts. Navigate to the "Contacts" section, click “New Contact”, and enter the necessary details. These contacts can then be assigned tasks and will be able to participate in managing the project.
+   
+   Creating Task Cards
+   Once your contacts are added, you can begin creating task cards. A card represents a single task. Click the “+” button under the list where you’d like to create a new card. Enter the relevant information, such as task name, description, due date, and assign it to someone.
+   
+   Moving Cards Between Lists
+   As tasks progress, you can move cards between different lists to reflect their status. Simply drag and drop the cards into the appropriate columns, such as “In Progress” or “Done”.
+   
+   Deleting Cards
+   When a task is finished, you have the option to move it to the "Done" list or delete it entirely. Be careful when deleting cards, as this action is permanent and cannot be undone.
+   
+   To use Join efficiently, it’s important to keep your board updated regularly, ensuring it reflects the real-time status of your project.
+   
+   If you have any further questions about Join, don’t hesitate to reach out to us at mail@join-doesnt-really-exist.com. We’re happy to assist you!
+   
+</p>
 </body>
 </html>
