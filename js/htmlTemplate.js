@@ -23,7 +23,6 @@ async function loadContacts() {
     console.error("Fehler beim Laden der Daten:", error);
   }
 
-
 }
 
 function generateAssingTo() {
