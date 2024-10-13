@@ -23,10 +23,16 @@ async function handleSignUp(event) {
         showSuccessMessage();
     }
 }
-
+/**
+ * 
+ * @param {wichtig } email 
+ * 
+ * 
+ * @returns 
+ */
 
 async function checkEmailAvailability(email) {
-    await loadUsersData();
+    await loadUser();
     return !usersArray.some(user => user.mail === email);
 }
 
@@ -47,7 +53,7 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {
         return false;
     }
 }
-async function loadUsersData() {
+async function loadUser() {
     usersArray = [];
     let users = await fetchData("users");
     for (let [userID, user] of Object.entries(users || {})) {

@@ -126,12 +126,12 @@
   }
   
   input[type="email"] {
-    background: url(../assets/img/icon_mail.svg) no-repeat;
+    background: url(../imgs/icon_mail.png) no-repeat;
     background-position: 95%;
   }
   
   input[type="password"] {
-    background: url(../assets/img/icon_lock.svg) no-repeat;
+    background: url(../imgs/icon_password.png) no-repeat;
     background-position: 95%;
   }
   
