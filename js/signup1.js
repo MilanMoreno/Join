@@ -1,4 +1,4 @@
-let listUsers = [];  // 
+let listUsers = [];  // usersArray umbenannt zu users, weil es eine Liste von Benutzern ist
 
 async function handleSignUp(event) {
     event.preventDefault();
