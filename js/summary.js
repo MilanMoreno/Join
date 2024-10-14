@@ -3,7 +3,7 @@ let priorityHighDates = []
 let dateToday
 let closest
 let formatDate = { year: "numeric", month: "long", day: "numeric" }
-let user
+let users
 let number = 15220
 
 async function init() {
@@ -15,10 +15,10 @@ async function init() {
 }
 
 function laodLocalStorage() {
-  let userAsText = localStorage.getItem("user")
+  let userAsText = localStorage.getItem("users")
 
   if (userAsText) {
-    user = JSON.parse(userAsText)
+    users = JSON.parse(userAsText)
   }
 }
 
@@ -77,14 +77,14 @@ function checkIfpriorityHighArray() {
 }
 
 function checkIfGuest() {
-  if (user["name"] === "Gast") {
+  if (users["name"] === "Gast") {
     return /*html*/ `
             <h2>Good morning</h2>
         `
   } else {
     return /*html*/ `
             <h2>Good morning,</h2>
-            <h1>${user["name"]}</h1>  
+            <h1>${users["name"]}</h1>  
         `
   }
 }

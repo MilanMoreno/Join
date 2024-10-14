@@ -23,20 +23,13 @@ async function handleSignUp(event) {
         showSuccessMessage();
     }
 }
-/**
- * 
- * @param {wichtig } email 
- * 
- * 
- * @returns 
- */
 
 async function checkEmailAvailability(email) {
     await loadUser();
-    return !usersArray.some(user => user.mail === email);
+    return !usersArray.some(users => users.mail === email);
 }
 
-async function verifyPassword(user, passwordField, confirmPasswordField) {
+async function verifyPassword(users, passwordField, confirmPasswordField) {
     const password = passwordField.value.trim();
     const confirmPassword = confirmPasswordField.value.trim();
 
@@ -46,7 +39,7 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {
     }
 
     if (password === confirmPassword) {
-        await submitData("users", user);
+        await submitData("users", users);
         return true;
     } else {
         displayErrorMessage("Passwords do not match", confirmPasswordField);
@@ -56,9 +49,9 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {
 async function loadUser() {
     usersArray = [];
     let users = await fetchData("users");
-    for (let [userID, user] of Object.entries(users || {})) {
-        user.id = userID;
-        usersArray.push(user);
+    for (let [userID, users] of Object.entries(users || {})) {
+        users.id = userID;
+        usersArray.push(users);
     }
 }
 
@@ -87,32 +80,32 @@ function getInitials(name) {
 }
 
 function login() {
-    let email = document.getElementById("inputLoginMail").value;
-    let password = document.getElementById("inputLoginPassword").value;
-    let user = usersArray.find(user => user.mail === email && user.password === password);
+    let email = document.getElementById("inputEmailLogIn").value;
+    let password = document.getElementById("inputPasswordLogIn").value;
+    let users = usersArray.find(users => users.mail === email && users.password === password);
 
-    if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
+    if (users) {
+        localStorage.setItem("users", JSON.stringify(users));
         window.location.href = "./summary.html";
     } else {
-        displayErrorMessage("E-Mail or password are incorrect", document.getElementById("failedLogin"));
+        displayErrorMessage("E-Mail or password are incorrect", document.getElementById("Loginerror"));
     }
 }
 
 function guestLogin() {
     let guestUser = { initials: "G", name: "Guest" };
-    localStorage.setItem("user", JSON.stringify(guestUser));
+    localStorage.setItem("users", JSON.stringify(guestUser));
     window.location.href = "./summary.html";
 }
 
 
 function handleLogin(event) {
   event.preventDefault();
-  const emailInput = document.getElementById("inputLoginMail").value;
-  const passwordInput = document.getElementById("inputLoginPassword").value;
+  const emailInput = document.getElementById("inputEmailLogIn").value;
+  const passwordInput = document.getElementById("inputPasswordLogIn").value;
 
   const matchedUser = usersArray.find(
-      (user) => user.mail === emailInput && user.password === passwordInput
+      (users) => users.mail === emailInput && users.password === passwordInput
   );
 
   if (matchedUser) {
@@ -132,9 +125,9 @@ function loginAsGuest() {
     redirectToSummary();
   }
 
-function saveUserToLocal(user) {
-  const userString = JSON.stringify(user);
-  localStorage.setItem("user", userString);
+function saveUserToLocal(users) {
+  const userString = JSON.stringify(users);
+  localStorage.setItem("users", userString);
 }
 
 function redirectToSummary() {
@@ -142,7 +135,7 @@ function redirectToSummary() {
 }
 
 function showLoginErrorMessage(message) {
-  const loginErrorElement = document.getElementById("failedLogin");
+  const loginErrorElement = document.getElementById("Loginerror");
   loginErrorElement.classList.remove("d-none");
   loginErrorElement.innerHTML = message;
 }
