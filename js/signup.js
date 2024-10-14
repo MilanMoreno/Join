@@ -1,4 +1,4 @@
-let listUsers = [];  // 
+let usersArray = [];  // 
 
 async function handleSignUp(event) {
     event.preventDefault();
@@ -26,7 +26,7 @@ async function handleSignUp(event) {
 
 async function checkEmailAvailability(email) {
     await loadUsers();  // Benutzer laden (Plural)
-    return !users.some(user => user.mail === email);  // Hier prüfen wir die E-Mail für einen einzelnen user
+    return !usersArray.some(user => user.mail === email);  // Hier prüfen wir die E-Mail für einen einzelnen user
 }
 
 async function verifyPassword(user, passwordField, confirmPasswordField) {  // user: einzelner Benutzer
@@ -48,11 +48,11 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {  // u
 }
 
 async function loadUsers() {
-    users = [];  // Leeren des Benutzers-Arrays (Plural)
+    usersArray = [];  // Leeren des Benutzers-Arrays (Plural)
     let usersData = await fetchData("users");  // usersData: Daten aller Benutzer
     for (let [userID, userData] of Object.entries(usersData || {})) {
         userData.id = userID;  // Einzelner Benutzer (userData) bekommt eine ID
-        users.push(userData);  // Benutzer (userData) wird zur Benutzerliste (users) hinzugefügt
+        usersArray.push(userData);  // Benutzer (userData) wird zur Benutzerliste (users) hinzugefügt
     }
 }
 
@@ -82,7 +82,7 @@ function getInitials(name) {
 function login() {
     let email = document.getElementById("inputEmailLogIn").value;
     let password = document.getElementById("inputPasswordLogIn").value;
-    let matchedUser = users.find(user => user.mail === email && user.password === password);  // matchedUser: einzelner Benutzer
+    let matchedUser = usersArray.find(user => user.mail === email && user.password === password);  // matchedUser: einzelner Benutzer
 
     if (matchedUser) {
         localStorage.setItem("user", JSON.stringify(matchedUser));  // Nur ein Benutzer wird im localStorage gespeichert
@@ -103,7 +103,7 @@ function handleLogin(event) {
     const emailInput = document.getElementById("inputEmailLogIn").value;
     const passwordInput = document.getElementById("inputPasswordLogIn").value;
 
-    const matchedUser = users.find(user => user.mail === emailInput && user.password === passwordInput);  // matchedUser: einzelner Benutzer
+    const matchedUser = usersArray.find(user => user.mail === emailInput && user.password === passwordInput);  // matchedUser: einzelner Benutzer
 
     if (matchedUser) {
         saveUserToLocal(matchedUser);  // matchedUser wird gespeichert
