@@ -1,4 +1,4 @@
-let usersArray = [];  // 
+let usersArray = []; 
 
 async function handleSignUp(event) {
     event.preventDefault();
