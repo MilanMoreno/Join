@@ -21,17 +21,20 @@ async function deleteTask(id) {
 }}
 
 
-function fillAddTaskPopUp(){
+function fillAddTaskPopUp(positionId){
     let addTaskSection = document.getElementById("addTaskSection")
     let background = document.getElementById("addTaskSectionBackground")
     background.classList.remove ("d-none");
-    addTaskSection.innerHTML = fillAddTaskSection();
+    addTaskSection.innerHTML = fillAddTaskSection(positionId);
 }
 
 function closePopUp(){
     document.getElementById("addTaskSectionBackground").classList.add ("d-none")
 }
 
-function editTask(){
-
+function editTask(title, category, dueDate, description, positionID, id){
+    let addTaskSection = document.getElementById("addTaskSection")
+    let background = document.getElementById("addTaskSectionBackground")
+    background.classList.remove ("d-none");
+    addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id);
 }
