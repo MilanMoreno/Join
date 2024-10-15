@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-   
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    
-    
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/side_menu.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/summary.css">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join</title>
+
+  <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+
+
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/side_menu.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/summary.css">
   <style type="text/css" id="operaUserStyle"></style>
-   
-  
+
+
   <script src="/js/summary.js"></script>
   <script src="./js/contactsfirebase.js"></script>
-  </head>
+</head>
 
 
-      <body>
-        <div w3-include-html="./assets/templates/side_menu.html">
-    
+<body>
+  <div w3-include-html="./assets/templates/side_menu.html">
 
-  
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    
+
     <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    
+
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
 
     <meta charset="UTF-8">
-  
 
-  
+
+
     <section id="Sidebar" class="sidebar">
       <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
       <nav>
         <a id="summarylink" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="Addtask">Add Task</a>
         <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="Board">Board</a>
-        <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg" alt="Contacts">Contacts</a>
+        <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg"
+            alt="Contacts">Contacts</a>
       </nav>
       <div class="bottom-menu-link d-none-mobile">
         <a href="./privacy-police.html" onclick="saveTheUrl()">Privacy Policy</a>
@@ -52,192 +55,142 @@
       </div>
     </section>
 
-</div>
-    <main>
-      <div w3-include-html="./assets/templates/header.html" class="fixed-header">
+  </div>
+  <main>
+    <div w3-include-html="./assets/templates/header.html" class="fixed-header">
 
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-    
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
 
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <meta charset="UTF-8">
-    
-    <script src=" js/dropDownMenuAndGoBack.js"></script>
-  
-    
-  
-    <header id="header">
-      <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
-      <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
-      <div class="header-right">
-        <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
-        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
-      </div>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Join</title>
+
+      <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+
+      <link rel="stylesheet" href="./css/header.css">
+      <link rel="stylesheet" href="./css/font.css">
+      <link rel="stylesheet" href="./css/style.css">
+      <meta charset="UTF-8">
+
+      <script src=" js/dropDownMenuAndGoBack.js"></script>
+
+
+
+      <header id="header">
+        <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
+        <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
+        <div class="header-right">
+          <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help"
+              class="d-none-mobile"></a>
+          <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials">
+            <div>G</div>
+          </div>
+        </div>
 
       </header>
 
-    </section>
-    <section id="headerDropdownOption" class="d-noneHead">
-      <div class="headerDropdownOption">
-        <a href="./legal_notice.html">Legal Notice</a>
-        <a href="./privacy-police.html">Privacy Policy</a>
-        <a href="./index.html">Log out</a>
-        <a href="./help.html">help</a>
-      </div>
-    </section>
-  
-
-</div>
-<<<<<<< HEAD
-
-
-=======
-
-
-
-<div class="header-right">
-  <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
-  <!-- Hier werden die Initialen des Benutzers angezeigt -->
-  </div></div>
-</div>
->>>>>>> 605c705933bc710fdd0373e7323796af01864890
-
-
-
-
-
-
-
-      <div class="primary-area">
-        <section class="lead-section">
-          <div>
-            <h1>Join 360</h1>
-          </div>
-          <div class="spacer"></div>
-          <div>
-            <h5>Key Metrics at a Glance</h5>
-          </div>
-          <div class="spacer-mobile"></div>
-        </section>
-
-        <section class="content-summary">
-          <div class="left-summary-area">
-            <div class="card-interactive-div">
-              <div class="card hover-right">
-                <img id="pencil-img" src="./assets/img/pencil-darkblue.png" alt="Pencil logo">
-                <div class="details-card">
-                  <h2 id="todo">1</h2>
-                  <p>To-do</p>
-                </div>
-              </div>
-           <div class="card hover-left" >
-                >
-                <div class="details-card">
-                  <h2 id="done">0</h2>
-                  <p>Done</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="super-card hover-bottom">
-              <div class="big-left-panel">
-                <img src="./assets/img/icon_Upp2.svg" alt="Arrows up">
-                <div class="details-card">
-                  <h2 id="high-priority">1</h2>
-                  <p>Urgent</p>
-                </div>
-              </div>
-
-              <div class="p-super-card"></div>
-
-              <div class="big-right-panel">
-                <h3 id="end-date">
-            No urgent to-dos
-        </h3>
-                <h4>Upcoming Deadline</h4>
-              </div>
-            </div>
-
-            <div class="card-interactive-div">
-              <div class="card-end">
-                <h2 id="assignments">2</h2>
-                <h4>Task in Board</h4>
-              </div>
-
-              <div class="card-end">
-                <h2 id="ongoing-task">0</h2>
-                <h4>Task in Progress</h4>
-              </div>
-
-              <div class="card-end">
-                <h2 id="pending-response">1</h2>
-                <h4>Awaiting Feedback</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="right-summary-area d-none-mobile">
-            <div id="salutation-text">
-              <h2>Good morning</h2>
-            <h1 id="greeting"></h1>
+      </section>
+      <section id="headerDropdownOption" class="d-noneHead">
+        <div class="headerDropdownOption">
+          <a href="./legal_notice.html">Legal Notice</a>
+          <a href="./privacy-police.html">Privacy Policy</a>
+          <a href="./index.html">Log out</a>
+          <a href="./help.html">help</a>
         </div>
+      </section>
+
+
+    </div>
+    <div class="primary-area">
+      <section class="lead-section">
+        <div>
+          <h1>Join 360</h1>
+        </div>
+        <div class="spacer"></div>
+        <div>
+          <h5>Key Metrics at a Glance</h5>
+        </div>
+        <div class="spacer-mobile"></div>
+      </section>
+
+      <section class="content-summary">
+        <div class="left-summary-area">
+          <div class="card-interactive-div">
+            <div class="card hover-right">
+              <img id="pencil-img" src="./assets/img/pencil-darkblue.png" alt="Pencil logo">
+              <div class="details-card">
+                <h2 id="todo">1</h2>
+                <p>To-do</p>
+              </div>
+            </div>
+            <div class="card hover-left">
+              >
+              <div class="details-card">
+                <h2 id="done">0</h2>
+                <p>Done</p>
+              </div>
+            </div>
           </div>
-        </section>
-      </div>
-    </main>
-    <script>
- 
-      const user = JSON.parse(localStorage.getItem('user'));
-  
-      if (!user) {
-        window.location.href = './index.html';
-      }
-  
-      document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
-    </script>
-    <script>
-    
-    
-        document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
 
-    </script>
-<script>
-<<<<<<< HEAD
+          <div class="super-card hover-bottom">
+            <div class="big-left-panel">
+              <img src="./assets/img/icon_Upp2.svg" alt="Arrows up">
+              <div class="details-card">
+                <h2 id="high-priority">1</h2>
+                <p>Urgent</p>
+              </div>
+            </div>
 
+            <div class="p-super-card"></div>
 
-  // Funktion zum Berechnen der Initialen
-  function getInitials(name) {
-    const nameParts = name.trim().split(' ');
-    if (nameParts.length === 1) {
-      return nameParts[0].charAt(0).toUpperCase(); // Nur einen Buchstaben anzeigen, wenn nur ein Name existiert
+            <div class="big-right-panel">
+              <h3 id="end-date">
+                No urgent to-dos
+              </h3>
+              <h4>Upcoming Deadline</h4>
+            </div>
+          </div>
+
+          <div class="card-interactive-div">
+            <div class="card-end">
+              <h2 id="assignments">2</h2>
+              <h4>Task in Board</h4>
+            </div>
+
+            <div class="card-end">
+              <h2 id="ongoing-task">0</h2>
+              <h4>Task in Progress</h4>
+            </div>
+
+            <div class="card-end">
+              <h2 id="pending-response">1</h2>
+              <h4>Awaiting Feedback</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-summary-area d-none-mobile">
+          <div id="salutation-text">
+            <h2>Good morning</h2>
+            <h1 id="greeting"></h1>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script>
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (!user) {
+      window.location.href = './index.html';
     }
-    return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase(); // Beide Initialen anzeigen
-  }
 
-  // Initialen berechnen und im Div anzeigen
-  const initials = getInitials(user.name || 'G');
-  
-  // Den innersten Div mit der ID "userInitials" korrekt ansprechen und die Initialen einfügen
-=======
-  
-  function getInitials(name) {
-    const nameParts = name.trim().split(' ');
-    if (nameParts.length === 1) {
-      return nameParts[0].charAt(0).toUpperCase();
-    }
-    return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase(); 
-  }
+    document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
+  </script>
+  <script>
+    document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
 
-  const initials = getInitials(user.name || 'G');
-  
->>>>>>> 605c705933bc710fdd0373e7323796af01864890
-  document.getElementById('userInitials').querySelector('div').textContent = initials;
+  </script>
+</body>
 
-</script>
-</body></html>
+</html>
