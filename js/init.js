@@ -13,10 +13,11 @@ async function includeHTML() {
     }
   }
   
-  ;(async function () {
-    await includeHTML()
-    showUser()
-  })()
+  // ;(async function () {
+  
+  //   await includeHTML()
+  //   showUser()
+  // })()
   
   function showUser() {
     let userInitials = document.getElementById("userInitials")

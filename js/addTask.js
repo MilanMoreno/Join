@@ -1,6 +1,5 @@
-let task = [];
 
-let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
+let BASE_Url = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
 function renderAddTask() {
   let contentSection = document.getElementById("addTaskSide");
@@ -11,8 +10,8 @@ function renderAddTask() {
 }
 
 let prio = "";
-const subTask = [];
-const checkBox = [];
+let subTask = [];
+let checkBox = [];
 let selectedCheckboxes = [];
 
 function addTask() {
@@ -30,9 +29,40 @@ function addTask() {
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
   console.log(jsonString);
-  renderAddTask();
+  showConfirmationMessage();
 }
 
+function addTaskPopup() {
+  if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+  const task = {
+    Title: document.getElementById("addTasktitleInput").value,
+    Category: document.getElementById("addTaskCategory").value,
+    Description: document.getElementById("addTaskDiscription").value,
+    DueDate: document.getElementById("addTaskDate").value,
+    Prio: prio,
+    AssignedTo: selectedCheckboxes,
+    Subtask: [subTask],
+    PositionID: "toDo",
+    checkboxState: [checkBox]
+  };
+  const jsonString = JSON.stringify(task);
+  postData(task.Title, task);
+  console.log(jsonString);
+  showConfirmationMessage();} else { console.log ("feld nicht ausgefüllt")}
+}
+
+function showConfirmationMessage() {
+  const messageElement = document.getElementById('confirmationMessage');
+  
+  // Zeige das Element und aktiviere die CSS-Klasse für das Einblenden
+  messageElement.classList.remove('hidden');
+  messageElement.classList.add('show');
+  
+  // Verstecke die Meldung nach 900ms
+  setTimeout(() => {
+    messageElement.classList.remove('show');
+    messageElement.classList.add('hidden');
+  }, 900); }
 
 
 // Funktion zum Aktualisieren der ausgewählten Checkboxen
@@ -57,6 +87,7 @@ function updateSelectedCheckboxes() {
 }
 
 function setPrio(p) {
+  event.preventDefault();
   const prios = p;
   if (prio == p) {
     prio = "";
@@ -125,19 +156,36 @@ function addSubTask() {
 }
 
 
-
 // firebase
 
 async function postData(path = "", data = {}) {
   const title = data.Title;
   path = title;
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
 
-  return (responseToJson = await response.json());
+  console.log("Starting postData with path:", BASE_Url + path + ".json");
+  console.log("Data being sent:", data);
+
+  try {
+    let response = await fetch(BASE_Url + path + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    // Prüfen, ob die Antwort erfolgreich ist
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Erfolgreiche Antwort wird zurückgegeben
+    let responseToJson = await response.json();
+    console.log("Response from Firebase:", responseToJson);
+    return responseToJson;
+    
+  } catch (error) {
+    console.error("Error during postData:", error);
+    return { error: "An error occurred during the data post." };
+  }
 }

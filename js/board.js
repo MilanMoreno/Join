@@ -27,11 +27,12 @@ async function loadTask() {
 function render() {
   for (let i = 0; i < task.length; i++) {
     const element = task[i];
+    const assignedTo = task[i].AssignedTo && task[i].AssignedTo.length > 0 ? task[i].AssignedTo : "0";
     contentHTML = fillTemplate(
       task[i].Title,
       task[i].Category,
       task[i].Description,
-      task[i].AssignedTo,
+      assignedTo,
       task[i].Prio,
       i
     );
@@ -54,10 +55,10 @@ function fillTemplate(title, category, text, assigned, prio, id) {
         <h3 class="cardTitle">${title}</h3>
         <p class="cardText">${content}</p>
         <div class="cardBalken d-flex">
-            <div class="progress-container">
+            <div class="progress-container" id="progressContainer${id}">
                 <div class="progress-bar" id="progressBar${id}"></div>
             </div>
-            <div class="progress-text" id="progressText${id}">0/0 Subtasks</div>
+            <div class="progress-text" id="progressText${id}"></div>
         </div>
         <div class="cardFooter d-flex d-space">
             <div class="initials-container">${initials}</div>
@@ -70,6 +71,10 @@ function fillTemplate(title, category, text, assigned, prio, id) {
 
 function getInitials(names){
 let initial = ""
+if (names === "0") {
+  initial += `<div class="initials d-none" style="background-color: ;">0</div>`;
+  return initial;
+} else {
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
     const color = getRandomColor();
@@ -78,10 +83,10 @@ let initial = ""
   const nameParts = element.split(' ');
   const initials = nameParts.map(part => part.charAt(0)).join('');
   ini = initials.toUpperCase();
-  initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`
-  
+  initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`;
+  return initial;
 }
-return initial
+}
 }
 
 function getInitialsDetail(names){
@@ -110,10 +115,11 @@ function getRandomColor() {
 function updateProgress(id) {
   let progressBarID = "progressBar" + id;
   let progressTextID = "progressText" + id;
-  const totalSubtasks = task[id].Subtask[0].length;
+  const totalSubtasks = taskLenght(id);
   const completedSubtasks = numberOfChecked(id);
   const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
   const progressBarElement = document.getElementById(progressBarID);
+  if( totalSubtasks === 0){document.getElementById(`progressContainer${id}`).classList.add ("d-none") } else{
   if (progressBarElement) {
     progressBarElement.style.width = `${progressPercentage}%`;
   }
@@ -121,18 +127,29 @@ function updateProgress(id) {
   if (progressTextElement) {
     progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
   }
-  
+  }
+}
+
+function taskLenght(id){
+  let result;
+
+  if (task[id].Subtask && task[id].Subtask[0]) {
+      result = task[id].Subtask[0].length;
+  } else {
+      result = 0;
+  } return result;
 }
 
 function numberOfChecked(id){
   let count = 0
+  if(task[id].checkboxState && task[id].checkboxState[0]){
   for (let i = 0; i < task[id].checkboxState[0].length; i++) {
     const element = task[id].checkboxState[0][i].checked;
     if (element === true) {
       count = count+1 
-    } else { count =  count+0 }
+    } else { count =  count+0 }}
     
-  }
+  } else { return count}
  
   
 
@@ -232,12 +249,12 @@ function fillDetailTemplate(
                 ${cardSubTask}
         </ul>
         <div class="d-flex detailDeleteEdit">
-            <div class="deleteEdit d-flex">
+            <div class="deleteEdit d-flex" onclick="deleteTask('${task[id].Title}')">
                 <img src="./assets/img/delete.svg" alt="">
                 <p>Delete</p>
             </div>
             <div class="detailMiddleline"></div>
-            <div class="deleteEdit d-flex">
+            <div class="deleteEdit d-flex" onclick="editTask(id)">
                 <img src="./assets/img/edit.svg" alt="">
                 <p>Edit</p>
             </div>
@@ -266,13 +283,13 @@ function filterContact(id) {
 
 function filterSubTask(id) {
   let subTask = "";
-
+  if (task[id].Subtask && task[id].Subtask[0]){
   for (let i = 0; i < task[id].Subtask[0].length; i++) {
     const element = task[id].Subtask[0][i];
     const checkedTask = task[id].checkboxState[0][i].checked
     const checked = filterCheckBox(checkedTask);
     subTask += `<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id}" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;
-  }
+  }} else { return subTask}
 
   return subTask;
 }

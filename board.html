@@ -13,16 +13,21 @@
 
     <link rel="stylesheet" href="./css/font.css" />
     <link rel="stylesheet" href="./css/side_menu.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/boardDetailCard.css" />
+    <link rel="stylesheet" href="./css/addTask.css">
+    <link rel="stylesheet" href="./css/addTaskPopUp.css">
     <link rel="stylesheet" href="./assets/templates/font/inter400.woff2" />
     <link rel="stylesheet" href="./assets/templates/font/inter700.woff2" />
     <!--JS-->
-    <script src="./js/header.js"></script>
+    <script src="./assets/js/header.js"></script>
     <style type="text/css" id="operaUserStyle"></style>
     <script src="./js/board.js"></script>
-    <script src="/.js/init.js"></script>
+    <script src="./js/init.js"></script>
+    <script src="./js/taskEdit.js"></script>
+    <script src="./js/htmlTemplate.js"></script>
+    <script src="./js/addTask.js"></script>
   </head>
 
     
@@ -180,13 +185,13 @@
                 />
               </div>
             </div>
-            <button class="addTask d-center" onclick="openAddTask()">
+            <button class="addTask d-center" onclick="fillAddTaskPopUp()">
               Add task
               <img class="addPlus" src="./assets/img/icon_add.svg" alt="" />
             </button>
-            <button class="addTaskMobile d-center" onclick="openAddTask()">
+            <a class="addTaskMobile d-center" href="./add_task.html">
               <img class="addPlus" src="./assets/img/icon_add.svg" alt="" />
-            </button>
+            </a>
           </div>
         </div>
         <div class="mobileSearch">
@@ -273,6 +278,9 @@
         class="d-none detailSection"
         onclick="closeDetailCard(event)"
       ></div>
+      <div id="addTaskSectionBackground" class="addTaskBackground d-none">
+      <div id="addTaskSection" class="addTaskSection"></div>
+      </div>
     </main>
   </body>
 </html>
