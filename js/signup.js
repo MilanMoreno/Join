@@ -72,8 +72,11 @@ function buildUserObject() {
 
 function showSuccessMessage() {
     document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
-    setTimeout(() => window.location.href = "./sign_up.html", 1500);
+    setTimeout(() => {
+        window.location.href = "./index.html"; 
+    }, 1500); 
 }
+
 
 function getInitials(name) {
     return name.split(" ").filter(Boolean).map(word => word[0].toUpperCase()).join("");

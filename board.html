@@ -145,8 +145,8 @@
           <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
           <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
         </div>
-  
-        </header>
+
+      </header>
   
       </section>
       <section id="headerDropdownOption" class="d-noneHead">
@@ -282,5 +282,35 @@
       <div id="addTaskSection" class="addTaskSection"></div>
       </div>
     </main>
+
+
+    
+<script>
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  
+  if (!user) {
+  
+    window.location.href = './index.html';
+  }
+  
+  
+  function getInitials(name) {
+    const nameParts = name.trim().split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase();
+    }
+    return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase(); 
+  }
+  
+  const initials = getInitials(user.name || 'G');
+  
+  
+  const userInitialsDiv = document.getElementById('userInitials');
+  if (userInitialsDiv) {
+    userInitialsDiv.querySelector('div').textContent = initials;
+  }
+  
+  </script>
   </body>
 </html>
