@@ -73,8 +73,8 @@ function buildUserObject() {
 function showSuccessMessage() {
     document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
     setTimeout(() => {
-        window.location.href = "./index.html";  // Weiterleitung auf die Login-Seite (index.html)
-    }, 1500);  // 1,5 Sekunden warten, damit die Erfolgsnachricht angezeigt wird
+        window.location.href = "./index.html"; 
+    }, 1500); 
 }
 
 

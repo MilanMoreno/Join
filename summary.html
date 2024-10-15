@@ -18,6 +18,7 @@
 
   <script src="/js/summary.js"></script>
   <script src="./js/contactsfirebase.js"></script>
+  <script src="js/login.js"></script>
 </head>
 
 
@@ -73,17 +74,12 @@
 
       <script src=" js/dropDownMenuAndGoBack.js"></script>
 
-
-
       <header id="header">
         <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
         <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
         <div class="header-right">
-          <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help"
-              class="d-none-mobile"></a>
-          <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials">
-            <div>G</div>
-          </div>
+          <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
+          <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
         </div>
 
       </header>
@@ -177,19 +173,33 @@
       </section>
     </div>
   </main>
-  <script>
+  
+<script>
 
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    if (!user) {
-      window.location.href = './index.html';
+  const user = JSON.parse(localStorage.getItem('user'));
+  
+  if (!user) {
+  
+    window.location.href = './index.html';
+  }
+  
+  
+  function getInitials(name) {
+    const nameParts = name.trim().split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase();
     }
-
-    document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
-  </script>
-  <script>
-    document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
-
+    return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase(); 
+  }
+  
+  const initials = getInitials(user.name || 'G');
+  
+  
+  const userInitialsDiv = document.getElementById('userInitials');
+  if (userInitialsDiv) {
+    userInitialsDiv.querySelector('div').textContent = initials;
+  }
+  
   </script>
 </body>
 
