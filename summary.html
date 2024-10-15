@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="./css/summary.css">
   <style type="text/css" id="operaUserStyle"></style>
    
-  <script src="/js/init.js"></script>
-  <script src="/js/include.js"></script>
+  
   <script src="/js/summary.js"></script>
   <script src="./js/contactsfirebase.js"></script>
   </head>
@@ -95,6 +94,15 @@
   
 
 </div>
+
+
+
+
+
+
+
+
+
       <div class="primary-area">
         <section class="lead-section">
           <div>
@@ -188,5 +196,23 @@
         document.getElementById('greeting').textContent = ` ${user.name || 'Benutzer'}!`;
 
     </script>
+<script>
 
+
+  // Funktion zum Berechnen der Initialen
+  function getInitials(name) {
+    const nameParts = name.trim().split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase(); // Nur einen Buchstaben anzeigen, wenn nur ein Name existiert
+    }
+    return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase(); // Beide Initialen anzeigen
+  }
+
+  // Initialen berechnen und im Div anzeigen
+  const initials = getInitials(user.name || 'G');
+  
+  // Den innersten Div mit der ID "userInitials" korrekt ansprechen und die Initialen einfügen
+  document.getElementById('userInitials').querySelector('div').textContent = initials;
+
+</script>
 </body></html>
