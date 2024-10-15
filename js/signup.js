@@ -1,4 +1,4 @@
-let usersArray = [];
+let usersArray = []; 
 
 async function handleSignUp(event) {
     event.preventDefault();
@@ -18,25 +18,18 @@ async function handleSignUp(event) {
         return;
     }
 
-    let newUser = buildUserObject();
+    let newUser = buildUserObject();  // newUser: Einzelner Benutzer
     if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
         showSuccessMessage();
     }
 }
-/**
- * 
- * @param {wichtig } email 
- * 
- * 
- * @returns 
- */
 
 async function checkEmailAvailability(email) {
-    await loadUser();
-    return !usersArray.some(user => user.mail === email);
+    await loadUsers();  // Benutzer laden (Plural)
+    return !usersArray.some(user => user.mail === email);  // Hier prüfen wir die E-Mail für einen einzelnen user
 }
 
-async function verifyPassword(user, passwordField, confirmPasswordField) {
+async function verifyPassword(user, passwordField, confirmPasswordField) {  // user: einzelner Benutzer
     const password = passwordField.value.trim();
     const confirmPassword = confirmPasswordField.value.trim();
 
@@ -46,19 +39,20 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {
     }
 
     if (password === confirmPassword) {
-        await submitData("users", user);
+        await submitData("users", user);  // Hier fügen wir den neuen Benutzer (user) zur Datenbank hinzu
         return true;
     } else {
         displayErrorMessage("Passwords do not match", confirmPasswordField);
         return false;
     }
 }
-async function loadUser() {
-    usersArray = [];
-    let users = await fetchData("users");
-    for (let [userID, user] of Object.entries(users || {})) {
-        user.id = userID;
-        usersArray.push(user);
+
+async function loadUsers() {
+    usersArray = [];  // Leeren des Benutzers-Arrays (Plural)
+    let usersData = await fetchData("users");  // usersData: Daten aller Benutzer
+    for (let [userID, userData] of Object.entries(usersData || {})) {
+        userData.id = userID;  // Einzelner Benutzer (userData) bekommt eine ID
+        usersArray.push(userData);  // Benutzer (userData) wird zur Benutzerliste (users) hinzugefügt
     }
 }
 
@@ -69,12 +63,11 @@ function displayErrorMessage(message, targetElement) {
     targetElement.style.border = "2px solid red";
 }
 
-
 function buildUserObject() {
     let name = document.getElementById("inputSignUpName").value;
     let email = document.getElementById("inputSignUpMail").value;
     let password = document.getElementById("inputSignUpPassword1").value;
-    return { name, initials: getInitials(name), password, mail: email };
+    return { name, initials: getInitials(name), password, mail: email };  // Einzelner Benutzer wird zurückgegeben
 }
 
 function showSuccessMessage() {
@@ -87,40 +80,37 @@ function getInitials(name) {
 }
 
 function login() {
-    let email = document.getElementById("inputLoginMail").value;
-    let password = document.getElementById("inputLoginPassword").value;
-    let user = usersArray.find(user => user.mail === email && user.password === password);
+    let email = document.getElementById("inputEmailLogIn").value;
+    let password = document.getElementById("inputPasswordLogIn").value;
+    let matchedUser = usersArray.find(user => user.mail === email && user.password === password);  // matchedUser: einzelner Benutzer
 
-    if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
+    if (matchedUser) {
+        localStorage.setItem("user", JSON.stringify(matchedUser));  // Nur ein Benutzer wird im localStorage gespeichert
         window.location.href = "./summary.html";
     } else {
-        displayErrorMessage("E-Mail or password are incorrect", document.getElementById("failedLogin"));
+        displayErrorMessage("E-Mail or password are incorrect", document.getElementById("Loginerror"));
     }
 }
 
 function guestLogin() {
     let guestUser = { initials: "G", name: "Guest" };
-    localStorage.setItem("user", JSON.stringify(guestUser));
+    localStorage.setItem("user", JSON.stringify(guestUser));  // Gastbenutzer wird als einzelner Benutzer gespeichert
     window.location.href = "./summary.html";
 }
 
-
 function handleLogin(event) {
-  event.preventDefault();
-  const emailInput = document.getElementById("inputLoginMail").value;
-  const passwordInput = document.getElementById("inputLoginPassword").value;
+    event.preventDefault();
+    const emailInput = document.getElementById("inputEmailLogIn").value;
+    const passwordInput = document.getElementById("inputPasswordLogIn").value;
 
-  const matchedUser = usersArray.find(
-      (user) => user.mail === emailInput && user.password === passwordInput
-  );
+    const matchedUser = usersArray.find(user => user.mail === emailInput && user.password === passwordInput);  // matchedUser: einzelner Benutzer
 
-  if (matchedUser) {
-      saveUserToLocal(matchedUser);
-      redirectToSummary();
-  } else {
-      showLoginErrorMessage("E-Mail or password are incorrect");
-  }
+    if (matchedUser) {
+        saveUserToLocal(matchedUser);  // matchedUser wird gespeichert
+        redirectToSummary();
+    } else {
+        showLoginErrorMessage("E-Mail or password are incorrect");
+    }
 }
 
 function loginAsGuest() {
@@ -128,21 +118,21 @@ function loginAsGuest() {
         initials: "G",
         name: "Guest",
     };
-    saveUserToLocal(guestUser);
+    saveUserToLocal(guestUser);  // Gastbenutzer wird gespeichert
     redirectToSummary();
-  }
+}
 
 function saveUserToLocal(user) {
-  const userString = JSON.stringify(user);
-  localStorage.setItem("user", userString);
+    const userString = JSON.stringify(user);  // einzelner Benutzer (user) wird gespeichert
+    localStorage.setItem("user", userString);
 }
 
 function redirectToSummary() {
-  window.location.href = "./summary.html";
+    window.location.href = "./summary.html";
 }
 
 function showLoginErrorMessage(message) {
-  const loginErrorElement = document.getElementById("failedLogin");
-  loginErrorElement.classList.remove("d-none");
-  loginErrorElement.innerHTML = message;
+    const loginErrorElement = document.getElementById("Loginerror");
+    loginErrorElement.classList.remove("d-none");
+    loginErrorElement.innerHTML = message;
 }

@@ -1,110 +1,111 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
 
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join project 361</title>
+<head>
 
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
- 
-    
-   
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/side_menu.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/contact.css">
-    <link rel="stylesheet" href="./css/responsive_contact.css">
-    
-   
-    <style type="text/css" id="operaUserStyle"></style>
-    
-    <script src="./js/contact.js"></script>
-    <script src="./js/contact_Mobile.js"></script>
-    <script src="js/contactsfirebase.js"></script>
-    <script src=" js/dropDownMenuAndGoBack.js"></script>
-  
-    <script src="js/include.js"></script>
- 
-    <style>  .d-block {
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join project 361</title>
+
+  <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/side_menu.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/contact.css">
+  <link rel="stylesheet" href="./css/responsive_contact.css">
+
+
+  <style type="text/css" id="operaUserStyle"></style>
+
+  <script src="./js/contact.js"></script>
+  <script src="./js/contact_Mobile.js"></script>
+  <script src="js/contactsfirebase.js"></script>
+  <script src=" js/dropDownMenuAndGoBack.js"></script>
+
+  <script src="js/include.js"></script>
+
+  <style>
+    .d-block {
       display: block;
-    }</style>
-  </head>
+    }
+  </style>
+</head>
 
 <body onload="fetchData()">
   <div w3-include-html="./assets/templates/side_menu.html">
 
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+
+    <link rel="icon" type="image/x-icon" href="/imgs/join_logo.png">
 
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
-  
 
-  
+
     <section id="Sidebar" class="sidebar">
       <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
       <nav>
         <a id="summarylink" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="Addtask">Add Task</a>
         <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="Board">Board</a>
-        <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg" alt="Contacts">Contacts</a>
+        <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg"
+            alt="Contacts">Contacts</a>
       </nav>
       <div class="bottom-menu-link d-none-mobile">
         <a href="./privacy-police.html" onclick="saveTheUrl()">Privacy Policy</a>
         <a href="./legal_notice.html">Legal notice</a>
+   
+        
       </div>
     </section>
-  
 
-</div>
+
+  </div>
   <main>
     <div w3-include-html="./assets/templates/header.html" class="fixed-header">
 
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-   
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <meta charset="UTF-8">
-    
-  
 
-    <header id="header">
-      <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
-      <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
-      <div class="header-right">
-        <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
-        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
-      </div>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Join</title>
+
+      <link rel="icon" type="image/x-icon" href="./imgs/join_logo.png">
+
+      <link rel="stylesheet" href="./css/header.css">
+      <link rel="stylesheet" href="./css/font.css">
+      <link rel="stylesheet" href="./css/style.css">
+      <meta charset="UTF-8">
+
+
+      <header id="header">
+        <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
+        <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
+        <div class="header-right">
+          <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help"
+              class="d-none-mobile"></a>
+          <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials">
+            <div>G</div>
+          </div>
+        </div>
 
       </header>
 
-    </section>
-    <section id="headerDropdownOption" class="d-noneHead">
-      <div class="headerDropdownOption">
-        <a href="./legal_notice.html">Legal Notice</a>
-        <a href="./privacy-police.html">Privacy Policy</a>
-        <a href="./index.html">Log out</a>
-      </div>
-    </section>
-  
+      </section>
+      <section id="headerDropdownOption" class="d-noneHead">
+        <div class="headerDropdownOption">
+          <a href="./legal_notice.html">Legal Notice</a>
+          <a href="./privacy-police.html">Privacy Policy</a>
+          <a href="./index.html">Log out</a>
+          <a href="./help.html">help</a>
+        </div>
+      </section>
 
-</div>
-
-
-
+    </div>
 
     <div class="layout-wrapper" id="layout-wrapper">
       <section id="mycontacts" class="contacts">
@@ -112,71 +113,17 @@
           <button onclick="openClosePopUp('open', key = false)" class="addContactButton position-fixed">Add new Contact
             <img src="./contact-assets/img/addPerson.png" alt=""></button>
         </div>
-        <div class="list" id="contacts"><h3 class="letter">A</h3>
-        <div onclick="showDetailedContact('')" id="" class="contactCard">
-             <div id="letter" class="one_letter" style="background-color: #AFA53D;">A</div>
-             <div class="fullName-email">
-               <span>Anette</span>
-               <a class="email" href="#">annette@gmail.com</a>
-             </div>
-        </div>
-    
-        <div onclick="showDetailedContact('')" id="" class="contactCard">
-             <div id="letter" class="one_letter" style="background-color: #D4DDE5;">A</div>
-             <div class="fullName-email">
-               <span>Alina Müller</span>
-               <a class="email" href="#">ali243@web.de</a>
-             </div>
-        </div>
-    <h3 class="letter">B</h3>
-        <div onclick="showDetailedContact('')" id="" class="contactCard">
-             <div id="letter" class="one_letter" style="background-color: #CAC764;">B</div>
-             <div class="fullName-email">
-               <span>Betina Scholz</span>
-               <a class="email" href="#">Becky@yahoo.de</a>
-             </div>
-        </div>
-    <h3 class="letter">E</h3>
-        <div onclick="showDetailedContact('')" id="" class="contactCard">
-             <div id="letter" class="one_letter" style="background-color: #AD906E;">E</div>
-             <div class="fullName-email">
-               <span>Emil Lasse</span>
-               <a class="email" href="#">lasse@gmail.com</a>
-             </div>
-        </div>
-    <h3 class="letter">S</h3>
-        <div onclick="showDetailedContact('-O8LXOJZ5zzQVw2vTkCX')" id="-O8LXOJZ5zzQVw2vTkCX" class="contactCard">
-             <div id="letter-O8LXOJZ5zzQVw2vTkCX" class="one_letter" style="background-color: #35CE5E;">S</div>
-             <div class="fullName-email">
-               <span>Sergio Balboa</span>
-               <a class="email" href="#"> sergiobalboa@gmail.com</a>
-             </div>
-        </div>
-    <h3 class="letter">M</h3>
-        <div onclick="showDetailedContact('')" id="" class="contactCard">
-             <div id="letter" class="one_letter" style="background-color: #E9B278;">M</div>
-             <div class="fullName-email">
-               <span>Manuel Herbage</span>
-               <a class="email" href="#">Manu89@web.de</a>
-             </div>
-        </div>
-    <h3 class="letter">R</h3>
-        <div onclick="showDetailedContact()" id="" class="contactCard">
-             <div id="letter" class="one_letter" style="background-color: #74B0A3;">R</div>
-             <div class="fullName-email">
-               <span>Ricky Lee</span>
-               <a class="email" href="#">rickyLee@chmail.com</a>
-             </div>
-        </div>
+        <div class="list" id="contacts">
+          <h3 class="letter">A</h3>
+          <div class="contactCard">
+            <div id="letter" class="one_letter" style="background-color: #AFA53D;">A</div>
+            <div class="fullName-email">
+              <a class="email" href="#"></a>
+            </div>
+          </div>
 
-
-
-
-
-    </div>
+        </div>
       </section>
-
-
 
       <section id="content-area" class="content-section dNone">
         <div class="h2-span">
@@ -201,7 +148,8 @@
             <div class="edit-logo-box"><img class="edit-logo" src="./contact-assets/img/add-contact.png" alt=""></div>
           </div>
           <div class="popUp-content">
-            <div class="close-button"><img onclick="openClosePopUp('close')" src="./contact-assets/img/close.png" alt="">
+            <div class="close-button"><img onclick="openClosePopUp('close')" src="./contact-assets/img/close.png"
+                alt="">
             </div>
             <div class="pic_inputs">
               <div>
@@ -213,8 +161,10 @@
                   <input required="" id="tel" placeholder="Phone" type="tel">
                   <input required="" id="name" placeholder="Name" type="text">
                   <div class="contact_button">
-                    <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel <img src="./contact-assets/img/close.png" alt=""></button>
-                    <button type="submit" class="addContactButton">Create Contact <img class="check" src="./contact-assets/img/check.png" alt=""></button>
+                    <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel <img
+                        src="./contact-assets/img/close.png" alt=""></button>
+                    <button type="submit" class="addContactButton">Create Contact <img class="check"
+                        src="./contact-assets/img/check.png" alt=""></button>
                   </div>
                 </form>
               </div>
@@ -232,7 +182,8 @@
             <div class="edit-logo-box"><img class="edit-logo" src="./contact-assets/img/edit-contact.png" alt=""></div>
           </div>
           <div class="popUp-content">
-            <div class="close-button"><img onclick="openClosePopUp('close', key = true)" src="./contact-assets/img/close.png" alt="">
+            <div class="close-button"><img onclick="openClosePopUp('close', key = true)"
+                src="./contact-assets/img/close.png" alt="">
             </div>
             <div class="pic_inputs">
               <div>
@@ -245,8 +196,10 @@
                   <input required="" id="editName" placeholder="Name" type="text">
 
                   <div class="contact_button">
-                    <button onclick="removeContact()(path ='contact', keyForEdit)" type="button" class="cancel-Button">Delete <img src="./contact-assets/img/close.png" alt=""></button>
-                    <button type="submit" class="addContactButton">Save<img class="check" src="./contact-assets/img/check.png" alt=""></button>
+                    <button onclick="removeContact()(path ='contact', keyForEdit)" type="button"
+                      class="cancel-Button">Delete <img src="./contact-assets/img/close.png" alt=""></button>
+                    <button type="submit" class="addContactButton">Save<img class="check"
+                        src="./contact-assets/img/check.png" alt=""></button>
                   </div>
                 </form>
               </div>
@@ -260,4 +213,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>
