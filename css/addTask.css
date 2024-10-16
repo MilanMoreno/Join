@@ -33,7 +33,7 @@
   flex-direction: column;
 }
 
-.addTaskSection{
+.addTaskSection {
   overflow: hidden;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .addTaskFooter {
-  margin-top: 146px;
+  margin-top: 100px;
 }
 
 .addTaskSubmit {
@@ -137,43 +137,9 @@
   height: 24px;
 }
 
-#addTitleInput {
-  width: auto;
-}
-
-#addTaskDiscription {
-  width: auto;
-}
-
-#addTaskContactSelect {
-  width: auto;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
-    center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-#addTaskContactSelect:focus {
-  width: auto;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
+#addTitleInput,
+#addTaskDiscription,
+#addTaskContactSelect,
 #addTaskCategory {
   width: auto;
   padding: 10px;
@@ -182,25 +148,25 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
-    center;
-  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
+  background-color: #fff;
+}
+
+#addTaskContactSelect {
+  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px center;
+}
+
+#addTaskContactSelect:focus {
+  background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
+}
+
+#addTaskCategory {
+  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px center;
 }
 
 #addTaskCategory:focus {
-  width: auto;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
 }
 
 .colormedium {
@@ -270,38 +236,17 @@
   border: 1px solid #d1d1d1;
 }
 
-#urgentWhite{
+#urgentWhite,
+#urgentColor,
+#mediumWhite,
+#mediumColor,
+#lowWhite,
+#lowColor {
   width: 20px;
   height: auto;
 }
 
-#urgentColor{
-  width: 20px;
-  height: auto;
-}
-
-#mediumWhite{
-  width: 20px;
-  height: auto;
-}
-
-#mediumColor{
-  width: 20px;
-  height: auto;
-}
-
-#lowWhite{
-  width: 20px;
-  height: auto;
-  rotate: 180deg;
-}
-
-#lowColor{
-  width: 20px;
-  height: auto;
-}
-
-.assingedField{
+.assingedField {
   z-index: 5;
   height: 48px;
   align-items: center;
@@ -309,24 +254,23 @@
   margin-bottom: 8px;
 }
 
-.assingedField img{
+.assingedField img {
   margin-left: -20px;
   height: 5px;
   width: 8px;
 }
 
-.assingedInput{
+.assingedInput {
   width: 100%;
 }
 
-#assinged::placeholder{
+#assinged::placeholder {
   color: #000000;
 }
 
-.assingedInput:focus ~ .icon{
+.assingedInput:focus ~ .icon {
   transform: rotate(180deg);
 }
-
 
 #assinged:focus::placeholder {
   color: transparent;
@@ -337,16 +281,14 @@
   justify-content: space-between;
 }
 
-.assingLeft{
+.assingLeft {
   align-items: center;
   gap: 15px;
   margin-left: 15px;
 }
 
-#assingedList{
+#assingedList {
   position: relative;
-  top: 1000px;
-  left: 1000px;
   max-height: 250px;
   width: 440px;
   overflow-y: auto;
@@ -354,14 +296,13 @@
   z-index: 5;
 }
 
-.assingedList:hover{
+.assingedList:hover {
   cursor: pointer;
 }
 
-.assingedCheck{
+.assingedCheck {
   margin-right: 15px;
 }
-
 
 .container {
   display: block;
@@ -377,14 +318,13 @@
   user-select: none;
 }
 
-.checkmark input:checked{
-width: 100px;
-    height: 100px;
-    background-color: lightblue;
-    border: 2px solid black;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 80% 0); 
-  }
-
+.checkmark input:checked {
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  border: 2px solid black;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 80% 0);
+}
 
 .container input {
   position: absolute;
@@ -393,7 +333,6 @@ width: 100px;
   height: 0;
   width: 0;
 }
-
 
 .checkmark {
   position: absolute;
@@ -405,19 +344,16 @@ width: 100px;
   border-radius: 4px;
 }
 
-
 .container:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-
 .container input:checked ~ .checkmark {
   width: 16px;
-    height: 16px;
-    border: 2px solid black;
-    clip-path: polygon(70% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 0%);
+  height: 16px;
+  border: 2px solid black;
+  clip-path: polygon(70% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 0%);
 }
-
 
 .checkmark:after {
   content: "";
@@ -425,11 +361,9 @@ width: 100px;
   display: none;
 }
 
-
 .container input:checked ~ .checkmark:after {
   display: block;
 }
-
 
 .container .checkmark:after {
   left: 6px;
@@ -438,8 +372,6 @@ width: 100px;
   height: 15px;
   border: solid #000000;
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(35deg);
-  -ms-transform: rotate(35deg);
   transform: rotate(35deg);
 }
 
@@ -447,9 +379,21 @@ width: 100px;
   border-top-right-radius: 4px;
 }
 
-@media (max-width: 1024px) {
+/* Neue Media Query für responsive Anpassung */
+@media (max-width: 800px) {
+  .addTaskContent {
+    max-width: 100%; /* Maximale Breite auf 100% setzen */
+    padding-inline: 20px; /* Padding für kleinere Bildschirme anpassen */
+  }
+
+  .addTaskLeft, .addTaskRight {
+    width: 100%; /* Die Breite der linken und rechten Abschnitte auf 100% setzen */
+  }
+}
+
+@media (max-width: 1180px) {
   .addTaskBody {
-    flex-direction: column;
+    flex-direction: column !important;
     width: 100%;
   }
 
@@ -466,18 +410,9 @@ width: 100px;
     width: 100%;
   }
 
-  .addTaskContent input {
-    font-size: 16px;
-  }
-
-  .addTaskContent textarea {
-    font-size: 16px;
-  }
-
-  .addTaskContent button {
-    font-size: 16px;
-  }
-
+  .addTaskContent input,
+  .addTaskContent textarea,
+  .addTaskContent button,
   .addTaskContent select {
     font-size: 16px;
   }
@@ -486,19 +421,6 @@ width: 100px;
     width: 100vw;
   }
 
-  .contentsection {
-    width: 100vw;
-  }
-
-  .addTaskLeft {
-    max-width: auto;
-    width: auto;
-  }
-
-  .addTaskRight {
-    max-width: auto;
-    width: auto;
-  }
   .clear {
     display: none !important;
   }
@@ -534,7 +456,30 @@ width: 100px;
   display: none;
 }
 
-.conformationImg{
+.conformationImg {
   height: 30px;
   width: 30px;
+}
+/* Neue Media Query für responsive Anpassung unter 650px */
+@media (max-width: 650px) {
+  .contentSection {
+    max-width: 90%; /* Setze die maximale Breite auf 90% */
+    padding: 10px; /* Reduziere das Padding */
+    font-size: 16px; /* Optional: Setze die Schriftgröße kleiner */
+  }
+
+  .addTaskContent {
+    padding-inline: 10px; /* Reduziere das Padding der AddTaskContent */
+  }
+
+  .addTaskLeft, .addTaskRight {
+    width: 100%; /* Setze die Breite der Abschnitte auf 100% */
+  }
+
+  .addTaskContent input,
+  .addTaskContent textarea,
+  .addTaskContent button,
+  .addTaskContent select {
+    font-size: 14px; /* Optional: Setze die Schriftgröße für Eingabefelder kleiner */
+  }
 }
