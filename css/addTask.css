@@ -500,14 +500,19 @@ width: 100px;
 }
 
 .confirmation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 74px;
+  width: 326px;
   position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: green;
-  color: white;
+  top: 45%;
+  right: 35%;
+  background-color: #2A3647;
+  color: #FFFFFF;
   padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 20px;
+  font-size: 20px;
   opacity: 0;
   transition: opacity 0.5s ease; /* Smooth fade-in effect */
 }
@@ -518,4 +523,9 @@ width: 100px;
 
 .confirmation.hidden {
   display: none;
+}
+
+.conformationImg{
+  height: 30px;
+  width: 30px;
 }

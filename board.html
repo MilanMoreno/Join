@@ -21,14 +21,17 @@
     <link rel="stylesheet" href="./assets/templates/font/inter400.woff2" />
     <link rel="stylesheet" href="./assets/templates/font/inter700.woff2" />
     <!--JS-->
-    <script src="./assets/js/header.js"></script>
     <style type="text/css" id="operaUserStyle"></style>
     <script src="./js/board.js"></script>
+    <script src="./js/init.js"></script>
+    <script src="./js/taskEdit.js"></script>
+    <script src="./js/htmlTemplate.js"></script>
+    <script src="./js/addTask.js"></script>
   </head>
 
     
-  </body>
-  <body onload="loadTask();">
+
+  <body onload="loadTask()">
     <div w3-include-html="./assets/templates/side_menu.html">
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -184,7 +187,7 @@
                 />
               </div>
             </div>
-            <button class="addTask d-center" onclick="fillAddTaskPopUp()">
+            <button class="addTask d-center" onclick="fillAddTaskPopUp('toDo')">
               Add task
               <img class="addPlus" src="./assets/img/icon_add.svg" alt="" />
             </button>
@@ -217,7 +220,7 @@
               <h2>To do</h2>
               <img
                 class="c-pointer"
-                onclick="openAddTask('To do')"
+                onclick="fillAddTaskPopUp('toDo')"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"
               />
@@ -233,7 +236,7 @@
               <h2>In Progress</h2>
               <img
                 class="c-pointer"
-                onclick="openAddTask('In Progress')"
+                onclick="fillAddTaskPopUp('inProgress')"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"
               />
@@ -249,7 +252,7 @@
               <h2>Await feedback</h2>
               <img
                 class="c-pointer"
-                onclick="openAddTask('Await feedback')"
+                onclick="fillAddTaskPopUp('awaitFeedback')"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"
               />

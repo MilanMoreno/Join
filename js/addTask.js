@@ -13,26 +13,9 @@ let prio = "";
 let subTask = [];
 let checkBox = [];
 let selectedCheckboxes = [];
+let positionID = ""
 
 function addTask() {
-  const task = {
-    Title: document.getElementById("addTasktitleInput").value,
-    Category: document.getElementById("addTaskCategory").value,
-    Description: document.getElementById("addTaskDiscription").value,
-    DueDate: document.getElementById("addTaskDate").value,
-    Prio: prio,
-    AssignedTo: selectedCheckboxes,
-    Subtask: [subTask],
-    PositionID: "toDo",
-    checkboxState: [checkBox]
-  };
-  const jsonString = JSON.stringify(task);
-  postData(task.Title, task);
-  console.log(jsonString);
-  showConfirmationMessage();
-}
-
-function addTaskPopup() {
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
   const task = {
     Title: document.getElementById("addTasktitleInput").value,
@@ -48,7 +31,29 @@ function addTaskPopup() {
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
   console.log(jsonString);
-  showConfirmationMessage();} else { console.log ("feld nicht ausgefüllt")}
+  showConfirmationMessage();
+  loadTask();} else { console.log ("feld nicht ausgefüllt")}
+}
+
+function addTaskPopup(positionId) {
+  if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+    positionID = positionId
+  const task = {
+    Title: document.getElementById("addTasktitleInput").value,
+    Category: document.getElementById("addTaskCategory").value,
+    Description: document.getElementById("addTaskDiscription").value,
+    DueDate: document.getElementById("addTaskDate").value,
+    Prio: prio,
+    AssignedTo: selectedCheckboxes,
+    Subtask: [subTask],
+    PositionID: positionID,
+    checkboxState: [checkBox]
+  };
+  const jsonString = JSON.stringify(task);
+  postData(task.Title, task);
+  console.log(jsonString);
+  showConfirmationMessage();
+  loadTask();} else { console.log ("feld nicht ausgefüllt")}
 }
 
 function showConfirmationMessage() {
@@ -155,6 +160,18 @@ function addSubTask() {
   event.stopPropagation();
 }
 
+function fillsubtask(id){
+  
+  let subTasks = ""
+  if (id === "undefined"){subTask = ""} else {
+  for (let index = 0; index < task[id].Subtask[0].length; index++) {
+    const element = task[id].Subtask[0][index];
+    subTasks += `<li>${element}</li>`;
+    subTask += element;
+    checkBox.push("false");
+  }}
+  return subTasks;
+}
 
 // firebase
 

@@ -62,7 +62,7 @@ function fillTemplate(title, category, text, assigned, prio, id) {
         </div>
         <div class="cardFooter d-flex d-space">
             <div class="initials-container">${initials}</div>
-            <img class="cardPrio" src="${priosrc}">
+            <img class="cardPrio " src="${priosrc}">
         </div>
 
         </div>
@@ -167,9 +167,31 @@ function checkPrio(prio) {
   } else if (prio === "low") {
     prioImgSrc = low;
   } else {
-    prioImgSrc = "";
+    prioImgSrc = ""
+   
+    
   }
   return prioImgSrc;
+  
+}
+
+function checkPrioDetail(prio) {
+  const urgent = "./assets/img/icon_PrioAltaRed.svg";
+  const medium = "./assets/img/icon_PrioMediaOrange.svg";
+  const low = "./assets/img/icon_PrioBajaGreen.svg";
+  if (prio === "urgent") {
+    prioImgSrc = `<img class="detailPrioImg" src="${urgent}" alt="">`;
+  } else if (prio === "medium") {
+    prioImgSrc = `<img class="detailPrioImg" src="${medium}" alt="">`;
+  } else if (prio === "low") {
+    prioImgSrc = `<img class="detailPrioImg" src="${low}" alt="">`;
+  } else {
+    prioImgSrc = ""
+   
+    
+  }
+  return prioImgSrc;
+  
 }
 
 function checkCategory(category) {
@@ -198,7 +220,7 @@ function openDetailCard(id) {
   let cardSubTask = filterSubTask(id);
   let catClass = checkCategory(task[id].Category);
   let formattedDate = formatDateToDDMMYYYY(task[id].DueDate);
-  let priosrc = checkPrio(task[id].Prio);
+  let priosrc = checkPrioDetail(task[id].Prio);
   fillDetailTemplate(
     id,
     contentSection,
@@ -206,7 +228,8 @@ function openDetailCard(id) {
     cardSubTask,
     catClass,
     formattedDate,
-    priosrc
+    priosrc,
+    
   );
   document.getElementById("overlay").classList.remove("d-none");
   document.getElementById("overlay").classList.add("d-flex");
@@ -219,7 +242,8 @@ function fillDetailTemplate(
   cardSubTask,
   catClass,
   formattedDate,
-  priosrc
+  priosrc,
+  
 ) {
   contentSection.innerHTML = "";
   contentSection.innerHTML = /*html*/ `
@@ -237,7 +261,7 @@ function fillDetailTemplate(
                 </div>
                 <div class="d-flex detailPrio">
                     <p class="detailPr">Priority:</p>
-                    <p class="d-flex dPrio">${task[id].Prio}<img class="detailPrioImg" src="${priosrc}" alt=""></p>
+                    <p class="d-flex dPrio">${task[id].Prio} ${priosrc}</p>
                 </div>
             </div>
             <ul>
@@ -254,7 +278,7 @@ function fillDetailTemplate(
                 <p>Delete</p>
             </div>
             <div class="detailMiddleline"></div>
-            <div class="deleteEdit d-flex" onclick="editTask(id)">
+            <div class="deleteEdit d-flex" onclick="editTask('${task[id].Title}', '${task[id].Category}', '${task[id].DueDate}', '${task[id].Description}' ,'${task[id].PositionID}' ,'${id}')">
                 <img src="./assets/img/edit.svg" alt="">
                 <p>Edit</p>
             </div>
@@ -271,11 +295,13 @@ function formatDateToDDMMYYYY(dateString) {
 function filterContact(id) {
   let tasks = task;
   let contact = "";
-
+ if("AssignedTo" in tasks[id]){
   for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
     const element = tasks[id].AssignedTo[i];
     const initial = getInitialsDetail(element);
     contact += `<li class="assignList d-flex">${initial}${element}</li>`;
+  }} else {
+    contact += ""
   }
 
   return contact;
@@ -373,8 +399,6 @@ function drop(event) {
    
     const dropTargetID = event.currentTarget.id;
     updateTaskPosition(dropTargetID);
-
-
 }
 
 function updateTaskPosition(dropTargetID){
