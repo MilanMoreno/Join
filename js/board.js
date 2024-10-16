@@ -24,23 +24,33 @@ async function loadTask() {
   render();
 }
 
-function render() {
-  for (let i = 0; i < task.length; i++) {
-    const element = task[i];
-    const assignedTo = task[i].AssignedTo && task[i].AssignedTo.length > 0 ? task[i].AssignedTo : "0";
+function render(filtered) {
+  let tasks = ""
+  if (filtered === undefined) {tasks = task} else {tasks = filtered}
+  emptyContent();
+  for (let i = 0; i < tasks.length; i++) {
+    const element = tasks[i];
+    const assignedTo = tasks[i].AssignedTo && tasks[i].AssignedTo.length > 0 ? tasks[i].AssignedTo : "0";
     contentHTML = fillTemplate(
-      task[i].Title,
-      task[i].Category,
-      task[i].Description,
+      tasks[i].Title,
+      tasks[i].Category,
+      tasks[i].Description,
       assignedTo,
-      task[i].Prio,
+      tasks[i].Prio,
       i
     );
-    document.getElementById(`${task[i].PositionID}`).innerHTML += contentHTML;
+    document.getElementById(`${tasks[i].PositionID}`).innerHTML += contentHTML;
     updateProgress(i);
   }
   checkPlaceholderVisibility()
 
+}
+
+function emptyContent(){
+  document.getElementById(`toDo`).innerHTML = `<div id="toDoPlaceholder" class="noTask d-flex"><p>No tasks To do</p></div>`
+  document.getElementById(`inProgress`).innerHTML = `<div id="progressPlaceholder" class="noTask d-flex"><p>No tasks In progress</p></div>`
+  document.getElementById(`awaitFeedback`).innerHTML = `<div id="feedbackPlaceholder" class="noTask d-flex"><p>No tasks Await feedback</p></div>`
+  document.getElementById(`done`).innerHTML = `<div id="donePlaceholder" class="noTask d-flex"><p>No tasks Done</p></div>`
 }
 
 function fillTemplate(title, category, text, assigned, prio, id) {
@@ -440,4 +450,27 @@ async function updateCheckboxStateInFirebase(checkboxId, taskId) {
     });
   
     return (responseToJson = await response.json());
+  }
+
+  function renderTasks(filteredTasks) {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = ''; // Leere die aktuelle Liste
+  
+    filteredTasks.forEach(task => {
+      const taskItem = document.createElement('div');
+      taskItem.classList.add('task-item');
+      taskItem.innerHTML = `<h3>${task.title}</h3><p>${task.description}</p>`;
+      taskList.appendChild(taskItem);
+    });
+  }
+  
+  function filterTasks() {
+    const filterInput = document.getElementById('findTaskInput').value.toLowerCase();
+    
+    const filteredTasks = task.filter(task => {
+      return task.Title.toLowerCase().includes(filterInput) || 
+             task.Description.toLowerCase().includes(filterInput);
+    });
+  
+    render(filteredTasks);
   }

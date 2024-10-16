@@ -140,12 +140,12 @@
             <div class="findTask">
               <input
                 class="findTaskInput"
-                oninput="filterTask()"
+                oninput="filterTasks()"
                 id="findTaskInput"
                 type="text"
                 placeholder="Find Task"
               />
-              <div class="findTaskImg d-flex" onclick="searchTask()">
+              <div class="findTaskImg d-flex">
                 <img
                   class="taskSearch"
                   src="./assets/img/icon_search.svg"
@@ -192,9 +192,7 @@
               />
             </div>
             <div id="toDo" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
-              <div id="toDoPlaceholder" class="noTask d-flex">
-                <p>No tasks To do</p>
-              </div>
+              
             </div>
           </div>
           <div class="column d-flex">
@@ -208,9 +206,7 @@
               />
             </div>
             <div id="inProgress" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
-              <div id="progressPlaceholder" class="noTask d-flex">
-                <p>No tasks In progress</p>
-              </div>
+              
             </div>
           </div>
           <div class="column d-flex">
@@ -224,9 +220,7 @@
               />
             </div>
             <div id="awaitFeedback" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
-              <div id="feedbackPlaceholder" class="noTask d-flex">
-                <p>No tasks Await feedback</p>
-              </div>
+              
             </div>
           </div>
           <div class="column d-flex">
@@ -234,9 +228,7 @@
               <h2>Done</h2>
             </div>
             <div id="done" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
-              <div id="donePlaceholder" class="noTask d-flex">
-                <p>No tasks Done</p>
-              </div>
+              
             </div>
           </div>
         </div>
