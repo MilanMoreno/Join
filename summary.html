@@ -22,7 +22,7 @@
   </head>
 
 
-      <body>
+      <body onload="loadTask()">
         <div w3-include-html="./assets/templates/side_menu.html">
     
 
@@ -124,14 +124,14 @@
               <div class="card hover-right">
                 <img id="pencil-img" src="./assets/img/pencil-darkblue.png" alt="Pencil logo">
                 <div class="details-card">
-                  <h2 id="todo">1</h2>
+                  <h2 id="todo"></h2>
                   <p>To-do</p>
                 </div>
               </div>
            <div class="card hover-left" >
                 >
                 <div class="details-card">
-                  <h2 id="done">0</h2>
+                  <h2 id="done"></h2>
                   <p>Done</p>
                 </div>
               </div>
@@ -141,7 +141,7 @@
               <div class="big-left-panel">
                 <img src="./assets/img/icon_Upp2.svg" alt="Arrows up">
                 <div class="details-card">
-                  <h2 id="high-priority">1</h2>
+                  <h2 id="high-priority"></h2>
                   <p>Urgent</p>
                 </div>
               </div>
@@ -158,17 +158,17 @@
 
             <div class="card-interactive-div">
               <div class="card-end">
-                <h2 id="assignments">2</h2>
+                <h2 id="assignments"></h2>
                 <h4>Task in Board</h4>
               </div>
 
               <div class="card-end">
-                <h2 id="ongoing-task">0</h2>
+                <h2 id="ongoing-task"></h2>
                 <h4>Task in Progress</h4>
               </div>
 
               <div class="card-end">
-                <h2 id="pending-response">1</h2>
+                <h2 id="pending-response"></h2>
                 <h4>Awaiting Feedback</h4>
               </div>
             </div>
