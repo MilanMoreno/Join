@@ -283,6 +283,19 @@
   gap: 16px;
 }
 
+.plusImgMobile{
+  display: none;
+}
+
+@media (max-width: 1120px) {
+  .plusImg{
+    display: none;
+  }
+  .plusImgMobile{
+    display: block;
+  }
+}
+
 @media (max-width: 1024px) {
   .findTask {
     display: none;
