@@ -94,6 +94,31 @@ function updateSelectedCheckboxes() {
     }
   });
 
+  // Aktualisiere die Anzeige der ausgewählten Kontakte
+ 
+  
+  // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
+  console.log(selectedCheckboxes);
+}
+
+function updateSelectedCheckboxes2() {
+  // Leere das Array der ausgewählten Checkboxen
+ 
+
+  // Hole alle Checkboxen im Dokument
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  // Überprüfe jede Checkbox
+  checkboxes.forEach(checkbox => {
+    // Wenn die Checkbox ausgewählt ist, füge die ID zum Array hinzu
+    if (checkbox.checked) {
+      selectedCheckboxes.push(checkbox.id);
+    }
+  });
+
+  // Aktualisiere die Anzeige der ausgewählten Kontakte
+ 
+  
   // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
   console.log(selectedCheckboxes);
 }
@@ -232,6 +257,27 @@ function toggleCheckbox(username) {
   // Aktualisiere die Liste der ausgewählten Checkboxen
   console.log(selectedCheckboxes);
 }
+
+
+function renderSelectedContacts() {
+  const electedContactsDiv = document.getElementById('electedContacts');
+  electedContactsDiv.innerHTML = ''; // Leere die div, bevor neue Kreise hinzugefügt werden
+
+  // Für jeden ausgewählten Kontakt einen Kreis mit den Initialen und einer zufälligen Farbe generieren
+  selectedCheckboxes.forEach(contact => {
+    const circle = generateCircle(contact); // Nutze die generateCircle-Funktion
+
+    // Füge den Kreis zur div hinzu
+    electedContactsDiv.innerHTML += circle;
+  });
+}
+
+function checkboxHelp(id){
+  selectedCheckboxes = task[id].AssignedTo;
+  updateSelectedCheckboxes2();
+    renderSelectedContacts();
+}
+
 // firebase
 
 async function postData(path = "", data = {}) {

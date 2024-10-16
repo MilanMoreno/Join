@@ -1,3 +1,4 @@
+
 async function deleteTask(id) {
     let firebaseURL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/" + id + ".json"
   
@@ -37,4 +38,5 @@ function editTask(title, category, dueDate, description, positionID, id){
     let background = document.getElementById("addTaskSectionBackground")
     background.classList.remove ("d-none");
     addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id);
+    checkboxHelp(id);
 }

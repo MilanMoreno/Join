@@ -47,7 +47,7 @@ function fillTemplate(title, category, text, assigned, prio, id) {
   let priosrc = checkPrio(prio);
   let catClass = checkCategory(category);
   let content = limitTextLength(text);
-  let initials = getInitials(assigned);
+  let initials = getInitials2(assigned);
 
   return /*html*/ `
     <div class="card" id="${title}" draggable="true" ondragstart="drag(event, ${id}, '${title}')" onclick="openDetailCard(${id})">
@@ -69,7 +69,7 @@ function fillTemplate(title, category, text, assigned, prio, id) {
     </div>`;
 }
 
-function getInitials(names){
+function getInitials2(names){
 let initial = ""
 if (names === "0") {
   initial += `<div class="initials d-none" style="background-color: ;">0</div>`;
@@ -84,8 +84,9 @@ if (names === "0") {
   const initials = nameParts.map(part => part.charAt(0)).join('');
   ini = initials.toUpperCase();
   initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`;
-  return initial;
+  
 }
+return initial;
 }
 }
 

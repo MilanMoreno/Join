@@ -52,6 +52,7 @@ async function generateAssingTo() {
 
 function hideAssignlist(){
   document.getElementById("hideAssignlist").classList.add("d-none");
+  renderSelectedContacts();
 }
 
 function generateCircle(names) {
@@ -103,6 +104,7 @@ function addTaskTemplate() {
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
+            <div id="electedContacts"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
@@ -165,6 +167,7 @@ function fillAddTaskSection(positionId){
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
+            <div id="electedContacts"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
@@ -227,6 +230,7 @@ function fillEditTaskSection(titleId, category, dueDate, Description, positionID
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
+            <div id="electedContacts"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
