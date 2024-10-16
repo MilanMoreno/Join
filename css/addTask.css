@@ -538,16 +538,3 @@ width: 100px;
   height: 30px;
   width: 30px;
 }
-
-#hideAssignlist{
-  position: relative;
-  top: -1000px;
-  bottom: 0;
-  left: -1000px;
-  right: 0;
-  height: 3000px;
-  width: 3000px;
-  z-index: 4;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
