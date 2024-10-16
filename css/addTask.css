@@ -33,6 +33,10 @@
   flex-direction: column;
 }
 
+.addTaskSection{
+  overflow: hidden;
+}
+
 .addTaskContent input {
   border-radius: 10px;
   height: 48px;
@@ -298,6 +302,7 @@
 }
 
 .assingedField{
+  z-index: 5;
   height: 48px;
   align-items: center;
   margin-top: 4px;
@@ -339,10 +344,14 @@
 }
 
 #assingedList{
+  position: relative;
+  top: 1000px;
+  left: 1000px;
   max-height: 250px;
-  width: 100%;
+  width: 440px;
   overflow-y: auto;
   background-color: #ffffff;
+  z-index: 5;
 }
 
 .assingedList:hover{
@@ -528,4 +537,17 @@ width: 100px;
 .conformationImg{
   height: 30px;
   width: 30px;
+}
+
+#hideAssignlist{
+  position: relative;
+  top: -1000px;
+  bottom: 0;
+  left: -1000px;
+  right: 0;
+  height: 3000px;
+  width: 3000px;
+  z-index: 4;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }

@@ -58,37 +58,44 @@ function addTaskPopup(positionId) {
 
 function showConfirmationMessage() {
   const messageElement = document.getElementById('confirmationMessage');
-  
-  // Zeige das Element und aktiviere die CSS-Klasse für das Einblenden
   messageElement.classList.remove('hidden');
   messageElement.classList.add('show');
-  
-  // Verstecke die Meldung nach 900ms
   setTimeout(() => {
     messageElement.classList.remove('show');
     messageElement.classList.add('hidden');
   }, 900); }
 
 
-// Funktion zum Aktualisieren der ausgewählten Checkboxen
+
+// function updateSelectedCheckboxes() {
+//   event.stopPropagation();
+//     selectedCheckboxes = []; 
+//     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//     checkboxes.forEach(checkbox => {
+//         if (checkbox.checked) {
+//             selectedCheckboxes.push(checkbox.id);
+//         }
+//     });
+//     console.log(selectedCheckboxes);
+// }
+
 function updateSelectedCheckboxes() {
-  
-    // Leere das Array, um die aktuellen Werte zu speichern
-    selectedCheckboxes = []; 
+  // Leere das Array der ausgewählten Checkboxen
+  selectedCheckboxes = []; 
 
-    // Hole alle Checkboxen im Dokument
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  // Hole alle Checkboxen im Dokument
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-    // Überprüfe jede Checkbox
-    checkboxes.forEach(checkbox => {
-        // Wenn die Checkbox ausgewählt ist, füge die ID zum Array hinzu
-        if (checkbox.checked) {
-            selectedCheckboxes.push(checkbox.id);
-        }
-    });
+  // Überprüfe jede Checkbox
+  checkboxes.forEach(checkbox => {
+    // Wenn die Checkbox ausgewählt ist, füge die ID zum Array hinzu
+    if (checkbox.checked) {
+      selectedCheckboxes.push(checkbox.id);
+    }
+  });
 
-    // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
-    console.log(selectedCheckboxes);
+  // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
+  console.log(selectedCheckboxes);
 }
 
 function setPrio(p) {
@@ -173,6 +180,58 @@ function fillsubtask(id){
   return subTasks;
 }
 
+
+
+// Die Funktion, die die Kontakte filtert und die Liste aktualisiert
+function filterContacts() {
+  // Den eingegebenen Wert holen und in Kleinbuchstaben umwandeln
+  const filterValue = document.getElementById("assinged").value.toLowerCase();
+  
+  // Die Liste leeren
+  assigned = "";
+
+  // Durch die Kontakte iterieren und nach dem eingegebenen Wert filtern
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i].username;
+    const circle = generateCircle(element);
+    
+    // Nur Kontakte anzeigen, die mit den eingegebenen Buchstaben beginnen
+    if (element.toLowerCase().startsWith(filterValue)) {
+      // Prüfen, ob die Checkbox für diesen Kontakt bereits ausgewählt war
+      const isChecked = selectedCheckboxes.includes(element);
+
+      assigned += `
+      <div class="d-flex assingUser">
+        <label class="container">
+          <div class="d-flex assingLeft">
+            <div>${circle}</div>
+            <p>${element}</p>
+          </div>
+          <input id="${element}" type="checkbox" onclick="toggleCheckbox('${element}')" ${isChecked ? "checked" : ""}>
+          <span class="checkmark"></span>
+        </label>
+      </div>`;
+    }
+  }
+  
+  // Die gefilterte Liste in das assingedList-Element einfügen
+  document.getElementById("assingedList").innerHTML = assigned;
+}
+
+// Funktion zum Aktivieren/Deaktivieren einer Checkbox und Aktualisieren der Liste
+function toggleCheckbox(username) {
+  // Prüfen, ob die Checkbox bereits im Array der ausgewählten Checkboxen ist
+  if (selectedCheckboxes.includes(username)) {
+    // Wenn ja, entferne sie
+    selectedCheckboxes = selectedCheckboxes.filter(item => item !== username);
+  } else {
+    // Wenn nein, füge sie hinzu
+    selectedCheckboxes.push(username);
+  }
+
+  // Aktualisiere die Liste der ausgewählten Checkboxen
+  console.log(selectedCheckboxes);
+}
 // firebase
 
 async function postData(path = "", data = {}) {
@@ -190,13 +249,9 @@ async function postData(path = "", data = {}) {
       },
       body: JSON.stringify(data),
     });
-
-    // Prüfen, ob die Antwort erfolgreich ist
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
-    // Erfolgreiche Antwort wird zurückgegeben
     let responseToJson = await response.json();
     console.log("Response from Firebase:", responseToJson);
     return responseToJson;
