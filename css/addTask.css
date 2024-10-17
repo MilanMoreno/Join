@@ -120,7 +120,7 @@
 }
 
 .addTaskFooter {
-  margin-top: 100px;
+  margin-top: 0px;
 }
 
 .addTaskSubmit {
@@ -293,9 +293,7 @@
   width: 440px;
   overflow-y: auto;
   background-color: #ffffff;
-  z-index: 5;
-  top: 600px;
-  left: 200px;
+  z-index: 5; 
 }
 
 .assingedList:hover {
@@ -609,6 +607,7 @@
     display: flex;
     flex-direction: column !important;
     align-items: center; /* Alle Inhalte im Container zentrieren */
+    padding-top: 50px;
   }
 
   /* Alle Abschnitte sollen die volle Breite annehmen und zentriert sein */
@@ -626,25 +625,24 @@
   .addTaskContent select {
     font-size: 14px;
     width: 100%; /* Breite der Felder auf 100% setzen */
-    max-width: 500px; /* Maximalbreite, damit sie nicht über 500px hinausgehen */
-    margin: 0 auto; /* Zentriere alle Eingabefelder */
+    max-width: 250px; 
+    margin: 0;
   }
 
-  /* Zusätzliche Zentrierung für Text und andere Blöcke */
+  
   .addTaskContent h1, .addTaskContent p {
-    text-align: center; /* Text zentrieren */
+    text-align: center; 
   }
 
-  /* Entferne unnötige horizontale Linien und füge responsive Design hinzu */
+  
   .middleLine {
-    display: none; /* Entferne mittlere Linie bei kleineren Bildschirmen */
+    display: none; 
   }
 
-  /* Button-Anpassungen für kleinere Bildschirme */
   .addTaskContent button {
     width: 100%;
-    max-width: 300px; /* Breite der Buttons auf max. 300px begrenzen */
-    margin: 10px 0; /* Abstände oben und unten */
+    max-width: 300px; 
+    margin: 10px 0; 
   }
 }
 
