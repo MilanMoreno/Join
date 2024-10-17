@@ -294,6 +294,8 @@
   overflow-y: auto;
   background-color: #ffffff;
   z-index: 5;
+  top: 600px;
+  left: 200px;
 }
 
 .assingedList:hover {
