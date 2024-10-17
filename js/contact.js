@@ -132,7 +132,6 @@ function generateColorPalette(numberColors) {
                 color += hexValuesForColor[Math.floor(Math.random() * 16)];
             }
             brightness = calculateBrightness(color);
-            console.log(`Generated color: ${color}, Brightness: ${brightness}`);
         } while (brightness < textContrastLevel);
         availableColors.push(color);
     }
