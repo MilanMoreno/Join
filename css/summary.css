@@ -228,6 +228,11 @@
     background-color: var(--white);
 }
 
+.linkNone{
+    text-decoration: none;
+    color: black;
+}
+
 @media (max-width: 1024px) {
     .lead-section h1 {
         font-size: 47px;
