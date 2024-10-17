@@ -490,90 +490,86 @@
   flex-direction: column;
   padding-inline: 84.478px;
   font-size: 20px;
-  max-width: 976.25px; /* Entferne diese feste Maximalbreite */
-  width: 100%; /* Stelle sicher, dass der Container 100% der verfügbaren Breite einnimmt */
-  box-sizing: border-box; /* Behalte Padding und Border in der Breitenberechnung bei */
+  max-width: 976.25px; 
+  width: 100%; 
+  box-sizing: border-box; 
 }
 
 
-
-/* Für Bildschirme zwischen 260px und 550px */
 @media (max-width: 550px) and (min-width: 260px) {
   .addTaskContent {
-    padding-inline: 100px; /* Reduziere den Padding für kleinere Bildschirme */
-    font-size: 14px; /* Reduziere die Schriftgröße bei kleineren Bildschirmen */
-    width: 50%; /* Stelle sicher, dass der Container die gesamte Breite einnimmt */
-    max-width: 50%; /* Keine Begrenzung der Breite */
+    padding-inline: 100px; 
+    font-size: 14px; 
+    width: 50%; 
+    max-width: 50%; 
+    padding-bottom: 100px;
   }
 
   .addTaskLeft, .addTaskRight {
-    width: 100%; /* Die Breite der linken und rechten Abschnitte auf 100% setzen */
+    width: 100%; 
   }
 
   .addTaskContent input, 
   .addTaskContent textarea, 
   .addTaskContent button, 
   .addTaskContent select {
-    font-size: 14px; /* Kleinere Schriftgröße für Eingabefelder und Buttons */
+    font-size: 14px; 
   }
 }
 * {
   box-sizing: border-box;
 }
 .addTaskContent {
-  max-width: 100%; /* Die Breite auf maximal 100% des Bildschirms begrenzen */
+  max-width: 100%; 
 }
 
 
-
-
-/* Zentrierung des Containers für Bildschirme zwischen 260px und 550px */
 @media (max-width: 550px) and (min-width: 260px) {
   .addTaskContent {
-    padding-inline: 10px; /* Reduziere das Padding, um Platz zu schaffen */
-    margin: 0 auto; /* Zentriere den gesamten Container horizontal */
-    font-size: 14px; /* Kleinere Schriftgröße bei kleineren Bildschirmen */
-    width: 100%; /* Die volle Breite des Bildschirms nutzen */
-    max-width: 500px; /* Begrenze die maximale Breite des Containers */
+    padding-inline: 10px; 
+    margin: 0 auto; 
+    font-size: 14px; 
+    width: 100%; 
+    max-width: 500px; 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alle Inhalte im Container zentrieren */
+    align-items: center; 
   }
 
-  /* Alle Abschnitte sollen die volle Breite annehmen und zentriert sein */
+  
   .addTaskLeft, .addTaskRight {
-    width: 100%; /* Breite auf 100% setzen */
+    width: 100%; 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Inhalt zentrieren */
+    align-items: center;
   }
 
-  /* Zentrierung von Eingabefeldern, Textbereichen, Buttons, etc. */
+  
   .addTaskContent input,
   .addTaskContent textarea,
   .addTaskContent button,
   .addTaskContent select {
     font-size: 14px;
-    width: 100%; /* Breite der Felder auf 100% setzen */
-    max-width: 500px; /* Maximalbreite, damit sie nicht über 500px hinausgehen */
-    margin: 0 auto; /* Zentriere alle Eingabefelder */
+    width: 100%; 
+    max-width: 500px; 
+    margin: 0 auto; 
   }
 
-  /* Zusätzliche Zentrierung für Text und andere Blöcke */
+  
   .addTaskContent h1, .addTaskContent p {
-    text-align: center; /* Text zentrieren */
+    text-align: center; 
   }
 
-  /* Entferne unnötige horizontale Linien und füge responsive Design hinzu */
+  
   .middleLine {
-    display: none; /* Entferne mittlere Linie bei kleineren Bildschirmen */
+    display: none; 
   }
 
-  /* Button-Anpassungen für kleinere Bildschirme */
+  
   .addTaskContent button {
     width: 100%;
-    max-width: 300px; /* Breite der Buttons auf max. 300px begrenzen */
-    margin: 10px 0; /* Abstände oben und unten */
+    max-width: 300px; 
+    margin: 10px 0; 
   }
 }
 
