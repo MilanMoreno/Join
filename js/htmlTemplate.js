@@ -19,7 +19,6 @@ async function loadContacts() {
         contacts.push(contactData[key]);
       }
     }
-    console.log("Geladene Aufgaben:", contacts);
   } catch (error) {
     console.error("Fehler beim Laden der Daten:", error);
   }
