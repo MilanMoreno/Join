@@ -2,10 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <!--Favicon-->
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    <!--Stylesheets-->
-   
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg"> 
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -13,7 +10,6 @@
     <link rel="stylesheet" href="./css/addTask.css">
     <link rel="stylesheet" href="./assets/templates/font/inter400.woff2">
     <link rel="stylesheet" href="./assets/templates/font/inter700.woff2">
-    <!--JS-->
     <script src="./js/header.js"></script>
     <script src="./js/htmlTemplate.js"></script>
     <script src="./js/addTask.js"></script>
@@ -21,29 +17,19 @@
   </head>
   <body onload="renderAddTask()">
     <div w3-include-html="./assets/templates/side_menu.html">
-
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    <!--Stylesheets-->
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/addTastResponsiv.css.css">
-
     <meta charset="UTF-8">
-  
-  
-
-  
     <section id="Sidebar" class="sidebar">
       <a href="summary.html">
         <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
     </a>
-    
       <nav>
         <a id="summary-link" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
@@ -55,44 +41,29 @@
         <a href="./legal_notice.html">Legal notice</a>
       </div>
     </section>
-  
-
 </div>
     <main>
       <div w3-include-html="./assets/templates/header.html" class="fixed-header">
-
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
-    <!--Stylesheets-->
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/addTastResponsiv.css">
     <meta charset="UTF-8">
-    
     <script src="./js/dropDownMenuAndGoBack.js"></script>
-   
-  
-
-  
     <header id="header">
       <a href="summary.html">
         <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
     </a>
-    
-
       <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
         <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
       </div>
-
     </header>
-
     <section id="headerDropdownOption" class="d-noneHead">
       <div class="headerDropdownOption">
         <a href="./legal_notice.html">Legal Notice</a>
@@ -101,26 +72,14 @@
         <a href="./help.html">help</a>
       </div>
     </section>
-  
 </div>
 <section class="contentSection d-flex d-center" id="addTaskSide">
-
-
-
 </section>
-
-
-
-
 <script>
-
   const user = JSON.parse(localStorage.getItem('user'));
-  
   if (!user) {
-  
     window.location.href = './index.html';
   }
-  
   
   function getInitials(name) {
     const nameParts = name.trim().split(' ');
@@ -132,12 +91,9 @@
   
   const initials = getInitials(user.name || 'G');
   
-  
   const userInitialsDiv = document.getElementById('userInitials');
   if (userInitialsDiv) {
     userInitialsDiv.querySelector('div').textContent = initials;
   }
-  
   </script>
-
 </body></main>

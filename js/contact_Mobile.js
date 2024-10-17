@@ -8,7 +8,9 @@ function checkScreenSize() {
     }
 }
 
+
 window.addEventListener('resize', concealMobileElements)
+
 
 function concealMobileElements() {
     if (window.innerWidth > 800) {

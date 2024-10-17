@@ -1,11 +1,9 @@
  const user = JSON.parse(localStorage.getItem('user'));
-  
   if (!user) {
-  
     window.location.href = './index.html';
   }
   
-  
+
   function getInitials(name) {
     const nameParts = name.trim().split(' ');
     if (nameParts.length === 1) {
@@ -15,7 +13,6 @@
   }
   
   const initials = getInitials(user.name || 'G');
-  
   
   const userInitialsDiv = document.getElementById('userInitials');
   if (userInitialsDiv) {

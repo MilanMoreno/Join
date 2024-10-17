@@ -21,8 +21,6 @@
         font-size: 36px;
     }
 
-
-
     .form {
         display: flex;
         flex-direction: column;
@@ -50,9 +48,7 @@
     .popUp {
         width: 90vw;
         height: 80vh;
-
     }
-
 
     .bg-popUp {
         padding-left: 0;
@@ -145,7 +141,6 @@
     .letter_For_PopUp {
         margin-bottom: 48px;
     }
-
 }
 
 @media (max-width: 450px) {

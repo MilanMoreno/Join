@@ -190,7 +190,7 @@
     font-weight: 500;
 }
 
-/* Hover effects */
+
 .hover-right:hover, .hover-left:hover, .hover-bottom:hover {
     cursor: pointer;
     background-color: #2a3647;
@@ -228,7 +228,6 @@
     background-color: var(--white);
 }
 
-/* Media queries */
 @media (max-width: 1024px) {
     .lead-section h1 {
         font-size: 47px;

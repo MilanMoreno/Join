@@ -64,8 +64,6 @@ main {
     border-radius: 50%;
     color: var(--highlight-color);
     font-size: 20px;
-  
-
   }
   
   .header-right-user:hover {
@@ -112,8 +110,6 @@ main {
     margin: 0 !important;
   }
  
- 
-  
   @media (max-width: 1024px) {
     main {
       width: 100vw;
@@ -127,11 +123,9 @@ main {
       display: flex;
       height: 39px;
       width: 32px;
-      
     }
   
     header {
-      
       padding: 0 clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem) 0
         clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem);
         height: 10vh;
@@ -142,4 +136,3 @@ main {
       right: 0;
     }
   }
-  

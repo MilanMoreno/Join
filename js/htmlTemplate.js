@@ -1,6 +1,7 @@
 let contacts = [];
 let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/user";
 
+
 async function loadContacts() {
   try {
     const response = await fetch(`${Second_URL}.json`);
@@ -24,60 +25,59 @@ async function loadContacts() {
   }
 }
 
+
 async function generateAssingTo() {
   await loadContacts();
-
-  if (document.getElementById("assingedList").innerHTML === ""){
-  let assigned = "";
-
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i].username;
-    const circle = generateCircle(element);
-    assigned += `
+  if (document.getElementById("assingedList").innerHTML === "") {
+    let assigned = "";
+    for (let i = 0; i < contacts.length; i++) {
+      const element = contacts[i].username;
+      const circle = generateCircle(element);
+      assigned += `
     <div class="d-flex assingUser">
     <label class="container">
       <div class="d-flex assingLeft">
         <div>${circle}</div>
         <p>${element}</p>
-      </div>
-      
+      </div>    
   <input id="${element}" type="checkbox" onclick="updateSelectedCheckboxes()">
   <span class="checkmark"></span>
 </label>
     </div>`;
+    }
+    document.getElementById("assingedList").innerHTML = assigned;
   }
-  document.getElementById("assingedList").innerHTML = assigned;}
   document.getElementById("hideAssignlist").classList.remove("d-none");
 }
 
-function hideAssignlist(){
+
+function hideAssignlist() {
   document.getElementById("hideAssignlist").classList.add("d-none");
   renderSelectedContacts();
 }
 
+
 function generateCircle(names) {
   let initial = "";
   const color = getRandomColor();
-
   const nameParts = names.split(" ");
   const initials = nameParts.map((part) => part.charAt(0)).join("");
   ini = initials.toUpperCase();
   initial += `<div class="initialsDetails" style="background-color: ${color};">${ini}</div>`;
-
   return initial;
 }
+
 
 function getInitialsDetail(names) {
   let initial = "";
   const color = getRandomColor();
-
   const nameParts = names.split(" ");
   const initials = nameParts.map((part) => part.charAt(0)).join("");
   ini = initials.toUpperCase();
   initial += `<div class="initialsDetails" style="background-color: ${color};">${ini}</div>`;
-
   return initial;
 }
+
 
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
@@ -87,6 +87,7 @@ function getRandomColor() {
   }
   return color;
 }
+
 
 function addTaskTemplate() {
   return /*html*/ `
@@ -150,7 +151,7 @@ function addTaskTemplate() {
 }
 
 
-function fillAddTaskSection(positionId){
+function fillAddTaskSection(positionId) {
   return /*html*/ `
   <form id="addTaskForm">
     <div class="addTaskContent d-flex">
@@ -212,7 +213,15 @@ function fillAddTaskSection(positionId){
     `;
 }
 
-function fillEditTaskSection(titleId, category, dueDate, Description, positionID, id){
+
+function fillEditTaskSection(
+  titleId,
+  category,
+  dueDate,
+  Description,
+  positionID,
+  id
+) {
   let subTask = fillsubtask(id);
   return /*html*/ `
   <form id="addTaskForm">

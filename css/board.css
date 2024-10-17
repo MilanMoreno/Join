@@ -1,6 +1,7 @@
 .main{
   overflow-x: hidden;
 }
+
 .addTask {
   display: flex;
   background-color: #2a3647;
@@ -209,7 +210,6 @@
   border-radius: 8px;
   height: 8px;
   overflow: hidden;
-
 }
 
 .progress-bar {
@@ -291,6 +291,7 @@
   .plusImg{
     display: none;
   }
+
   .plusImgMobile{
     display: block;
   }
@@ -353,6 +354,4 @@
   .noTask {
     max-width: 100%;
   }
-
-  
 }

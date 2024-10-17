@@ -1,13 +1,13 @@
-
 let BASE_Url = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
+
 
 function renderAddTask() {
   let contentSection = document.getElementById("addTaskSide");
-
   contentSection.innerHTML = "";
   contentSection.innerHTML = addTaskTemplate();
   loadContacts();
 }
+
 
 let prio = "";
 let subTask = [];
@@ -15,19 +15,10 @@ let checkBox = [];
 let selectedCheckboxes = [];
 let positionID = ""
 
+
 function addTask() {
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
-  const task = {
-    Title: document.getElementById("addTasktitleInput").value,
-    Category: document.getElementById("addTaskCategory").value,
-    Description: document.getElementById("addTaskDiscription").value,
-    DueDate: document.getElementById("addTaskDate").value,
-    Prio: prio,
-    AssignedTo: selectedCheckboxes,
-    Subtask: [subTask],
-    PositionID: "toDo",
-    checkboxState: [checkBox]
-  };
+  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
   console.log(jsonString);
@@ -35,26 +26,18 @@ function addTask() {
   loadTask();} else { console.log ("feld nicht ausgefüllt")}
 }
 
+
 function addTaskPopup(positionId) {
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
     positionID = positionId
-  const task = {
-    Title: document.getElementById("addTasktitleInput").value,
-    Category: document.getElementById("addTaskCategory").value,
-    Description: document.getElementById("addTaskDiscription").value,
-    DueDate: document.getElementById("addTaskDate").value,
-    Prio: prio,
-    AssignedTo: selectedCheckboxes,
-    Subtask: [subTask],
-    PositionID: positionID,
-    checkboxState: [checkBox]
-  };
+  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
   console.log(jsonString);
   showConfirmationMessage();
-  loadTask();} else { console.log ("feld nicht ausgefüllt")}
+  loadTask();}
 }
+
 
 function showConfirmationMessage() {
   const messageElement = document.getElementById('confirmationMessage');
@@ -66,62 +49,26 @@ function showConfirmationMessage() {
   }, 900); }
 
 
-
-// function updateSelectedCheckboxes() {
-//   event.stopPropagation();
-//     selectedCheckboxes = []; 
-//     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//     checkboxes.forEach(checkbox => {
-//         if (checkbox.checked) {
-//             selectedCheckboxes.push(checkbox.id);
-//         }
-//     });
-//     console.log(selectedCheckboxes);
-// }
-
 function updateSelectedCheckboxes() {
-  // Leere das Array der ausgewählten Checkboxen
   selectedCheckboxes = []; 
-
-  // Hole alle Checkboxen im Dokument
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-  // Überprüfe jede Checkbox
   checkboxes.forEach(checkbox => {
-    // Wenn die Checkbox ausgewählt ist, füge die ID zum Array hinzu
     if (checkbox.checked) {
       selectedCheckboxes.push(checkbox.id);
     }
   });
-
-  // Aktualisiere die Anzeige der ausgewählten Kontakte
- 
-  
-  // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
-  console.log(selectedCheckboxes);
 }
+
 
 function updateSelectedCheckboxes2() {
-  // Leere das Array der ausgewählten Checkboxen
- 
-
-  // Hole alle Checkboxen im Dokument
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-  // Überprüfe jede Checkbox
   checkboxes.forEach(checkbox => {
-    // Wenn die Checkbox ausgewählt ist, füge die ID zum Array hinzu
     if (checkbox.checked) {
       selectedCheckboxes.push(checkbox.id);
     }
   });
-
-  // Aktualisiere die Anzeige der ausgewählten Kontakte
- 
-  
-  // Ausgabe des aktuellen Arrays der ausgewählten Checkboxen (optional)
-  console.log(selectedCheckboxes);
 }
+
 
 function setPrio(p) {
   event.preventDefault();
@@ -139,9 +86,11 @@ function setPrio(p) {
   }
 }
 
+
 function checkClasslist(p) {
   document.getElementById(`${p}`).classList.contains(`color${p}`);
 }
+
 
 function addClasslist(p) {
   document.getElementById(`${p}`).classList = `color${p}`;
@@ -149,11 +98,13 @@ function addClasslist(p) {
   document.getElementById(`${p}White`).classList = ``;
 }
 
+
 function removeClasslist(p) {
   document.getElementById(`${p}`).classList = ``;
   document.getElementById(`${p}Color`).classList = ``;
   document.getElementById(`${p}White`).classList = `d-none`;
 }
+
 
 function removeOtherClasslist(p) {
   document.getElementById(`urgent`).classList = ``;
@@ -167,11 +118,13 @@ function removeOtherClasslist(p) {
   document.getElementById(`lowWhite`).classList = `d-none`;
 }
 
+
 function openAddSubTask() {
   document.getElementById("activSubTask").classList.remove("d-none");
   document.getElementById("activSubTask").classList.add("d-flex");
   document.getElementById("subTaskPlus").classList.add("d-none");
 }
+
 
 function cancelSubTask() {
   document.getElementById("subTaskAdd").value = "";
@@ -181,19 +134,19 @@ function cancelSubTask() {
   event.stopPropagation();
 }
 
+
 function addSubTask() {
   let show = document.getElementById("subTaskView");
   let value = document.getElementById("subTaskAdd").value;
   show.innerHTML += `<li>${value}</li>`;
   subTask.push(`${value}`);
   checkBox.push("false")
-
   cancelSubTask();
   event.stopPropagation();
 }
 
+
 function fillsubtask(id){
-  
   let subTasks = ""
   if (id === "undefined"){subTask = ""} else {
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
@@ -206,25 +159,14 @@ function fillsubtask(id){
 }
 
 
-
-// Die Funktion, die die Kontakte filtert und die Liste aktualisiert
 function filterContacts() {
-  // Den eingegebenen Wert holen und in Kleinbuchstaben umwandeln
   const filterValue = document.getElementById("assinged").value.toLowerCase();
-  
-  // Die Liste leeren
   assigned = "";
-
-  // Durch die Kontakte iterieren und nach dem eingegebenen Wert filtern
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i].username;
     const circle = generateCircle(element);
-    
-    // Nur Kontakte anzeigen, die mit den eingegebenen Buchstaben beginnen
     if (element.toLowerCase().startsWith(filterValue)) {
-      // Prüfen, ob die Checkbox für diesen Kontakt bereits ausgewählt war
       const isChecked = selectedCheckboxes.includes(element);
-
       assigned += `
       <div class="d-flex assingUser">
         <label class="container">
@@ -238,39 +180,27 @@ function filterContacts() {
       </div>`;
     }
   }
-  
-  // Die gefilterte Liste in das assingedList-Element einfügen
   document.getElementById("assingedList").innerHTML = assigned;
 }
 
-// Funktion zum Aktivieren/Deaktivieren einer Checkbox und Aktualisieren der Liste
 function toggleCheckbox(username) {
-  // Prüfen, ob die Checkbox bereits im Array der ausgewählten Checkboxen ist
   if (selectedCheckboxes.includes(username)) {
-    // Wenn ja, entferne sie
     selectedCheckboxes = selectedCheckboxes.filter(item => item !== username);
   } else {
-    // Wenn nein, füge sie hinzu
     selectedCheckboxes.push(username);
   }
-
-  // Aktualisiere die Liste der ausgewählten Checkboxen
-  console.log(selectedCheckboxes);
 }
 
 
 function renderSelectedContacts() {
   const electedContactsDiv = document.getElementById('electedContacts');
-  electedContactsDiv.innerHTML = ''; // Leere die div, bevor neue Kreise hinzugefügt werden
-
-  // Für jeden ausgewählten Kontakt einen Kreis mit den Initialen und einer zufälligen Farbe generieren
+  electedContactsDiv.innerHTML = '';
   selectedCheckboxes.forEach(contact => {
-    const circle = generateCircle(contact); // Nutze die generateCircle-Funktion
-
-    // Füge den Kreis zur div hinzu
+    const circle = generateCircle(contact);
     electedContactsDiv.innerHTML += circle;
   });
 }
+
 
 function checkboxHelp(id){
   selectedCheckboxes = task[id].AssignedTo;
@@ -278,15 +208,12 @@ function checkboxHelp(id){
     renderSelectedContacts();
 }
 
-// firebase
-
+//Firebase
 async function postData(path = "", data = {}) {
   const title = data.Title;
   path = title;
-
   console.log("Starting postData with path:", BASE_Url + path + ".json");
   console.log("Data being sent:", data);
-
   try {
     let response = await fetch(BASE_Url + path + ".json", {
       method: "PUT",
@@ -301,7 +228,6 @@ async function postData(path = "", data = {}) {
     let responseToJson = await response.json();
     console.log("Response from Firebase:", responseToJson);
     return responseToJson;
-    
   } catch (error) {
     console.error("Error during postData:", error);
     return { error: "An error occurred during the data post." };

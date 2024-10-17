@@ -106,7 +106,6 @@ h2 {
   }
 }
 
-/* CSS for sliding out to the right */
 @keyframes slideOut {
   from {
     transform: translateX(0);
