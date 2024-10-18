@@ -8,6 +8,7 @@ main{
   left: -200px;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .addTask {
@@ -174,6 +175,10 @@ main{
   box-sizing: unset;
 }
 
+.card:hover{
+  cursor: pointer;
+}
+
 .technical {
   background-color: #1fd7c1;
 }
@@ -246,6 +251,7 @@ main{
 
 .dropSection{
   min-height: 400px;
+  border: 2px dashed #00000000;
 }
 
 .drag-over {
@@ -337,14 +343,6 @@ main{
 
   .findTaskInput {
     width: 100%;
-  }
-
-  .addTask {
-    display: none;
-  }
-
-  .addTaskMobile {
-    display: flex;
   }
 
   .headerMobile {

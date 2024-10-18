@@ -145,6 +145,21 @@
   height: 24px;
 }
 
+#addTaskForm{
+  max-height: 870px;
+  overflow: hidden;
+}
+
+#subTaskView{
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+
+#addTaskDate:hover{
+  cursor: pointer;
+}
+
 #addTitleInput,
 #addTaskDiscription,
 #addTaskContactSelect,
@@ -170,11 +185,17 @@
 }
 
 #addTaskCategory {
-  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px center;
+  background-image: url('../assets/img/arrow_drop_down.png');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-color: white;
 }
 
 #addTaskCategory:focus {
-  background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
+  background-image: url("../assets/img/arrow_drop_up.png");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-color: white;
 }
 
 .colormedium {
@@ -205,6 +226,11 @@
   padding-right: 8px;
   z-index: 1;
   box-sizing: unset;
+}
+
+.subTaskCross:hover,
+.subTaskCheck:hover{
+  cursor: pointer;
 }
 
 .subTaskCheck {
@@ -392,6 +418,10 @@
   border-top-right-radius: 4px;
 }
 
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border: 1px solid #29ABE2;
+}
 
 @media (max-width: 800px) {
   .addTaskContent {
@@ -421,6 +451,14 @@
   .addTaskContent {
     font-size: 16px;
     width: 100%;
+  }
+
+  .addTaskMobile {
+    display: flex;
+  }
+
+  .addTask {
+    display: none;
   }
 
   .addTaskContent input,
