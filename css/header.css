@@ -117,15 +117,19 @@ main {
     padding: 15px;
   }
  
+  @media (max-width: 777px) {
+    .d-none-mobile {
+      display: none;
+    }
+    }
+  
+
   @media (max-width: 1024px) {
     main {
       width: 100vw;
     }
   
-    .d-none-mobile {
-      display: none;
-    }
-  
+ 
     .mobile-logo {
       display: flex;
       height: 39px;
