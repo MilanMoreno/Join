@@ -512,3 +512,30 @@ h4 {
   object-fit: cover;
   color: black;
 }
+
+
+     /* Styling für die Schaltfläche */
+        .closeMobile {
+            cursor: pointer;
+        }
+
+        /* Styling für das Optionsmenü */
+        #editDeleteMenu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+        }
+
+        #editDeleteMenu a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+
+        #editDeleteMenu a:hover {
+            background-color: #ddd;
+        }

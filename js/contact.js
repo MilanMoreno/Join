@@ -388,6 +388,46 @@ function contactInfoHtml(root, contactId) {
             <span><b>Phone</b></span>
             <span>${root['telefonnummer']}</span>
         </div>
+        
+        <div id="editDeleteMenu">
+        <a href="#" onclick="editOption()">Edit</a>
+        <a href="#" onclick="deleteOption()">Delete</a>
+    </div>
+
     `;
 }
 
+
+
+
+ // Funktion, um das Menü anzuzeigen oder zu verstecken
+ function showEditandDelete() {
+    var menu = document.getElementById("editDeleteMenu");
+    if (menu.style.display === "none" || menu.style.display === "") {
+        menu.style.display = "block"; // Menü anzeigen
+    } else {
+        menu.style.display = "none";  // Menü verstecken
+    }
+}
+
+// Funktion für die Bearbeiten-Option
+function editOption() {
+    alert("Bearbeiten ausgewählt!");
+    // Hier kannst du den Code zum Bearbeiten hinzufügen
+}
+
+// Funktion für die Löschen-Option
+function deleteOption() {
+    alert("Löschen ausgewählt!");
+    // Hier kannst du den Code zum Löschen hinzufügen
+}
+
+// Klick außerhalb des Menüs, um es zu schließen
+window.onclick = function(event) {
+    var menu = document.getElementById("editDeleteMenu");
+    if (!event.target.matches('#options_edit_delete')) {
+        if (menu.style.display === "block") {
+            menu.style.display = "none";
+        }
+    }
+}
