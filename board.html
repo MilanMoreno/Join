@@ -117,6 +117,7 @@
                 placeholder="Find Task"/>
               <div class="findTaskImg d-flex">
                 <img
+                  onclick="focusInput('findTaskInput')"
                   class="taskSearch"
                   src="./assets/img/icon_search.svg"
                   alt="Search"/>
@@ -135,11 +136,11 @@
           <div class="findTaskMobile">
             <input
               class="findTaskInput"
-              oninput="filterTask()"
+              oninput="filterTasks()"
               id="findTaskInputMobile"
               type="text"
               placeholder="Find Task"/>
-            <div class="findTaskImg d-flex" onclick="searchTask()">
+            <div class="findTaskImg d-flex" onclick="focusInput('findTaskInputMobile')">
               <img
                 class="taskSearch"
                 src="./assets/img/icon_search.svg"

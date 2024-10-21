@@ -23,6 +23,7 @@ async function loadTask() {
     console.error("Fehler beim Laden der Daten:", error);
   }
   render();
+  loadContacts();
 }
 
 
@@ -483,4 +484,8 @@ function filterTasks() {
     );
   });
   render(filteredTasks);
+}
+
+function focusInput(inputId) {
+  document.getElementById(inputId).focus();
 }

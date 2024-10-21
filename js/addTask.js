@@ -157,9 +157,10 @@ function fillsubtask(id){
   if (id === "undefined"){subTask = ""} else {
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
     const element = task[id].Subtask[0][index];
+    const check = task[id].checkboxState[0][index];
     subTasks += `<li>${element}</li>`;
     subTask.push(element);
-    checkBox.push("false");
+    checkBox.push(check);
   }}
   return subTasks;
 }
