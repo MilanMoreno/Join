@@ -23,3 +23,4 @@ function concealMobileElements() {
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
     }
 }
+

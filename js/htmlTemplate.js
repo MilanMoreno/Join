@@ -1,5 +1,5 @@
 let contacts = [];
-let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/user";
+let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/contact";
 
 
 async function loadContacts() {
@@ -26,11 +26,10 @@ async function loadContacts() {
 
 
 async function generateAssingTo() {
-  await loadContacts();
   if (document.getElementById("assingedList").innerHTML === "") {
     let assigned = "";
     for (let i = 0; i < contacts.length; i++) {
-      const element = contacts[i].username;
+      const element = contacts[i].name;
       const circle = generateCircle(element);
       assigned += `
     <div class="d-flex assingUser">
@@ -104,7 +103,7 @@ function addTaskTemplate() {
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts"></div>
+            <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
@@ -113,7 +112,7 @@ function addTaskTemplate() {
             <p>Prio</p>
             <div class="d-flex d-space">
                 <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
            <select name="Category" id="addTaskCategory" required>
@@ -140,7 +139,7 @@ function addTaskTemplate() {
             </div>
             <div class="addTaskSubmit d-flex d-space">
                 <button onclick="renderAddTask()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button onclick="addTask()" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button id="submitButton" onclick="addTask()" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -167,7 +166,7 @@ function fillAddTaskSection(positionId) {
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts"></div>
+            <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
@@ -176,7 +175,7 @@ function fillAddTaskSection(positionId) {
             <p>Prio</p>
             <div class="d-flex d-space">
                 <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
            <select name="Category" id="addTaskCategory" required>
@@ -238,7 +237,7 @@ function fillEditTaskSection(
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts"></div>
+            <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">

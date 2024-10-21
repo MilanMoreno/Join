@@ -232,7 +232,7 @@
     text-decoration: none;
     color: black;
 }
-
+ 
 @media (max-width: 1024px) {
     .lead-section h1 {
         font-size: 47px;
@@ -282,14 +282,3 @@
 }
 
 
-.mobile-logo {
-    display: none;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .mobile-logo {
-      display: block;
-    }
-  }
-  

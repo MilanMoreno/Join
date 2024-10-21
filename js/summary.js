@@ -49,3 +49,6 @@ function updateSummary() {
     document.getElementById('high-priority').innerText = `${urgentTasks}`;
     document.getElementById('end-date').innerText = earliestDueDate ? `${earliestDueDate}` : 'No urgent tasks found.';
   }
+
+  
+ 

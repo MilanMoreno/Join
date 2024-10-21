@@ -8,6 +8,7 @@ main{
   left: -200px;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .addTask {
@@ -53,6 +54,7 @@ main{
   width: 280px;
   padding-inline: 16px;
   padding-block: 8px;
+  box-sizing: unset;
 }
 
 .findTaskMobile {
@@ -170,6 +172,11 @@ main{
   border-radius: 24px;
   box-shadow: 0px 0px 10px 3px #00000014;
   margin-block: 10px;
+  box-sizing: unset;
+}
+
+.card:hover{
+  cursor: pointer;
 }
 
 .technical {
@@ -244,6 +251,7 @@ main{
 
 .dropSection{
   min-height: 400px;
+  border: 2px dashed #00000000;
 }
 
 .drag-over {
@@ -335,14 +343,6 @@ main{
 
   .findTaskInput {
     width: 100%;
-  }
-
-  .addTask {
-    display: none;
-  }
-
-  .addTaskMobile {
-    display: flex;
   }
 
   .headerMobile {

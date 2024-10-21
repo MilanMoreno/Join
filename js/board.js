@@ -23,6 +23,7 @@ async function loadTask() {
     console.error("Fehler beim Laden der Daten:", error);
   }
   render();
+  loadContacts();
 }
 
 
@@ -282,7 +283,7 @@ function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, f
                 <p>Delete</p>
             </div>
             <div class="detailMiddleline"></div>
-            <div class="deleteEdit d-flex" onclick="editTask('${task[id].Title}', '${task[id].Category}', '${task[id].DueDate}', '${task[id].Description}' ,'${task[id].PositionID}' ,'${id}')">
+            <div class="deleteEdit d-flex" onclick="editTask('${task[id].Title}', '${task[id].Category}', '${task[id].DueDate}', '${task[id].Description}' ,'${task[id].PositionID}' ,'${id}' ,'${task[id].Prio}')">
                 <img src="./assets/img/edit.svg" alt="">
                 <p>Edit</p>
             </div>
@@ -483,4 +484,8 @@ function filterTasks() {
     );
   });
   render(filteredTasks);
+}
+
+function focusInput(inputId) {
+  document.getElementById(inputId).focus();
 }

@@ -27,10 +27,18 @@ function closePopUp(){
 }
 
 
-function editTask(title, category, dueDate, description, positionID, id){
+function editTask(title, category, dueDate, description, positionID, id, Prio){
     let addTaskSection = document.getElementById("addTaskSection")
     let background = document.getElementById("addTaskSectionBackground")
     background.classList.remove ("d-none");
-    addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id);
+    addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id,);
+    checkPrioEdit(Prio);
     checkboxHelp(id);
+}
+
+function checkPrioEdit(prioCheck){
+    prio = prioCheck
+    document.getElementById(`${prioCheck}`).classList.add (`color${prioCheck}`);
+    document.getElementById(`${prioCheck}Color`).classList.add (`d-none`);
+    document.getElementById(`${prioCheck}White`).classList.remove (`d-none`);
 }

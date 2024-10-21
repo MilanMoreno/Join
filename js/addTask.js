@@ -6,26 +6,32 @@ function renderAddTask() {
   contentSection.innerHTML = "";
   contentSection.innerHTML = addTaskTemplate();
   loadContacts();
+  document.getElementById("electedContacts").innerHTML = '';
+  selectedCheckboxes = [];
 }
 
 
-let prio = "";
+
+let prio = "medium";
 let subTask = [];
 let checkBox = [];
 let selectedCheckboxes = [];
 let positionID = ""
 
 
-function addTask() {
+async function addTask(event) {
+  if (event) event.preventDefault();
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox]};
-  const jsonString = JSON.stringify(task);
-  postData(task.Title, task);
-  console.log(jsonString);
+  await postData(task.Title, task);
   showConfirmationMessage();
-  loadTask();} else { console.log ("feld nicht ausgefüllt")}
+  goToBoard();
+  }
 }
 
+function goToBoard(){
+  window.location.href = 'http://127.0.0.1:5500/board.html';
+}
 
 function addTaskPopup(positionId) {
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
@@ -151,9 +157,10 @@ function fillsubtask(id){
   if (id === "undefined"){subTask = ""} else {
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
     const element = task[id].Subtask[0][index];
+    const check = task[id].checkboxState[0][index];
     subTasks += `<li>${element}</li>`;
-    subTask += element;
-    checkBox.push("false");
+    subTask.push(element);
+    checkBox.push(check);
   }}
   return subTasks;
 }
@@ -212,8 +219,7 @@ function checkboxHelp(id){
 async function postData(path = "", data = {}) {
   const title = data.Title;
   path = title;
-  console.log("Starting postData with path:", BASE_Url + path + ".json");
-  console.log("Data being sent:", data);
+  if (event) event.preventDefault();
   try {
     let response = await fetch(BASE_Url + path + ".json", {
       method: "PUT",
@@ -225,11 +231,42 @@ async function postData(path = "", data = {}) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    let responseToJson = await response.json();
-    console.log("Response from Firebase:", responseToJson);
-    return responseToJson;
   } catch (error) {
     console.error("Error during postData:", error);
     return { error: "An error occurred during the data post." };
+  }
+}
+
+
+async function addTask(event) {
+  if (event) event.preventDefault();
+
+  const task = {
+    Title: document.getElementById("addTasktitleInput").value,
+    Category: document.getElementById("addTaskCategory").value,
+    Description: document.getElementById("addTaskDiscription").value,
+    DueDate: document.getElementById("addTaskDate").value,
+    Prio: prio,
+    AssignedTo: selectedCheckboxes,
+    Subtask: [subTask],
+    PositionID: "toDo",
+    checkboxState: [checkBox]
+  };
+
+  try {
+    let response = await fetch(BASE_Url + task.Title + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+    if (response.ok) {
+      console.log("Task wurde erfolgreich hinzugefügt.");
+    } else {
+      console.error("Fehler beim Hinzufügen der Aufgabe:", response.status);
+    }
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Daten:", error);
   }
 }
