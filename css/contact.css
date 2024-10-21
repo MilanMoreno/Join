@@ -467,3 +467,41 @@ h4 {
   color: rgb(65, 157, 241);
   text-decoration: none;
 }
+
+.closeMobile {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .closeMobile {
+    display: block; 
+  }
+}
+
+.contactCard {
+  cursor: pointer;
+}
+
+
+.contactCard {
+  transition: opacity 0.3s ease; 
+}
+
+
+.contactCard:hover {
+  opacity: 0.7; 
+  cursor: pointer; 
+}
+
+
+.mobile-logo {
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .mobile-logo {
+    display: block;
+  }
+}

@@ -1,0 +1,9 @@
+.header-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: 15px;
+    right: 5%;
+}

@@ -108,6 +108,12 @@ main {
   
   .header-description {
     margin: 0 !important;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: space-around !important;
+    margin-left: 20px;
+    padding: 15px;
   }
  
   @media (max-width: 1024px) {
@@ -136,3 +142,14 @@ main {
       right: 0;
     }
   }
+  .mobile-logo {
+    display: none;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .mobile-logo {
+      display: block;
+    }
+  }
+  

@@ -390,3 +390,4 @@ function contactInfoHtml(root, contactId) {
         </div>
     `;
 }
+
