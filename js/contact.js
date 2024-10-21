@@ -388,10 +388,11 @@ function contactInfoHtml(root, contactId) {
             <span><b>Phone</b></span>
             <span>${root['telefonnummer']}</span>
         </div>
-        
+
         <div id="editDeleteMenu">
-        <a href="#" onclick="editOption()">Edit</a>
-        <a href="#" onclick="deleteOption()">Delete</a>
+      
+        <a href="#" onclick="openClosePopUp('open', true)"><img src="imgs/icon_edit.png"/>Edit</a>
+        <a href="#" onclick="removeContact('contact', '${contactId}')"><img src="imgs/icon_trash.png" />Delete</a>
     </div>
 
     `;
