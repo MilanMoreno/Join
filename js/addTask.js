@@ -234,7 +234,7 @@ function filterContacts() {
   const filterValue = document.getElementById("assinged").value.toLowerCase();
   assigned = "";
   for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i].username;
+    const element = contacts[i].name;
     const circle = generateCircle(element);
     if (element.toLowerCase().startsWith(filterValue)) {
       const isChecked = selectedCheckboxes.includes(element);
