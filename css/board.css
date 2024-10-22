@@ -327,8 +327,11 @@ main, body{
   border-radius: 8px;
   font-size: 16px;
   padding-block: 4px;
-  padding-inline-start: 16px;
   height: 28px;
+}
+
+.subTaskList p {
+  padding-inline-start: 16px;
 }
 
 .subTaskLeft{
