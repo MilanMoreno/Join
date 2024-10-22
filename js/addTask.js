@@ -66,22 +66,16 @@ function updateSelectedCheckboxes() {
 
 
 function updateSelectedCheckboxes2() {
-    // Stelle sicher, dass selectedCheckboxes ein Array ist
     if (!Array.isArray(selectedCheckboxes)) {
         selectedCheckboxes = [];
     }
-
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
     checkboxes.forEach(checkbox => {
-        // Prüfe, ob die ID der Checkbox in selectedCheckboxes enthalten ist
         if (selectedCheckboxes.includes(checkbox.id)) {
-            checkbox.checked = true; // Markiere die Checkbox als checked
+            checkbox.checked = true;
         }
-
-        // Wenn die Checkbox jetzt checked ist, füge sie zu selectedCheckboxes hinzu
         if (checkbox.checked && !selectedCheckboxes.includes(checkbox.id)) {
-            selectedCheckboxes.push(checkbox.id); // Füge die Checkbox-ID hinzu
+            selectedCheckboxes.push(checkbox.id);
         }
     });
 }
@@ -153,13 +147,69 @@ function cancelSubTask() {
 
 
 function addSubTask() {
-  let show = document.getElementById("subTaskView");
   let value = document.getElementById("subTaskAdd").value;
-  show.innerHTML += `<li>${value}</li>`;
   subTask.push(`${value}`);
+  renderSubTask();
   checkBox.push("false")
   cancelSubTask();
   event.stopPropagation();
+}
+
+
+function renderSubTask(){
+  let show = document.getElementById("subTaskView");
+  show.innerHTML = ""
+for (let index = 0; index < subTask.length; index++) {
+  const element = subTask[index];
+  show.innerHTML += `
+  <li class="subTaskList">
+  <p id="subtask-text-${index}">${element}</p>
+  <div id="subTaskLeft-${index}" class="subTaskLeft">
+  <img class="subTaskEdit" onclick="editSubTask(${index})" src="./assets/img/edit.svg" alt="Edit">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  <div id="edit-input-${index}-div" class="editInput d-none">
+  <input type="text" id="edit-input-${index}"  class="edit-input" value="${subTask[index]}">
+  <div id="save-btn-${index}" class="d-none d-flex d-align">
+  <img onclick="saveSubTask(${index})" class="subTaskCheck" src="./assets/img/check.png" alt="">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(0)" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  </div>
+  </li>`;
+}
+}
+
+
+
+
+function editSubTask(index) {
+  const subTaskText = document.getElementById(`subtask-text-${index}`);
+  const editInput = document.getElementById(`edit-input-${index}-div`);
+  const saveButton = document.getElementById(`save-btn-${index}`);
+  const subTaskLeft = document.getElementById(`subTaskLeft-${index}`)
+
+  // Zeige das Eingabefeld und den "Speichern"-Button an
+  subTaskText.classList.add('d-none');
+  subTaskLeft.classList.add('d-none')
+  editInput.classList.remove('d-none');
+  saveButton.classList.remove('d-none');
+}
+
+
+function saveSubTask(index) {
+  const editInput = document.getElementById(`edit-input-${index}`);
+  subTask[index] = editInput.value; // Aktualisiere den Subtask im Array
+
+  // Verstecke das Eingabefeld und zeige den geänderten Text an
+  renderSubTask(); // Render die Liste erneut, um die Änderungen zu zeigen
+}
+
+// Funktion, um einen Subtask zu löschen
+function deleteSubTask(index) {
+  subTask.splice(index, 1); // Entferne den Subtask aus dem Array
+  renderSubTask(); // Render die Liste erneut, um die Änderungen zu zeigen
 }
 
 
@@ -169,7 +219,7 @@ function fillsubtask(id){
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
     const element = task[id].Subtask[0][index];
     const check = task[id].checkboxState[0][index];
-    subTasks += `<li>${element}</li>`;
+    subTasks += `<li>${element}<img onclick="editSubTask(${index}" src="./assets/img/edit.svg" alt="Edit"><img onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete"></li>`;
     subTask.push(element);
     checkBox.push(check);
   }}

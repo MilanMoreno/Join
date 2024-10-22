@@ -2,10 +2,6 @@
   color: #ff8190;
 }
 
-*{
-  box-sizing: border-box;
-}
-
 .middleLine {
   width: 0;
   height: 424px;
@@ -157,6 +153,7 @@
 #subTaskView{
   max-height: 200px;
   overflow-y: overlay;
+  padding: 0;
 }
 
 
