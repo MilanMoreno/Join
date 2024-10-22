@@ -25,6 +25,7 @@ main, body{
 }
 
 .addTask:hover {
+  cursor: pointer;
   background-color: #29abe2;
   border: 1px solid #29abe2;
   width: 160px;
@@ -89,6 +90,10 @@ main, body{
 
 .taskSearch {
   height: 17.58px;
+}
+
+.taskSearch:hover{
+  cursor: pointer;
 }
 
 .headerRight {

@@ -322,7 +322,7 @@ function filterSubTask(id) {
       const element = task[id].Subtask[0][i];
       const checkedTask = task[id].checkboxState[0][i].checked;
       const checked = filterCheckBox(checkedTask);
-      subTask += `<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id}" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;
+      subTask += `<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id} c-pointer" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;
     }
   } else {
     return subTask;
