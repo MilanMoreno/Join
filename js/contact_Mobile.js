@@ -35,6 +35,7 @@ function showEditandDelete() {
     var menu = document.getElementById("editDeleteMenu");
     if (menu.style.display === "none" || menu.style.display === "") {
         menu.style.display = "block"; 
+        
     } else {
         menu.style.display = "none";  
     }
@@ -69,3 +70,5 @@ function hideModal(bgPopUp, popUp, sideBar, header) {
     sideBar.classList.remove('displayNone')
     header.classList.remove('stretch');
 }
+
+
