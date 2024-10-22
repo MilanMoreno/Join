@@ -54,8 +54,8 @@ h2 {
 
 .content-section {
   flex: 1;
-  height: 90vh;
-  padding: 0px 0px 0 0px;
+  height: 88vh;
+  padding: 0px 25px 0 0px
 }
 
 .moreAboutContent {
