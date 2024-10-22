@@ -248,7 +248,7 @@ main{
 }
 
 .progress-text{
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .cardBalken{
@@ -276,7 +276,7 @@ main{
   align-items: center;
   color: #FFFFFF;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   margin-left: -10px;
   position: relative;
   z-index: 1;
@@ -292,7 +292,7 @@ main{
   align-items: center;
   color: #FFFFFF;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   position: relative;
 }
 

@@ -25,6 +25,7 @@ main {
     background-color: var(--white);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
     padding: 10px 25px 5px 15px;
+    height: 96px !important;
     gap: 50px;
  
   }
@@ -139,7 +140,7 @@ main {
     header {
       padding: 0 clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem) 0
         clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem);
-        height: 10vh;
+        height: 96px;
     }
   
     .headerDropdownOption {
