@@ -269,7 +269,7 @@ function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, f
                     <p class="d-flex dPrio">${task[id].Prio} ${priosrc}</p>
                 </div>
             </div>
-            <ul>
+            <ul class=" assignContainer">
                 <p class="detailAssign">Assigned To:</p>
                 ${assign}
             </ul>
@@ -302,7 +302,7 @@ function formatDateToDDMMYYYY(dateString) {
 function filterContact(id) {
   let tasks = task;
   let contact = "";
-  if ("AssignedTo" in tasks[id]) {
+  if (tasks[id] && "AssignedTo" in tasks[id]) {
     for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
       const element = tasks[id].AssignedTo[i];
       const initial = getInitialsDetail(element);
@@ -420,8 +420,8 @@ function drop(event) {
 
 function updateTaskPosition(dropTargetID) {
   task[idUpdate].PositionID = dropTargetID;
-  task = task[idUpdate];
-  updatePosition(task.Title, task);
+  taskSave = task[idUpdate];
+  updatePosition(task.Title, taskSave);
 }
 
 
@@ -442,7 +442,6 @@ async function updateCheckboxStateInFirebase(checkboxId, taskId) {
     }
   )
     .then((response) => response.json())
-    .then((data) => console.log("Checkbox state updated:", data))
     .catch((error) => console.error("Error updating checkbox state:", error));
 }
 
@@ -473,9 +472,9 @@ function renderTasks(filteredTasks) {
 }
 
 
-function filterTasks() {
+function filterTasks(id) {
   const filterInput = document
-    .getElementById("findTaskInput")
+    .getElementById(id)
     .value.toLowerCase();
   const filteredTasks = task.filter((task) => {
     return (

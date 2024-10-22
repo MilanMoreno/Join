@@ -237,6 +237,14 @@ main{
 
 .subtask-container {
   margin: 10px 0;
+  max-height: 200px;
+  overflow-y: overlay;
+}
+
+.assignContainer{
+  max-height: 200px;
+  overflow-y: overlay;
+  overflow-x: hidden;
 }
 
 .progress-text{
@@ -291,6 +299,7 @@ main{
 .initials-container {
   display: flex;
   position: relative;
+  flex-wrap: wrap;
   margin-right: 10px;
   margin-left: 10px;
 }

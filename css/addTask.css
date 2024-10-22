@@ -41,6 +41,10 @@
   overflow: hidden;
 }
 
+#electedContacts{
+  flex-wrap: wrap;
+}
+
 .addTaskContent input {
   border-radius: 10px;
   height: 48px;
@@ -151,8 +155,8 @@
 }
 
 #subTaskView{
-  max-height: 300px;
-  overflow-y: scroll;
+  max-height: 200px;
+  overflow-y: overlay;
 }
 
 

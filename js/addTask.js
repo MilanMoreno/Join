@@ -39,7 +39,6 @@ function addTaskPopup(positionId) {
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
-  console.log(jsonString);
   showConfirmationMessage();
   loadTask();}
 }
@@ -67,12 +66,24 @@ function updateSelectedCheckboxes() {
 
 
 function updateSelectedCheckboxes2() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-    if (checkbox.checked) {
-      selectedCheckboxes.push(checkbox.id);
+    // Stelle sicher, dass selectedCheckboxes ein Array ist
+    if (!Array.isArray(selectedCheckboxes)) {
+        selectedCheckboxes = [];
     }
-  });
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        // Prüfe, ob die ID der Checkbox in selectedCheckboxes enthalten ist
+        if (selectedCheckboxes.includes(checkbox.id)) {
+            checkbox.checked = true; // Markiere die Checkbox als checked
+        }
+
+        // Wenn die Checkbox jetzt checked ist, füge sie zu selectedCheckboxes hinzu
+        if (checkbox.checked && !selectedCheckboxes.includes(checkbox.id)) {
+            selectedCheckboxes.push(checkbox.id); // Füge die Checkbox-ID hinzu
+        }
+    });
 }
 
 
