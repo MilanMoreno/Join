@@ -185,15 +185,11 @@ for (let index = 0; index < subTask.length; index++) {
 }
 
 
-
-
 function editSubTask(index) {
   const subTaskText = document.getElementById(`subtask-text-${index}`);
   const editInput = document.getElementById(`edit-input-${index}-div`);
   const saveButton = document.getElementById(`save-btn-${index}`);
   const subTaskLeft = document.getElementById(`subTaskLeft-${index}`)
-
-  // Zeige das Eingabefeld und den "Speichern"-Button an
   subTaskText.classList.add('d-none');
   subTaskLeft.classList.add('d-none')
   editInput.classList.remove('d-none');
@@ -203,16 +199,14 @@ function editSubTask(index) {
 
 function saveSubTask(index) {
   const editInput = document.getElementById(`edit-input-${index}`);
-  subTask[index] = editInput.value; // Aktualisiere den Subtask im Array
-
-  // Verstecke das Eingabefeld und zeige den geänderten Text an
-  renderSubTask(); // Render die Liste erneut, um die Änderungen zu zeigen
+  subTask[index] = editInput.value;
+  renderSubTask();
 }
 
-// Funktion, um einen Subtask zu löschen
+
 function deleteSubTask(index) {
-  subTask.splice(index, 1); // Entferne den Subtask aus dem Array
-  renderSubTask(); // Render die Liste erneut, um die Änderungen zu zeigen
+  subTask.splice(index, 1); 
+  renderSubTask();
 }
 
 
