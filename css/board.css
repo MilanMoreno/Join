@@ -1,4 +1,4 @@
-main{
+main, body{
   overflow-x: hidden;
 }
 
@@ -310,6 +310,14 @@ main{
 
 .plusImgMobile{
   display: none;
+  box-sizing: unset;
+  height: 25px;
+  width: 25px;
+}
+
+.plusImg{
+  height: 25px;
+  width: 25px;
 }
 
 .subTaskList{

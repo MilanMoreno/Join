@@ -40,7 +40,8 @@ function addTaskPopup(positionId) {
   const jsonString = JSON.stringify(task);
   postData(task.Title, task);
   showConfirmationMessage();
-  loadTask();}
+  loadTask();
+  closePopUp();}
 }
 
 
@@ -147,12 +148,14 @@ function cancelSubTask() {
 
 
 function addSubTask() {
+  if (document.getElementById("subTaskAdd").value === "") {
+  }else{
   let value = document.getElementById("subTaskAdd").value;
   subTask.push(`${value}`);
   renderSubTask();
   checkBox.push("false")
   cancelSubTask();
-  event.stopPropagation();
+  event.stopPropagation();}
 }
 
 
