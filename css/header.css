@@ -24,7 +24,8 @@ main {
     align-items: center;
     background-color: var(--white);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    padding: 0px 40px 0px 120px;
+    padding: 10px 25px 5px 15px;
+    gap: 50px;
  
   }
   
@@ -108,17 +109,27 @@ main {
   
   .header-description {
     margin: 0 !important;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: space-around !important;
+    margin-left: 20px;
+    padding: 15px;
   }
  
+  @media (max-width: 777px) {
+    .d-none-mobile {
+      display: none;
+    }
+    }
+  
+
   @media (max-width: 1024px) {
     main {
       width: 100vw;
     }
   
-    .d-none-mobile {
-      display: none;
-    }
-  
+ 
     .mobile-logo {
       display: flex;
       height: 39px;
@@ -136,3 +147,15 @@ main {
       right: 0;
     }
   }
+  .mobile-logo {
+    display: none;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .mobile-logo {
+      display: block;
+    }
+  }
+  
+

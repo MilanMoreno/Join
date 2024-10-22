@@ -24,6 +24,7 @@ async function fetchData() {
     }
 }
 
+
 function displayContacts(contactData) {
     let container = document.getElementById('contacts');
     container.innerHTML = '';
@@ -35,6 +36,7 @@ function displayContacts(contactData) {
     applyNewContactHighlight();
     highlightContactList();
 }
+
 
 function categorizeContacts(contactData) {
     const organizedContacts = Object.keys(contactData).reduce((groups, id) => {
@@ -49,12 +51,14 @@ function categorizeContacts(contactData) {
     return organizedContacts;
 }
 
+
 function createContactGroup(container, letter, contacts) {
     container.innerHTML += `<h3 class="letter">${letter}</h3>`;
     contacts.forEach(contact => {
         displayContact(container, contact);
     });
 }
+
 
 function displayContact(container, contact) {
     const contactShade = contact.color || getRandomHexColor();
@@ -69,9 +73,11 @@ function displayContact(container, contact) {
     `;
 }
 
+
 function getInitials(name) {
     return name.split(' ').map(word => word.charAt(0).toUpperCase()).join(' ');
 }
+
 
 function showDetailedContact(contactId) {
     let root = storedData[0][contactId];
@@ -87,12 +93,15 @@ function showDetailedContact(contactId) {
     applyBackgroundColor(contactId);
 }
 
+
 function setEditPopupContent(root) {
     document.getElementById('letterForPopUp').innerHTML = `${root['name'][0]}`;
+    document.getElementById('editName').value = root['name'];
     document.getElementById('editEmail').value = root['email'];
     document.getElementById('editTel').value = root['telefonnummer'];
-    document.getElementById('editName').value = root['name'];
+    
 }
+
 
 function applyBackgroundColor(contactId) {
     let root = storedData[0][contactId];
@@ -103,21 +112,24 @@ function applyBackgroundColor(contactId) {
     }
 }
 
+
 function createNewContact() {
     preventFormSubmit('new');
+    let name = document.getElementById('name');
     let email = document.getElementById('email');
     let tel = document.getElementById('tel');
-    let name = document.getElementById('name');
+    
     const nextColor = selectNextColor();
     let data = {
         'name': name.value,
-        'telefonnummer': tel.value,
         'email': email.value,
+        'telefonnummer': tel.value,
         'color': nextColor
     };
     contactList.push(data);
     submitContact('contact');
 }
+
 
 function generateColorPalette(numberColors) {
     const availableColors = [];
@@ -138,6 +150,7 @@ function generateColorPalette(numberColors) {
     return availableColors;
 }
 
+
 function calculateBrightness(color) {
     let hex = color.substring(1);
     let r = parseInt(hex.substring(0, 2), 16);
@@ -146,6 +159,7 @@ function calculateBrightness(color) {
     const [h, s, l] = rgbToHsl(r, g, b);
     return l;
 }
+
 
 function rgbToHsl(r, g, b) {
     r /= 255;
@@ -169,12 +183,14 @@ function rgbToHsl(r, g, b) {
     return [h * 360, s * 100, l * 100];
 }
 
+
 function selectNextColor() {
     const color = availableColors[colorCounter % availableColors.length];
     colorCounter++;
     updateColorCounter();
     return color;
 }
+
 
 async function submitContact(path) {
     for (let index = 0; index < contactList.length; index++) {
@@ -198,6 +214,7 @@ async function submitContact(path) {
     window.location.reload();
 }
 
+
 function updateColorCounter() {
     fetch(BASE_URL + 'colorIndex.json', {
         method: "PUT",
@@ -215,10 +232,12 @@ function updateColorCounter() {
         .catch(error => console.error('Error updating color index:', error));
 }
 
+
 function saveHighlight() {
     let serializedContact = JSON.stringify(selectedContact);
     localStorage.setItem('highlightKey', serializedContact);
 }
+
 
 function applyNewContactHighlight() {
     let serializedContact = localStorage.getItem('highlightKey')
@@ -233,6 +252,7 @@ function applyNewContactHighlight() {
     scrollToNewContact();
 }
 
+
 function findContactInStoredData() {
     let contactData = storedData[0]
 
@@ -243,12 +263,14 @@ function findContactInStoredData() {
     }
 }
 
+
 function scrollToNewContact() {
     document.getElementById(currentEditKey).scrollIntoView({
         behavior: 'smooth',
         block: 'start'
     });
 }
+
 
 async function modifyContact() {
     preventFormSubmit('update');
@@ -264,18 +286,22 @@ async function modifyContact() {
     window.location.reload();
 }
 
+
 function modifyContactDetails() {
     let name = document.getElementById('editName');
-    let tel = document.getElementById('editTel');
     let email = document.getElementById('editEmail');
+    let tel = document.getElementById('editTel');
+
     let data =
     {
         'name': name.value,
-        'telefonnummer': tel.value,
-        'email': email.value
+        'email': email.value,
+        'telefonnummer': tel.value
+     
     };
     return data;
 }
+
 
 function preventFormSubmit(key) {
     let target;
@@ -288,6 +314,7 @@ function preventFormSubmit(key) {
         event.preventDefault();
     });
 }
+
 
 async function removeContact(path = 'contact', id) {
     try {
@@ -307,6 +334,7 @@ async function removeContact(path = 'contact', id) {
     }
 }
 
+
 function openClosePopUp(param, key) {
     concealMobileElements();
     let target = validatePopUp(key);
@@ -323,30 +351,11 @@ function openClosePopUp(param, key) {
     }
 }
 
-function showModal(PopUpBgElement, show, sideBar, header) {
-    PopUpBgElement.classList.remove('displayNone', 'hide');
-    PopUpBgElement.classList.add('show');
-    show.classList.remove('slide-out');
-    show.classList.add('slide-in');
-    sideBar.classList.add('displayNone');
-    header.classList.add('stretch');
-}
-
-function hideModal(bgPopUp, popUp, sideBar, header) {
-    popUp.classList.remove('slide-in');
-    popUp.classList.add('slide-out');
-    bgPopUp.classList.remove('show');
-    bgPopUp.classList.add('hide');
-    setTimeout(() => {
-        bgPopUp.classList.add('displayNone');
-    }, 500);
-    sideBar.classList.remove('displayNone')
-    header.classList.remove('stretch');
-}
 
 function validatePopUp(key) {
     return key ? 'EditModalBackground' : 'modalBackground';
 }
+
 
 function getRandomHexColor() {
     const letters = '89ABCDEF';
@@ -358,15 +367,11 @@ function getRandomHexColor() {
     return color;
 }
 
-function showContactMobile() {
-    document.getElementById('content-area').classList.add('dNone');
-    document.getElementById('mycontacts').classList.remove('displayNone');
-
-}
 
 function highlightContactList() {
     document.getElementById('link-contact').classList.add('bg-focus');
 }
+
 
 function contactInfoHtml(root, contactId) {
     return `
@@ -388,5 +393,12 @@ function contactInfoHtml(root, contactId) {
             <span><b>Phone</b></span>
             <span>${root['telefonnummer']}</span>
         </div>
+
+        <div id="editDeleteMenu">
+      
+        <a href="#" onclick="openClosePopUp('open', true)"><img src="imgs/icon_edit.png"/>Edit</a>
+        <a href="#" onclick="removeContact('contact', '${contactId}')"><img src="imgs/icon_trash.png" />Delete</a>
+    </div>
+
     `;
 }

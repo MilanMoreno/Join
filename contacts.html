@@ -100,7 +100,8 @@
             <span>Better with a team</span>
           </div>
           <div id="responsiveContactBackButton" class="returnToContacts">
-            <img class="closeMobile" onclick="showContactMobile()" src="imgs/icon_close.png">
+            <img class="closeMobile" onclick="showContactMobile()" src="imgs/kreuz.png">
+            <img class="closeMobile" id="options_edit_delete" onclick="showEditandDelete()" src="imgs/option_Btn.png">
           </div>
         </div>
         <div id="content" class="moreAboutContent"></div>
@@ -125,9 +126,10 @@
               </div>
               <div class="contact_input">
                 <form class="form" id="addContactForm" onsubmit="createNewContact()">
+                  <input required="" id="name" placeholder="Name" type="text">
                   <input required="" id="email" placeholder="Email" type="email">
                   <input required="" id="tel" placeholder="Phone" type="tel">
-                  <input required="" id="name" placeholder="Name" type="text">
+                 
                   <div class="contact_button">
                     <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel <img
                         src="./contact-assets/img/close.png" alt=""></button>
@@ -159,9 +161,10 @@
               </div>
               <div class="contact_input">
                 <form class="form" id="editContactForm" onsubmit="modifyContact()">
+                  <input required="" id="editName" placeholder="Name" type="text">
                   <input required="" id="editEmail" placeholder="Email" type="email">
                   <input required="" id="editTel" placeholder="Phone" type="tel">
-                  <input required="" id="editName" placeholder="Name" type="text">
+                 
 
                   <div class="contact_button">
                     <button onclick="removeContact()(path ='contact', keyForEdit)" type="button"

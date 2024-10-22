@@ -372,3 +372,14 @@ main{
     max-width: 100%;
   }
 }
+
+.mobile-logo {
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .mobile-logo {
+    display: block;
+  }
+}

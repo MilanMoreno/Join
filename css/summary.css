@@ -232,7 +232,7 @@
     text-decoration: none;
     color: black;
 }
-
+ 
 @media (max-width: 1024px) {
     .lead-section h1 {
         font-size: 47px;
@@ -280,3 +280,6 @@
         padding: clamp(0.625rem, 0.5rem + 0.625vw, 1.25rem) clamp(0.625rem, 0.5625rem + 0.3125vw, 0.9375rem);
     }
 }
+
+
+

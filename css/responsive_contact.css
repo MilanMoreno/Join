@@ -193,3 +193,67 @@
     width: 100vw;
     padding: 0 !important;
 }
+
+
+@media (max-width: 326px) {
+    #content-area {
+        font-size: 98%; 
+    }
+
+
+    #content-area * {
+        transform: scale(0.9); 
+        transform-origin: top left; 
+    }
+
+  
+    h2, h4 {
+        font-size: 98%; 
+    }
+
+    .contacts, .form, .popUp, .contact_button {
+        padding: 8px; 
+        margin: 8px; 
+    }
+
+    .profile-pic {
+        height: 90px; 
+        width: 90px;
+    }
+
+ 
+    .addContactButton, .contact_button button {
+        font-size: 98%; 
+        height: 36px; 
+        padding: 6px; 
+    }
+
+   
+}
+
+
+@media (max-width: 500px) {
+
+    h2, h4 {
+        font-size: 98%;
+    }
+
+    .contacts, .form, .popUp, .contact_button {
+        padding: 8px; 
+        margin: 8px; 
+    }
+
+    .profile-pic {
+        height: 90px; 
+        width: 90px;
+    }
+
+ 
+    .addContactButton, .contact_button button {
+        font-size: 98%; 
+        height: 36px; 
+        padding: 6px; 
+    }
+
+    
+}

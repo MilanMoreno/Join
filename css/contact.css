@@ -55,7 +55,7 @@ h2 {
 .content-section {
   flex: 1;
   height: 90vh;
-  padding: 0 24px 0 24px;
+  padding: 0px 0px 0 0px;
 }
 
 .moreAboutContent {
@@ -64,7 +64,7 @@ h2 {
   padding: 24px 12px 0 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 35px;
 }
 
 .addContact {
@@ -467,3 +467,75 @@ h4 {
   color: rgb(65, 157, 241);
   text-decoration: none;
 }
+
+.closeMobile {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .closeMobile {
+    display: block; 
+  }
+}
+
+.contactCard {
+  cursor: pointer;
+}
+
+
+.contactCard {
+  transition: opacity 0.3s ease; 
+}
+
+
+.contactCard:hover {
+  opacity: 0.7; 
+  cursor: pointer; 
+}
+
+
+.mobile-logo {
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .mobile-logo {
+    display: block;
+  }
+}
+
+#options_edit_delete{
+  position: absolute;
+  bottom: 100px;
+  object-fit: cover;
+  color: black;
+}
+
+
+   
+        .closeMobile {
+            cursor: pointer;
+        }
+
+ 
+        #editDeleteMenu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+        }
+
+        #editDeleteMenu a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+
+        #editDeleteMenu a:hover {
+            background-color: #ddd;
+        }
