@@ -312,6 +312,70 @@ main{
   display: none;
 }
 
+.subTaskList{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 16px;
+  padding-block: 4px;
+  padding-inline-start: 16px;
+  height: 28px;
+}
+
+.subTaskLeft{
+  display: none;
+  align-items: center;
+}
+
+.subTaskList:hover .subTaskLeft {
+  display: flex;
+}
+
+.editInput{
+  display: flex;
+  width: 100%;
+  height: 24px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #29ABE2;
+  align-items: center;
+}
+
+.edit-input{
+  height: 32px;
+  border: none!important;
+  height: 24px!important;
+  margin: 0;
+  width: 100%;
+  font-size: 16px!important;
+}
+
+.subTaskEdit:hover, .subTaskDelete:hover {
+  cursor: pointer;
+}
+
+.subTaskList:hover{
+  cursor: pointer;
+  background-color: #E7E7E7;
+}
+
+.subTaskEdit{
+  height: 14px;
+  width: 14px;
+  padding-right: 8px;
+  z-index: 1;
+  box-sizing: unset;
+}
+
+.subTaskDelete{
+  height: 14px;
+  width: 14px;
+  padding-left: 10px;
+  padding-right: 20px;
+  z-index: 1;
+  box-sizing: unset;
+}
+
 @media (max-width: 1120px) {
   .plusImg{
     display: none;
