@@ -188,6 +188,7 @@ function saveHighlight() {
     localStorage.setItem('highlightKey', serializedContact);
 }
 
+
 function applyNewContactHighlight() {
     let serializedContact = localStorage.getItem('highlightKey');
     if (serializedContact === null) {
