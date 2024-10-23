@@ -134,8 +134,9 @@
     }
 
     .closeMobile {
-        height: 48px;
-        width: 48px;
+        height: 40px;
+        width: 40px;
+    
     }
 
     .letter_For_PopUp {
@@ -195,7 +196,7 @@
 }
 
 
-@media (max-width: 326px) {
+@media (max-width: 316px) {
     #content-area {
         font-size: 98%; 
     }

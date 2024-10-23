@@ -55,7 +55,7 @@ h2 {
 .content-section {
   flex: 1;
   height: 88vh;  
-  padding: 0px 25px 0 5px
+  padding: 0px 10px 0 10px
 }
 
 .moreAboutContent {
@@ -406,7 +406,7 @@ h4 {
   display: flex;
   align-items: center;
   gap: 80px;
-  padding: 24px 0 24px 0;
+  padding: 0px 0 0px 0;
 }
 
 .h4_edit-delete {
@@ -503,12 +503,18 @@ h4 {
   }
 }
 
-#options_edit_delete{
+
+#options_edit_delete {
   position: absolute;
-  bottom: 100px;
+  bottom: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  top: 600px;
   object-fit: cover;
   color: black;
 }
+
    
         .closeMobile {
             cursor: pointer;
@@ -534,5 +540,3 @@ h4 {
         #editDeleteMenu a:hover {
             background-color: #ddd;
         }
-
-        

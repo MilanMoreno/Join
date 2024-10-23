@@ -142,7 +142,7 @@ main {
     header {
       padding: 0 clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem) 0
         clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem);
-        height: 96px;
+        height: 80px;
     }
   
     .headerDropdownOption {
