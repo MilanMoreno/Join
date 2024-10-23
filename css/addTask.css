@@ -305,6 +305,11 @@
   width: 8px;
 }
 
+.fixed-header {
+  position: sticky;
+  top: 0;
+}
+
 .assingedInput {
   width: 100%;
 }
