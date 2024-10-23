@@ -188,17 +188,23 @@ function saveHighlight() {
     localStorage.setItem('highlightKey', serializedContact);
 }
 
-
 function applyNewContactHighlight() {
-    let serializedContact = localStorage.getItem('highlightKey')
+    let serializedContact = localStorage.getItem('highlightKey');
     if (serializedContact === null) {
-        return
-    } else
-        selectedContact = JSON.parse(serializedContact)
-    console.log(selectedContact)
+        return;
+    } else {
+        selectedContact = JSON.parse(serializedContact);
+    }
+    console.log(selectedContact);
+    
+    // Suche den Kontakt und zeige ihn an
     currentEditKey = findContactInStoredData();
     showDetailedContact(currentEditKey);
-    localStorage.clear();
+
+    // Entferne nur den "highlightKey" aus dem localStorage
+    localStorage.removeItem('highlightKey');
+    
+    // Scrolle zu dem hervorgehobenen Kontakt
     scrollToNewContact();
 }
 
