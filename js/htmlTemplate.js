@@ -31,10 +31,7 @@ async function generateAssingTo() {
     for (let i = 0; i < contacts.length; i++) {
       const element = contacts[i].name;
       const circle = generateCircle(element);
-
-      // Prüfe, ob der Kontakt bereits ausgewählt ist
       const isChecked = selectedCheckboxes.includes(element) ? "checked" : "";
-
       assigned += `
     <div class="d-flex assingUser">
     <label class="container">
@@ -47,12 +44,8 @@ async function generateAssingTo() {
     </label>
     </div>`;
     }
-
-    // Füge die generierten Kontakte der Liste hinzu
     document.getElementById("assingedList").innerHTML = assigned;
   }
-
-  // Zeige die Liste an
   document.getElementById("hideAssignlist").classList.remove("d-none");
 }
 

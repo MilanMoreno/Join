@@ -1,10 +1,10 @@
 let task = [];
-let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
+let BASE_URL_TASK = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
 
 async function loadTask() {
   try {
-    const response = await fetch(`${BASE_URL}.json`);
+    const response = await fetch(`${BASE_URL_TASK}.json`);
     if (!response.ok) {
       throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
     }

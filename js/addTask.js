@@ -41,7 +41,8 @@ function addTaskPopup(positionId) {
   postData(task.Title, task);
   showConfirmationMessage();
   loadTask();
-  closePopUp();}
+  closePopUp();
+  closeDetailCardX();}
 }
 
 
@@ -216,7 +217,22 @@ function fillsubtask(id){
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
     const element = task[id].Subtask[0][index];
     const check = task[id].checkboxState[0][index];
-    subTasks += `<li>${element}<img onclick="editSubTask(${index}" src="./assets/img/edit.svg" alt="Edit"><img onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete"></li>`;
+    subTasks += `<li class="subTaskList">
+  <p id="subtask-text-${index}">${element}</p>
+  <div id="subTaskLeft-${index}" class="subTaskLeft">
+  <img class="subTaskEdit" onclick="editSubTask(${index})" src="./assets/img/edit.svg" alt="Edit">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  <div id="edit-input-${index}-div" class="editInput d-none">
+  <input type="text" id="edit-input-${index}"  class="edit-input" value="${element}">
+  <div id="save-btn-${index}" class="d-none d-flex d-align">
+  <img onclick="saveSubTask(${index})" class="subTaskCheck" src="./assets/img/check.png" alt="">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(0)" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  </div>
+  </li>`;
     subTask.push(element);
     checkBox.push(check);
   }}
