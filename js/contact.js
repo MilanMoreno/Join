@@ -127,7 +127,7 @@ function createNewContact(event) {
     let tel = document.getElementById('tel').value;
 
     if (!/^[0-9+]+$/.test(tel)) {
-        alert('Please enter a valid phone number.');
+        alert('Please enter a valid phone number containing only numbers and the "+" sign.');
         return;
     }
 
@@ -200,8 +200,7 @@ function applyNewContactHighlight() {
     showDetailedContact(currentEditKey);
     localStorage.clear();
     scrollToNewContact();
-}
-
+} 
 
 function findContactInStoredData() {
     let contactData = storedData[0]
