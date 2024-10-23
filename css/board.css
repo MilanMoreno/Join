@@ -190,7 +190,7 @@ main{
 .cardText {
   width: 220px;
   color: #a8a8a8;
-  font-size: 16px;
+  font-size: 14px;
   text-wrap: wrap;
   margin: 0;
   margin-bottom: 24px;
@@ -198,7 +198,7 @@ main{
 
 .cardTitle {
   color: #2a3647;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 8px;
 }
 
@@ -248,7 +248,7 @@ main{
 }
 
 .progress-text{
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .cardBalken{
@@ -317,13 +317,14 @@ main{
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 14px;
   padding-block: 4px;
   padding-inline-start: 16px;
   height: 28px;
 }
 
 .subTaskLeft{
+
   display: none;
   align-items: center;
 }
@@ -347,7 +348,7 @@ main{
   height: 24px!important;
   margin: 0;
   width: 100%;
-  font-size: 16px!important;
+  font-size: 14px!important;
 }
 
 .subTaskEdit:hover, .subTaskDelete:hover {

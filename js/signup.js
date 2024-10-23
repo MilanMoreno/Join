@@ -86,6 +86,13 @@ function getInitials(name) {
 }
 
 
+
+
+function guestLogin() {
+    let guestUser = { initials: "G", name: "Guest" };
+    localStorage.setItem("user", JSON.stringify(guestUser));
+    window.location.href = "./summary.html";
+}
 function login() {
     let email = document.getElementById("inputEmailLogIn").value;
     let password = document.getElementById("inputPasswordLogIn").value;
@@ -96,13 +103,6 @@ function login() {
     } else {
         displayErrorMessage("E-Mail or password are incorrect", document.getElementById("Loginerror"));
     }
-}
-
-
-function guestLogin() {
-    let guestUser = { initials: "G", name: "Guest" };
-    localStorage.setItem("user", JSON.stringify(guestUser));
-    window.location.href = "./summary.html";
 }
 
 
