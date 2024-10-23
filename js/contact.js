@@ -196,15 +196,9 @@ function applyNewContactHighlight() {
         selectedContact = JSON.parse(serializedContact);
     }
     console.log(selectedContact);
-    
-    // Suche den Kontakt und zeige ihn an
     currentEditKey = findContactInStoredData();
     showDetailedContact(currentEditKey);
-
-    // Entferne nur den "highlightKey" aus dem localStorage
     localStorage.removeItem('highlightKey');
-    
-    // Scrolle zu dem hervorgehobenen Kontakt
     scrollToNewContact();
 }
 
