@@ -110,6 +110,7 @@ ul {
 
 .deleteEdit {
   gap: 8px;
+  cursor: pointer;
 }
 
 .deleteEdit p {

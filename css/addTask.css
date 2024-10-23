@@ -2,6 +2,10 @@
   color: #ff8190;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 .middleLine {
   width: 0;
   height: 424px;
@@ -10,7 +14,7 @@
 
 .addTaskContent {
   flex-direction: column;
-  padding-inline: 84.478px;
+  margin-inline: auto;
   font-size: 20px;
   max-width: 976.25px;
 }
@@ -25,7 +29,9 @@
 }
 
 .addTaskBody {
-  column-gap: 5px;
+  column-gap: 48px;
+  max-width: 976px;
+  width: 976.25px;
 }
 
 .addTaskRight {
@@ -128,7 +134,8 @@
   justify-content: space-between;
   position: fixed;
   bottom: 50px;
-  width: 947px;
+  max-width: 976px;
+  width: 100%;
 }
 
 .addTaskSubmit {
@@ -426,8 +433,8 @@ input:focus, textarea:focus, select:focus {
 
 @media (max-width: 800px) {
   .addTaskContent {
-    max-width: 100%; 
-    padding-inline: 20px; 
+    max-width: 440px!important; 
+    padding-inline: 0px; 
   }
 
   .addTaskLeft, .addTaskRight {
@@ -435,10 +442,20 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1200px) {
   .addTaskBody {
     flex-direction: column !important;
     width: 100%;
+  }
+
+  #addTaskForm {
+    max-height: unset;
+  }
+
+  .addTaskFooter{
+    width: 440px!important;
+    position: unset;
+    padding-bottom: 120px;
   }
 
   .middleLine {
@@ -515,170 +532,37 @@ input:focus, textarea:focus, select:focus {
   width: 30px;
 }
 
-
-
 @media (max-width: 650px) {
-  .contentSection {
-    max-width: 90%;
-    padding: 10px;
-    font-size: 16px;
+  #hideAssignlist{
+    width: 800px;
   }
-
-  .addTaskContent {
-    padding-inline: 10px;
-  }
-
-  .addTaskLeft, .addTaskRight {
-    width: 100%;
-  }
-
-  .addTaskContent input,
-  .addTaskContent textarea,
-  .addTaskContent button,
-  .addTaskContent select {
-    font-size: 16px;
-  }}
-
+}
 
 .addTaskContent {
   flex-direction: column;
-  padding-inline: 84.478px;
   font-size: 20px;
   max-width: 976.25px; 
   width: 100%; 
   box-sizing: border-box; 
 }
 
-
-@media (max-width: 550px) and (min-width: 260px) {
-  .addTaskContent {
-    padding-inline: 100px; 
-    font-size: 16px; 
-    width: 50%; 
-    max-width: 50%; 
-    padding-bottom: 100px;
-  }
-
-  .addTaskLeft, .addTaskRight {
-    width: 100%; 
-  }
-
-  .addTaskContent input, 
-  .addTaskContent textarea, 
-  .addTaskContent button, 
-  .addTaskContent select {
-    font-size: 16px; 
-  }
-}
-
-.addTaskContent {
-  max-width: 100%; 
-}
-
-
-@media (max-width: 550px) and (min-width: 260px) {
-  .addTaskContent {
-    padding-inline: 10px; 
-    margin: 0 auto; 
-    font-size: 16px; 
-    width: 100%; 
-    max-width: 500px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-  }
-
-  
-  .addTaskLeft, .addTaskRight {
-    width: 100%; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  
-  .addTaskContent input,
-  .addTaskContent textarea,
-  .addTaskContent button,
-  .addTaskContent select {
+@media (max-width: 450px){
+  .addTaskContent{
     font-size: 16px;
-    width: 100%; 
-    max-width: 500px; 
-    margin: 0 auto; 
   }
 
-  
-  .addTaskContent h1, .addTaskContent p {
-    text-align: center; 
+  .addTaskFooter{
+    width: 100%!important;
   }
 
-  
-  .middleLine {
-    display: none; 
+  .container, .assingUser, .assingedList {
+    width: auto;
   }
 
-  
-  .addTaskContent button {
-    width: 100%;
-    max-width: 300px; 
-    margin: 10px 0; 
+  .checkmark{
+    left: 290px;
   }
 }
-
-@media (max-width: 550px) and (min-width: 260px) {
-  .addTaskContent {
-    padding-inline: 10px;
-    margin: 0 auto;
-    font-size: 16px;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column !important;
-    align-items: center;
-    padding-top: 50px;
-  }
-
- 
-  .addTaskLeft, .addTaskRight {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
- 
-  .addTaskContent input,
-  .addTaskContent textarea,
-  .addTaskContent button,
-  .addTaskContent select {
-    font-size: 16px;
-    width: 100%; 
-    max-width: 250px; 
-    margin: 0;
-  }
-
-  
-  .addTaskContent h1, .addTaskContent p {
-    text-align: center; 
-  }
-
-  
-  .middleLine {
-    display: none; 
-  }
-
-  .addTaskContent button {
-    width: 100%;
-    max-width: 300px; 
-    margin: 10px 0; 
-  }
-}
-
-
-.mobile-logo {
-  display: none;
-}
-
 
 @media screen and (max-width: 768px) {
   .mobile-logo {

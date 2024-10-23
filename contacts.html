@@ -128,18 +128,16 @@
                 <img class="profile-pic" src="./contact-assets/img/empty-profil.png" alt="">
               </div>
               <div class="contact_input">
-                <form class="form" id="addContactForm" onsubmit="createNewContact()">
-                  <input required="" id="name" placeholder="Name" type="text">
-                  <input required="" id="email" placeholder="Email" type="email">
-                  <input required="" id="tel" placeholder="Phone" type="tel">
-                 
+                <form class="form" id="addContactForm" onsubmit="createNewContact(event)">
+                  <input required id="name" placeholder="Name" type="text">
+                  <input required id="email" placeholder="Email" type="email">
+                  <input required id="tel" placeholder="Phone" type="tel">
                   <div class="contact_button">
-                    <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel <img
-                        src="./contact-assets/img/close.png" alt=""></button>
-                    <button type="submit" class="addContactButton">Create Contact <img class="check"
-                        src="./contact-assets/img/check.png" alt=""></button>
+                      <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel</button>
+                      <button type="submit" class="addContactButton">Create Contact</button>
                   </div>
-                </form>
+              </form>
+              
               </div>
             </div>
           </div>
@@ -163,6 +161,7 @@
                 <span id="letterForPopUp" class="letter_For_PopUp"></span>
               </div>
               <div class="contact_input">
+                
                 <form class="form" id="editContactForm" onsubmit="modifyContact()">
                   <input required="" id="editName" placeholder="Name" type="text">
                   <input required="" id="editEmail" placeholder="Email" type="email">

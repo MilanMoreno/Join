@@ -1,4 +1,4 @@
-main{
+main, body{
   overflow-x: hidden;
 }
 
@@ -25,6 +25,7 @@ main{
 }
 
 .addTask:hover {
+  cursor: pointer;
   background-color: #29abe2;
   border: 1px solid #29abe2;
   width: 160px;
@@ -89,6 +90,10 @@ main{
 
 .taskSearch {
   height: 17.58px;
+}
+
+.taskSearch:hover{
+  cursor: pointer;
 }
 
 .headerRight {
@@ -310,6 +315,14 @@ main{
 
 .plusImgMobile{
   display: none;
+  box-sizing: unset;
+  height: 25px;
+  width: 25px;
+}
+
+.plusImg{
+  height: 25px;
+  width: 25px;
 }
 
 .subTaskList{
@@ -319,8 +332,11 @@ main{
   border-radius: 8px;
   font-size: 14px;
   padding-block: 4px;
-  padding-inline-start: 16px;
   height: 28px;
+}
+
+.subTaskList p {
+  padding-inline-start: 16px;
 }
 
 .subTaskLeft{

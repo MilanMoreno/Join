@@ -71,4 +71,3 @@ function hideModal(bgPopUp, popUp, sideBar, header) {
     header.classList.remove('stretch');
 }
 
-

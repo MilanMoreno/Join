@@ -54,7 +54,7 @@ h2 {
 
 .content-section {
   flex: 1;
-  height: 88vh;
+  height: 88vh;  
   padding: 0px 25px 0 5px
 }
 
@@ -147,9 +147,6 @@ h2 {
   opacity: 0;
 }
 
-.bg-focus {
-  background-color: #091931;
-}
 
 .bg-popUp {
   z-index: 1;
