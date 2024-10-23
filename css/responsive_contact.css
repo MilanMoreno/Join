@@ -134,9 +134,8 @@
     }
 
     .closeMobile {
-        height: 40px;
-        width: 40px;
-    
+        height: 48px;
+        width: 48px;
     }
 
     .letter_For_PopUp {
@@ -180,7 +179,6 @@
 
 .closeMobile {
     object-fit: cover;
-
 }
 
 .closeMobile:hover {
@@ -197,7 +195,7 @@
 }
 
 
-@media (max-width: 316px) {
+@media (max-width: 326px) {
     #content-area {
         font-size: 98%; 
     }
