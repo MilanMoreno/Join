@@ -138,7 +138,7 @@ h2 {
 .popUp.slide-out {
   animation: slideOut 0.5s forwards;
 }
-
+ 
 .bg-popUp.show {
   opacity: 1;
 }
