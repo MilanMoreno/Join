@@ -20,7 +20,8 @@ let positionID = ""
 
 
 async function addTask(event) {
-  if (event) event.preventDefault();
+  checkRequired();
+  // if (event) event.preventDefault();
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox]};
   await postData(task.Title, task);
@@ -28,6 +29,40 @@ async function addTask(event) {
   goToBoard();
   }
 }
+
+function checkRequired(){
+  let titleR = document.getElementById("addTasktitleInput");
+  let dateR = document.getElementById("addTaskDate");
+  let categoryR = document.getElementById("addTaskCategory");
+  resetRequired();
+  if (titleR.value === ""){
+    document.getElementById("requiredTitle").classList.remove("d-none");
+    titleR.classList.add ("outlineRed");
+    event.preventDefault();
+  } else if (dateR.value === ""){
+    document.getElementById("requiredDate").classList.remove("d-none")
+    dateR.classList.add ("outlineRed");
+    event.preventDefault();
+  } else if (categoryR.value === ""){
+    document.getElementById("requiredCat").classList.remove("d-none");
+    categoryR.classList.add ("outlineRed");
+    event.preventDefault();
+} else {addTask();}}
+
+
+function resetRequired(){
+  let titleR = document.getElementById("addTasktitleInput");
+  let dateR = document.getElementById("addTaskDate");
+  let categoryR = document.getElementById("addTaskCategory");
+  if (titleR.classList.contains('outlineRed')) {
+    document.getElementById("requiredTitle").classList.add("d-none");
+    titleR.classList.remove ("outlineRed");} else if (dateR.classList.contains('outlineRed')) {
+      document.getElementById("requiredDate").classList.add("d-none");
+      dateR.classList.remove ("outlineRed");} else if (categoryR.classList.contains('outlineRed')) {
+        document.getElementById("requiredCat").classList.add("d-none");
+        categoryR.classList.remove ("outlineRed");}
+}
+
 
 function goToBoard(){
   window.location.href = 'http://127.0.0.1:5500/board.html';

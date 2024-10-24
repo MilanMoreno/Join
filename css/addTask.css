@@ -53,7 +53,7 @@
   padding-inline: 21px;
   padding-block: 12px;
   border: 1px solid #d1d1d1;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   margin-top: 4px;
   font-size: 20px;
 }
@@ -68,7 +68,7 @@
   padding-inline: 21px;
   padding-block: 12px;
   border: 1px solid #d1d1d1;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   margin-top: 4px;
   font-size: 20px;
 }
@@ -110,7 +110,7 @@
   border-radius: 10px;
   background-color: #ffffff;
   border: 1px solid #d1d1d1;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   margin-top: 4px;
   font-size: 20px;
 }
@@ -308,6 +308,21 @@
 .fixed-header {
   position: sticky;
   top: 0;
+}
+
+.required{
+  font-size: 14px;
+  color: #FF8190;
+  margin-top: -20px!important;
+  margin-bottom: 3px!important;
+}
+
+.outlineRed{
+  border: 1px solid #FF8190!important;
+}
+
+#addTasktitleInput, #addTaskDate, #addTaskCategory{
+  margin-bottom: 25px;
 }
 
 .assingedInput {
