@@ -45,7 +45,7 @@ function categorizeContacts(contactData) {
         groups[firstLetter].push({ id, ...contactData[id] });
         return groups;
     }, {});
-    Object.keys(organizedContacts).forEach(letter => 
+    Object.keys(organizedContacts).forEach(letter =>
         organizedContacts[letter].sort((a, b) => a.name.localeCompare(b.name))
     );
     return organizedContacts;
@@ -99,7 +99,7 @@ function setEditPopupContent(root) {
     document.getElementById('editName').value = root['name'];
     document.getElementById('editEmail').value = root['email'];
     document.getElementById('editTel').value = root['telefonnummer'];
-    
+
 }
 
 
@@ -113,84 +113,34 @@ function applyBackgroundColor(contactId) {
 }
 
 
-function createNewContact() {
-    preventFormSubmit('new');
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let tel = document.getElementById('tel');
-    
+document.getElementById('tel').addEventListener('input', function (e) {
+    const input = e.target;
+
+    input.value = input.value.replace(/[^0-9+]/g, '');
+});
+
+function createNewContact(event) {
+    event.preventDefault();
+
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let tel = document.getElementById('tel').value;
+
+    if (!/^[0-9+]+$/.test(tel)) {
+        alert('Please enter a valid phone number containing only numbers and the "+" sign.');
+        return;
+    }
+
     const nextColor = selectNextColor();
     let data = {
-        'name': name.value,
-        'email': email.value,
-        'telefonnummer': tel.value,
+        'name': name,
+        'email': email,
+        'telefonnummer': tel,
         'color': nextColor
     };
     contactList.push(data);
     submitContact('contact');
 }
-
-
-function generateColorPalette(numberColors) {
-    const availableColors = [];
-    const hexValuesForColor = '0123456789ABCDEF';
-    const textContrastLevel = 40;
-    for (let i = 0; i < numberColors; i++) {
-        let color;
-        let brightness;
-        do {
-            color = '#';
-            for (let j = 0; j < 6; j++) {
-                color += hexValuesForColor[Math.floor(Math.random() * 16)];
-            }
-            brightness = calculateBrightness(color);
-        } while (brightness < textContrastLevel);
-        availableColors.push(color);
-    }
-    return availableColors;
-}
-
-
-function calculateBrightness(color) {
-    let hex = color.substring(1);
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    const [h, s, l] = rgbToHsl(r, g, b);
-    return l;
-}
-
-
-function rgbToHsl(r, g, b) {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-    if (max === min) {
-        h = s = 0;
-    } else {
-        const d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-    }
-    return [h * 360, s * 100, l * 100];
-}
-
-
-function selectNextColor() {
-    const color = availableColors[colorCounter % availableColors.length];
-    colorCounter++;
-    updateColorCounter();
-    return color;
-}
-
 
 async function submitContact(path) {
     for (let index = 0; index < contactList.length; index++) {
@@ -240,18 +190,18 @@ function saveHighlight() {
 
 
 function applyNewContactHighlight() {
-    let serializedContact = localStorage.getItem('highlightKey')
+    let serializedContact = localStorage.getItem('highlightKey');
     if (serializedContact === null) {
-        return
-    } else
-        selectedContact = JSON.parse(serializedContact)
-    console.log(selectedContact)
+        return;
+    } else {
+        selectedContact = JSON.parse(serializedContact);
+    }
+    console.log(selectedContact);
     currentEditKey = findContactInStoredData();
     showDetailedContact(currentEditKey);
-    localStorage.clear();
+    localStorage.removeItem('highlightKey');
     scrollToNewContact();
 }
-
 
 function findContactInStoredData() {
     let contactData = storedData[0]
@@ -271,11 +221,28 @@ function scrollToNewContact() {
     });
 }
 
+document.getElementById('editTel').addEventListener('input', function (e) {
+    const input = e.target;
 
-async function modifyContact() {
-    preventFormSubmit('update');
+    input.value = input.value[0] === '+'
+        ? '+' + input.value.slice(1).replace(/[^0-9]/g, '')
+        : input.value.replace(/[^0-9]/g, '');
+});
+
+async function modifyContact(event) {
+    event.preventDefault();
+
+    let name = document.getElementById('editName').value;
+    let email = document.getElementById('editEmail').value;
+    let tel = document.getElementById('editTel').value;
+    if (!/^(\+?[0-9]+)$/.test(tel)) {
+        alert('Please enter a valid phone number. The number can start with "+" followed by digits.');
+        return;
+    }
+
     contactList.length = 0;
     contactList.push(modifyContactDetails());
+
     const response = await fetch(`${BASE_URL}contact/${currentEditKey}.json`, {
         method: "PATCH",
         headers: {
@@ -283,22 +250,25 @@ async function modifyContact() {
         },
         body: JSON.stringify(contactList[0]),
     });
-    window.location.reload();
-}
 
+    if (response.ok) {
+        window.location.reload();
+    } else {
+        console.error('Failed to save contact');
+    }
+}
 
 function modifyContactDetails() {
     let name = document.getElementById('editName');
     let email = document.getElementById('editEmail');
     let tel = document.getElementById('editTel');
 
-    let data =
-    {
+    let data = {
         'name': name.value,
         'email': email.value,
         'telefonnummer': tel.value
-     
     };
+
     return data;
 }
 
