@@ -248,7 +248,7 @@ function applyNewContactHighlight() {
     console.log(selectedContact)
     currentEditKey = findContactInStoredData();
     showDetailedContact(currentEditKey);
-    localStorage.clear();
+    localStorage.removeItem('highlightKey');
     scrollToNewContact();
 }
 
