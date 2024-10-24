@@ -134,8 +134,8 @@
     }
 
     .closeMobile {
-        height: 48px;
-        width: 48px;
+        height: 40px;
+        width: 40px;
     }
 
     .letter_For_PopUp {
@@ -235,7 +235,7 @@
 @media (max-width: 500px) {
 
     h2, h4 {
-        font-size: 98%;
+        font-size: 22px;
     }
 
     .contacts, .form, .popUp, .contact_button {
@@ -257,3 +257,19 @@
 
     
 }
+
+
+
+
+.h2-btnContactsResp {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+
+
+  @media (max-width: 800px) {
+    .h2-btnContactsResp {
+        border-bottom: solid 2px rgb(41, 171, 226);
+        padding-bottom: 12px;
+    }}
