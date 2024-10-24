@@ -354,7 +354,7 @@ function openClosePopUp(param, key) {
     let target = validatePopUp(key);
     let bgPopUp = document.getElementById(target);
     let popUp = bgPopUp.querySelector('.popUp');
-    let sideBar = document.getElementById('Sidebar');
+    let sideBar = document.getElementById('.sidebar');
     let header = document.getElementById('header');
     if (param === 'open') {
         showModal(bgPopUp, popUp, sideBar, header);
@@ -363,8 +363,8 @@ function openClosePopUp(param, key) {
     } else {
         param.stopPropagation();
     }
-}
 
+}
 
 function validatePopUp(key) {
     return key ? 'EditModalBackground' : 'modalBackground';
