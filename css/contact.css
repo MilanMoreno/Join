@@ -34,8 +34,8 @@ h2 {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 0px;
+  height: 0px;
 }
 
 ::-webkit-scrollbar-track {
@@ -536,3 +536,9 @@ h4 {
             background-color: #ddd;
         }
 
+        @media (min-width: 1020px) and (max-width: 1230px) {
+          .popUp {
+              padding-left: 15%;
+          }
+      }
+      
