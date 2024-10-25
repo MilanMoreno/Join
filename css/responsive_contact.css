@@ -61,10 +61,7 @@
         display: none;
     }
 
-    .position-fixed {
-        position: fixed;
-        top: 12vh;
-    }
+  
 
     .popUp {
         flex-direction: column;

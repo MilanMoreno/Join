@@ -165,8 +165,8 @@ h2 {
 }
 
 .popUp {
-  height: 50vh;
-  width: 60vw;
+  height: 55vh;
+  width: 62vw;
   border-radius: 24px;
   z-index: 2;
   display: flex;
