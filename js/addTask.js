@@ -1,5 +1,29 @@
 let BASE_Url = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
+let taskA = []
+
+
+async function loadTask() {
+  try {
+    const response = await fetch(`${BASE_Url}.json`);
+    if (!response.ok) {
+      throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
+    }
+    const taskData = await response.json();
+    if (!taskData) {
+      console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
+      return;
+    }
+    taskA.length = 0;
+    for (const key in taskData) {
+      if (taskData.hasOwnProperty(key)) {
+        taskA.push(taskData[key]);
+      }
+    }
+  } catch (error) {
+    console.error("Fehler beim Laden der Daten:", error);
+  }
+}
 
 function renderAddTask() {
   let contentSection = document.getElementById("addTaskSide");
@@ -19,12 +43,14 @@ let selectedCheckboxes = [];
 let positionID = ""
 
 
-async function addTask(event) {
-  checkRequired();
-  // if (event) event.preventDefault();
+async function addTaskSummit() {
+  event.preventDefault()
+  await loadTask();
+  let id = taskA.length;
+  if(!checkRequired()) {event.preventDefault(); return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
-  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox]};
-  await postData(task.Title, task);
+  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox], ID: id};
+  await postData(task.Title, task, id);
   showConfirmationMessage();
   goToBoard();
   }
@@ -38,16 +64,19 @@ function checkRequired(){
   if (titleR.value === ""){
     document.getElementById("requiredTitle").classList.remove("d-none");
     titleR.classList.add ("outlineRed");
-    event.preventDefault();
+    return false
+    
   } else if (dateR.value === ""){
     document.getElementById("requiredDate").classList.remove("d-none")
     dateR.classList.add ("outlineRed");
-    event.preventDefault();
+    return false;
+    
   } else if (categoryR.value === ""){
     document.getElementById("requiredCat").classList.remove("d-none");
     categoryR.classList.add ("outlineRed");
-    event.preventDefault();
-} else {addTask();}}
+    return false
+    
+} else {return true}}
 
 
 function resetRequired(){
@@ -65,19 +94,20 @@ function resetRequired(){
 
 
 function goToBoard(){
-  window.location.href = 'http://127.0.0.1:5500/board.html';
+  window.location.href = './board.html';
 }
 
-function addTaskPopup(positionId) {
+async function addTaskPopup(positionId) {
+  if (!checkRequired()) {return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
     positionID = positionId
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
-  postData(task.Title, task);
+  await postData(task.Title, task);
   showConfirmationMessage();
-  loadTask();
   closePopUp();
-  closeDetailCardX();}
+  closeDetailCardX();
+  await loadTasks();}
 }
 
 
@@ -248,7 +278,7 @@ function deleteSubTask(index) {
 
 function fillsubtask(id){
   let subTasks = ""
-  if (id === "undefined"){subTask = ""} else {
+  if (id === "undefined"){subTask = ""} else if (task[id].Subtask && task[id].Subtask[0]){
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
     const element = task[id].Subtask[0][index];
     const check = task[id].checkboxState[0][index];
@@ -325,7 +355,7 @@ function checkboxHelp(id){
 }
 
 //Firebase
-async function postData(path = "", data = {}) {
+async function postData(path = "", data = {}, id) {
   const title = data.Title;
   path = title;
   if (event) event.preventDefault();

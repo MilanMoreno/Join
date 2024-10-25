@@ -2,7 +2,7 @@ let task = [];
 let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
 
-async function loadTask() {
+async function loadTasks() {
   try {
     const response = await fetch(`${BASE_URL}.json`);
     if (!response.ok) {
