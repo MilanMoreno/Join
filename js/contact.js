@@ -328,12 +328,11 @@ function openClosePopUp(param, key) {
     let target = validatePopUp(key);
     let bgPopUp = document.getElementById(target);
     let popUp = bgPopUp.querySelector('.popUp');
-    let sideBar = document.getElementById('.sidebar');
     let header = document.getElementById('header');
     if (param === 'open') {
-        showModal(bgPopUp, popUp, sideBar, header);
+        showModal(bgPopUp, popUp, header);
     } else if (param === 'close') {
-        hideModal(bgPopUp, popUp, sideBar, header)
+        hideModal(bgPopUp, popUp, header)
     } else {
         param.stopPropagation();
     }

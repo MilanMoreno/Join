@@ -50,16 +50,15 @@ window.onclick = function (event) {
     }
 }
 
-function showModal(PopUpBgElement, show, sideBar, header) {
+function showModal(PopUpBgElement, show, header) {
     PopUpBgElement.classList.remove('displayNone', 'hide');
     PopUpBgElement.classList.add('show');
     show.classList.remove('slide-out');
     show.classList.add('slide-in');
-    sideBar.classList.add('displayNone');
     header.classList.add('stretch');
 }
 
-function hideModal(bgPopUp, popUp, sideBar, header) {
+function hideModal(bgPopUp, popUp, header) {
     popUp.classList.remove('slide-in');
     popUp.classList.add('slide-out');
     bgPopUp.classList.remove('show');
@@ -67,7 +66,6 @@ function hideModal(bgPopUp, popUp, sideBar, header) {
     setTimeout(() => {
         bgPopUp.classList.add('displayNone');
     }, 500);
-    sideBar.classList.remove('displayNone')
     header.classList.remove('stretch');
 }
 
