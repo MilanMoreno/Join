@@ -132,3 +132,80 @@ function rgbToHsl(r, g, b) {
     }
     return [h * 360, s * 100, l * 100];
 }
+
+
+
+
+function createNewContact(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let tel = document.getElementById('tel').value;
+
+    resetErrorMessages();
+
+    let isValid = true;
+
+    if (!validateName(name)) {
+        showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
+        isValid = false;
+    }
+
+    if (!validateEmail(email)) {
+        showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
+        isValid = false;
+    }
+
+    if (!validatePhoneNumber(tel)) {
+        showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
+        isValid = false;
+    }
+
+    if (isValid) {
+        const nextColor = selectNextColor();
+        let data = {
+            'name': name,
+            'email': email,
+            'telefonnummer': tel,
+            'color': nextColor
+        };
+        contactList.push(data);
+        submitContact('contact');
+    }
+}
+
+function validateName(name) {
+    const namePattern = /^[A-Za-zÄÖÜäöüß]+(?: [A-Za-zÄÖÜäöüß]+)*$/;
+    return name.length >= 2 && namePattern.test(name);
+}
+
+function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return emailPattern.test(email);
+}
+
+
+function validatePhoneNumber(phoneNumber) {
+    const phonePattern = /^\+[0-9]+$/;
+    return phonePattern.test(phoneNumber);
+}
+
+
+function showErrorMessage(errorElementId, message) {
+    const errorElement = document.getElementById(errorElementId);
+    errorElement.innerText = message;
+    errorElement.style.color = 'red';
+    errorElement.style.display = 'block';
+}
+
+
+function resetErrorMessages() {
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(element => {
+        element.innerText = '';
+        element.style.display = 'none';
+    });
+}
+

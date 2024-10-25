@@ -45,7 +45,7 @@ function categorizeContacts(contactData) {
         groups[firstLetter].push({ id, ...contactData[id] });
         return groups;
     }, {});
-    Object.keys(organizedContacts).forEach(letter => 
+    Object.keys(organizedContacts).forEach(letter =>
         organizedContacts[letter].sort((a, b) => a.name.localeCompare(b.name))
     );
     return organizedContacts;
@@ -99,7 +99,7 @@ function setEditPopupContent(root) {
     document.getElementById('editName').value = root['name'];
     document.getElementById('editEmail').value = root['email'];
     document.getElementById('editTel').value = root['telefonnummer'];
-    
+
 }
 
 
@@ -110,33 +110,6 @@ function applyBackgroundColor(contactId) {
         let contactShade = root.color || getRandomHexColor();
         profileLetterElement.style.backgroundColor = contactShade;
     }
-}
-
-
-function createNewContact() {
-    preventFormSubmit('new');
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let tel = document.getElementById('tel');
-    if (!validatePhoneNumber(tel.value)) {
-        alert("Please enter a valid telephone number (starting with + and only numbers).");
-        return;
-    }
-    const nextColor = selectNextColor();
-    let data = {
-        'name': name.value,
-        'email': email.value,
-        'telefonnummer': tel.value,
-        'color': nextColor
-    };
-    contactList.push(data);
-    submitContact('contact');
-}
-
-
-function validatePhoneNumber(phoneNumber) {
-    const phonePattern = /^\+[0-9]+$/;
-    return phonePattern.test(phoneNumber);
 }
 
 
@@ -286,18 +259,19 @@ async function modifyContact() {
     if (!validatePhoneNumber(tel.value)) {
         alert("Please enter a valid telephone number (starting with + and only numbers).");
         return;
-    }else{
-    preventFormSubmit('update');
-    contactList.length = 0;
-    contactList.push(modifyContactDetails());
-    const response = await fetch(`${BASE_URL}contact/${currentEditKey}.json`, {
-        method: "PUT",
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(contactList[0]),
-    });
-    window.location.reload();}
+    } else {
+        preventFormSubmit('update');
+        contactList.length = 0;
+        contactList.push(modifyContactDetails());
+        const response = await fetch(`${BASE_URL}contact/${currentEditKey}.json`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(contactList[0]),
+        });
+        window.location.reload();
+    }
 }
 
 
@@ -311,7 +285,7 @@ function modifyContactDetails() {
         'name': name.value,
         'email': email.value,
         'telefonnummer': tel.value
-     
+
     };
     return data;
 }
@@ -354,7 +328,7 @@ function openClosePopUp(param, key) {
     let target = validatePopUp(key);
     let bgPopUp = document.getElementById(target);
     let popUp = bgPopUp.querySelector('.popUp');
-    let sideBar = document.getElementById('Sidebar');
+    let sideBar = document.getElementById('.sidebar');
     let header = document.getElementById('header');
     if (param === 'open') {
         showModal(bgPopUp, popUp, sideBar, header);
@@ -363,8 +337,8 @@ function openClosePopUp(param, key) {
     } else {
         param.stopPropagation();
     }
-}
 
+}
 
 function validatePopUp(key) {
     return key ? 'EditModalBackground' : 'modalBackground';
