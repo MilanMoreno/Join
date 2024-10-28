@@ -171,7 +171,7 @@ function fillAddTaskSection(positionId) {
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
-            <input id="addTasktitleInput" type="text" placeholder="Enter a title" required>
+            <input id="addTasktitleInput" type="text" placeholder="Enter a title" >
             <p id="requiredTitle" class="required d-none">This field is required</p>
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
@@ -183,7 +183,7 @@ function fillAddTaskSection(positionId) {
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" required>
+            <input type="date" name="Date" id="addTaskDate" >
             <p id="requiredDate" class="required d-none">This field is required</p>
             <p>Prio</p>
             <div class="d-flex d-space">
@@ -191,7 +191,7 @@ function fillAddTaskSection(positionId) {
                 <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-           <select name="Category" id="addTaskCategory" required>
+           <select name="Category" id="addTaskCategory" >
                 <option value="">Select task Category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
@@ -245,7 +245,7 @@ function fillEditTaskSection(
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
-            <input id="addTasktitleInput" type="text" placeholder="Enter a title" value="${titleId}" required>
+            <input id="addTasktitleInput" type="text" placeholder="Enter a title" value="${titleId}" >
             <p id="requiredTitle" class="required d-none">This field is required</p>
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription" >${Description}</textarea>
@@ -257,7 +257,7 @@ function fillEditTaskSection(
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" value="${dueDate}" required>
+            <input type="date" name="Date" id="addTaskDate" value="${dueDate}" >
             <p id="requiredDate" class="required d-none">This field is required</p>
             <p>Prio</p>
             <div class="d-flex d-space">
@@ -265,7 +265,7 @@ function fillEditTaskSection(
                 <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-           <select name="Category" id="addTaskCategory" required>
+           <select name="Category" id="addTaskCategory" >
                 <option value="${category}">${category}</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
