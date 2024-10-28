@@ -273,3 +273,12 @@
         border-bottom: solid 2px rgb(41, 171, 226);
         padding-bottom: 12px;
     }}
+
+
+    
+    @media (min-width: 1020px) and (max-width: 1230px) {
+        .popUp {
+            padding-left: 15%;
+        }
+    }
+    
