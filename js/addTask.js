@@ -98,6 +98,7 @@ function goToBoard(){
 }
 
 async function addTaskPopup(positionId) {
+  event.preventDefault()
   if (!checkRequired()) {return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
     positionID = positionId
