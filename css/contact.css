@@ -535,10 +535,3 @@ h4 {
         #editDeleteMenu a:hover {
             background-color: #ddd;
         }
-
-        @media (min-width: 1020px) and (max-width: 1230px) {
-          .popUp {
-              padding-left: 15%;
-          }
-      }
-      
