@@ -47,7 +47,7 @@ async function addTaskSummit() {
   event.preventDefault()
   await loadTask();
   let id = taskA.length;
-  if(!checkRequired()) {event.preventDefault(); return;}
+  if(!checkRequired()) { return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox], ID: id};
   await postData(task.Title, task, id);
