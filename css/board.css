@@ -11,6 +11,12 @@ main, body{
   overflow-x: hidden;
 }
 
+.content-section{
+  margin-top: 110px;
+  margin-left: 91px;
+  margin-right: 110px;
+}
+
 .addTask {
   display: flex;
   background-color: #2a3647;
@@ -44,7 +50,6 @@ main, body{
 .header {
   align-items: center;
   justify-content: space-between;
-  padding-inline: 84.4785px;
 }
 
 .findTask {
@@ -102,7 +107,6 @@ main, body{
 }
 
 .columnHeadLine {
-  padding-inline: 84.4785px;
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 16px;
@@ -130,8 +134,11 @@ main, body{
 }
 
 .taskCoulumn {
-  padding-inline: 84.4785px;
   justify-content: space-between;
+}
+
+.headerMobile{
+  margin: 0;
 }
 
 .noTask {
@@ -415,15 +422,15 @@ main, body{
   }
 
   .header {
-    padding-inline: 16px;
+ 
   }
 
   .columnHeadLine {
-    padding-inline: 16px;
+ 
   }
 
   .mobileSearch {
-    padding-inline: 16px;
+ 
     padding-bottom: 24px;
   }
 
@@ -437,6 +444,12 @@ main, body{
 
   .headerMobile {
     font-size: 47px;
+  }
+  
+  .content-section{
+    min-width: 246px;
+    margin-inline: 16px; 
+    margin-top: 40px;
   }
 }
 
@@ -452,6 +465,9 @@ main, body{
   .noTask {
     max-width: 100%;
   }
+
+  
+
 }
 
 .mobile-logo {
