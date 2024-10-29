@@ -363,3 +363,4 @@ async function removeContact(path = 'contact', id) {
         console.error('Löschfehler des Kontakts:', error.message);
     }
 }
+

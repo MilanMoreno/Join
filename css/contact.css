@@ -31,10 +31,11 @@ h2 {
   flex-direction: column;
   padding: 0 12px 0 12px 0;
   padding: 0 12px 0 12px;
+  overflow-y: auto; 
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 2px;
   height: 0px;
 }
 
@@ -535,3 +536,4 @@ h4 {
         #editDeleteMenu a:hover {
             background-color: #ddd;
         }
+
