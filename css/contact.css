@@ -35,7 +35,7 @@ h2 {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 6px;
   height: 0px;
 }
 
@@ -353,6 +353,7 @@ h2 {
   gap: 12px;
   padding: 12px 12px 12px 12px;
   border-radius: 12px;
+  padding-bottom: 30px;
 }
 
 .one_letter {
