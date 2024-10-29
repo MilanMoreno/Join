@@ -100,6 +100,8 @@ function createNewContact(event) {
     }
 
     if (isValid) {
+        let button = document.getElementById("createSubmit");
+        button.disabled = true;
         const nextColor = selectNextColor();
         let data = {
             'name': name,
@@ -109,6 +111,7 @@ function createNewContact(event) {
         };
         contactList.push(data);
         submitContact('contact');
+        openClosePopUp('close');
     }
 }
 
@@ -162,7 +165,7 @@ function validatePhoneField() {
 function validatePhoneFieldBlur() {
     let tel = document.getElementById('tel').value;
     if (!validatePhoneNumber(tel)) {
-        showErrorMessage('phoneError', "Bitte schreiben Sie die korrekte Telefonnummer.");
+        showErrorMessage('phoneError', "Bitte schreiben Sie die korrekte Telefonnummer beginnend mit einem +.");
     } else {
         hideErrorMessage('phoneError');
     }
@@ -193,7 +196,6 @@ function showErrorMessage(errorElementId, message) {
 function hideErrorMessage(errorElementId) {
     const errorElement = document.getElementById(errorElementId);
     errorElement.innerText = '';
-    errorElement.style.display = 'none';
 }
 
 function resetErrorMessages() {
@@ -297,6 +299,8 @@ async function modifyContact(event) {
     }
 
     if (isValid) {
+        let button = document.getElementById("editSubmit");
+        button.disabled = true;
         preventFormSubmit('update');
         contactList.length = 0;
         contactList.push(modifyContactDetails());
@@ -307,7 +311,7 @@ async function modifyContact(event) {
             },
             body: JSON.stringify(contactList[0]),
         });
-        window.location.reload();
+        fetchData();
     }
 
 }
@@ -353,7 +357,8 @@ async function removeContact(path = 'contact', id) {
         if (!response.ok) {
             throw new Error('Löschfehler des Kontakts');
         }
-        window.location.reload();
+        fetchData();
+        currentEditKey = null;
     } catch (error) {
         console.error('Löschfehler des Kontakts:', error.message);
     }

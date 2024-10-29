@@ -6,7 +6,6 @@ async function deleteTask(id) {
           headers: {'Content-Type': 'application/json'}
       });
       if (response.ok) {
-          console.log(`Task ${id} wurde erfolgreich gelöscht.`);
           location.reload();
       } else {console.error('Fehler beim Löschen des Tasks:', response.statusText);}
   } catch (error) {
@@ -56,7 +55,6 @@ async function deleteForEdit(path) {
           headers: {'Content-Type': 'application/json'}
       });
       if (response.ok) {
-          console.log(`Task ${id} wurde erfolgreich gelöscht.`);
           location.reload();
       } else {console.error('Fehler beim Löschen des Tasks:', response.statusText);}
   } catch (error) {
@@ -66,6 +64,8 @@ async function deleteForEdit(path) {
 
 
  async function editTaskPopup(positionID){
+    let button = document.getElementById("editTaskButton");
+    button.disabled = true;
     let newTask = document.getElementById("addTasktitleInput");
     if (oldTask[0] === newTask.value){
     await addTaskPopup(positionID);} else {

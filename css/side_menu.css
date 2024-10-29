@@ -71,7 +71,6 @@ nav {
 
 .bottom-menu-link a:hover {
   color: var(--highlight-color);
-  font-weight: 700;
   background-color: transparent;
 }
 

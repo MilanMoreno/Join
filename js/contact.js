@@ -187,13 +187,12 @@ async function submitContact(path) {
             body: JSON.stringify(element)
         });
         if (response.ok) {
-            console.log('Contact saved successfully');
             updateColorCounter();
         } else {
             console.error('Failed to save contact');
         }
     }
-    window.location.reload();
+    fetchData();
 }
 
 
@@ -209,7 +208,6 @@ function updateColorCounter() {
             if (!response.ok) {
                 throw new Error('Failed to update color index');
             }
-            console.log('Color index updated successfully');
         })
         .catch(error => console.error('Error updating color index:', error));
 }
@@ -227,7 +225,6 @@ function applyNewContactHighlight() {
         return
     } else
         selectedContact = JSON.parse(serializedContact)
-    console.log(selectedContact)
     currentEditKey = findContactInStoredData();
     showDetailedContact(currentEditKey);
     localStorage.removeItem('highlightKey');

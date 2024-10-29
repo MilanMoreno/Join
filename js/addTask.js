@@ -44,11 +44,13 @@ let positionID = ""
 
 
 async function addTaskSummit() {
+  let button =  document.getElementById("submitButton");
   event.preventDefault()
   await loadTask();
   let id = taskA.length;
   if(!checkRequired()) { return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+    button.disabled = true;
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox], ID: id};
   await postData(task.Title, task, id);
   showConfirmationMessage();
@@ -98,9 +100,11 @@ function goToBoard(){
 }
 
 async function addTaskPopup(positionId) {
+  let button = document.getElementById("addTaskPopupButton")
   event.preventDefault()
   if (!checkRequired()) {return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+    button.disabled = true;
     positionID = positionId
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
@@ -402,7 +406,6 @@ async function addTask(event) {
       body: JSON.stringify(task),
     });
     if (response.ok) {
-      console.log("Task wurde erfolgreich hinzugefügt.");
     } else {
       console.error("Fehler beim Hinzufügen der Aufgabe:", response.status);
     }

@@ -216,7 +216,7 @@ function fillAddTaskSection(positionId) {
             </div>
             <div class="addTaskSubmit d-flex d-space">
                 <button onclick="fillAddTaskPopUp()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button onclick="addTaskPopup('${positionId}')" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button id="addTaskPopupButton" onclick="addTaskPopup('${positionId}')" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -289,7 +289,7 @@ function fillEditTaskSection(
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
             <div class="addTaskSubmit d-flex d-space">
-                <button onclick="editTaskPopup('${positionID}')" class="createTask d-flex" >Edit Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button id="editTaskButton" onclick="editTaskPopup('${positionID}')" class="createTask d-flex" >Edit Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
