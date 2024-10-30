@@ -21,7 +21,7 @@ async function handleSignUp(event) {
     let newUser = buildUserObject();
     if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
         showSuccessMessage();
-    }
+    } 
 }
 
 async function checkEmailAvailability(usersArray, email) {
