@@ -8,6 +8,7 @@ const availableColors = generateColorPalette(20);
 
 
 async function fetchData() {
+    storedData = [];
     try {
         let returnValue = await fetch(BASE_URL + '.json');
         let returnValueAsJson = await returnValue.json();
@@ -78,8 +79,10 @@ function getInitials(name) {
     return name.split(' ').map(word => word.charAt(0).toUpperCase()).join(' ');
 }
 
+let saveId = ""
 
 function showDetailedContact(contactId) {
+    saveId = contactId;
     let root = storedData[0][contactId];
     if (currentEditKey !== null) {
         document.getElementById(currentEditKey).classList.remove('blueBackground');
@@ -91,6 +94,11 @@ function showDetailedContact(contactId) {
     setEditPopupContent(root);
     checkScreenSize();
     applyBackgroundColor(contactId);
+}
+
+
+function updateDetail(){
+    showDetailedContact(`${saveId}`);
 }
 
 

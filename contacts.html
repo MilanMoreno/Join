@@ -177,20 +177,20 @@
 
 
                 <form class="form" id="editContactForm" onsubmit="modifyContact(event)">
-                  <input id="editName" placeholder="Name" type="text" onblur="validateEditNameFieldBlur()">
+                  <input id="editName" placeholder="Name" type="text" onblur="validateEditNameFieldBlur()" oninput="checkFormFields()">
                   <div id="editNameError" class="error-message"></div>
               
-                  <input id="editEmail" placeholder="Email" type="email" onblur="validateEditEmailFieldBlur()">
+                  <input id="editEmail" placeholder="Email" type="email" onblur="validateEditEmailFieldBlur()" oninput="checkFormFields()">
                   <div id="editEmailError" class="error-message"></div>
               
-                  <input id="editTel" placeholder="Phone" type="tel" onblur="validateEditPhoneFieldBlur()">
+                  <input id="editTel" placeholder="Phone" type="tel" onblur="validateEditPhoneFieldBlur()" oninput="checkFormFields()">
                   <div id="editPhoneError" class="error-message"></div>
               
                   <div class="contact_button">
                       <button onclick="removeContact('contact', keyForEdit)" type="button" class="cancel-Button">
                           Delete <img src="./contact-assets/img/close.png" alt="">
                       </button>
-                      <button id="editSubmit" type="submit" class="addContactButton">
+                      <button id="editSubmit" type="submit" class="addContactButton" >
                           Save <img class="check" src="./contact-assets/img/check.png" alt="">
                       </button>
                   </div>

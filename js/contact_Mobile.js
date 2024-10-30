@@ -263,6 +263,14 @@ function validateEditPhoneFieldBlur() {
     }
 }
 
+function checkFormFields() {
+    const field1 = document.getElementById('editName').value.trim();
+    const field2 = document.getElementById('editEmail').value.trim();
+    const field3 = document.getElementById('editTel').value.trim();
+    const submitButton = document.getElementById('editSubmit');
+    submitButton.disabled = !(field1 && field2 && field3);
+  }
+
 function resetEditErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
     errorElements.forEach(element => {
@@ -311,7 +319,9 @@ async function modifyContact(event) {
             },
             body: JSON.stringify(contactList[0]),
         });
-        fetchData();
+        openClosePopUp('close', key = true);
+        await fetchData();
+        updateDetail();
     }
 
 }
