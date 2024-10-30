@@ -44,11 +44,13 @@ function showEditandDelete() {
 
 window.onclick = function (event) {
     var menu = document.getElementById("editDeleteMenu");
-    if (!event.target.matches('#options_edit_delete')) {
-        /*if (menu.style.display === "block") */{
-            menu.style.display = "none";
+    if(menu){
+        if (!event.target.matches('#options_edit_delete')) {
+            /*if (menu.style.display === "block") */{
+                menu.style.display = "none";
+            }
         }
-    }
+    } 
 }
 
 function showModal(PopUpBgElement, show, header) {

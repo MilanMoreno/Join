@@ -1,6 +1,6 @@
 h2 {
   border-right: solid 2px rgb(41, 171, 226);
-  font-size: xxx-large;
+  font-size: 61px;
   padding-right: 48px;
 }
 .fixed-header {
@@ -29,9 +29,10 @@ h2 {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 0 12px 0 12px 0;
+  align-items: center;
   padding: 0 12px 0 12px;
   overflow-y: auto; 
+  background-color: #FFFFFF;
 }
 
 ::-webkit-scrollbar {
@@ -56,7 +57,11 @@ h2 {
 .content-section {
   flex: 1;
   height: 88vh;
-  padding: 0px 25px 0 20px
+  padding: 110px 25px 0 55px; 
+}
+
+.h2Contacts{
+  margin: 0;
 }
 
 .moreAboutContent {
@@ -80,17 +85,19 @@ h2 {
   color: white;
   display: flex;
   align-items: center;
-  gap: 12px;
-  height: 40px;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
   border-radius: 12px;
-  font-size: larger;
-  padding: 8px 12px 8px 12px;
+  font-size: 21px;
+  font-weight: 700;
   border: none;
+  width: 352px;
 }
 
 .addContactButton img {
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
 }
 
 .addContactButton:hover {
@@ -166,10 +173,10 @@ h2 {
 }
 
 .popUp {
-  height: clamp(400px, 50vh, 900px);
-  width: 62vw;
+  height: 594px;
+  width: 1212px;
   border-radius: 24px;
-  z-index: 2;
+  z-index: 998;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -292,6 +299,10 @@ h2 {
   gap: 48px;
 }
 
+.text span{
+  font-size: 27px;
+}
+
 .contact_button {
   display: flex;
   align-items: center;
@@ -350,15 +361,16 @@ h2 {
 .contactCard {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 30px 12px 30px;
+  gap: 35px;
   border-radius: 12px;
-  padding-bottom: 30px;
+  width: 322px;
+  height: 78px;
+  padding-left: 30px;
 }
 
 .one_letter {
-  height: 70px;
-  width: 70px;
+  height: 42px;
+  width: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -378,6 +390,10 @@ h2 {
   gap: 4px;
 }
 
+.fullName-email span{
+  font-size: 20px;
+}
+
 .email {
   text-decoration: none;
   color: rgb(0, 124, 238);
@@ -385,8 +401,8 @@ h2 {
 }
 
 .single-letter {
-  height: 70px;
-  width: 70px;
+  height: 120px;
+  width: 120px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -404,10 +420,18 @@ h4 {
   font-size: 36px;
 }
 
+.contactInformation{
+  font-size: 20px;
+  height: 74px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
 .contact-profile {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 54px;
   padding: 24px 0 24px 0;
 }
 
@@ -541,3 +565,10 @@ h4 {
             background-color: #ddd;
         }
 
+
+        @media (max-width: 1024px){
+          .single-letter{
+            height: 80px;
+            width: 80px;
+          }
+        }

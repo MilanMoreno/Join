@@ -308,6 +308,7 @@ function contactInfoHtml(root, contactId) {
                 </div>
             </div>
         </div>
+        <span class="contactInformation">Contact Information</span>
         <div class="pers-info">
             <b>Email</b>
             <a href="#">${root['email']}</a>
