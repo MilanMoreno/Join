@@ -609,3 +609,10 @@ input:focus, textarea:focus, select:focus {
     font-size: 47px;
   }
 }
+
+
+@media (  max-height: 880px){
+  .addTaskFooter {
+    position: static;
+  }
+}
