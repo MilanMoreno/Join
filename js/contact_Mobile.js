@@ -271,6 +271,14 @@ function checkFormFields() {
     submitButton.disabled = !(field1 && field2 && field3);
   }
 
+  function checkFormFields2() {
+    const field1 = document.getElementById('name').value.trim();
+    const field2 = document.getElementById('email').value.trim();
+    const field3 = document.getElementById('tel').value.trim();
+    const submitButton = document.getElementById('createSubmit');
+    submitButton.disabled = !(field1 && field2 && field3);
+  }
+
 function resetEditErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
     errorElements.forEach(element => {
