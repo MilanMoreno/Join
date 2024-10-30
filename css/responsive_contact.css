@@ -49,8 +49,10 @@
 
 @media (max-width: 1000px) {
     .popUp {
-        width: 90vw;
-        height: 80vh;
+        width: 90%;
+        height: 65%;
+      /*  width: 90vw;
+        height: 80vh;*/
     }
 
     .bg-popUp {
@@ -154,6 +156,7 @@
 @media (max-width: 365px) {
     .content-section {
         font-size: smaller;
+        padding: 0px 14px 0px 14px;
     }
 
     .detailed_Content {
