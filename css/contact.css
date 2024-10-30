@@ -21,6 +21,7 @@ h2 {
   height: 90vh;
   width: 100%;
   display: flex;
+  padding-bottom: 100px;
 }
 
 .contacts {
@@ -30,7 +31,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 12px 0 12px;
+  padding: 93px 12px 0 12px;
   overflow-y: auto; 
   background-color: #FFFFFF;
 }
@@ -369,6 +370,7 @@ h2 {
   width: 322px;
   height: 78px;
   padding-left: 30px;
+  padding-bottom: 37px;
 }
 
 .one_letter {
