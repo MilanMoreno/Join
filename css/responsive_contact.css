@@ -1,5 +1,5 @@
 
-
+/*
 @media (max-width: 1160px) {
     .contacts {
         width: 40%;
@@ -49,8 +49,9 @@
 
 @media (max-width: 1000px) {
     .popUp {
-        width: 90vw;
-        height: 80vh;
+        width: 90%;
+        height: 65%;
+     
     }
 
     .bg-popUp {
@@ -154,6 +155,7 @@
 @media (max-width: 365px) {
     .content-section {
         font-size: smaller;
+        padding: 0px 14px 0px 14px;
     }
 
     .detailed_Content {
@@ -169,7 +171,7 @@
     .contact-profile {
         gap: 12px;
     }
-}
+}*/
 
 .returnToContacts {
     display: flex;
@@ -234,6 +236,9 @@
 }
 */
 
+
+/*
+
 @media (max-width: 500px) {
 
     h2 {
@@ -288,4 +293,53 @@
             padding-left: 15%;
         }
     }
+    */
+
+
+/*
     
+@media (max-width: 768px) {
+    .closeMobile {
+      display: block; 
+    }
+  }
+  
+  .contactCard {
+    cursor: pointer;
+  }
+  
+  
+  .contactCard {
+    transition: opacity 0.3s ease; 
+  }
+  
+  
+  .contactCard:hover {
+    opacity: 0.7; 
+    cursor: pointer; 
+  }
+  
+  
+  .mobile-logo {
+    display: none;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .mobile-logo {
+      display: block;
+    }
+  }
+
+
+
+
+  
+        @media (max-width: 1024px){
+          .single-letter{
+            height: 80px;
+            width: 80px;
+          }
+        }
+
+    */
