@@ -21,7 +21,7 @@ h2 {
   height: 90vh;
   width: 100%;
   display: flex;
-  padding-bottom: 100px;
+  padding-bottom: 0px;
 }
 
 .contacts {
@@ -174,8 +174,8 @@ h2 {
 }
 
 .popUp {
-  height: 594px;
-  width: 1212px;
+  height: 440px;
+  width: 930px;
   border-radius: 24px;
   z-index: 998;
   display: flex;
@@ -190,7 +190,7 @@ h2 {
 .popUp-logo {
   background-color: rgb(9, 25, 49);
   width: 467px;
-  height: 100%;
+  height:  597px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -501,38 +501,6 @@ h4 {
 }
 
 
-@media (max-width: 768px) {
-  .closeMobile {
-    display: block; 
-  }
-}
-
-.contactCard {
-  cursor: pointer;
-}
-
-
-.contactCard {
-  transition: opacity 0.3s ease; 
-}
-
-
-.contactCard:hover {
-  opacity: 0.7; 
-  cursor: pointer; 
-}
-
-
-.mobile-logo {
-  display: none;
-}
-
-
-@media screen and (max-width: 768px) {
-  .mobile-logo {
-    display: block;
-  }
-}
 
 #options_edit_delete{
   position: fixed;
@@ -570,10 +538,3 @@ h4 {
             background-color: #ddd;
         }
 
-
-        @media (max-width: 1024px){
-          .single-letter{
-            height: 80px;
-            width: 80px;
-          }
-        }
