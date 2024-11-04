@@ -116,6 +116,12 @@
         <div class="information" id="information"></div>
       </section>
       <div id="modalBackground" onclick="openClosePopUp('close')" class="displayNone bg-popUp">
+
+
+
+
+        <!----
+
         <div onclick="openClosePopUp(event)" class="popUp">
           <div class="popUp-logo">
             <div id="return_mobilePopUp" class="return-mobilePopUp">
@@ -155,6 +161,75 @@
             </div>
           </div>
         </div>
+
+---><div onclick="openClosePopUp(event)" class="popUp slide-in">
+  <!-- Logo Section -->
+  <div class="popUp-logo">
+    <!-- Close Button for Mobile -->
+    <div id="return_mobilePopUp" class="return-mobilePopUp displayNone">
+      <img onclick="openClosePopUp('close')" src="contact-assets/img/close.png" alt="Close Button">
+    </div>
+    <!-- Logo Image -->
+    <div class="logo-box">
+      <img class="logo" src="./contact-assets/img/logo.png" alt="Logo">
+    </div>
+    <!-- Edit Logo -->
+    <div class="edit-logo-box">
+      <img class="edit-logo" src="./contact-assets/img/add-contact.png" alt="Add Contact">
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="popUp-content">
+    <!-- Close Button for Desktop -->
+    <div class="close-button">
+      <img onclick="openClosePopUp('close')" src="./contact-assets/img/close.png" alt="Close Button">
+    </div>
+
+    <!-- Profile and Form Section -->
+    <div class="pic_inputs">
+      <!-- Profile Picture -->
+      <div>
+        <img class="profile-pic" src="./contact-assets/img/empty-profil.png" alt="Profile Picture">
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact_input">
+        <form class="form" id="addContactForm" onsubmit="createNewContact(event)">
+          <!-- Name Input -->
+          <input id="name" placeholder="Name" type="text" onblur="validateNameFieldBlur()" oninput="checkFormFields2()">
+          <div id="nameError" class="error-message"></div>
+          
+          <!-- Email Input -->
+          <input id="email" placeholder="Email" type="email" onblur="validateEmailFieldBlur()" oninput="checkFormFields2()">
+          <div id="emailError" class="error-message"></div>
+
+          <!-- Phone Input -->
+          <input type="tel" id="tel" placeholder="Phone" onblur="validatePhoneFieldBlur()" oninput="checkFormFields2()">
+          <div id="phoneError" class="error-message"></div>
+
+          <!-- Action Buttons -->
+          <div class="contact_button">
+            <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel</button>
+            <button id="createSubmit" type="submit" class="addContactButton" disabled>Create Contact</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
       <div id="EditModalBackground" onclick="openClosePopUp('close', key = true)" class="displayNone bg-popUp">
         <div onclick="openClosePopUp(event)" class="popUp">
