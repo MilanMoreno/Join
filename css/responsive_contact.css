@@ -219,10 +219,9 @@ h2 {
 
     .edit-logo {
         object-fit: cover;
-        padding-left: 157px;
-        width: 371px;
-        height: 129px;
-        padding: 0 -1px 0px 0px;
+        padding-left: 16px;
+        width: 282px;
+        height: auto;
     }
 
     .popUp {
@@ -238,24 +237,32 @@ h2 {
 
     .popUp-logo {
         background-color: rgb(9, 25, 49);
-        width: 747px;
-        height: 212px;
+        width: 396px;
+        height: 351px;
         display: flex;
         flex-direction: column;
         gap: 24px;
         justify-content: center;
     }
 
-    .logo-box img, .edit-logo-box img {
-        width: 324px;
-        height: auto;
+    .popUp-content{
+        width: 396px;
+        height: 409px;
     }
+
 
     .edit-logo-box {
         display: flex;
         align-items: center;
-        justify-content: center;
         padding: 0px;
+        position: relative;
+    left: 15px;
+    }
+
+    .close-button img{
+        position: relative;
+        top: -220px;
+        right: 10px;
     }
 
     .close-button {
@@ -269,7 +276,7 @@ h2 {
         align-items: center;
         width: 100%;
         gap: 10px;
-        padding-left: 60px;
+        
     }
 
     .profile-pic {
@@ -279,35 +286,36 @@ h2 {
         object-fit: cover;
     }
 
-    .contact_input {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        height:  414px;
-    }
+
 
     .form input {
-        width: 100%;
-        height: 30px;
+        width: 354px!important;
+        height:41px;
         font-size: 14px;
-        padding: 5px;
+        padding: 0px;
+        padding-left: 10px;
     }
 .form{
-    width:80vh;
+    width: 364px!important;
+    padding: 0!important;
 }
     .contact_button {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         gap: 8px;
         width: 100%;
         padding: 16px 0;
     }
 
-    .addContactButton, .cancel-Button {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 6px;
+    .createButton {
+        width: 202px;
+        height: 51px!important;
+        font-size: 21px!important;
+        border-radius: 10px!important;
+    }
+
+    .cancel-Button{
+        display: none!important;
     }
 }
 

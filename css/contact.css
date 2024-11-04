@@ -96,12 +96,36 @@ h2 {
   width: 352px;
 }
 
+.createButton {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 21px;
+  font-weight: 700;
+  border: none;
+  width: 352px;
+}
+
 .addContactButton img {
   height: 32px;
   width: 32px;
 }
 
+.createButton img {
+  height: 32px;
+  width: 32px;
+}
+
 .addContactButton:hover {
+  cursor: pointer;
+}
+
+.createButton:hover {
   cursor: pointer;
 }
 
@@ -341,6 +365,12 @@ h2 {
 }
 
 .addContactButton:hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+.createButton:hover {
   background-color: rgb(41, 171, 226);
   transition: 150ms;
   color: white;
