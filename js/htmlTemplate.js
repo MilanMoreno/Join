@@ -35,13 +35,14 @@ async function generateAssingTo() {
       const isChecked = selectedCheckboxes.includes(element) ? "checked" : "";
       assigned += `
     <div class="d-flex assingUser">
-    <label class="container">
-      <div class="d-flex assingLeft">
+    <label class="container" >
+      <div class="d-flex assingLeft" id="container${i}">
         <div>${circle}</div>
         <p>${element}</p>
       </div>    
-      <input id="${element}" type="checkbox" ${isChecked} onclick="updateSelectedCheckboxes()">
-      <span class="checkmark"></span>
+      <input id="${element}" type="checkbox" ${isChecked} onclick="checkboxshow(${i})">
+      <img src="imgs/ckeckMark.png" alt="" class="white d-none checkmark" id="check${i}">
+      <img src="imgs/mark.png" alt="" class=" checkmark" id="mark${i}"}]>
     </label>
     </div>`;
     }

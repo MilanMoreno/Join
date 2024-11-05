@@ -32,9 +32,17 @@ function renderAddTask() {
   loadContacts();
   document.getElementById("electedContacts").innerHTML = '';
   selectedCheckboxes = [];
+  setMinDate();
 }
 
-
+function setMinDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+  const dd = String(today.getDate()).padStart(2, '0');      
+  const minDate = `${yyyy}-${mm}-${dd}`;
+  document.getElementById("addTaskDate").setAttribute("min", minDate);
+}
 
 let prio = "medium";
 let subTask = [];
@@ -126,7 +134,7 @@ function showConfirmationMessage() {
   }, 900); }
 
 
-function updateSelectedCheckboxes() {
+function updateSelectedCheckboxes(i) {
   selectedCheckboxes = []; 
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach(checkbox => {
@@ -134,6 +142,21 @@ function updateSelectedCheckboxes() {
       selectedCheckboxes.push(checkbox.id);
     }
   });
+}
+
+
+function checkboxshow(i){
+  if(document.getElementById(`check${i}`).classList.contains("d-none")){
+    document.getElementById(`container${i}`).classList.add ("backgroundAssing")
+  document.getElementById(`check${i}`).classList.remove ("d-none");
+  document.getElementById(`mark${i}`).classList.add ("d-none");
+  updateSelectedCheckboxes();}
+  else {
+    document.getElementById(`container${i}`).classList.remove ("backgroundAssing")
+    document.getElementById(`check${i}`).classList.add ("d-none");
+  document.getElementById(`mark${i}`).classList.remove ("d-none");
+  updateSelectedCheckboxes();
+  }
 }
 
 
@@ -257,6 +280,7 @@ for (let index = 0; index < subTask.length; index++) {
 
 
 function editSubTask(index) {
+  renderSubTask();
   const subTaskText = document.getElementById(`subtask-text-${index}`);
   const editInput = document.getElementById(`edit-input-${index}-div`);
   const saveButton = document.getElementById(`save-btn-${index}`);
