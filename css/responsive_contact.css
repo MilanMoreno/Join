@@ -195,6 +195,15 @@ h2 {
     margin-top: 16px;
 }
 
+.edit-delete{
+    display: none;
+}
+
+.single-letter{
+    height: 80px;
+    width: 80px;
+}
+
 .editMenu{
     height: 56px;
     width: 56px;

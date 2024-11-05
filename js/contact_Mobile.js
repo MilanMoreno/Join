@@ -20,7 +20,17 @@ function checkScreenSize() {
 
 window.addEventListener('resize', concealMobileElements)
 
-
+function concealMobileElements() {
+    if (window.innerWidth > 800) {
+        document.getElementById('responsiveContactBackButton').classList.add('displayNone');
+        
+    
+    } else if (window.innerWidth < 800) {
+        
+    
+        document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
+    }
+}
 
 function showEditandDelete() {
     var menu = document.getElementById("editDeleteMenu");
