@@ -1,0 +1,259 @@
+@media (max-width: 1160px) {
+    .contacts {
+        width: 40%;
+    }
+
+    .contact_button {
+        gap: 12px;
+    }
+
+    .popUp {
+        width: 70vw;
+        height: 65vh;
+
+    }
+
+    h4 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 320px
+    }
+
+    .form input {
+        width: 280px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .contacts {
+        width: 100%;
+    }
+
+    .layout-wrapper {
+        height: 80vh;
+    }
+}
+
+@media (max-width: 1000px) {
+    .popUp {
+        width: 90vw;
+        height: 80vh;
+    }
+
+    .bg-popUp {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .dNone {
+        display: none;
+    }
+
+    .position-fixed {
+        position: fixed;
+        top: 12vh;
+    }
+
+    .popUp {
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .popUp-logo {
+        width: 100%;
+        height: 40%;
+        justify-content: flex-start;
+        padding-top: 12px;
+        gap: 40px;
+    }
+
+    .logo-box {
+        display: none;
+    }
+
+    .popUp-content {
+        height: 60%;
+        width: 100%;
+    }
+
+    .pic_inputs {
+
+        flex-direction: column;
+    }
+
+    .close-button {
+        display: none;
+    }
+
+    .pic_inputs {
+        justify-content: flex-start;
+        gap: 4px;
+        height: 100%;
+        margin-top: -60px;
+    }
+
+    .profile-pic {
+        height: 180px;
+        width: 180px;
+    }
+
+    .return-mobilePopUp img {
+        height: 32px;
+        width: 32px;
+    }
+
+    .text {
+        flex-direction: column;
+        align-items: start;
+        gap: 12px;
+    }
+
+    .h2-span span {
+        border-bottom: solid 2px rgb(41, 171, 226);
+        padding-bottom: 12px;
+    }
+
+    h2 {
+        margin: 0;
+        padding-top: 12px;
+        border: none;
+    }
+
+    .closeMobile {
+        height: 48px;
+        width: 48px;
+    }
+
+    .letter_For_PopUp {
+        margin-bottom: 48px;
+    }
+}
+
+@media (max-width: 450px) {
+    .contact-profile {
+        gap: 24px;
+        font-size: smaller;
+    }
+}
+
+@media (max-width: 365px) {
+    .content-section {
+        font-size: smaller;
+    }
+
+    .detailed_Content {
+        padding: 12px 0 12px 0;
+    }
+}
+
+@media (max-width: 350px) {
+    .contactCard {
+        font-size: smaller;
+    }
+
+    .contact-profile {
+        gap: 12px;
+    }
+}
+
+.returnToContacts {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 24px 0px 24px 12px;
+}
+
+.closeMobile {
+    object-fit: cover;
+}
+
+.closeMobile:hover {
+    cursor: pointer;
+}
+
+.return-mobilePopUp img:hover {
+    cursor: pointer;
+}
+
+.stretch {
+    width: 100vw;
+    padding: 0 !important;
+}
+
+
+@media (max-width: 326px) {
+    #content-area {
+        font-size: 98%; 
+    }
+
+
+    #content-area * {
+        transform: scale(0.9); 
+        transform-origin: top left; 
+    }
+
+  
+    h2, h4 {
+        font-size: 98%; 
+    }
+
+    .contacts, .form, .popUp, .contact_button {
+        padding: 8px; 
+        margin: 8px; 
+    }
+
+    .profile-pic {
+        height: 90px; 
+        width: 90px;
+    }
+
+ 
+    .addContactButton, .contact_button button {
+        font-size: 98%; 
+        height: 36px; 
+        padding: 6px; 
+    }
+
+   
+}
+
+
+@media (max-width: 500px) {
+
+    h2, h4 {
+        font-size: 98%;
+    }
+
+    .contacts, .form, .popUp, .contact_button {
+        padding: 8px; 
+        margin: 8px; 
+    }
+
+    .profile-pic {
+        height: 90px; 
+        width: 90px;
+    }
+
+ 
+    .addContactButton, .contact_button button {
+        font-size: 98%; 
+        height: 36px; 
+        padding: 6px; 
+    }
+
+    
+}
