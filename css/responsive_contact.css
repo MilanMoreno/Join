@@ -209,10 +209,7 @@ h2 {
 }
 
 @media (max-width: 950px) {
-    .content-section{
-        display: none;
-    }
-
+   
     .addContactButtonResponsiv{
         display: flex;
     }
