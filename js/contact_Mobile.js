@@ -22,11 +22,11 @@ window.addEventListener('resize', concealMobileElements)
 function concealMobileElements() {
     if (window.innerWidth > 800) {
         document.getElementById('responsiveContactBackButton').classList.add('displayNone');
-        document.getElementById('return_mobilePopUp').classList.add('displayNone');
-        document.getElementById('return_editMobilePopUp').classList.add('displayNone');
+        
+    
     } else if (window.innerWidth < 800) {
-        document.getElementById('return_mobilePopUp').classList.remove('displayNone');
-        document.getElementById('return_editMobilePopUp').classList.remove('displayNone');
+        
+    
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
     }
 }

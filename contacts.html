@@ -24,7 +24,7 @@
     color: red;
     font-size: 12px;
     
-    height: 14px;
+    height: 15px;
 }
 
 
@@ -177,7 +177,7 @@
     </div>
     <!-- Edit Logo -->
     <div class="edit-logo-box">
-      <img class="edit-logo" src="./contact-assets/img/add-contact.png" alt="Add Contact">
+      <img class="edit-logo addLogo" src="./contact-assets/img/add-contact.png" alt="Add Contact">
     </div>
   </div>
 
@@ -236,9 +236,7 @@
       <div id="EditModalBackground" onclick="openClosePopUp('close', key = true)" class="displayNone bg-popUp">
         <div onclick="openClosePopUp(event)" class="popUp">
           <div class="popUp-logo">
-            <div id="return_editMobilePopUp" class="return-mobilePopUp">
-              <img onclick="openClosePopUp('close', key = true)" src="contact-assets/img/close.png" alt="">
-            </div>
+            
             <div class="logo-box"><img class="logo" src="./contact-assets/img/logo.png" alt=""></div>
             <div class="edit-logo-box"><img class="edit-logo" src="./contact-assets/img/edit-contact.png" alt=""></div>
           </div>
@@ -267,7 +265,7 @@
                       <button onclick="removeContact('contact', keyForEdit)" type="button" class="cancel-Button">
                           Delete <img src="./contact-assets/img/close.png" alt="">
                       </button>
-                      <button id="editSubmit" type="submit" class="addContactButton" >
+                      <button id="editSubmit" type="submit" class="createButton saveButton" >
                           Save <img class="check" src="./contact-assets/img/check.png" alt="">
                       </button>
                   </div>
