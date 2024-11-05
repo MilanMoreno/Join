@@ -24,8 +24,12 @@ h2 {
   padding-bottom: 0px;
 }
 
+.addContactButtonResponsiv{
+  display: none;
+}
+
 .contacts {
-  width: 35%;
+  width: 456px;
   height: 100%;
   overflow-y: auto;
   display: flex;
@@ -89,11 +93,25 @@ h2 {
   justify-content: center;
   gap: 16px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 21px;
   font-weight: 700;
   border: none;
   width: 352px;
+}
+
+.addContactButtonResponsiv {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: 46px;
+  border: none;
+  width: 56px;
+  position: absolute;
+  bottom: 112px;
+  right: 16px;
 }
 
 .createButton {
@@ -112,6 +130,11 @@ h2 {
 }
 
 .addContactButton img {
+  height: 32px;
+  width: 32px;
+}
+
+.addContactButtonResponsiv img {
   height: 32px;
   width: 32px;
 }
@@ -368,6 +391,13 @@ h2 {
   background-color: rgb(41, 171, 226);
   transition: 150ms;
   color: white;
+}
+
+.addContactButtonResponsiv:hover{
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+  cursor: pointer;
 }
 
 .createButton:hover {

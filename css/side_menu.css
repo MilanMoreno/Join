@@ -101,7 +101,7 @@ nav {
   .sidebar {
     display: flex;
     width: 100vw;
-    height: 10vh;
+    height: 80px;
     position: fixed;
     top: auto;
     bottom: 0 !important;

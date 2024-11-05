@@ -209,6 +209,22 @@ h2 {
 }
 
 @media (max-width: 950px) {
+    .content-section{
+        display: none;
+    }
+
+    .addContactButtonResponsiv{
+        display: flex;
+    }
+
+    .contacts {
+        width: 100%;
+    }
+
+    .addContactButton{
+        display: none;
+    }
+
     .profile-pic {
         display: none;
     }
@@ -371,3 +387,4 @@ h2 {
         width: 45vh;
         padding-left: 100px;
         object-fit: cover;}
+        
