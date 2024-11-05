@@ -137,11 +137,6 @@ h2 {
         font-size: 16px;
     }
     
-    .single-letter {
-        height: 80px;
-        width: 80px;
-        font-size: 32px;
-    }
     
     h4 {
         font-size: 24px;
@@ -197,6 +192,13 @@ h2 {
         width: 200px;
         height: auto;
     }
+    
+     
+    .single-letter {
+        height: 30px !important;
+        width: 30px !important;
+        font-size: 32px !important;
+    }
 }
 
 @media (max-width: 650px) {
@@ -211,7 +213,12 @@ h2 {
 @media (max-width: 950px) {
 
 
-   
+    .single-letter {
+        height: 40px;
+        width: 40px;
+        font-size: 32px;
+    }
+    
     .addContactButtonResponsiv{
         display: flex;
     }
@@ -342,7 +349,9 @@ h2 {
     width: 100%;
 }
 
-
+.contactCard{
+    width: 100%;
+}
 .list {
     width: 100%;
 }
@@ -365,6 +374,10 @@ h2 {
         color: red;
         font-size: 9px !important;
         height: 14px !important;
+    }
+    .closeMobile {
+        height: 48px;
+        width: 48px;
     }
 }
 @media (max-width: 650px)  {
@@ -391,3 +404,95 @@ h2 {
         padding-left: 100px;
         object-fit: cover;}
         
+
+        @media (max-width: 350px) {
+            .contactCard {
+                font-size: smaller;
+            }
+        
+            .contact-profile {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 365px) {
+            .content-section {
+                font-size: smaller;
+            }
+        
+            .detailed_Content {
+                padding: 12px 0 12px 0;
+            }
+        }
+        @media (max-width: 450px) {
+            .contact-profile {
+                gap: 24px;
+                font-size: smaller;
+            }
+        }
+
+
+        
+
+@media (max-width: 326px) {
+    #content-area {
+        font-size: 98%; 
+    }
+
+
+    #content-area * {
+        transform: scale(0.9); 
+        transform-origin: top left; 
+    }
+
+  
+    h2, h4 {
+        font-size: 98%; 
+    }
+
+    .contacts, .form, .popUp, .contact_button {
+        padding: 8px; 
+        margin: 8px; 
+    }
+
+    .profile-pic {
+        height: 90px; 
+        width: 90px;
+    }
+
+ 
+    .addContactButton, .contact_button button {
+        font-size: 98%; 
+        height: 36px; 
+        padding: 6px; 
+    }
+
+   
+}
+
+
+@media (max-width: 500px) {
+
+    h2, h4 {
+        font-size: 98%;
+    }
+
+    .contacts, .form, .popUp, .contact_button {
+        padding: 8px; 
+        margin: 8px; 
+    }
+
+    .profile-pic {
+        height: 90px; 
+        width: 90px;
+    }
+
+ 
+    .addContactButton, .contact_button button {
+        font-size: 98%; 
+        height: 36px; 
+        padding: 6px; 
+    }
+
+    
+}
