@@ -1,0 +1,365 @@
+h2 {
+    border-right: solid 2px rgb(41, 171, 226);
+    font-size: 61px;
+    padding-right: 48px;
+}
+
+.fixed-header {
+    position: sticky;
+    top: 0;
+}
+
+.blueBackground {
+    background-color: rgb(42, 54, 71);
+    color: white;
+}
+
+@media (max-width: 300px) {
+    h2 {
+        font-size: 30px;
+        padding-right: 16px;
+    }
+    
+    .layout-wrapper {
+        height: auto;
+        flex-direction: column;
+        padding-bottom: 0;
+    }
+    
+    .contacts {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .content-section {
+        height: auto;
+        padding: 10px;
+    }
+    
+    .h2Contacts {
+        font-size: 20px;
+    }
+    
+    .moreAboutContent {
+        padding: 16px 0 0 8px;
+        gap: 10px;
+    }
+    
+    .addContact {
+        padding: 24px 0 8px 0;
+    }
+    
+    .addContactButton {
+        width: 100%;
+        font-size: 16px;
+        height: 40px;
+        gap: 8px;
+    }
+    
+    .letter_For_PopUp {
+        height: 80px;
+        width: 80px;
+        font-size: 32px;
+    }
+    
+    .popUp {
+        width: 90%;
+        padding-left: 5%;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .popUp-logo {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .logo-box {
+        height: 60px;
+        padding: 0 8px;
+    }
+    
+    .popUp-content {
+        height: 400px;
+    }
+     
+    .pic_inputs {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .profile-pic {
+        height: 80px;
+        width: 80px;
+    }
+    
+    .form {
+        width: 50%;
+        gap: 8px;
+        padding-left: 68px;
+        padding-top: 40px;
+    }
+    
+    .form input {
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .contact_button {
+        padding: 24px 0 0;
+        gap: 16px;
+    }
+    
+    .contact_button button {
+        font-size: 14px;
+        height: 36px;
+        padding: 8px;
+    }
+    
+    .contactCard {
+        width: 100%;
+        padding-left: 16px;
+        gap: 20px;
+    }
+    
+    .one_letter {
+        height: 32px;
+        width: 32px;
+        font-size: medium;
+    }
+    
+    .fullName-email span {
+        font-size: 16px;
+    }
+    
+    .single-letter {
+        height: 80px;
+        width: 80px;
+        font-size: 32px;
+    }
+    
+    h4 {
+        font-size: 24px;
+    }
+    
+    .contactInformation {
+        font-size: 16px;
+        height: 60px;
+    }
+    
+    .contact-profile {
+        gap: 24px;
+        padding: 16px 0;
+    }
+    
+    .edit-delete {
+        gap: 12px;
+    }
+    
+    .edit-delete img {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .pers-info {
+        gap: 8px;
+    }
+    
+    .closeMobile {
+        display: block;
+    }
+    
+    #options_edit_delete {
+        top: auto;
+        bottom: 0;
+    }
+    
+    #editDeleteMenu {
+        width: 80px;
+        padding: 4px;
+        border-radius: 10%;
+    }
+}
+
+@media (max-width: 450px) {
+    .logo-box img, .edit-logo-box img {
+        width: 200px;
+        height: auto;
+    }
+}
+
+
+
+@media (max-width: 950px) {
+    .content-section{
+        display: none;
+    }
+
+    .addContactButtonResponsiv{
+        display: flex;
+    }
+
+    .contacts {
+        width: 100%;
+    }
+
+    .addContactButton{
+        display: none;
+    }
+
+   
+
+    .logo-box {
+        display: none;
+    }
+
+    .edit-logo {
+        object-fit: cover;
+        padding-left: 16px;
+        width: 282px;
+        height: auto!important;
+    }
+
+    .popUp {
+        max-width: 396px;
+        max-height: 100vh;
+        width: 100vw;
+        height: auto;
+        flex-direction: column;
+        padding: 0px;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+
+    .popUp-logo {
+        background-color: rgb(9, 25, 49);
+        width: 396px;
+        height: 351px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        justify-content: center;
+    }
+
+    .popUp-content{
+        width: 396px;
+        height: 409px;
+    }
+
+
+    .edit-logo-box {
+        display: flex;
+        align-items: center;
+        padding: 0px;
+        position: fixed;
+    left: 15px;
+    }
+
+    .close-button img{
+        filter: brightness(1000%) saturate(0%);
+        position: unset;
+    }
+
+    .close-button {
+        position: fixed;
+        top: 0px;
+        right: 10px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 8px 0;
+    }
+
+    .pic_inputs {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        
+    }
+
+    .profile-pic {
+        margin-left: -65px;
+        top: 285px;
+        left: 50%;
+        position: fixed;
+        height: 138px;
+        width: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        padding: 0;
+    }
+
+
+
+    .form input {
+        width: 90%!important;
+        height:41px;
+        font-size: 14px;
+        padding: 0px;
+        padding-left: 10px;
+    }
+.form{
+    align-items: center;
+    width: 100%!important;
+    padding: 0!important;
+    gap: 0;
+}
+
+    .contact_input{
+        width: 100%;
+        padding: 0;
+    }
+
+    .contact_button {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 16px 0;
+    }
+
+    .createButton {
+        width: 202px;
+        height: 51px!important;
+        font-size: 21px!important;
+        border-radius: 10px!important;
+    }
+
+    .cancel-Button{
+        display: none!important;
+    }
+}
+
+@media (max-width: 450px) {
+    .error-message {
+        color: red;
+        font-size: 9px !important;
+        height: 14px !important;
+    }
+
+    .popUp-content{
+        width: 100%;
+    }
+}
+ 
+
+@media (max-width: 1024px){
+    .profile-pic{
+        padding: 0;
+    }
+}
+    
+   
+
+
+
+
+        @media (max-width: 1170px){
+            .text{
+              gap: 10px;
+            }
+          
+            .h2Contacts{
+              padding-right: 10px;
+            }
+          }
