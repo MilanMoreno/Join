@@ -317,7 +317,29 @@ h2 {
     .cancel-Button{
         display: none!important;
     }
+
+    .content-section {
+        display: none;
+    }
 }
+
+
+@media (max-width: 950px) and (min-width:200px) {
+.contacts {
+    width: 100%;
+}
+
+.list {
+    width: 100%;
+}
+}
+
+
+
+
+
+
+
 
 @media (max-width: 450px) {
     .error-message {
@@ -349,4 +371,3 @@ h2 {
         width: 45vh;
         padding-left: 100px;
         object-fit: cover;}
-        
