@@ -1,35 +1,25 @@
 function showContactMobile() {
     document.getElementById('content-area').classList.add('dNone');
+    document.getElementById('content-area').classList.remove('d-Block');
     document.getElementById('mycontacts').classList.remove('displayNone');
 
 }
 
 
 function checkScreenSize() {
-    const mobileWidth = 800;
+    const mobileWidth = 950;
 
     if (window.matchMedia(`(max-width: ${mobileWidth}px)`).matches) {
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
         document.getElementById('mycontacts').classList.add('displayNone');
         document.getElementById('content-area').classList.remove('dNone');
+        document.getElementById('content-area').classList.add('d-Block');
     }
 }
 
 
 window.addEventListener('resize', concealMobileElements)
 
-
-function concealMobileElements() {
-    if (window.innerWidth > 800) {
-        document.getElementById('responsiveContactBackButton').classList.add('displayNone');
-        
-    
-    } else if (window.innerWidth < 800) {
-        
-    
-        document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
-    }
-}
 
 
 function showEditandDelete() {
@@ -46,7 +36,7 @@ window.onclick = function (event) {
     var menu = document.getElementById("editDeleteMenu");
     if(menu){
         if (!event.target.matches('#options_edit_delete')) {
-            /*if (menu.style.display === "block") */{
+            {
                 menu.style.display = "none";
             }
         }

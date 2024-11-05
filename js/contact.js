@@ -87,6 +87,7 @@ function showDetailedContact(contactId) {
     if (currentEditKey !== null) {
         document.getElementById(currentEditKey).classList.remove('blueBackground');
     }
+    
     currentEditKey = contactId;
     document.getElementById(currentEditKey).classList.add('blueBackground');
     let target = document.getElementById('content');

@@ -553,6 +553,10 @@ h4 {
   object-fit: cover;
 }
 
+.underline{
+  display: none;
+}
+
 .edit-delete img:hover {
   cursor: pointer;
   filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
@@ -583,9 +587,7 @@ h4 {
 
 
 #options_edit_delete{
-  position: fixed;
-  bottom: 0px;
-  top: 500px;
+  
   object-fit: cover;
   color: black;
 }
