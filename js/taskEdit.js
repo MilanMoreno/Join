@@ -18,6 +18,7 @@ function fillAddTaskPopUp(positionId){
     let background = document.getElementById("addTaskSectionBackground")
     background.classList.remove ("d-none");
     addTaskSection.innerHTML = fillAddTaskSection(positionId);
+    setMinDate();
 }
 
 
@@ -36,6 +37,7 @@ function editTask(title, category, dueDate, description, positionID, id, Prio){
     addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id,);
     checkPrioEdit(Prio);
     checkboxHelp(id);
+    setMinDate();
 }
 
 function checkPrioEdit(prioCheck){

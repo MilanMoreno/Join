@@ -111,8 +111,8 @@ async function addTaskPopup(positionId) {
   let button = document.getElementById("addTaskPopupButton")
   event.preventDefault()
   if (!checkRequired()) {return;}
+  if (button !== null && document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== '') {button.disabled = true;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
-    button.disabled = true;
     positionID = positionId
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
@@ -292,20 +292,32 @@ function editSubTask(index) {
 }
 
 
+// function saveSubTask(index) {
+//   const editInput = document.getElementById(`edit-input-${index}`);
+//   subTask[index] = editInput.value;
+//   renderSubTask();
+// }
+
+
 function saveSubTask(index) {
   const editInput = document.getElementById(`edit-input-${index}`);
-  subTask[index] = editInput.value;
-  renderSubTask();
+  if (editInput.value.trim() !== "") {
+    subTask[index] = editInput.value;
+    renderSubTask();
+  }else{
+    editInput.placeholder = "This field must not be empty"
+  }
 }
-
 
 function deleteSubTask(index) {
   subTask.splice(index, 1); 
   renderSubTask();
 }
 
+let subTask2 = []
 
 function fillsubtask(id){
+  subTask2 = []
   let subTasks = ""
   if (id === "undefined"){subTask = ""} else if (task[id].Subtask && task[id].Subtask[0]){
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
@@ -327,9 +339,10 @@ function fillsubtask(id){
   </div>
   </div>
   </li>`;
-    subTask.push(element);
+    subTask2.push(element);
     checkBox.push(check);
   }}
+  subTask = subTask2
   return subTasks;
 }
 
@@ -367,13 +380,29 @@ function toggleCheckbox(username) {
 }
 
 
+// function renderSelectedContacts() {
+//   const electedContactsDiv = document.getElementById('electedContacts');
+//   electedContactsDiv.innerHTML = '';
+//   selectedCheckboxes.forEach(contact => {
+//     const circle = generateCircle(contact);
+//     electedContactsDiv.innerHTML += circle;
+//   });
+// }
+
+
 function renderSelectedContacts() {
   const electedContactsDiv = document.getElementById('electedContacts');
-  electedContactsDiv.innerHTML = '';
-  selectedCheckboxes.forEach(contact => {
+  electedContactsDiv.innerHTML = ''; 
+  const maxVisibleContacts = 5;
+  const extraContacts = selectedCheckboxes.length - maxVisibleContacts;
+  selectedCheckboxes.slice(0, maxVisibleContacts).forEach(contact => {
     const circle = generateCircle(contact);
     electedContactsDiv.innerHTML += circle;
   });
+  if (extraContacts > 0) {
+    const extraCircle = `<div class="initialsDetails" style="background-color: brown;">+${extraContacts}</div>`;
+    electedContactsDiv.innerHTML += extraCircle;
+  }
 }
 
 

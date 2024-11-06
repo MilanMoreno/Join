@@ -165,7 +165,7 @@ function fillAddTaskSection(positionId) {
   return /*html*/ `
   <form id="addTaskForm">
     <div class="addTaskContent d-flex">
-        <div class="addTaskHeader d-flex d-space">
+        <div class="addTaskHeader d-flex d-space headerResponsiv">
             <h1 class="addTaskHeader">Add Task</h1>
             <img onclick="closePopUp()" src="./assets/img/icon_closeVectorBlack.svg" alt="close">
         </div>
@@ -239,7 +239,7 @@ function fillEditTaskSection(
   return /*html*/ `
   <form id="addTaskForm">
     <div class="addTaskContent d-flex">
-        <div class="addTaskHeader d-flex d-space">
+        <div class="addTaskHeader d-flex d-space headerResponsiv">
             <h1 class="addTaskHeader">Add Task</h1>
             <img onclick="closePopUp()" src="./assets/img/icon_closeVectorBlack.svg" alt="close">
         </div>

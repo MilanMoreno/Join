@@ -40,7 +40,7 @@ function render(filtered) {
     const assignedTo =
       tasks[i].AssignedTo && tasks[i].AssignedTo.length > 0
         ? tasks[i].AssignedTo
-        : "0";
+        : "";
     contentHTML = fillTemplate(tasks[i].Title, tasks[i].Category, tasks[i].Description, assignedTo, tasks[i].Prio, i);
     document.getElementById(`${tasks[i].PositionID}`).innerHTML += contentHTML;
     updateProgress(i);
@@ -91,23 +91,47 @@ function fillTemplate(title, category, text, assigned, prio, id) {
 }
 
 
+// function getInitials2(names) {
+//   let initial = "";
+//   if (names === "0") {
+//     initial += `<div class="initials d-none" style="background-color: ;">0</div>`;
+//     return initial;
+//   } else {
+//     for (let i = 0; i < names.length; i++) {
+//       const element = names[i];
+//       const color = getRandomColor();
+//       const nameParts = element.split(" ");
+//       const initials = nameParts.map((part) => part.charAt(0)).join("");
+//       ini = initials.toUpperCase();
+//       initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`;
+//     }
+//     return initial;
+//   }
+// }
+
+
 function getInitials2(names) {
   let initial = "";
-  if (names === "0") {
-    initial += `<div class="initials d-none" style="background-color: ;">0</div>`;
+  if (names.length === 0) {
+    initial += ""
     return initial;
   } else {
-    for (let i = 0; i < names.length; i++) {
-      const element = names[i];
+    const maxVisibleContacts = 5;
+    const extraContacts = names.length - maxVisibleContacts;
+    names.slice(0, maxVisibleContacts).forEach(element => {
       const color = getRandomColor();
       const nameParts = element.split(" ");
       const initials = nameParts.map((part) => part.charAt(0)).join("");
-      ini = initials.toUpperCase();
+      const ini = initials.toUpperCase();
       initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`;
+    });
+    if (extraContacts > 0) {
+      initial += `<div class="initials" style="background-color: grey;">+${extraContacts}</div>`;
     }
     return initial;
   }
 }
+
 
 
 function getInitialsDetail(names) {
