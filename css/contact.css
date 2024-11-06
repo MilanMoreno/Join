@@ -89,6 +89,9 @@ h2 {
   background-color: #FFFFFF;
 }
 
+
+
+
 ::-webkit-scrollbar {
   width: 0px;
   height: 0px;
@@ -113,6 +116,41 @@ h2 {
   height: 88vh;
   padding: 15px 15px 0px 15px;
 }
+
+
+
+
+
+
+
+
+#mycontacts {
+  overflow-y: scroll;  
+}
+
+#mycontacts::-webkit-scrollbar {
+  width: 8px; 
+}
+
+#mycontacts::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#mycontacts::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+#mycontacts::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+#content-area {
+  overflow: hidden; 
+}
+
 
 .h2Contacts{
   margin: 0;
