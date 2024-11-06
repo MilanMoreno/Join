@@ -505,7 +505,7 @@ select:focus {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 8px!important;
   height: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -628,9 +628,10 @@ select:focus {
   }
 }
 
-@media (max-height: 900px) {
+@media (max-height: 920px) {
   .addTaskFooter {
-    position: sticky;
+    position: absolute;
+    top: 800px;
   }
 }
 
