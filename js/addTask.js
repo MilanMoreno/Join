@@ -113,6 +113,7 @@ async function addTaskPopup(positionId) {
   if (!checkRequired()) {return;}
   if (button !== null && document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== '') {button.disabled = true;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+    button.disabled = true;
     positionID = positionId
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
@@ -290,13 +291,6 @@ function editSubTask(index) {
   editInput.classList.remove('d-none');
   saveButton.classList.remove('d-none');
 }
-
-
-// function saveSubTask(index) {
-//   const editInput = document.getElementById(`edit-input-${index}`);
-//   subTask[index] = editInput.value;
-//   renderSubTask();
-// }
 
 
 function saveSubTask(index) {

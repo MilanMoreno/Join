@@ -73,6 +73,42 @@ function hideModal(bgPopUp, popUp, header) {
 }
 
 
+<<<<<<< HEAD
+=======
+document.addEventListener('DOMContentLoaded', function() {
+
+    document.getElementById('name').addEventListener('input', updateSubmitButtonState);
+    document.getElementById('email').addEventListener('input', updateSubmitButtonState);
+    document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
+    document.getElementById('email').addEventListener('input', updateeditSubmitButtonState);
+    document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
+});
+
+
+
+
+
+
+
+function updateeditSubmitButtonState() {
+    const nameValid = validateName(document.getElementById('name').value);
+    const emailValid = validateEmail(document.getElementById('email').value);
+    const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
+
+    const submitButton = document.getElementById('createSubmit');
+    submitButton.disabled = !(nameValid && emailValid && phoneValid);
+}
+
+
+
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 
 
 function createNewContact(event) {
@@ -119,6 +155,11 @@ function createNewContact(event) {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 function validateNameField() {
     let name = document.getElementById('name').value;
     if (!validateName(name)) {
@@ -126,6 +167,7 @@ function validateNameField() {
     } else {
         hideErrorMessage('nameError');
     }
+<<<<<<< HEAD
 }
 
 function validateNameFieldBlur() {
@@ -135,6 +177,9 @@ function validateNameFieldBlur() {
     } else {
         hideErrorMessage('nameError');
     }
+=======
+    updateSubmitButtonState();
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 function validateEmailField() {
@@ -144,6 +189,7 @@ function validateEmailField() {
     } else {
         hideErrorMessage('emailError');
     }
+<<<<<<< HEAD
 }
 
 function validateEmailFieldBlur() {
@@ -153,6 +199,9 @@ function validateEmailFieldBlur() {
     } else {
         hideErrorMessage('emailError');
     }
+=======
+    updateSubmitButtonState();
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 function validatePhoneField() {
@@ -162,6 +211,21 @@ function validatePhoneField() {
     } else {
         hideErrorMessage('phoneError');
     }
+<<<<<<< HEAD
+=======
+    updateSubmitButtonState();
+}
+
+function validateNameFieldBlur() {
+    let name = document.getElementById('name').value;
+    if (!validateName(name)) {
+        showErrorMessage('nameError', "Bitte schreiben Sie den korrekten Namen.");
+    } else {
+        hideErrorMessage('nameError');
+    }
+    updateSubmitButtonState();
+     updateeditSubmitButtonState();
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 function validatePhoneFieldBlur() {
@@ -171,11 +235,34 @@ function validatePhoneFieldBlur() {
     } else {
         hideErrorMessage('phoneError');
     }
+<<<<<<< HEAD
 }
 
 function validateName(name) {
     const namePattern = /^[A-Za-zÄÖÜäöüß]+(?: [A-Za-zÄÖÜäöüß]+)*$/;
     return name.length >= 2 && namePattern.test(name);
+=======
+    updateSubmitButtonState();
+    updateeditSubmitButtonState();
+}
+
+function validateEmailFieldBlur() {
+    let email = document.getElementById('email').value;
+    if (!validateEmail(email)) {
+        showErrorMessage('emailError', "Bitte schreiben Sie die korrekte E-Mail-Adresse.");
+    } else {
+        hideErrorMessage('emailError');
+    }
+    updateSubmitButtonState();
+    updateeditSubmitButtonState();
+}
+
+
+function validateName(name) {
+    const namePattern = /^[A-Za-zÄÖÜäöüß]+(?: [A-Za-zÄÖÜäöüß]+)*$/;
+    return name.length >= 2 && namePattern.test(name);
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 function validateEmail(email) {
@@ -211,6 +298,18 @@ function resetErrorMessages() {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 function validateEditNameField() {
     let name = document.getElementById('editName').value;
     if (!validateName(name)) {
@@ -218,7 +317,39 @@ function validateEditNameField() {
     } else {
         hideErrorMessage('editNameError');
     }
+<<<<<<< HEAD
 }
+=======
+    updateeditSubmitButtonState();
+    
+}
+function validateEditEmailField() {
+    let email = document.getElementById('editEmail').value;
+    if (!validateEmail(email)) {
+        showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+    } else {
+        hideErrorMessage('editEmailError');
+    }
+    updateeditSubmitButtonState();
+}
+
+function validateEditPhoneField() {
+    let tel = document.getElementById('editTel').value;
+    if (!validatePhoneNumber(tel)) {
+        showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein.");
+    } else {
+        hideErrorMessage('editPhoneError');
+    }
+    updateeditSubmitButtonState();
+}
+
+
+
+
+
+
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 
 function validateEditNameFieldBlur() {
     let name = document.getElementById('editName').value;
@@ -229,6 +360,7 @@ function validateEditNameFieldBlur() {
     }
 }
 
+<<<<<<< HEAD
 function validateEditEmailField() {
     let email = document.getElementById('editEmail').value;
     if (!validateEmail(email)) {
@@ -237,6 +369,9 @@ function validateEditEmailField() {
         hideErrorMessage('editEmailError');
     }
 }
+=======
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 
 function validateEditEmailFieldBlur() {
     let email = document.getElementById('editEmail').value;
@@ -247,6 +382,7 @@ function validateEditEmailFieldBlur() {
     }
 }
 
+<<<<<<< HEAD
 function validateEditPhoneField() {
     let tel = document.getElementById('editTel').value;
     if (!validatePhoneNumber(tel)) {
@@ -255,6 +391,8 @@ function validateEditPhoneField() {
         hideErrorMessage('editPhoneError');
     }
 }
+=======
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 
 function validateEditPhoneFieldBlur() {
     let tel = document.getElementById('editTel').value;
@@ -265,6 +403,19 @@ function validateEditPhoneFieldBlur() {
     }
 }
 
+<<<<<<< HEAD
+=======
+function updateSubmitButtonState() {
+    const nameValid = validateName(document.getElementById('name').value);
+    const emailValid = validateEmail(document.getElementById('email').value);
+    const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
+
+    const submitButton = document.getElementById('createSubmit');
+    submitButton.disabled = !(nameValid && emailValid && phoneValid);
+}
+
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 function checkFormFields() {
     const field1 = document.getElementById('editName').value.trim();
     const field2 = document.getElementById('editEmail').value.trim();
@@ -377,10 +528,31 @@ async function removeContact(path = 'contact', id) {
         if (!response.ok) {
             throw new Error('Löschfehler des Kontakts');
         }
+<<<<<<< HEAD
         fetchData();
+=======
+
+       
+        await fetchData();
+        
+       
+        clearDetailedView();
+        
+  
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
         currentEditKey = null;
     } catch (error) {
         console.error('Löschfehler des Kontakts:', error.message);
     }
 }
 
+<<<<<<< HEAD
+=======
+
+function clearDetailedView() {
+    const target = document.getElementById('content');
+    if (target) {
+        target.innerHTML = ''; 
+    }
+}
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860

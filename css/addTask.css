@@ -427,16 +427,6 @@ input:focus, textarea:focus, select:focus {
   border: 1px solid #29ABE2;
 }
 
-/* @media (max-width: 800px) {
-  .addTaskContent {
-    max-width: 440px!important; 
-    padding-inline: 0px; 
-  }
-
-  .addTaskLeft, .addTaskRight {
-    width: 100%; 
-  }
-} */
 
 @media (max-width: 1300px) {
   .addTaskBody {
@@ -457,6 +447,16 @@ input:focus, textarea:focus, select:focus {
     padding-bottom: 120px;
     margin-inline: 70px;
     margin-top: 5px;
+  }
+
+  #addTaskForm {
+    max-height: unset;
+  }
+
+  .addTaskFooter{
+    width: 440px!important;
+    position: unset;
+    padding-bottom: 120px;
   }
 
   .middleLine {
@@ -515,6 +515,10 @@ input:focus, textarea:focus, select:focus {
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 10px;
+}
+
+.addTaskHeader{
+  margin: 0;
 }
 
 .addTaskHeader{

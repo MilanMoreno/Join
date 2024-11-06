@@ -1,6 +1,10 @@
 h2 {
   border-right: solid 2px rgb(41, 171, 226);
   font-size: 61px;
+<<<<<<< HEAD
+=======
+  font-size: 61px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   padding-right: 48px;
 }
 .fixed-header {
@@ -22,26 +26,97 @@ h2 {
   width: 100%;
   display: flex;
   padding-bottom: 0px;
+<<<<<<< HEAD
+}
+
+.addContactButtonResponsiv{
+  display: none;
+=======
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .addContactButtonResponsiv{
   display: none;
 }
 
+
+
+
+
+
+
+.saveButton:disabled {
+  background-color: grey; 
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+.saveButton:not(:disabled):hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+
+
+.createButton:disabled {
+  background-color: grey; 
+  color: white;           
+  cursor: not-allowed;    
+  opacity: 0.5;        
+}
+
+
+.createButton:not(:disabled):hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
 .contacts {
   width: 456px;
+<<<<<<< HEAD
+=======
+  width: 456px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+<<<<<<< HEAD
   padding: 0px;/* 93px 12px 0 12px;*/
   overflow-y: auto; 
   background-color: #FFFFFF;
+=======
+  padding: 0px;
+  align-items: center;
+  padding: 0px;
+  overflow-y: auto; 
+  background-color: #FFFFFF;
+  background-color: #FFFFFF;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
+
+
+
 ::-webkit-scrollbar {
+<<<<<<< HEAD
   width: 8px;
+=======
+  width: 0px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   height: 0px;
 }
 
@@ -62,7 +137,51 @@ h2 {
 .content-section {
   flex: 1;
   height: 88vh;
+<<<<<<< HEAD
   padding: 15px 15px 0px 15px;/*110px 25px 0 55px; */
+=======
+  padding: 15px 15px 0px 15px;
+}
+
+
+
+
+
+
+
+
+#mycontacts {
+  overflow-y: scroll;  
+}
+
+#mycontacts::-webkit-scrollbar {
+  width: 8px; 
+}
+
+#mycontacts::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#mycontacts::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+#mycontacts::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+#content-area {
+  overflow: hidden; 
+}
+
+
+.h2Contacts{
+  margin: 0;
+  padding: 15px 15px 0px 15px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .h2Contacts{
@@ -122,11 +241,54 @@ h2 {
   justify-content: center;
   gap: 16px;
   height: 56px;
+<<<<<<< HEAD
   border-radius: 12px;
   font-size: 21px;
   font-weight: 700;
   border: none;
   width: 214px;
+=======
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  border: none;
+  width: 352px;
+}
+
+.addContactButtonResponsiv {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: 46px;
+  border: none;
+  width: 56px;
+  position: absolute;
+  bottom: 112px;
+  right: 16px;
+}
+
+.createButton {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 21px;
+  font-weight: 700;
+  font-size: 21px;
+  font-weight: 700;
+  border: none;
+  width: 214px;
+  width: 214px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .addContactButton img {
@@ -142,6 +304,21 @@ h2 {
 .createButton img {
   height: 32px;
   width: 32px;
+<<<<<<< HEAD
+=======
+  height: 32px;
+  width: 32px;
+}
+
+.addContactButtonResponsiv img {
+  height: 32px;
+  width: 32px;
+}
+
+.createButton img {
+  height: 32px;
+  width: 32px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .addContactButton:hover {
@@ -152,6 +329,13 @@ h2 {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+.createButton:hover {
+  cursor: pointer;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 @keyframes slideIn {
   from {
     transform: translateX(100%);
@@ -206,6 +390,10 @@ h2 {
 
 .bg-popUp {
   z-index: 999;
+<<<<<<< HEAD
+=======
+  z-index: 999;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 100vh;
@@ -222,12 +410,27 @@ h2 {
 
 
 
+<<<<<<< HEAD
 .popUp {
   height: 594px;
   width: 1212px;
   border-radius: 24px;
   z-index: 998;
   padding-left: 0%;
+=======
+
+
+.popUp {
+  height: 594px;
+  width: 1212px;
+  height: 594px;
+  width: 1212px;
+  border-radius: 24px;
+  z-index: 998;
+  padding-left: 0%;
+  z-index: 998;
+  padding-left: 0%;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -241,6 +444,11 @@ h2 {
   background-color: rgb(9, 25, 49);
   width: 467px;
   height:  597px;
+<<<<<<< HEAD
+=======
+  width: 467px;
+  height:  597px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -251,6 +459,11 @@ h2 {
   object-fit: cover;
   height: 66px;
   width: 55px;
+<<<<<<< HEAD
+=======
+  height: 66px;
+  width: 55px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .logo-box {
@@ -264,11 +477,24 @@ h2 {
 
 .saveButton{
   width: 111px!important;
+<<<<<<< HEAD
+=======
+  padding: 0 12px 0 30px;
+}
+
+.saveButton{
+  width: 111px!important;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .edit-logo {
   width: 361px;
   height: 89px;
+<<<<<<< HEAD
+=======
+  width: 361px;
+  height: 89px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   padding: 0 12px 12px 12px;
 }
 
@@ -277,12 +503,20 @@ h2 {
   display: flex;
   align-items: center;
   padding: 0 0 0 20px;
+<<<<<<< HEAD
+=======
+  padding: 0 0 0 20px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .popUp-content {
   background-color: white;
   height: 100%;
   width: 745px;
+<<<<<<< HEAD
+=======
+  width: 745px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -303,6 +537,12 @@ h2 {
   position: fixed;
   top: 48px;
   right: 48px;
+<<<<<<< HEAD
+=======
+  position: fixed;
+  top: 48px;
+  right: 48px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .close-button img:hover {
@@ -314,11 +554,19 @@ h2 {
   align-items: center;
   flex: 1;
   justify-content: space-between;
+<<<<<<< HEAD
+=======
+  justify-content: space-between;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   width: 100%;
 }
 
 .profile-pic {
   padding-inline-start: 83px;
+<<<<<<< HEAD
+=======
+  padding-inline-start: 83px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   height: 120px;
   width: 120px;
 }
@@ -328,6 +576,14 @@ h2 {
     padding-inline-end: 48px;
 }
 
+<<<<<<< HEAD
+=======
+.contact_input{
+  width: 422px;
+    padding-inline-end: 48px;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .return-mobilePopUp {
   display: flex;
   justify-content: end;
@@ -346,6 +602,13 @@ h2 {
   object-fit: cover;
 
   
+<<<<<<< HEAD
+=======
+  width: 422px;
+  object-fit: cover;
+
+  
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .form input {
@@ -353,6 +616,10 @@ h2 {
   border-radius: 8px;
   border: 1px solid rgb(203, 203, 203);
   object-fit: cover;
+<<<<<<< HEAD
+=======
+  object-fit: cover;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .h2-span {
@@ -364,6 +631,13 @@ h2 {
   height: 129px!important;
 }
 
+<<<<<<< HEAD
+=======
+.addLogo{
+  height: 129px!important;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .text {
   display: flex;
   align-items: center;
@@ -374,11 +648,22 @@ h2 {
   font-size: 27px;
 }
 
+<<<<<<< HEAD
+=======
+.text span{
+  font-size: 27px;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .contact_button {
   display: flex;
   align-items: center;
   padding: 32px 0 0 0;
   gap: 24px;
+<<<<<<< HEAD
+=======
+  gap: 24px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .contact_button button {
@@ -415,6 +700,22 @@ h2 {
   color: white;
 }
 
+<<<<<<< HEAD
+=======
+.addContactButtonResponsiv:hover{
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+  cursor: pointer;
+}
+
+.createButton:hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .contact_button img {
   object-fit: cover;
   height: 24px;
@@ -446,16 +747,32 @@ h2 {
   display: flex;
   align-items: center;
   gap: 35px;
+<<<<<<< HEAD
+=======
+  gap: 35px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   border-radius: 12px;
   width: 322px;
   height: 78px;
   padding-left: 30px;
   padding-bottom: 37px;
+<<<<<<< HEAD
+=======
+  width: 322px;
+  height: 78px;
+  padding-left: 30px;
+  padding-bottom: 37px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 }
 
 .one_letter {
   height: 42px;
   width: 42px;
+<<<<<<< HEAD
+=======
+  height: 42px;
+  width: 42px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -479,6 +796,13 @@ h2 {
   font-size: 20px;
 }
 
+<<<<<<< HEAD
+=======
+.fullName-email span{
+  font-size: 20px;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .email {
   text-decoration: none;
   color: rgb(0, 124, 238);
@@ -486,6 +810,8 @@ h2 {
 }
 
 .single-letter {
+  height: 120px;
+  width: 120px;
   height: 120px;
   width: 120px;
   border-radius: 50%;
@@ -513,10 +839,25 @@ h4 {
   align-items: center;
 }
 
+<<<<<<< HEAD
+=======
+.contactInformation{
+  font-size: 20px;
+  height: 74px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .contact-profile {
   display: flex;
   align-items: center;
   gap: 54px;
+<<<<<<< HEAD
+=======
+  gap: 54px;
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   padding: 24px 0 24px 0;
 }
 
@@ -557,6 +898,13 @@ h4 {
   display: none;
 }
 
+<<<<<<< HEAD
+=======
+.underline{
+  display: none;
+}
+
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
 .edit-delete img:hover {
   cursor: pointer;
   filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
@@ -588,6 +936,10 @@ h4 {
 
 #options_edit_delete{
   
+<<<<<<< HEAD
+=======
+  
+>>>>>>> b228fcd9e4747251c16f88ae7dc5dbd659da2860
   object-fit: cover;
   color: black;
 }
