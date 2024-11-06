@@ -81,6 +81,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    
+    document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
+    document.getElementById('email').addEventListener('input', updateeditSubmitButtonState);
+    document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
+});
+
+
+
+
+
+
+
+function updateeditSubmitButtonState() {
+    const nameValid = validateName(document.getElementById('name').value);
+    const emailValid = validateEmail(document.getElementById('email').value);
+    const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
+
+    const submitButton = document.getElementById('createSubmit');
+    submitButton.disabled = !(nameValid && emailValid && phoneValid);
+}
+
+
+
+
+
+
 function createNewContact(event) {
     event.preventDefault();
 
@@ -157,47 +184,6 @@ function validatePhoneField() {
     updateSubmitButtonState();
 }
 
-
-
-
-
-
-
-/*
-
-function validateNameField() {
-    let name = document.getElementById('name').value;
-    if (!validateName(name)) {
-        showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
-    } else {
-        hideErrorMessage('nameError');
-    }
-    updateSubmitButtonState();
-}*/
-
-
-/*
-function validateEmailField() {
-    let email = document.getElementById('email').value;
-    if (!validateEmail(email)) {
-        showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-    } else {
-        hideErrorMessage('emailError');
-    }
-    updateSubmitButtonState();
-}*/
-
-
-/*
-function validatePhoneField() {
-    let tel = document.getElementById('tel').value;
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein.");
-    } else {
-        hideErrorMessage('phoneError');
-    }
-    updateSubmitButtonState();
-}*/
 function validateNameFieldBlur() {
     let name = document.getElementById('name').value;
     if (!validateName(name)) {
@@ -206,6 +192,7 @@ function validateNameFieldBlur() {
         hideErrorMessage('nameError');
     }
     updateSubmitButtonState();
+     updateeditSubmitButtonState();
 }
 
 function validatePhoneFieldBlur() {
@@ -216,6 +203,7 @@ function validatePhoneFieldBlur() {
         hideErrorMessage('phoneError');
     }
     updateSubmitButtonState();
+    updateeditSubmitButtonState();
 }
 
 function validateEmailFieldBlur() {
@@ -226,6 +214,7 @@ function validateEmailFieldBlur() {
         hideErrorMessage('emailError');
     }
     updateSubmitButtonState();
+    updateeditSubmitButtonState();
 }
 
 
@@ -268,6 +257,15 @@ function resetErrorMessages() {
 
 
 
+
+
+
+
+
+
+
+
+
 function validateEditNameField() {
     let name = document.getElementById('editName').value;
     if (!validateName(name)) {
@@ -275,7 +273,35 @@ function validateEditNameField() {
     } else {
         hideErrorMessage('editNameError');
     }
+    updateeditSubmitButtonState();
+    
 }
+function validateEditEmailField() {
+    let email = document.getElementById('editEmail').value;
+    if (!validateEmail(email)) {
+        showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+    } else {
+        hideErrorMessage('editEmailError');
+    }
+    updateeditSubmitButtonState();
+}
+
+function validateEditPhoneField() {
+    let tel = document.getElementById('editTel').value;
+    if (!validatePhoneNumber(tel)) {
+        showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein.");
+    } else {
+        hideErrorMessage('editPhoneError');
+    }
+    updateeditSubmitButtonState();
+}
+
+
+
+
+
+
+
 
 function validateEditNameFieldBlur() {
     let name = document.getElementById('editName').value;
@@ -286,14 +312,7 @@ function validateEditNameFieldBlur() {
     }
 }
 
-function validateEditEmailField() {
-    let email = document.getElementById('editEmail').value;
-    if (!validateEmail(email)) {
-        showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-    } else {
-        hideErrorMessage('editEmailError');
-    }
-}
+
 
 function validateEditEmailFieldBlur() {
     let email = document.getElementById('editEmail').value;
@@ -304,14 +323,6 @@ function validateEditEmailFieldBlur() {
     }
 }
 
-function validateEditPhoneField() {
-    let tel = document.getElementById('editTel').value;
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein.");
-    } else {
-        hideErrorMessage('editPhoneError');
-    }
-}
 
 function validateEditPhoneFieldBlur() {
     let tel = document.getElementById('editTel').value;
