@@ -1,8 +1,9 @@
-main, body{
+main,
+body {
   overflow-x: hidden;
 }
 
-#hideAssignlist{
+#hideAssignlist {
   position: relative;
   top: -600px;
   left: -200px;
@@ -11,7 +12,7 @@ main, body{
   overflow-x: hidden;
 }
 
-.content-section{
+.content-section {
   margin-top: 110px;
   margin-left: 91px;
   margin-right: 110px;
@@ -97,7 +98,7 @@ main, body{
   height: 17.58px;
 }
 
-.taskSearch:hover{
+.taskSearch:hover {
   cursor: pointer;
 }
 
@@ -137,7 +138,7 @@ main, body{
   justify-content: space-between;
 }
 
-.headerMobile{
+.headerMobile {
   margin: 0;
 }
 
@@ -187,7 +188,7 @@ main, body{
   box-sizing: unset;
 }
 
-.card:hover{
+.card:hover {
   cursor: pointer;
 }
 
@@ -253,40 +254,40 @@ main, body{
   overflow-y: overlay;
 }
 
-.assignContainer{
+.assignContainer {
   max-height: 200px;
   overflow-y: overlay;
   overflow-x: hidden;
 }
 
-.progress-text{
+.progress-text {
   font-size: 14px;
 }
 
-.cardBalken{
+.cardBalken {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.dropSection{
+.dropSection {
   min-height: 400px;
   border: 2px dashed #00000000;
 }
 
 .drag-over {
-  border: 2px dashed #e7e7e7; 
+  border: 2px dashed #e7e7e7;
 }
 
 .initials {
   width: 32px;
   height: 32px;
   border-radius: 45px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 400;
   font-size: 14px;
   margin-left: -10px;
@@ -294,15 +295,15 @@ main, body{
   z-index: 1;
 }
 
-.initialsDetails{
+.initialsDetails {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 400;
   font-size: 14px;
   position: relative;
@@ -316,23 +317,23 @@ main, body{
   margin-left: 10px;
 }
 
-.assignList{
+.assignList {
   gap: 16px;
 }
 
-.plusImgMobile{
+.plusImgMobile {
   display: none;
   box-sizing: unset;
   height: 25px;
   width: 25px;
 }
 
-.plusImg{
+.plusImg {
   height: 25px;
   width: 25px;
 }
 
-.subTaskList{
+.subTaskList {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -346,8 +347,7 @@ main, body{
   padding-inline-start: 16px;
 }
 
-.subTaskLeft{
-
+.subTaskLeft {
   display: none;
   align-items: center;
 }
@@ -356,38 +356,39 @@ main, body{
   display: flex;
 }
 
-.white{
+.white {
   filter: brightness(1000%) saturate(0%);
 }
 
-.editInput{
+.editInput {
   display: flex;
   width: 100%;
   height: 25px;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #29ABE2;
+  background-color: #ffffff;
+  border-bottom: 1px solid #29abe2;
   align-items: center;
 }
 
-.edit-input{
+.edit-input {
   height: 32px;
-  border: none!important;
-  height: 23px!important;
-  margin: 0!important;
+  border: none !important;
+  height: 23px !important;
+  margin: 0 !important;
   width: 100%;
-  font-size: 14px!important;
+  font-size: 14px !important;
 }
 
-.subTaskEdit:hover, .subTaskDelete:hover {
+.subTaskEdit:hover,
+.subTaskDelete:hover {
   cursor: pointer;
 }
 
-.subTaskList:hover{
+.subTaskList:hover {
   cursor: pointer;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
 }
 
-.subTaskEdit{
+.subTaskEdit {
   height: 14px;
   width: 14px;
   padding-right: 8px;
@@ -395,7 +396,7 @@ main, body{
   box-sizing: unset;
 }
 
-.subTaskDelete{
+.subTaskDelete {
   height: 14px;
   width: 14px;
   padding-left: 10px;
@@ -405,11 +406,11 @@ main, body{
 }
 
 @media (max-width: 1120px) {
-  .plusImg{
+  .plusImg {
     display: none;
   }
 
-  .plusImgMobile{
+  .plusImgMobile {
     display: block;
   }
 }
@@ -426,7 +427,6 @@ main, body{
   }
 
   .mobileSearch {
- 
     padding-bottom: 24px;
   }
 
@@ -441,10 +441,10 @@ main, body{
   .headerMobile {
     font-size: 47px;
   }
-  
-  .content-section{
+
+  .content-section {
     min-width: 246px;
-    margin-inline: 16px; 
+    margin-inline: 16px;
     margin-top: 40px;
   }
 }
@@ -461,15 +461,11 @@ main, body{
   .noTask {
     max-width: 100%;
   }
-
-  
-
 }
 
 .mobile-logo {
   display: none;
 }
-
 
 @media screen and (max-width: 768px) {
   .mobile-logo {

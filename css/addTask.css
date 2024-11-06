@@ -2,7 +2,7 @@
   color: #ff8190;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -43,7 +43,7 @@
   overflow: hidden;
 }
 
-#electedContacts{
+#electedContacts {
   flex-wrap: wrap;
 }
 
@@ -152,19 +152,18 @@
   height: 24px;
 }
 
-#addTaskForm{
+#addTaskForm {
   max-height: 870px;
   overflow: hidden;
 }
 
-#subTaskView{
+#subTaskView {
   max-height: 100px;
   overflow-y: overlay;
   padding: 0;
 }
 
-
-#addTaskDate:hover{
+#addTaskDate:hover {
   cursor: pointer;
 }
 
@@ -185,7 +184,8 @@
 }
 
 #addTaskContactSelect {
-  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px center;
+  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
+    center;
 }
 
 #addTaskContactSelect:focus {
@@ -193,7 +193,7 @@
 }
 
 #addTaskCategory {
-  background-image: url('../assets/img/arrow_drop_down.png');
+  background-image: url("../assets/img/arrow_drop_down.png");
   background-repeat: no-repeat;
   background-position: right 15px center;
   background-color: white;
@@ -237,7 +237,7 @@
 }
 
 .subTaskCross:hover,
-.subTaskCheck:hover{
+.subTaskCheck:hover {
   cursor: pointer;
 }
 
@@ -310,30 +310,32 @@
   top: 0;
 }
 
-#addTaskSide{
+#addTaskSide {
   padding-top: 110px;
   padding-left: 91px;
 }
 
-.required{
+.required {
   font-size: 14px;
-  color: #FF8190;
-  margin-top: -20px!important;
-  margin-bottom: 3px!important;
+  color: #ff8190;
+  margin-top: -20px !important;
+  margin-bottom: 3px !important;
 }
 
-.outlineRed{
-  border: 1px solid #FF8190!important;
+.outlineRed {
+  border: 1px solid #ff8190 !important;
 }
 
-#addTasktitleInput, #addTaskDate, #addTaskCategory{
+#addTasktitleInput,
+#addTaskDate,
+#addTaskCategory {
   margin-bottom: 25px;
 }
 
 .assingedInput {
   width: 100%;
-  margin-bottom: 0!important;
-  margin-top: 0!important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
 #assinged::placeholder {
@@ -366,7 +368,7 @@
   width: 440px;
   overflow-y: auto;
   background-color: #ffffff;
-  z-index: 5; 
+  z-index: 5;
   top: 600px;
   left: 200px;
 }
@@ -393,7 +395,6 @@
   user-select: none;
 }
 
-
 .container input {
   position: absolute;
   opacity: 0;
@@ -410,9 +411,9 @@
   width: 16px;
 }
 
-.backgroundAssing{
-  background-color: #2A3647;
-  color: #FFFFFF;
+.backgroundAssing {
+  background-color: #2a3647;
+  color: #ffffff;
   border-radius: 5px;
 }
 
@@ -420,12 +421,12 @@
   background-color: #ccc;
 }
 
-
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
-  border: 1px solid #29ABE2;
+  border: 1px solid #29abe2;
 }
-
 
 @media (max-width: 1300px) {
   .addTaskBody {
@@ -440,8 +441,8 @@ input:focus, textarea:focus, select:focus {
     max-height: unset;
   }
 
-  .addTaskFooter{
-    width: 440px!important;
+  .addTaskFooter {
+    width: 440px !important;
     position: unset;
     padding-bottom: 120px;
     margin-inline: 70px;
@@ -452,8 +453,8 @@ input:focus, textarea:focus, select:focus {
     max-height: unset;
   }
 
-  .addTaskFooter{
-    width: 440px!important;
+  .addTaskFooter {
+    width: 440px !important;
     position: unset;
     padding-bottom: 120px;
   }
@@ -486,21 +487,21 @@ input:focus, textarea:focus, select:focus {
     width: 100vw;
   }
 
-  .note{
+  .note {
     display: none;
   }
 
-  .addTaskSection{
-    width: 580px!important;
+  .addTaskSection {
+    width: 580px !important;
   }
 
-  .headerResponsiv{
-    margin-inline: 70px!important;
+  .headerResponsiv {
+    margin-inline: 70px !important;
   }
 }
 
-.headerResponsiv{
-  margin-top: 64px!important;
+.headerResponsiv {
+  margin-top: 64px !important;
 }
 
 ::-webkit-scrollbar {
@@ -520,11 +521,11 @@ input:focus, textarea:focus, select:focus {
   border-radius: 10px;
 }
 
-.addTaskHeader{
+.addTaskHeader {
   margin: 0;
 }
 
-.addTaskHeader{
+.addTaskHeader {
   margin: 0;
 }
 
@@ -561,11 +562,12 @@ input:focus, textarea:focus, select:focus {
 }
 
 @media (max-width: 600px) {
-  #hideAssignlist{
+  #hideAssignlist {
     width: 800px;
   }
 
-  .addTaskBody, .addTaskFooter {
+  .addTaskBody,
+  .addTaskFooter {
     margin: auto;
   }
 }
@@ -573,35 +575,38 @@ input:focus, textarea:focus, select:focus {
 .addTaskContent {
   flex-direction: column;
   font-size: 20px;
-  max-width: 976.25px; 
-  width: 100%; 
-  box-sizing: border-box; 
+  max-width: 976.25px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-@media (max-width: 450px){
-  .addTaskContent{
+@media (max-width: 450px) {
+  .addTaskContent {
     font-size: 16px;
   }
 
-  .addTaskFooter{
-    width: 100%!important;
+  .addTaskFooter {
+    width: 100% !important;
   }
 
-  .container, .assingUser, .assingedList {
+  .container,
+  .assingUser,
+  .assingedList {
     width: auto;
   }
 
-  .checkmark{
+  .checkmark {
     left: 290px;
   }
 
-  #addTaskSide{
-    margin-inline: 0!important;
+  #addTaskSide {
+    margin-inline: 0 !important;
   }
 
-  .addTaskLeft, .addTaskRight{
+  .addTaskLeft,
+  .addTaskRight {
     width: 100vw;
-  } 
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -610,8 +615,8 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-@media (max-width: 1024px){
-  #addTaskSide{
+@media (max-width: 1024px) {
+  #addTaskSide {
     justify-content: center;
     padding: 0;
     margin-top: 40px;
@@ -623,26 +628,25 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-
-@media (  max-height: 900px){
+@media (max-height: 900px) {
   .addTaskFooter {
     position: sticky;
   }
 }
 
-@media (max-height: 960px){
-  #subTaskView{
+@media (max-height: 960px) {
+  #subTaskView {
     max-height: 50px;
   }
 
-  .assingedList{
-    max-height: 100px!important;
+  .assingedList {
+    max-height: 100px !important;
   }
 }
 
-@media (max-height: 1050px){
-  .assingedList{
-    max-height: 100px!important;
+@media (max-height: 1050px) {
+  .assingedList {
+    max-height: 100px !important;
     min-height: 50px;
   }
 }

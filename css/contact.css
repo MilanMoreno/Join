@@ -24,27 +24,20 @@ h2 {
   padding-bottom: 0px;
 }
 
-.addContactButtonResponsiv{
+.addContactButtonResponsiv {
   display: none;
 }
 
-.addContactButtonResponsiv{
+.addContactButtonResponsiv {
   display: none;
 }
-
-
-
-
-
-
 
 .saveButton:disabled {
-  background-color: grey; 
+  background-color: grey;
   color: white;
   cursor: not-allowed;
   opacity: 0.5;
 }
-
 
 .saveButton:not(:disabled):hover {
   background-color: rgb(41, 171, 226);
@@ -52,29 +45,18 @@ h2 {
   color: white;
 }
 
-
-
 .createButton:disabled {
-  background-color: grey; 
-  color: white;           
-  cursor: not-allowed;    
-  opacity: 0.5;        
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
-
 
 .createButton:not(:disabled):hover {
   background-color: rgb(41, 171, 226);
   transition: 150ms;
   color: white;
 }
-
-
-
-
-
-
-
-
 
 .contacts {
   width: 456px;
@@ -83,13 +65,10 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px;/* 93px 12px 0 12px;*/
-  overflow-y: auto; 
-  background-color: #FFFFFF;
+  padding: 0px; /* 93px 12px 0 12px;*/
+  overflow-y: auto;
+  background-color: #ffffff;
 }
-
-
-
 
 ::-webkit-scrollbar {
   width: 0px;
@@ -116,19 +95,12 @@ h2 {
   padding: 15px 15px 0px 15px;
 }
 
-
-
-
-
-
-
-
 #mycontacts {
-  overflow-y: scroll;  
+  overflow-y: scroll;
 }
 
 #mycontacts::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 #mycontacts::-webkit-scrollbar-track {
@@ -145,18 +117,16 @@ h2 {
   background: #555;
 }
 
-
 #content-area {
-  overflow: hidden; 
+  overflow: hidden;
 }
 
-
-.h2Contacts{
+.h2Contacts {
   margin: 0;
   padding: 15px 15px 0px 15px;
 }
 
-.h2Contacts{
+.h2Contacts {
   margin: 0;
 }
 
@@ -285,7 +255,7 @@ h2 {
 .popUp.slide-out {
   animation: slideOut 0.5s forwards;
 }
- 
+
 .bg-popUp.show {
   opacity: 1;
 }
@@ -293,7 +263,6 @@ h2 {
 .bg-popUp.hide {
   opacity: 0;
 }
-
 
 .bg-popUp {
   z-index: 999;
@@ -310,8 +279,6 @@ h2 {
   opacity: 0;
   transition: opacity 0.5s;
 }
-
-
 
 .popUp {
   height: 594px;
@@ -331,7 +298,7 @@ h2 {
 .popUp-logo {
   background-color: rgb(9, 25, 49);
   width: 467px;
-  height:  597px;
+  height: 597px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -353,8 +320,8 @@ h2 {
   padding: 0 12px 0 30px;
 }
 
-.saveButton{
-  width: 111px!important;
+.saveButton {
+  width: 111px !important;
 }
 
 .edit-logo {
@@ -414,9 +381,9 @@ h2 {
   width: 120px;
 }
 
-.contact_input{
+.contact_input {
   width: 422px;
-    padding-inline-end: 48px;
+  padding-inline-end: 48px;
 }
 
 .return-mobilePopUp {
@@ -435,8 +402,6 @@ h2 {
   gap: 16px;
   width: 422px;
   object-fit: cover;
-
-  
 }
 
 .form input {
@@ -451,8 +416,8 @@ h2 {
   justify-content: space-between;
 }
 
-.addLogo{
-  height: 129px!important;
+.addLogo {
+  height: 129px !important;
 }
 
 .text {
@@ -461,7 +426,7 @@ h2 {
   gap: 48px;
 }
 
-.text span{
+.text span {
   font-size: 27px;
 }
 
@@ -493,7 +458,7 @@ h2 {
   color: white;
 }
 
-.addContactButtonResponsiv:hover{
+.addContactButtonResponsiv:hover {
   background-color: rgb(41, 171, 226);
   transition: 150ms;
   color: white;
@@ -530,7 +495,7 @@ h2 {
 .letter {
   border-bottom: 0.5px solid grey;
   margin: 0;
-  padding: 12px 0px 12px 58px
+  padding: 12px 0px 12px 58px;
 }
 
 .contactCard {
@@ -566,7 +531,7 @@ h2 {
   gap: 4px;
 }
 
-.fullName-email span{
+.fullName-email span {
   font-size: 20px;
 }
 
@@ -598,7 +563,7 @@ h4 {
   font-size: 36px;
 }
 
-.contactInformation{
+.contactInformation {
   font-size: 20px;
   height: 74px;
   font-weight: 400;
@@ -646,7 +611,7 @@ h4 {
   object-fit: cover;
 }
 
-.underline{
+.underline {
   display: none;
 }
 
@@ -677,39 +642,35 @@ h4 {
   display: none;
 }
 
-
-
-#options_edit_delete{
-  
+#options_edit_delete {
   object-fit: cover;
   color: black;
 }
-   
-        .closeMobile {
-            cursor: pointer;
-        }
 
-        #editDeleteMenu {
-          display: none;
-          position: absolute;
-          bottom: 74px;
-          right: 0px;
-          background-color: white;
-          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-          z-index: 1;
-          padding-right: 0px;
-          padding-bottom: 10px;
-          border-radius: 30%;
-        }
+.closeMobile {
+  cursor: pointer;
+}
 
-        #editDeleteMenu a {
-            display: block;
-            color: black;
-            text-decoration: none;
-            padding: 8px 16px;
-        }
+#editDeleteMenu {
+  display: none;
+  position: absolute;
+  bottom: 74px;
+  right: 0px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  border-radius: 30%;
+}
 
-        #editDeleteMenu a:hover {
-            background-color: #ddd;
-        }
+#editDeleteMenu a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 8px 16px;
+}
 
+#editDeleteMenu a:hover {
+  background-color: #ddd;
+}
