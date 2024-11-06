@@ -369,9 +369,9 @@ h2 {
 
 
 .popUp {
-  height: 594px;
+  height: 453px;
   width: 1212px;
-  height: 594px;
+  
   width: 1212px;
   border-radius: 24px;
   z-index: 998;
@@ -480,7 +480,7 @@ h2 {
   align-items: center;
   flex: 1;
   justify-content: space-between;
-  justify-content: space-between;
+  justify-content: space-around !important;
   width: 100%;
 }
 
