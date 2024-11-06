@@ -455,10 +455,24 @@ async function removeContact(path = 'contact', id) {
         if (!response.ok) {
             throw new Error('Löschfehler des Kontakts');
         }
-        fetchData();
+
+       
+        await fetchData();
+        
+       
+        clearDetailedView();
+        
+  
         currentEditKey = null;
     } catch (error) {
         console.error('Löschfehler des Kontakts:', error.message);
     }
 }
 
+
+function clearDetailedView() {
+    const target = document.getElementById('content');
+    if (target) {
+        target.innerHTML = ''; 
+    }
+}
