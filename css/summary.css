@@ -11,7 +11,9 @@
 
 .primary-area {
     margin-bottom: 10px;
-    padding: 110px clamp(2.875rem, -1.4287rem + 6.7114vw, 6.625rem) 0 clamp(2.875rem, -1.4287rem + 6.7114vw, 6.625rem);
+    margin-top: 110px;
+    margin-inline: 90px;
+    
 }
 
 .side-padding {
@@ -232,18 +234,15 @@
     text-decoration: none;
     color: black;
 }
-
+ 
 @media (max-width: 1024px) {
     .lead-section h1 {
         font-size: 47px;
     }
 
-    .d-none-mobile {
-        display: none;
-    }
-
     .primary-area {
-        padding: 48px clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem) 128px clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem);
+    margin-top: 40px;
+    margin-inline: 16px;
     }
 
     .spacer {
@@ -280,3 +279,12 @@
         padding: clamp(0.625rem, 0.5rem + 0.625vw, 1.25rem) clamp(0.625rem, 0.5625rem + 0.3125vw, 0.9375rem);
     }
 }
+
+@media (max-width: 1124px){
+    .d-none-mobile-r {
+        display: none;
+    }
+}
+
+
+

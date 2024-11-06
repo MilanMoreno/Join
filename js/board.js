@@ -2,7 +2,7 @@ let task = [];
 let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
 
-async function loadTask() {
+async function loadTasks() {
   try {
     const response = await fetch(`${BASE_URL}.json`);
     if (!response.ok) {
@@ -23,6 +23,7 @@ async function loadTask() {
     console.error("Fehler beim Laden der Daten:", error);
   }
   render();
+  loadContacts();
 }
 
 
@@ -268,7 +269,7 @@ function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, f
                     <p class="d-flex dPrio">${task[id].Prio} ${priosrc}</p>
                 </div>
             </div>
-            <ul>
+            <ul class=" assignContainer">
                 <p class="detailAssign">Assigned To:</p>
                 ${assign}
             </ul>
@@ -282,7 +283,7 @@ function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, f
                 <p>Delete</p>
             </div>
             <div class="detailMiddleline"></div>
-            <div class="deleteEdit d-flex" onclick="editTask('${task[id].Title}', '${task[id].Category}', '${task[id].DueDate}', '${task[id].Description}' ,'${task[id].PositionID}' ,'${id}')">
+            <div class="deleteEdit d-flex" onclick="editTask('${task[id].Title}', '${task[id].Category}', '${task[id].DueDate}', '${task[id].Description}' ,'${task[id].PositionID}' ,'${id}' ,'${task[id].Prio}')">
                 <img src="./assets/img/edit.svg" alt="">
                 <p>Edit</p>
             </div>
@@ -301,7 +302,7 @@ function formatDateToDDMMYYYY(dateString) {
 function filterContact(id) {
   let tasks = task;
   let contact = "";
-  if ("AssignedTo" in tasks[id]) {
+  if (tasks[id] && "AssignedTo" in tasks[id]) {
     for (let i = 0; i < tasks[id].AssignedTo.length; i++) {
       const element = tasks[id].AssignedTo[i];
       const initial = getInitialsDetail(element);
@@ -321,7 +322,7 @@ function filterSubTask(id) {
       const element = task[id].Subtask[0][i];
       const checkedTask = task[id].checkboxState[0][i].checked;
       const checked = filterCheckBox(checkedTask);
-      subTask += `<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id}" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;
+      subTask += `<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id} c-pointer" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;
     }
   } else {
     return subTask;
@@ -419,8 +420,8 @@ function drop(event) {
 
 function updateTaskPosition(dropTargetID) {
   task[idUpdate].PositionID = dropTargetID;
-  task = task[idUpdate];
-  updatePosition(task.Title, task);
+  taskSave = task[idUpdate];
+  updatePosition(task.Title, taskSave);
 }
 
 
@@ -441,7 +442,6 @@ async function updateCheckboxStateInFirebase(checkboxId, taskId) {
     }
   )
     .then((response) => response.json())
-    .then((data) => console.log("Checkbox state updated:", data))
     .catch((error) => console.error("Error updating checkbox state:", error));
 }
 
@@ -472,9 +472,9 @@ function renderTasks(filteredTasks) {
 }
 
 
-function filterTasks() {
+function filterTasks(id) {
   const filterInput = document
-    .getElementById("findTaskInput")
+    .getElementById(id)
     .value.toLowerCase();
   const filteredTasks = task.filter((task) => {
     return (
@@ -483,4 +483,8 @@ function filterTasks() {
     );
   });
   render(filteredTasks);
+}
+
+function focusInput(inputId) {
+  document.getElementById(inputId).focus();
 }

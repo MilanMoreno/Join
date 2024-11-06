@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/summary.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/responsive_contact.css">
   <style type="text/css" id="operaUserStyle"></style>
-     <script src="/js/summary.js"></script>
+     <script src="./js/summary.js"></script>
   <script src="./js/contactsfirebase.js"></script>
   </head>
       <body onload="loadTask()">
@@ -21,11 +23,12 @@
     <link rel="stylesheet" href="./css/side_menu.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/style.css">
+
     <meta charset="UTF-8">
     <section id="Sidebar" class="sidebar">
       <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
       <nav>
-        <a id="summarylink" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
+        <a class="highlight" id="summarylink" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="Addtask">Add Task</a>
         <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="Board">Board</a>
         <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg" alt="Contacts">Contacts</a>
@@ -48,20 +51,21 @@
     <meta charset="UTF-8">
     <script src=" js/dropDownMenuAndGoBack.js"></script>
     <header id="header">
-      <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
+      <a href="summary.html">
+        <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
+    </a>
       <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
         <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
       </div>
-      </header>
+    </header>
     </section>
     <section id="headerDropdownOption" class="d-noneHead">
       <div class="headerDropdownOption">
         <a href="./legal_notice.html">Legal Notice</a>
         <a href="./privacy-police.html">Privacy Policy</a>
         <a href="./index.html">Log out</a>
-        <a href="./help.html">help</a>
       </div>
     </section>
 </div>
@@ -125,7 +129,7 @@
               </a>
             </div>
           </div>
-          <div class="right-summary-area d-none-mobile">
+          <div class="right-summary-area d-none-mobile-r">
             <div id="salutation-text">
               <h2>Good morning</h2>
             <h1 id="greeting"></h1>
@@ -158,3 +162,8 @@
   document.getElementById('userInitials').querySelector('div').textContent = initials;
 </script>
 </body></html>
+
+
+
+
+

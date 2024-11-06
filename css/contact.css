@@ -1,6 +1,7 @@
 h2 {
   border-right: solid 2px rgb(41, 171, 226);
-  font-size: xxx-large;
+  font-size: 61px;
+  font-size: 61px;
   padding-right: 48px;
 }
 .fixed-header {
@@ -21,21 +22,51 @@ h2 {
   height: 90vh;
   width: 100%;
   display: flex;
+  padding-bottom: 0px;
+}
+
+.addContactButtonResponsiv{
+  display: none;
+}
+
+
+
+
+
+
+.createButton:disabled {
+  background-color: grey; 
+  color: white;           
+  cursor: not-allowed;    
+  opacity: 0.5;        
+}
+
+
+.createButton:not(:disabled):hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
 }
 
 .contacts {
-  width: 35%;
+  width: 456px;
+  width: 456px;
   height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 0 12px 0 12px 0;
-  padding: 0 12px 0 12px;
+  align-items: center;
+  padding: 0px;/* 93px 12px 0 12px;*/
+  align-items: center;
+  padding: 0px;/* 93px 12px 0 12px;*/
+  overflow-y: auto; 
+  background-color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
+  height: 0px;
 }
 
 ::-webkit-scrollbar-track {
@@ -54,17 +85,26 @@ h2 {
 
 .content-section {
   flex: 1;
-  height: 90vh;
-  padding: 0 24px 0 24px;
+  height: 88vh;
+  padding: 15px 15px 0px 15px;/*110px 25px 0 55px; */
+}
+
+.h2Contacts{
+  margin: 0;
+  padding: 15px 15px 0px 15px;/*110px 25px 0 55px; */
+}
+
+.h2Contacts{
+  margin: 0;
 }
 
 .moreAboutContent {
   width: 100%;
   height: auto;
-  padding: 24px 12px 0 12px;
+  padding: 24px -1px 0 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
 }
 
 .addContact {
@@ -79,20 +119,116 @@ h2 {
   color: white;
   display: flex;
   align-items: center;
-  gap: 12px;
-  height: 40px;
-  border-radius: 12px;
-  font-size: larger;
-  padding: 8px 12px 8px 12px;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 700;
   border: none;
+  width: 352px;
+}
+
+.addContactButtonResponsiv {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: 46px;
+  border: none;
+  width: 56px;
+  position: absolute;
+  bottom: 112px;
+  right: 16px;
+}
+
+.createButton {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  border: none;
+  width: 352px;
+}
+
+.addContactButtonResponsiv {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: 46px;
+  border: none;
+  width: 56px;
+  position: absolute;
+  bottom: 112px;
+  right: 16px;
+}
+
+.createButton {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 21px;
+  font-weight: 700;
+  font-size: 21px;
+  font-weight: 700;
+  border: none;
+  width: 214px;
+  width: 214px;
 }
 
 .addContactButton img {
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
+}
+
+.addContactButtonResponsiv img {
+  height: 32px;
+  width: 32px;
+}
+
+.createButton img {
+  height: 32px;
+  width: 32px;
+  height: 32px;
+  width: 32px;
+}
+
+.addContactButtonResponsiv img {
+  height: 32px;
+  width: 32px;
+}
+
+.createButton img {
+  height: 32px;
+  width: 32px;
 }
 
 .addContactButton:hover {
+  cursor: pointer;
+}
+
+.createButton:hover {
+  cursor: pointer;
+}
+
+.createButton:hover {
   cursor: pointer;
 }
 
@@ -138,7 +274,7 @@ h2 {
 .popUp.slide-out {
   animation: slideOut 0.5s forwards;
 }
-
+ 
 .bg-popUp.show {
   opacity: 1;
 }
@@ -147,12 +283,10 @@ h2 {
   opacity: 0;
 }
 
-.bg-focus {
-  background-color: #091931;
-}
 
 .bg-popUp {
-  z-index: 1;
+  z-index: 999;
+  z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 100vh;
@@ -167,11 +301,20 @@ h2 {
   transition: opacity 0.5s;
 }
 
+
+
+
+
 .popUp {
-  height: 50vh;
-  width: 60vw;
+  height: 594px;
+  width: 1212px;
+  height: 594px;
+  width: 1212px;
   border-radius: 24px;
-  z-index: 2;
+  z-index: 998;
+  padding-left: 0%;
+  z-index: 998;
+  padding-left: 0%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -183,8 +326,10 @@ h2 {
 
 .popUp-logo {
   background-color: rgb(9, 25, 49);
-  width: 40%;
-  height: 100%;
+  width: 467px;
+  height:  597px;
+  width: 467px;
+  height:  597px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -193,7 +338,10 @@ h2 {
 
 .logo {
   object-fit: cover;
-  height: 100%;
+  height: 66px;
+  width: 55px;
+  height: 66px;
+  width: 55px;
 }
 
 .logo-box {
@@ -202,12 +350,23 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: start;
-  padding: 0 12px 0 12px;
+  padding: 0 12px 0 30px;
+}
+
+.saveButton{
+  width: 111px!important;
+  padding: 0 12px 0 30px;
+}
+
+.saveButton{
+  width: 111px!important;
 }
 
 .edit-logo {
-  object-fit: cover;
-  width: 200px;
+  width: 361px;
+  height: 89px;
+  width: 361px;
+  height: 89px;
   padding: 0 12px 12px 12px;
 }
 
@@ -215,14 +374,15 @@ h2 {
   width: 80%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 0 0 12px;
+  padding: 0 0 0 20px;
+  padding: 0 0 0 20px;
 }
 
 .popUp-content {
   background-color: white;
-  flex: 1;
   height: 100%;
+  width: 745px;
+  width: 745px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,13 +394,18 @@ h2 {
   display: flex;
   justify-content: end;
   align-items: center;
-  padding: 0 24px 0 0;
 }
 
 .close-button img {
   object-fit: cover;
   height: 32px;
   width: 32px;
+  position: fixed;
+  top: 48px;
+  right: 48px;
+  position: fixed;
+  top: 48px;
+  right: 48px;
 }
 
 .close-button img:hover {
@@ -251,13 +416,26 @@ h2 {
   display: flex;
   align-items: center;
   flex: 1;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  justify-content: space-between;
   width: 100%;
 }
 
 .profile-pic {
+  padding-inline-start: 83px;
+  padding-inline-start: 83px;
   height: 120px;
   width: 120px;
+}
+
+.contact_input{
+  width: 422px;
+    padding-inline-end: 48px;
+}
+
+.contact_input{
+  width: 422px;
+    padding-inline-end: 48px;
 }
 
 .return-mobilePopUp {
@@ -274,18 +452,35 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 320px;
+  width: 422px;
+  object-fit: cover;
+
+  
+  width: 422px;
+  object-fit: cover;
+
+  
 }
 
 .form input {
   height: 32px;
   border-radius: 8px;
   border: 1px solid rgb(203, 203, 203);
+  object-fit: cover;
+  object-fit: cover;
 }
 
 .h2-span {
   display: flex;
   justify-content: space-between;
+}
+
+.addLogo{
+  height: 129px!important;
+}
+
+.addLogo{
+  height: 129px!important;
 }
 
 .text {
@@ -294,11 +489,20 @@ h2 {
   gap: 48px;
 }
 
+.text span{
+  font-size: 27px;
+}
+
+.text span{
+  font-size: 27px;
+}
+
 .contact_button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 32px 0 0 0;
+  gap: 24px;
+  gap: 24px;
 }
 
 .contact_button button {
@@ -317,6 +521,32 @@ h2 {
 }
 
 .addContactButton:hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+.addContactButtonResponsiv:hover{
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+  cursor: pointer;
+}
+
+.createButton:hover {
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+}
+
+.addContactButtonResponsiv:hover{
+  background-color: rgb(41, 171, 226);
+  transition: 150ms;
+  color: white;
+  cursor: pointer;
+}
+
+.createButton:hover {
   background-color: rgb(41, 171, 226);
   transition: 150ms;
   color: white;
@@ -346,20 +576,30 @@ h2 {
 .letter {
   border-bottom: 0.5px solid grey;
   margin: 0;
-  padding: 12px 0 12px 0;
+  padding: 12px 0px 12px 58px
 }
 
 .contactCard {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 12px 12px 12px;
+  gap: 35px;
+  gap: 35px;
   border-radius: 12px;
+  width: 322px;
+  height: 78px;
+  padding-left: 30px;
+  padding-bottom: 37px;
+  width: 322px;
+  height: 78px;
+  padding-left: 30px;
+  padding-bottom: 37px;
 }
 
 .one_letter {
-  height: 70px;
-  width: 70px;
+  height: 42px;
+  width: 42px;
+  height: 42px;
+  width: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -379,6 +619,14 @@ h2 {
   gap: 4px;
 }
 
+.fullName-email span{
+  font-size: 20px;
+}
+
+.fullName-email span{
+  font-size: 20px;
+}
+
 .email {
   text-decoration: none;
   color: rgb(0, 124, 238);
@@ -386,6 +634,8 @@ h2 {
 }
 
 .single-letter {
+  height: 120px;
+  width: 120px;
   height: 120px;
   width: 120px;
   border-radius: 50%;
@@ -405,10 +655,27 @@ h4 {
   font-size: 36px;
 }
 
+.contactInformation{
+  font-size: 20px;
+  height: 74px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.contactInformation{
+  font-size: 20px;
+  height: 74px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
 .contact-profile {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 54px;
+  gap: 54px;
   padding: 24px 0 24px 0;
 }
 
@@ -445,6 +712,14 @@ h4 {
   object-fit: cover;
 }
 
+.underline{
+  display: none;
+}
+
+.underline{
+  display: none;
+}
+
 .edit-delete img:hover {
   cursor: pointer;
   filter: invert(33%) sepia(100%) saturate(5000%) hue-rotate(190deg)
@@ -467,3 +742,45 @@ h4 {
   color: rgb(65, 157, 241);
   text-decoration: none;
 }
+
+.closeMobile {
+  display: none;
+}
+
+
+
+#options_edit_delete{
+  
+  
+  object-fit: cover;
+  color: black;
+}
+   
+        .closeMobile {
+            cursor: pointer;
+        }
+
+        #editDeleteMenu {
+          display: none;
+          position: absolute;
+          bottom: 74px;
+          right: 0px;
+          background-color: white;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+          padding-right: 0px;
+          padding-bottom: 10px;
+          border-radius: 30%;
+        }
+
+        #editDeleteMenu a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+
+        #editDeleteMenu a:hover {
+            background-color: #ddd;
+        }
+

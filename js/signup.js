@@ -1,18 +1,19 @@
-let usersArray = []; 
-
 async function handleSignUp(event) {
     event.preventDefault();
+    const usersArray = await loadUsers();
+
     let emailField = document.getElementById("inputSignUpMail");
     let passwordField = document.getElementById("inputSignUpPassword1");
     let confirmPasswordField = document.getElementById("inputSignUpPassword2");
     let acceptCheckbox = document.getElementById("checkboxAccept");
     let errorDisplay = document.getElementById("passwordIncorrect");
+
     if (!acceptCheckbox.checked) {
         displayErrorMessage("You must accept the terms of use", acceptCheckbox);
         return;
     }
 
-    if (!(await checkEmailAvailability(emailField.value))) {
+    if (!checkEmailAvailability(usersArray, emailField.value)) {
         displayErrorMessage("Email is already registered", emailField);
         return;
     }
@@ -20,19 +21,17 @@ async function handleSignUp(event) {
     let newUser = buildUserObject();
     if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
         showSuccessMessage();
-    }
+    } 
 }
 
-
-async function checkEmailAvailability(email) {
-    await loadUsers();
+async function checkEmailAvailability(usersArray, email) {
     return !usersArray.some(user => user.mail === email);
 }
-
 
 async function verifyPassword(user, passwordField, confirmPasswordField) {
     const password = passwordField.value.trim();
     const confirmPassword = confirmPasswordField.value.trim();
+
     if (!password || !confirmPassword) {
         displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
         return false;
@@ -46,16 +45,15 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {
     }
 }
 
-
 async function loadUsers() {
-    usersArray = [];
+    let usersArray = [];
     let usersData = await fetchData("users");
     for (let [userID, userData] of Object.entries(usersData || {})) {
         userData.id = userID;
         usersArray.push(userData);
     }
+    return usersArray;
 }
-
 
 function displayErrorMessage(message, targetElement) {
     let errorElement = document.getElementById("passwordIncorrect");
@@ -64,7 +62,6 @@ function displayErrorMessage(message, targetElement) {
     targetElement.style.border = "2px solid red";
 }
 
-
 function buildUserObject() {
     let name = document.getElementById("inputSignUpName").value;
     let email = document.getElementById("inputSignUpMail").value;
@@ -72,24 +69,29 @@ function buildUserObject() {
     return { name, initials: getInitials(name), password, mail: email };
 }
 
-
 function showSuccessMessage() {
     document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
     setTimeout(() => {
-        window.location.href = "./index.html"; 
-    }, 1500); 
+        window.location.href = "./index.html";
+    }, 1500);
 }
-
 
 function getInitials(name) {
     return name.split(" ").filter(Boolean).map(word => word[0].toUpperCase()).join("");
 }
 
+function guestLogin() {
+    let guestUser = { initials: "G", name: "Guest" };
+    localStorage.setItem("user", JSON.stringify(guestUser));
+    window.location.href = "./summary.html";
+}
 
-function login() {
+async function login() {
+    const usersArray = await loadUsers();
     let email = document.getElementById("inputEmailLogIn").value;
     let password = document.getElementById("inputPasswordLogIn").value;
     let matchedUser = usersArray.find(user => user.mail === email && user.password === password);
+
     if (matchedUser) {
         localStorage.setItem("user", JSON.stringify(matchedUser));
         window.location.href = "./summary.html";
@@ -98,19 +100,18 @@ function login() {
     }
 }
 
-
-function guestLogin() {
-    let guestUser = { initials: "G", name: "Guest" };
-    localStorage.setItem("user", JSON.stringify(guestUser));
-    window.location.href = "./summary.html";
-}
-
-
 function handleLogin(event) {
     event.preventDefault();
     const emailInput = document.getElementById("inputEmailLogIn").value;
     const passwordInput = document.getElementById("inputPasswordLogIn").value;
-    const matchedUser = usersArray.find(user => user.mail === emailInput && user.password === passwordInput);
+
+    loginUser(emailInput, passwordInput);
+}
+
+async function loginUser(email, password) {
+    const usersArray = await loadUsers();
+
+    const matchedUser = usersArray.find(user => user.mail === email && user.password === password);
     if (matchedUser) {
         saveUserToLocal(matchedUser);
         redirectToSummary();
@@ -118,7 +119,6 @@ function handleLogin(event) {
         showLoginErrorMessage("E-Mail or password are incorrect");
     }
 }
-
 
 function loginAsGuest() {
     const guestUser = {
@@ -134,11 +134,9 @@ function saveUserToLocal(user) {
     localStorage.setItem("user", userString);
 }
 
-
 function redirectToSummary() {
     window.location.href = "./summary.html";
 }
-
 
 function showLoginErrorMessage(message) {
     const loginErrorElement = document.getElementById("Loginerror");

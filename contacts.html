@@ -15,10 +15,19 @@
   <script src="./js/contact_Mobile.js"></script>
   <script src="js/contactsfirebase.js"></script>
   <script src=" js/dropDownMenuAndGoBack.js"></script>
+
   <style>
     .d-block {
       display: block;
     }
+    .error-message {
+    color: red;
+    font-size: 12px;
+    
+    height: 15px;
+}
+
+
   </style>
 </head>
 <body onload="fetchData()">
@@ -38,7 +47,7 @@
         <a id="summarylink" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="Addtask">Add Task</a>
         <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="Board">Board</a>
-        <a id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg"
+        <a class="highlight" id="link-contact" href="./contacts.html" class="bg-focus"><img src="./assets/img/icon_contacts.svg"
             alt="Contacts">Contacts</a>
       </nav>
       <div class="bottom-menu-link d-none-mobile">
@@ -73,7 +82,6 @@
           <a href="./legal_notice.html">Legal Notice</a>
           <a href="./privacy-police.html">Privacy Policy</a>
           <a href="./index.html">Log out</a>
-          <a href="./help.html">help</a>
         </div>
       </section>
     </div>
@@ -82,6 +90,8 @@
         <div class="addContact">
           <button onclick="openClosePopUp('open', key = false)" class="addContactButton position-fixed">Add new Contact
             <img src="./contact-assets/img/addPerson.png" alt=""></button>
+            <button onclick="openClosePopUp('open', key = false)" class="addContactButtonResponsiv position-fixed">
+              <img src="./contact-assets/img/addPerson.png" alt=""></button>
         </div>
         <div class="list" id="contacts">
           <h3 class="letter">A</h3>
@@ -96,17 +106,25 @@
       <section id="content-area" class="content-section dNone">
         <div class="h2-span">
           <div class="text">
-            <h2>Contacts</h2>
+            <h2 class="h2Contacts">Contacts</h2>
             <span>Better with a team</span>
+            <div class="underline"></div>
           </div>
           <div id="responsiveContactBackButton" class="returnToContacts">
-            <img class="closeMobile" onclick="showContactMobile()" src="imgs/icon_close.png">
+            <img class="closeMobile backArrow" onclick="showContactMobile()" src="assets/img/icon_back.svg">
+            <img class="closeMobile editMenu" id="options_edit_delete" onclick="showEditandDelete()" src="imgs/option_Btn.png">
           </div>
         </div>
         <div id="content" class="moreAboutContent"></div>
         <div class="information" id="information"></div>
       </section>
       <div id="modalBackground" onclick="openClosePopUp('close')" class="displayNone bg-popUp">
+
+
+
+
+        <!----
+
         <div onclick="openClosePopUp(event)" class="popUp">
           <div class="popUp-logo">
             <div id="return_mobilePopUp" class="return-mobilePopUp">
@@ -124,28 +142,102 @@
                 <img class="profile-pic" src="./contact-assets/img/empty-profil.png" alt="">
               </div>
               <div class="contact_input">
-                <form class="form" id="addContactForm" onsubmit="createNewContact()">
-                  <input required="" id="email" placeholder="Email" type="email">
-                  <input required="" id="tel" placeholder="Phone" type="tel">
-                  <input required="" id="name" placeholder="Name" type="text">
-                  <div class="contact_button">
-                    <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel <img
-                        src="./contact-assets/img/close.png" alt=""></button>
-                    <button type="submit" class="addContactButton">Create Contact <img class="check"
-                        src="./contact-assets/img/check.png" alt=""></button>
-                  </div>
-                </form>
+
+
+            <form class="form" id="addContactForm" onsubmit="createNewContact(event)">
+              <input  id="name" placeholder="Name" type="text" onblur="validateNameFieldBlur()" oninput="checkFormFields2()" />
+              <div id="nameError" class="error-message"></div>
+          
+              <input  id="email" placeholder="Email" type="email" onblur="validateEmailFieldBlur()" oninput="checkFormFields2()" />
+              <div id="emailError" class="error-message"></div>
+          
+              <input type="tel"  id="tel" placeholder="Phone" onblur="validatePhoneFieldBlur()" oninput="checkFormFields2()" />
+              <div id="phoneError" class="error-message"></div>
+          
+              <div class="contact_button">
+                  <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel</button>
+                  <button id="createSubmit" type="submit" class="addContactButton" disabled>Create Contact</button>
+              </div>
+          </form>
+
               </div>
             </div>
           </div>
         </div>
+
+---><div onclick="openClosePopUp(event)" class="popUp slide-in">
+  <!-- Logo Section -->
+  <div class="popUp-logo">
+    <!-- Close Button for Mobile -->
+    <div id="return_mobilePopUp" class="return-mobilePopUp displayNone">
+      <img onclick="openClosePopUp('close')" src="contact-assets/img/close.png" alt="Close Button">
+    </div>
+    <!-- Logo Image -->
+    <div class="logo-box">
+      <img class="logo" src="./contact-assets/img/logo.png" alt="Logo">
+    </div>
+    <!-- Edit Logo -->
+    <div class="edit-logo-box">
+      <img class="edit-logo addLogo" src="./contact-assets/img/add-contact.png" alt="Add Contact">
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="popUp-content">
+    <!-- Close Button for Desktop -->
+    <div class="close-button">
+      <img onclick="openClosePopUp('close')" src="./contact-assets/img/close.png" alt="Close Button">
+    </div>
+
+    <!-- Profile and Form Section -->
+    <div class="pic_inputs">
+      <!-- Profile Picture -->
+      <div>
+        <img class="profile-pic" src="./contact-assets/img/empty-profil.png" alt="Profile Picture">
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact_input">
+        <form class="form" id="addContactForm" onsubmit="createNewContact(event)">
+          <!-- Name Input -->
+          <input id="name" placeholder="Name" type="text" onblur="validateNameFieldBlur()" oninput="checkFormFields2()">
+          <div id="nameError" class="error-message"></div>
+          
+          <!-- Email Input -->
+          <input id="email" placeholder="Email" type="email" onblur="validateEmailFieldBlur()" oninput="checkFormFields2()">
+          <div id="emailError" class="error-message"></div>
+
+          <!-- Phone Input -->
+          <input type="tel" id="tel" placeholder="Phone" onblur="validatePhoneFieldBlur()" oninput="checkFormFields2()">
+          <div id="phoneError" class="error-message"></div>
+
+          <!-- Action Buttons -->
+          <div class="contact_button">
+            <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel</button>
+            <button id="createSubmit" type="submit" class="createButton" disabled>Create Contact</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
       <div id="EditModalBackground" onclick="openClosePopUp('close', key = true)" class="displayNone bg-popUp">
         <div onclick="openClosePopUp(event)" class="popUp">
           <div class="popUp-logo">
-            <div id="return_editMobilePopUp" class="return-mobilePopUp">
-              <img onclick="openClosePopUp('close', key = true)" src="contact-assets/img/close.png" alt="">
-            </div>
+            
             <div class="logo-box"><img class="logo" src="./contact-assets/img/logo.png" alt=""></div>
             <div class="edit-logo-box"><img class="edit-logo" src="./contact-assets/img/edit-contact.png" alt=""></div>
           </div>
@@ -158,18 +250,28 @@
                 <span id="letterForPopUp" class="letter_For_PopUp"></span>
               </div>
               <div class="contact_input">
-                <form class="form" id="editContactForm" onsubmit="modifyContact()">
-                  <input required="" id="editEmail" placeholder="Email" type="email">
-                  <input required="" id="editTel" placeholder="Phone" type="tel">
-                  <input required="" id="editName" placeholder="Name" type="text">
 
+
+                <form class="form" id="editContactForm" onsubmit="modifyContact(event)">
+                  <input id="editName" placeholder="Name" type="text" onblur="validateEditNameFieldBlur()" oninput="checkFormFields()">
+                  <div id="editNameError" class="error-message"></div>
+              
+                  <input id="editEmail" placeholder="Email" type="email" onblur="validateEditEmailFieldBlur()" oninput="checkFormFields()">
+                  <div id="editEmailError" class="error-message"></div>
+              
+                  <input id="editTel" placeholder="Phone" type="tel" onblur="validateEditPhoneFieldBlur()" oninput="checkFormFields()">
+                  <div id="editPhoneError" class="error-message"></div>
+              
                   <div class="contact_button">
-                    <button onclick="removeContact()(path ='contact', keyForEdit)" type="button"
-                      class="cancel-Button">Delete <img src="./contact-assets/img/close.png" alt=""></button>
-                    <button type="submit" class="addContactButton">Save<img class="check"
-                        src="./contact-assets/img/check.png" alt=""></button>
+                      <button onclick="removeContact('contact', keyForEdit)" type="button" class="cancel-Button">
+                          Delete <img src="./contact-assets/img/close.png" alt="">
+                      </button>
+                      <button id="editSubmit" type="submit" class="createButton saveButton" >
+                          Save <img class="check" src="./contact-assets/img/check.png" alt="">
+                      </button>
                   </div>
-                </form>
+              </form>
+              
               </div>
             </div>
           </div>

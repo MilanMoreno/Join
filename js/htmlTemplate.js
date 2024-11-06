@@ -1,5 +1,5 @@
 let contacts = [];
-let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/user";
+let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/contact";
 
 
 async function loadContacts() {
@@ -30,8 +30,9 @@ async function generateAssingTo() {
   if (document.getElementById("assingedList").innerHTML === "") {
     let assigned = "";
     for (let i = 0; i < contacts.length; i++) {
-      const element = contacts[i].username;
+      const element = contacts[i].name;
       const circle = generateCircle(element);
+      const isChecked = selectedCheckboxes.includes(element) ? "checked" : "";
       assigned += `
     <div class="d-flex assingUser">
     <label class="container">
@@ -39,9 +40,9 @@ async function generateAssingTo() {
         <div>${circle}</div>
         <p>${element}</p>
       </div>    
-  <input id="${element}" type="checkbox" onclick="updateSelectedCheckboxes()">
-  <span class="checkmark"></span>
-</label>
+      <input id="${element}" type="checkbox" ${isChecked} onclick="updateSelectedCheckboxes()">
+      <span class="checkmark"></span>
+    </label>
     </div>`;
     }
     document.getElementById("assingedList").innerHTML = assigned;
@@ -98,29 +99,38 @@ function addTaskTemplate() {
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
-            <input id="addTasktitleInput" type="text" placeholder="Enter a title" required>
+            
+              <input id="addTasktitleInput" type="text" placeholder="Enter a title" >
+              <p id="requiredTitle" class="required d-none">This field is required</p>
+            
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts"></div>
+            <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" required>
+            
+            <input type="date" name="Date" id="addTaskDate" >
+            <p id="requiredDate" class="required d-none">This field is required</p>
+            
             <p>Prio</p>
             <div class="d-flex d-space">
                 <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-           <select name="Category" id="addTaskCategory" required>
+          
+            <select name="Category" id="addTaskCategory" >
                 <option value="">Select task Category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
            </select>
+           <p id="requiredCat" class="required d-none">This field is required</p>
+          
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
                 <input id="subTaskAdd" type="text" placeholder="Add new subtask">
@@ -140,7 +150,7 @@ function addTaskTemplate() {
             </div>
             <div class="addTaskSubmit d-flex d-space">
                 <button onclick="renderAddTask()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button onclick="addTask()" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button id="submitButton" onclick="addTaskSummit()" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -161,29 +171,32 @@ function fillAddTaskSection(positionId) {
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
-            <input id="addTasktitleInput" type="text" placeholder="Enter a title" required>
+            <input id="addTasktitleInput" type="text" placeholder="Enter a title" >
+            <p id="requiredTitle" class="required d-none">This field is required</p>
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts"></div>
+            <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" required>
+            <input type="date" name="Date" id="addTaskDate" >
+            <p id="requiredDate" class="required d-none">This field is required</p>
             <p>Prio</p>
             <div class="d-flex d-space">
                 <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-           <select name="Category" id="addTaskCategory" required>
+           <select name="Category" id="addTaskCategory" >
                 <option value="">Select task Category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
            </select>
+           <p id="requiredCat" class="required d-none">This field is required</p>
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
                 <input id="subTaskAdd" type="text" placeholder="Add new subtask">
@@ -203,7 +216,7 @@ function fillAddTaskSection(positionId) {
             </div>
             <div class="addTaskSubmit d-flex d-space">
                 <button onclick="fillAddTaskPopUp()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button onclick="addTaskPopup('${positionId}')" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button id="addTaskPopupButton" onclick="addTaskPopup('${positionId}')" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -232,29 +245,32 @@ function fillEditTaskSection(
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
-            <input id="addTasktitleInput" type="text" placeholder="Enter a title" value="${titleId}" required disabled>
+            <input id="addTasktitleInput" type="text" placeholder="Enter a title" value="${titleId}" >
+            <p id="requiredTitle" class="required d-none">This field is required</p>
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription" >${Description}</textarea>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts"></div>
+            <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" value="${dueDate}" required>
+            <input type="date" name="Date" id="addTaskDate" value="${dueDate}" >
+            <p id="requiredDate" class="required d-none">This field is required</p>
             <p>Prio</p>
             <div class="d-flex d-space">
                 <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
                 <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-           <select name="Category" id="addTaskCategory" required>
+           <select name="Category" id="addTaskCategory" >
                 <option value="${category}">${category}</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
            </select>
+           <p id="requiredCat" class="required d-none">This field is required</p>
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
                 <input id="subTaskAdd" type="text" placeholder="Add new subtask">
@@ -273,7 +289,7 @@ function fillEditTaskSection(
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
             <div class="addTaskSubmit d-flex d-space">
-                <button onclick="addTaskPopup('${positionID}')" class="createTask d-flex" >Edit Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button id="editTaskButton" onclick="editTaskPopup('${positionID}')" class="createTask d-flex" >Edit Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>

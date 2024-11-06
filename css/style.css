@@ -9,7 +9,7 @@
   }
   
   .d-none{
-    display: none;
+    display: none!important;
   }
 
   .d-flex{
@@ -24,3 +24,12 @@
   .d-space{
     justify-content: space-between;
   }
+
+  .d-align{
+    align-items: center;
+  }
+
+
+.highlight{
+  background-color: #091931!important;
+}

@@ -1,41 +1,118 @@
 let BASE_Url = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
+let taskA = []
+
+
+async function loadTask() {
+  try {
+    const response = await fetch(`${BASE_Url}.json`);
+    if (!response.ok) {
+      throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
+    }
+    const taskData = await response.json();
+    if (!taskData) {
+      console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
+      return;
+    }
+    taskA.length = 0;
+    for (const key in taskData) {
+      if (taskData.hasOwnProperty(key)) {
+        taskA.push(taskData[key]);
+      }
+    }
+  } catch (error) {
+    console.error("Fehler beim Laden der Daten:", error);
+  }
+}
 
 function renderAddTask() {
   let contentSection = document.getElementById("addTaskSide");
   contentSection.innerHTML = "";
   contentSection.innerHTML = addTaskTemplate();
   loadContacts();
+  document.getElementById("electedContacts").innerHTML = '';
+  selectedCheckboxes = [];
 }
 
 
-let prio = "";
+
+let prio = "medium";
 let subTask = [];
 let checkBox = [];
 let selectedCheckboxes = [];
 let positionID = ""
 
 
-function addTask() {
+async function addTaskSummit() {
+  let button =  document.getElementById("submitButton");
+  event.preventDefault()
+  await loadTask();
+  let id = taskA.length;
+  if(!checkRequired()) { return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
-  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox]};
-  const jsonString = JSON.stringify(task);
-  postData(task.Title, task);
-  console.log(jsonString);
+    button.disabled = true;
+  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox], ID: id};
+  await postData(task.Title, task, id);
   showConfirmationMessage();
-  loadTask();} else { console.log ("feld nicht ausgefüllt")}
+  goToBoard();
+  }
+}
+
+function checkRequired(){
+  let titleR = document.getElementById("addTasktitleInput");
+  let dateR = document.getElementById("addTaskDate");
+  let categoryR = document.getElementById("addTaskCategory");
+  resetRequired();
+  if (titleR.value === ""){
+    document.getElementById("requiredTitle").classList.remove("d-none");
+    titleR.classList.add ("outlineRed");
+    return false
+    
+  } else if (dateR.value === ""){
+    document.getElementById("requiredDate").classList.remove("d-none")
+    dateR.classList.add ("outlineRed");
+    return false;
+    
+  } else if (categoryR.value === ""){
+    document.getElementById("requiredCat").classList.remove("d-none");
+    categoryR.classList.add ("outlineRed");
+    return false
+    
+} else {return true}}
+
+
+function resetRequired(){
+  let titleR = document.getElementById("addTasktitleInput");
+  let dateR = document.getElementById("addTaskDate");
+  let categoryR = document.getElementById("addTaskCategory");
+  if (titleR.classList.contains('outlineRed')) {
+    document.getElementById("requiredTitle").classList.add("d-none");
+    titleR.classList.remove ("outlineRed");} else if (dateR.classList.contains('outlineRed')) {
+      document.getElementById("requiredDate").classList.add("d-none");
+      dateR.classList.remove ("outlineRed");} else if (categoryR.classList.contains('outlineRed')) {
+        document.getElementById("requiredCat").classList.add("d-none");
+        categoryR.classList.remove ("outlineRed");}
 }
 
 
-function addTaskPopup(positionId) {
+function goToBoard(){
+  window.location.href = './board.html';
+}
+
+async function addTaskPopup(positionId) {
+  let button = document.getElementById("addTaskPopupButton")
+  event.preventDefault()
+  if (!checkRequired()) {return;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+    button.disabled = true;
     positionID = positionId
   const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
   const jsonString = JSON.stringify(task);
-  postData(task.Title, task);
-  console.log(jsonString);
+  await postData(task.Title, task);
   showConfirmationMessage();
-  loadTask();}
+  closePopUp();
+  closeDetailCardX();
+  await loadTasks();}
 }
 
 
@@ -61,12 +138,18 @@ function updateSelectedCheckboxes() {
 
 
 function updateSelectedCheckboxes2() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-    if (checkbox.checked) {
-      selectedCheckboxes.push(checkbox.id);
+    if (!Array.isArray(selectedCheckboxes)) {
+        selectedCheckboxes = [];
     }
-  });
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        if (selectedCheckboxes.includes(checkbox.id)) {
+            checkbox.checked = true;
+        }
+        if (checkbox.checked && !selectedCheckboxes.includes(checkbox.id)) {
+            selectedCheckboxes.push(checkbox.id);
+        }
+    });
 }
 
 
@@ -136,24 +219,92 @@ function cancelSubTask() {
 
 
 function addSubTask() {
-  let show = document.getElementById("subTaskView");
+  if (document.getElementById("subTaskAdd").value === "") {
+  }else{
   let value = document.getElementById("subTaskAdd").value;
-  show.innerHTML += `<li>${value}</li>`;
   subTask.push(`${value}`);
+  renderSubTask();
   checkBox.push("false")
   cancelSubTask();
-  event.stopPropagation();
+  event.stopPropagation();}
+}
+
+
+function renderSubTask(){
+  let show = document.getElementById("subTaskView");
+  show.innerHTML = ""
+for (let index = 0; index < subTask.length; index++) {
+  const element = subTask[index];
+  show.innerHTML += `
+  <li class="subTaskList">
+  <p id="subtask-text-${index}">${element}</p>
+  <div id="subTaskLeft-${index}" class="subTaskLeft">
+  <img class="subTaskEdit" onclick="editSubTask(${index})" src="./assets/img/edit.svg" alt="Edit">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  <div id="edit-input-${index}-div" class="editInput d-none">
+  <input type="text" id="edit-input-${index}"  class="edit-input" value="${subTask[index]}">
+  <div id="save-btn-${index}" class="d-none d-flex d-align">
+  <img onclick="saveSubTask(${index})" class="subTaskCheck" src="./assets/img/check.png" alt="">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(0)" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  </div>
+  </li>`;
+}
+}
+
+
+function editSubTask(index) {
+  const subTaskText = document.getElementById(`subtask-text-${index}`);
+  const editInput = document.getElementById(`edit-input-${index}-div`);
+  const saveButton = document.getElementById(`save-btn-${index}`);
+  const subTaskLeft = document.getElementById(`subTaskLeft-${index}`)
+  subTaskText.classList.add('d-none');
+  subTaskLeft.classList.add('d-none')
+  editInput.classList.remove('d-none');
+  saveButton.classList.remove('d-none');
+}
+
+
+function saveSubTask(index) {
+  const editInput = document.getElementById(`edit-input-${index}`);
+  subTask[index] = editInput.value;
+  renderSubTask();
+}
+
+
+function deleteSubTask(index) {
+  subTask.splice(index, 1); 
+  renderSubTask();
 }
 
 
 function fillsubtask(id){
   let subTasks = ""
-  if (id === "undefined"){subTask = ""} else {
+  if (id === "undefined"){subTask = ""} else if (task[id].Subtask && task[id].Subtask[0]){
   for (let index = 0; index < task[id].Subtask[0].length; index++) {
     const element = task[id].Subtask[0][index];
-    subTasks += `<li>${element}</li>`;
-    subTask += element;
-    checkBox.push("false");
+    const check = task[id].checkboxState[0][index];
+    subTasks += `<li class="subTaskList">
+  <p id="subtask-text-${index}">${element}</p>
+  <div id="subTaskLeft-${index}" class="subTaskLeft">
+  <img class="subTaskEdit" onclick="editSubTask(${index})" src="./assets/img/edit.svg" alt="Edit">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  <div id="edit-input-${index}-div" class="editInput d-none">
+  <input type="text" id="edit-input-${index}"  class="edit-input" value="${element}">
+  <div id="save-btn-${index}" class="d-none d-flex d-align">
+  <img onclick="saveSubTask(${index})" class="subTaskCheck" src="./assets/img/check.png" alt="">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(0)" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  </div>
+  </li>`;
+    subTask.push(element);
+    checkBox.push(check);
   }}
   return subTasks;
 }
@@ -163,7 +314,7 @@ function filterContacts() {
   const filterValue = document.getElementById("assinged").value.toLowerCase();
   assigned = "";
   for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i].username;
+    const element = contacts[i].name;
     const circle = generateCircle(element);
     if (element.toLowerCase().startsWith(filterValue)) {
       const isChecked = selectedCheckboxes.includes(element);
@@ -209,11 +360,10 @@ function checkboxHelp(id){
 }
 
 //Firebase
-async function postData(path = "", data = {}) {
+async function postData(path = "", data = {}, id) {
   const title = data.Title;
   path = title;
-  console.log("Starting postData with path:", BASE_Url + path + ".json");
-  console.log("Data being sent:", data);
+  if (event) event.preventDefault();
   try {
     let response = await fetch(BASE_Url + path + ".json", {
       method: "PUT",
@@ -225,11 +375,41 @@ async function postData(path = "", data = {}) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    let responseToJson = await response.json();
-    console.log("Response from Firebase:", responseToJson);
-    return responseToJson;
   } catch (error) {
     console.error("Error during postData:", error);
     return { error: "An error occurred during the data post." };
+  }
+}
+
+
+async function addTask(event) {
+  if (event) event.preventDefault();
+
+  const task = {
+    Title: document.getElementById("addTasktitleInput").value,
+    Category: document.getElementById("addTaskCategory").value,
+    Description: document.getElementById("addTaskDiscription").value,
+    DueDate: document.getElementById("addTaskDate").value,
+    Prio: prio,
+    AssignedTo: selectedCheckboxes,
+    Subtask: [subTask],
+    PositionID: "toDo",
+    checkboxState: [checkBox]
+  };
+
+  try {
+    let response = await fetch(BASE_Url + task.Title + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+    if (response.ok) {
+    } else {
+      console.error("Fehler beim Hinzufügen der Aufgabe:", response.status);
+    }
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Daten:", error);
   }
 }

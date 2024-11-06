@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/addTaskPopUp.css">
     <link rel="stylesheet" href="./assets/templates/font/inter400.woff2" />
     <link rel="stylesheet" href="./assets/templates/font/inter700.woff2" />
+  
     <style type="text/css" id="operaUserStyle"></style>
     <script src="./js/board.js"></script>
     <script src="./js/taskEdit.js"></script>
@@ -26,7 +27,7 @@
     <style>
     </style>
   </head>
-  <body onload="loadTask()">
+  <body onload="loadTasks()">
     <div w3-include-html="./assets/templates/side_menu.html">
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,7 +53,7 @@
             ><img src="./assets/img/icon_addTask.svg" alt="addtask" />Add
             Task</a
           >
-          <a id="board-link" href="./board.html"
+          <a class="highlight" id="board-link" href="./board.html"
             ><img src="./assets/img/icon_board.svg" alt="board" />Board</a
           >
           <a id="link-contact" href="./contacts.html"
@@ -62,9 +63,7 @@
             />Contacts</a>
         </nav>
         <div class="bottom-menu-link d-none-mobile">
-          <a href="./privacy-police.html" onclick="saveTheUrl()"
-            >Privacy Policy</a
-          >
+          <a href="./privacy-police.html" onclick="saveTheUrl()">Privacy Policy</a>
           <a href="./legal_notice.html">Legal notice</a>
         </div>
       </section>
@@ -83,6 +82,7 @@
         <link rel="stylesheet" href="./css/header.css" />
         <link rel="stylesheet" href="./css/font.css" />
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/side_menu.css">
         <meta charset="UTF-8" />
       <header id="header">
         <a href="summary.html">
@@ -94,13 +94,14 @@
           <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
         </div>
       </header>
+
+      
       </section>
       <section id="headerDropdownOption" class="d-noneHead">
         <div class="headerDropdownOption">
           <a href="./legal_notice.html">Legal Notice</a>
           <a href="./privacy-police.html">Privacy Policy</a>
           <a href="./index.html">Log out</a>
-          <a href="./help.html">help</a>
         </div>
       </section>
       </div>
@@ -111,12 +112,13 @@
             <div class="findTask">
               <input
                 class="findTaskInput"
-                oninput="filterTasks()"
+                oninput="filterTasks('findTaskInput')"
                 id="findTaskInput"
                 type="text"
                 placeholder="Find Task"/>
               <div class="findTaskImg d-flex">
                 <img
+                  onclick="focusInput('findTaskInput')"
                   class="taskSearch"
                   src="./assets/img/icon_search.svg"
                   alt="Search"/>
@@ -135,11 +137,11 @@
           <div class="findTaskMobile">
             <input
               class="findTaskInput"
-              oninput="filterTask()"
+              oninput="filterTasks('findTaskInputMobile')"
               id="findTaskInputMobile"
               type="text"
               placeholder="Find Task"/>
-            <div class="findTaskImg d-flex" onclick="searchTask()">
+            <div class="findTaskImg d-flex" onclick="focusInput('findTaskInputMobile')">
               <img
                 class="taskSearch"
                 src="./assets/img/icon_search.svg"
@@ -156,7 +158,7 @@
                 onclick="fillAddTaskPopUp('toDo')"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"/>
-              <a href="./add_task.html"><img
+              <a class="plusImgMobile" href="./add_task.html"><img
                 class="c-pointer plusImgMobile"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"/>
@@ -173,13 +175,13 @@
                 onclick="fillAddTaskPopUp('inProgress')"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"/>
-              <a href="./add_task.html"><img
+              <a class="plusImgMobile" href="./add_task.html"><img
                 class="c-pointer plusImgMobile"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"
               /></a>
             </div>
-            <div id="inProgress" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
+            <div id="inProgress" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection ">
             </div>
           </div>
           <div class="column d-flex">
@@ -190,7 +192,7 @@
                 onclick="fillAddTaskPopUp('awaitFeedback')"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"/>
-              <a href="./add_task.html"><img
+              <a class="plusImgMobile" href="./add_task.html"><img
                 class="c-pointer plusImgMobile"
                 src="./assets/img/plusbutton.svg"
                 alt="Add"/>
