@@ -18,7 +18,7 @@ h2 {
 }
 
 .layout-wrapper {
-  height: 90vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   padding-bottom: 0px;
@@ -91,7 +91,7 @@ h2 {
 
 .content-section {
   flex: 1;
-  height: 88vh;
+  height: 80vh;
   padding: 15px 15px 0px 15px;
 }
 
