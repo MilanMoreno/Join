@@ -171,7 +171,47 @@ h2 {
   border: none;
   width: 56px;
   position: absolute;
-  bottom: 112px;
+  bottom: 0px;
+  right: 16px;
+}
+
+/*
+div{
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+padding-bottom: 100px;}*/
+
+.createButton {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  justify-content: center;
+  gap: 16px;
+  height: 56px;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  border: none;
+  width: 352px;
+}
+
+.addContactButtonResponsiv {
+  background-color: rgb(9, 25, 49);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: 46px;
+  border: none;
+  width: 56px;
+  position: absolute;
+  bottom: 0px;
   right: 16px;
 }
 
@@ -280,6 +320,14 @@ h2 {
   transition: opacity 0.5s;
 }
 
+
+.list {
+  display: flex;
+  flex-direction: column; /* Falls die Inhalte vertikal gestapelt werden sollen */
+  justify-content: center; /* Zentriert den Inhalt vertikal, wenn Platz vorhanden ist */
+  align-items: center; /* Zentriert die Kinderelemente horizontal */
+}
+
 .popUp {
   height: 453px;
   width: 1050px;
@@ -334,7 +382,8 @@ h2 {
   width: 80%;
   display: flex;
   align-items: center;
-  padding: 0 0 0 20px;
+  padding: 1px 0 90px 20px;
+ 
 }
 
 .popUp-content {
@@ -359,13 +408,14 @@ h2 {
   height: 32px;
   width: 32px;
   position: fixed;
-  top: 48px;
-  right: 48px;
+  top: 34px;
+  right: 24px;
 }
 
 .close-button img:hover {
   cursor: pointer;
 }
+
 
 .pic_inputs {
   display: flex;
@@ -382,11 +432,18 @@ h2 {
   width: 120px;
 }
 
-.contact_input {
-  width: 422px;
-  padding-inline-end: 48px;
+.contact_input{
+    width: 340px;
+    padding-inline-end: 20px;
 }
-
+.center-pic{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+ padding-left: 0px;
+ padding-right: 40px;
+}
 .return-mobilePopUp {
   display: flex;
   justify-content: end;
@@ -400,8 +457,9 @@ h2 {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 422px;
+  gap: 5px;
+  padding-bottom: 56px;
+  width: 340px;
   object-fit: cover;
 }
 
@@ -434,7 +492,7 @@ h2 {
 .contact_button {
   display: flex;
   align-items: center;
-  padding: 32px 0 0 0;
+  padding: 0px 0 0 0;
   gap: 24px;
 }
 
@@ -495,7 +553,11 @@ h2 {
 
 .letter {
   border-bottom: 0.5px solid grey;
+  width: 100%; 
   margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 12px 0px 12px 58px;
 }
 
@@ -672,6 +734,11 @@ h4 {
   padding: 8px 16px;
 }
 
-#editDeleteMenu a:hover {
-  background-color: #ddd;
-}
+        .edit-window{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-bottom: 84px;
+          padding-left: 42px;
+        
+        }
