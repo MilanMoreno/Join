@@ -146,7 +146,6 @@ h2 {
   background: #555;
 }
 
-
 #content-area {
   overflow: hidden; 
 }
@@ -875,25 +874,4 @@ h4 {
 
 
         
-        @media (max-height: 700px) and (min-height:500px){
-          .center-pic {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-bottom: 0px;
-            padding-left: 0px;
-            padding-right: 20px;
-        }
-      
-        .profile-pic {
-          margin-left: -65px;
-          top: 142px;
-          left: 50%;
-          position: fixed;
-          height: 138px;
-          width: 130px;
-          border-radius: 50%;
-          object-fit: cover;
-          padding: 0;
-      
-      }}
+   
