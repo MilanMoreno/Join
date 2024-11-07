@@ -14,173 +14,6 @@ h2 {
     color: white;
 }
 
-@media (max-width: 300px) {
-    h2 {
-        font-size: 30px;
-        padding-right: 16px;
-    }
-    
-    .layout-wrapper {
-        height: auto;
-        flex-direction: column;
-        padding-bottom: 0;
-    }
-    
-    .contacts {
-        width: 100%;
-        padding: 0;
-    }
-    
-    .content-section {
-        height: auto;
-        padding: 10px;
-    }
-    
-    .h2Contacts {
-        font-size: 20px;
-    }
-    
-    .moreAboutContent {
-        padding: 16px 0 0 8px;
-        gap: 10px;
-    }
-    
-    .addContact {
-        padding: 24px 0 8px 0;
-    }
-    
-    .addContactButton {
-        width: 100%;
-        font-size: 16px;
-        height: 40px;
-        gap: 8px;
-    }
-    
-    .letter_For_PopUp {
-        height: 80px;
-        width: 80px;
-        font-size: 32px;
-    }
-    
-    .popUp {
-        width: 90%;
-        padding-left: 5%;
-        flex-direction: column;
-        height: auto;
-    }
-    
-    .popUp-logo {
-        width: 100%;
-        height: 300px;
-    }
-    
-    .logo-box {
-        height: 60px;
-        padding: 0 8px;
-    }
-    
-    .popUp-content {
-        height: 400px;
-    }
-     
-    .pic_inputs {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .profile-pic {
-        height: 80px;
-        width: 80px;
-    }
-    
-    .form {
-        width: 50%;
-        gap: 8px;
-        padding-left: 68px;
-        padding-top: 40px;
-    }
-    
-    .form input {
-        height: 28px;
-        font-size: 12px;
-    }
-    
-    .contact_button {
-        padding: 24px 0 0;
-        gap: 16px;
-    }
-    
-    .contact_button button {
-        font-size: 14px;
-        height: 36px;
-        padding: 8px;
-    }
-    
-    .contactCard {
-        width: 100%;
-        padding-left: 16px;
-        gap: 20px;
-    }
-    
-    .one_letter {
-        height: 32px;
-        width: 32px;
-        font-size: medium;
-    }
-    
-    .fullName-email span {
-        font-size: 16px;
-    }
-    
-    .single-letter {
-        height: 80px;
-        width: 80px;
-        font-size: 32px;
-    }
-    
-    h4 {
-        font-size: 24px;
-    }
-    
-    .contactInformation {
-        font-size: 16px;
-        height: 60px;
-    }
-    
-    .contact-profile {
-        gap: 24px;
-        padding: 16px 0;
-    }
-    
-    .edit-delete {
-        gap: 12px;
-    }
-    
-    .edit-delete img {
-        height: 20px;
-        width: 20px;
-    }
-    
-    .pers-info {
-        gap: 8px;
-    }
-    
-    .closeMobile {
-        display: block;
-    }
-    
-    #options_edit_delete {
-        top: auto;
-        bottom: 0;
-    }
-    
-    #editDeleteMenu {
-        width: 80px;
-        padding: 4px;
-        border-radius: 10%;
-    }
-}
-
 @media (max-width: 450px) {
     .logo-box img, .edit-logo-box img {
         width: 200px;
@@ -388,6 +221,8 @@ h2 {
 
     .popUp-content{
         width: 100%;
+
+        
     }
 }
  
@@ -647,3 +482,21 @@ h2 {
 
           
         }            
+
+
+
+        @media (max-width: 380px) {
+
+            .error-message {
+                color: red;
+                font-size: 9px !important;
+                height: 14px !important;
+            }
+        
+            .popUp-content{
+                width: 100%;}
+        
+                .profile-pic{
+                    padding: 0;
+                }
+        }
