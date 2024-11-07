@@ -327,3 +327,4 @@ function contactInfoHtml(root, contactId) {
 
     `;
 }
+

@@ -215,7 +215,7 @@ h2 {
 @media (max-width: 450px) {
     .error-message {
         color: red;
-        font-size: 9px !important;
+        font-size: 14px !important;
         height: 14px !important;
     }
 
@@ -268,12 +268,12 @@ h2 {
               .popUp {
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* Falls Zentrierung nötig */
+                align-items: center; 
               }
               
               .edit-window {
-                order: 1; /* Falls spezifische Reihenfolge nötig ist */
-                margin: 10px 0; /* Beispielwert, nach Bedarf anpassen */
+                order: 1; 
+                margin: 10px 0; 
               }
               
         .letter_For_PopUp {
@@ -289,6 +289,9 @@ h2 {
             padding-left: 0px;
             padding-right: 20px;
         }
+
+    }
+   
         @media (max-width: 1025px) {
 
        
@@ -481,7 +484,7 @@ h2 {
 
 
           
-        }            
+        
 
 
 
@@ -489,7 +492,7 @@ h2 {
 
             .error-message {
                 color: red;
-                font-size: 9px !important;
+                font-size: 14px !important;
                 height: 14px !important;
             }
         
