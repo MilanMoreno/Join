@@ -355,10 +355,10 @@ h2 {
         font-size: 21px!important;
         border-radius: 10px!important;
     }
-
+/*
     .cancel-Button{
         display: none!important;
-    }
+    }*/
 
     .text{
         display: block;
@@ -375,6 +375,8 @@ h2 {
         width: 90px;
         border: 1px solid rgb(41, 171, 226);
     }
+    
+   
 }
 
 @media (max-width: 450px) {
@@ -412,8 +414,37 @@ h2 {
           }
 
           @media (max-width: 1024px){
-           
-        
+            .edit-window {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 0px;
+                padding-left: 0px;
+
+            }
+            .edit-window {
+                position: absolute;
+                top: 265px; 
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                text-align: center;
+              }
+              .popUp {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Falls Zentrierung nötig */
+              }
+              
+              .edit-window {
+                order: 1; /* Falls spezifische Reihenfolge nötig ist */
+                margin: 10px 0; /* Beispielwert, nach Bedarf anpassen */
+              }
+              
+        .letter_For_PopUp {
+            height: 90px;
+            width: 90px;
+}
         
           .center-pic {
             display: flex;
@@ -424,6 +455,8 @@ h2 {
             padding-right: 20px;
         }
         @media (max-width: 1025px) {
+
+       
             .backArrow{
                 margin-top: 16px;
             }
@@ -538,7 +571,7 @@ h2 {
                     align-items: center;
                     width: 100%;
                     gap: 10px;
-                    
+                    padding-bottom:0px;
                 }
             
                 .profile-pic {
@@ -572,6 +605,7 @@ h2 {
                 .contact_input{
                     width: 100%;
                     padding: 0;
+                    padding-top: 20px
                 }
             
                 .contact_button {
@@ -588,10 +622,10 @@ h2 {
                     font-size: 21px!important;
                     border-radius: 10px!important;
                 }
-            
+            /*
                 .cancel-Button{
                     display: none!important;
-                }
+                }*/
             
                 .text{
                     display: block;
@@ -609,4 +643,7 @@ h2 {
                     border: 1px solid rgb(41, 171, 226);
                 }
             }
+
+
+          
         }            
