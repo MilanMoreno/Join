@@ -91,24 +91,6 @@ function fillTemplate(title, category, text, assigned, prio, id) {
 }
 
 
-// function getInitials2(names) {
-//   let initial = "";
-//   if (names === "0") {
-//     initial += `<div class="initials d-none" style="background-color: ;">0</div>`;
-//     return initial;
-//   } else {
-//     for (let i = 0; i < names.length; i++) {
-//       const element = names[i];
-//       const color = getRandomColor();
-//       const nameParts = element.split(" ");
-//       const initials = nameParts.map((part) => part.charAt(0)).join("");
-//       ini = initials.toUpperCase();
-//       initial += `<div class="initials" style="background-color: ${color};">${ini}</div>`;
-//     }
-//     return initial;
-//   }
-// }
-
 
 function getInitials2(names) {
   let initial = "";
@@ -271,6 +253,7 @@ function openDetailCard(id) {
   fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, formattedDate, priosrc);
   document.getElementById("overlay").classList.remove("d-none");
   document.getElementById("overlay").classList.add("d-flex");
+  document.getElementById("body").classList.add("scrollhidden");
 }
 
 function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, formattedDate, priosrc) {
@@ -312,8 +295,27 @@ function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, f
                 <p>Edit</p>
             </div>
         </div>
+        <div class="mobileDragTask">
+          <p>Select board position</p>
+          <select class="mobileSelect" onchange="changePosition(${id},'${task[id].Title}')" name="positionSwitch" id="positionSwitch">
+            <option disabled selected value="">Choose New Position</option>
+            <option value="toDo">To do</option>
+            <option value="inProgress">In Progress</option>
+            <option value="awaitFeedback">Await Feedback</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
         </div>   
     `;
+}
+
+async function changePosition(id, title){
+  const position = document.getElementById("positionSwitch").value
+  idUpdate = id
+  savedTitle = title
+  await updateTaskPosition(position);
+  await loadTasks();
+  closeDetailCardX();
 }
 
 
@@ -384,6 +386,9 @@ function closeDetailCard(event) {
 function closeDetailCardX() {
   document.getElementById("overlay").classList.add("d-none");
   document.getElementById("overlay").classList.remove("d-flex");
+  if(document.getElementById("body").classList.contains("scrollhidden")){
+    document.getElementById("body").classList.remove("scrollhidden");
+  }
 }
 
 
@@ -442,10 +447,10 @@ function drop(event) {
 }
 
 
-function updateTaskPosition(dropTargetID) {
+async function updateTaskPosition(dropTargetID) {
   task[idUpdate].PositionID = dropTargetID;
   taskSave = task[idUpdate];
-  updatePosition(task.Title, taskSave);
+  await updatePosition(task.Title, taskSave);
 }
 
 

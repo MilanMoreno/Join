@@ -44,6 +44,29 @@ function setMinDate() {
   document.getElementById("addTaskDate").setAttribute("min", minDate);
 }
 
+
+
+function validateDateInput() {
+  const dateInput = document.getElementById("addTaskDate");
+  const selectedDate = new Date(dateInput.value);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (selectedDate >= today && document.getElementById("addTaskDate").classList.contains("outlineRed")){
+    document.getElementById("pastDate").classList.add("d-none");
+  document.getElementById("addTaskDate").classList.remove ("outlineRed");
+  }else 
+  if (selectedDate < today) {
+    dateInput.value = "";
+    pastDate();
+  }
+}
+
+function pastDate(){
+  document.getElementById("pastDate").classList.remove("d-none");
+  document.getElementById("addTaskDate").classList.add ("outlineRed");
+    return false
+}
+
 let prio = "medium";
 let subTask = [];
 let checkBox = [];
@@ -81,7 +104,7 @@ function checkRequired(){
     dateR.classList.add ("outlineRed");
     return false;
     
-  } else if (categoryR.value === ""){
+  } else if (categoryR && categoryR.value === ""){
     document.getElementById("requiredCat").classList.remove("d-none");
     categoryR.classList.add ("outlineRed");
     return false
@@ -97,7 +120,7 @@ function resetRequired(){
     document.getElementById("requiredTitle").classList.add("d-none");
     titleR.classList.remove ("outlineRed");} else if (dateR.classList.contains('outlineRed')) {
       document.getElementById("requiredDate").classList.add("d-none");
-      dateR.classList.remove ("outlineRed");} else if (categoryR.classList.contains('outlineRed')) {
+      dateR.classList.remove ("outlineRed");} else if (categoryR && categoryR.classList.contains('outlineRed')) {
         document.getElementById("requiredCat").classList.add("d-none");
         categoryR.classList.remove ("outlineRed");}
 }
@@ -122,6 +145,23 @@ async function addTaskPopup(positionId) {
   closePopUp();
   closeDetailCardX();
   await loadTasks();}
+}
+
+
+async function addTaskPopup2(positionId, id) {
+  let button = document.getElementById("editTaskButton")
+  event.preventDefault()
+  if (!checkRequired()) {return;}
+  if (button !== null && document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== '') {button.disabled = true;}
+  if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
+    button.disabled = true;
+    positionID = positionId
+  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: positionID, checkboxState: [checkBox]};
+  const jsonString = JSON.stringify(task);
+  await postData(task.Title, task);
+  await loadTasks();
+  openDetailCard(id);
+}
 }
 
 
@@ -254,6 +294,14 @@ function addSubTask() {
 }
 
 
+function checkEnter(event, inputId) {
+  const enabledInputs = ["subTaskAdd"];
+  if (event.key === "Enter" && enabledInputs.includes(inputId)) {
+    addSubTask();
+  }
+}
+
+
 function renderSubTask(){
   let show = document.getElementById("subTaskView");
   show.innerHTML = ""
@@ -372,16 +420,6 @@ function toggleCheckbox(username) {
     selectedCheckboxes.push(username);
   }
 }
-
-
-// function renderSelectedContacts() {
-//   const electedContactsDiv = document.getElementById('electedContacts');
-//   electedContactsDiv.innerHTML = '';
-//   selectedCheckboxes.forEach(contact => {
-//     const circle = generateCircle(contact);
-//     electedContactsDiv.innerHTML += circle;
-//   });
-// }
 
 
 function renderSelectedContacts() {

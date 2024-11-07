@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./css/addTaskPopUp.css">
     <link rel="stylesheet" href="./assets/templates/font/inter400.woff2" />
     <link rel="stylesheet" href="./assets/templates/font/inter700.woff2" />
-  
+    <link rel="stylesheet" href="./css/editTaskMenu.css">
     <style type="text/css" id="operaUserStyle"></style>
     <script src="./js/board.js"></script>
     <script src="./js/taskEdit.js"></script>
@@ -27,7 +27,7 @@
     <style>
     </style>
   </head>
-  <body onload="loadTasks()">
+  <body id="body" onload="loadTasks()">
     <div w3-include-html="./assets/templates/side_menu.html">
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -68,7 +68,7 @@
         </div>
       </section>
     </div>
-    <main>
+    <main id="main">
       <div
         w3-include-html="./assets/templates/header.html"
         class="fixed-header" >

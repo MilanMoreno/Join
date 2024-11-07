@@ -115,18 +115,18 @@ function addTaskTemplate() {
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
             
-            <input type="date" name="Date" id="addTaskDate" >
+            <input type="date" name="Date" id="addTaskDate" onblur="validateDateInput()">
             <p id="requiredDate" class="required d-none">This field is required</p>
-            
+            <p id="pastDate" class="required d-none">The date must not be in the past</p>
             <p>Prio</p>
             <div class="d-flex d-space">
-                <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
-                <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
+                <button type="button" id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
+                <button type="button" id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button type="button" id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
           
             <select name="Category" id="addTaskCategory" >
-                <option value="">Select task Category</option>
+                <option disabled selected value="">Select task Category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
            </select>
@@ -134,7 +134,7 @@ function addTaskTemplate() {
           
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
-                <input id="subTaskAdd" type="text" placeholder="Add new subtask">
+                <input id="subTaskAdd" type="text" placeholder="Add new subtask" onkeydown="checkEnter(event, 'subTaskAdd')">
                 <img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt="">
                 <div id="activSubTask" class="d-none d-center">
                     <img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt="">
@@ -150,8 +150,8 @@ function addTaskTemplate() {
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
             <div class="addTaskSubmit d-flex d-space">
-                <button onclick="renderAddTask()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button id="submitButton" onclick="addTaskSummit()" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button type="button" onclick="renderAddTask()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
+                <button type="button" id="submitButton" onclick="addTaskSummit()" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -184,23 +184,24 @@ function fillAddTaskSection(positionId) {
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" >
+            <input type="date" name="Date" id="addTaskDate" onblur="validateDateInput()">
             <p id="requiredDate" class="required d-none">This field is required</p>
+            <p id="pastDate" class="required d-none">The date must not be in the past</p>
             <p>Prio</p>
             <div class="d-flex d-space">
-                <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
-                <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
+                <button type="button" id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
+                <button type="button" id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button type="button" id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <div class="d-flex"><p>Category</p><p class="red">*</p></div>
            <select name="Category" id="addTaskCategory" >
-                <option value="">Select task Category</option>
+                <option disabled selected value="">Select task Category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
            </select>
            <p id="requiredCat" class="required d-none">This field is required</p>
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
-                <input id="subTaskAdd" type="text" placeholder="Add new subtask">
+                <input id="subTaskAdd" type="text" placeholder="Add new subtask" onkeydown="checkEnter(event, 'subTaskAdd')">
                 <img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt="">
                 <div id="activSubTask" class="d-none d-center">
                     <img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt="">
@@ -216,8 +217,8 @@ function fillAddTaskSection(positionId) {
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
             <div class="addTaskSubmit d-flex d-space">
-                <button onclick="fillAddTaskPopUp()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
-                <button id="addTaskPopupButton" onclick="addTaskPopup('${positionId}')" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button type="button" onclick="fillAddTaskPopUp()" class="clear d-flex">Clear <img src="./assets/img/icon_closeVectorBlack.svg" alt=""></button>
+                <button type="button" id="addTaskPopupButton" onclick="addTaskPopup('${positionId}')" class="createTask d-flex" >Create Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -239,9 +240,8 @@ function fillEditTaskSection(
   return /*html*/ `
   <form id="addTaskForm">
     <div class="addTaskContent d-flex">
-        <div class="addTaskHeader d-flex d-space headerResponsiv">
-            <h1 class="addTaskHeader">Add Task</h1>
-            <img onclick="closePopUp()" src="./assets/img/icon_closeVectorBlack.svg" alt="close">
+        <div class="editTaskX">
+            <img onclick="closeDetailCardX()" src="./assets/img/icon_closeVectorBlack.svg" alt="close">
         </div>
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
@@ -250,12 +250,47 @@ function fillEditTaskSection(
             <p id="requiredTitle" class="required d-none">This field is required</p>
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription" >${Description}</textarea>
+            <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
+            <input type="date" name="Date" id="addTaskDate" value="${dueDate}" >
+            <p id="requiredDate" class="required d-none">This field is required</p>
+            <p>Prio</p>
+            <div class="d-flex d-space">
+                <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
+                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
             <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
             <div id="electedContacts" class="d-flex"></div>
+            <p>Subtasks</p>
+            <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
+                <input id="subTaskAdd" type="text" placeholder="Add new subtask">
+                <img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt="">
+                <div id="activSubTask" class="d-none d-center">
+                    <img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt="">
+                    <div class="middleLineShort"></div>
+                    <img onclick="addSubTask()" class="subTaskCheck" src="./assets/img/check.png" alt="">
+                </div>
+            </div>
+            <ul id="subTaskView" class="editSubtaskView">${subTask}</ul>
+            <div class="editFooter d-flex d-space">
+            <div class="addTaskNote d-flex">
+                <p class="red note">*</p><p class="note">This field is required</p>
+            </div>
+            <div class="editTaskSubmit d-flex d-space">
+                <button id="editTaskButton" onclick="editTaskPopup('${positionID}', '${id}')" class="createTask d-flex editTask" >Ok <img src="./assets/img/icon_check-white.svg" alt=""></button>
+            </div>
+            <select name="Category" id="addTaskCategory" class="d-none">
+                <option value="${category}">${category}</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+           </select>
+        </div>
+    </div>
+
+
           </div>
-          <div class="middleLine"></div>
+          <!-- <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
             <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
             <input type="date" name="Date" id="addTaskDate" value="${dueDate}" >
@@ -282,10 +317,10 @@ function fillEditTaskSection(
                     <img onclick="addSubTask()" class="subTaskCheck" src="./assets/img/check.png" alt="">
                 </div>
             </div>
-            <ul id="subTaskView">${subTask}</ul>
-        </div>
+            <ul id="subTaskView">${subTask}</ul> -->
+        
     </div>
-    <div class="addTaskFooter d-flex d-space">
+    <!-- <div class="addTaskFooter d-flex d-space">
             <div class="addTaskNote d-flex">
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
@@ -293,8 +328,8 @@ function fillEditTaskSection(
                 <button id="editTaskButton" onclick="editTaskPopup('${positionID}')" class="createTask d-flex" >Edit Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
         </div>
-    </div>
+    </div> -->
   </form>
-  <div id="confirmationMessage" class="confirmation hidden">Task added to board <img class="conformationImg" src="./assets/img/icon_board.svg" alt=""></div>
+  
     `;
 }

@@ -14,6 +14,10 @@ async function deleteTask(id) {
 
 
 function fillAddTaskPopUp(positionId){
+    selectedCheckboxes = [];
+    subTask = [];
+    document.getElementById("main").classList.add ("scrollhidden")
+    document.getElementById("body").classList.add ("scrollhidden")
     let addTaskSection = document.getElementById("addTaskSection")
     let background = document.getElementById("addTaskSectionBackground")
     background.classList.remove ("d-none");
@@ -23,16 +27,16 @@ function fillAddTaskPopUp(positionId){
 
 
 function closePopUp(){
-    document.getElementById("addTaskSectionBackground").classList.add ("d-none")
+    document.getElementById("addTaskSectionBackground").classList.add ("d-none");
+    document.getElementById("main").classList.remove ("scrollhidden");
+    document.getElementById("body").classList.remove ("scrollhidden");
 }
 
 
 oldTask = []
 
 function editTask(title, category, dueDate, description, positionID, id, Prio){
-    let addTaskSection = document.getElementById("addTaskSection")
-    let background = document.getElementById("addTaskSectionBackground")
-    background.classList.remove ("d-none");
+    let addTaskSection = document.getElementById("detailCard")
     oldTask.push (title)
     addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id,);
     checkPrioEdit(Prio);
@@ -42,9 +46,10 @@ function editTask(title, category, dueDate, description, positionID, id, Prio){
 
 function checkPrioEdit(prioCheck){
     prio = prioCheck
+    if(prio == ""){}else{
     document.getElementById(`${prioCheck}`).classList.add (`color${prioCheck}`);
     document.getElementById(`${prioCheck}Color`).classList.add (`d-none`);
-    document.getElementById(`${prioCheck}White`).classList.remove (`d-none`);
+    document.getElementById(`${prioCheck}White`).classList.remove (`d-none`);}
 }
 
 
@@ -65,13 +70,13 @@ async function deleteForEdit(path) {
   }
 
 
- async function editTaskPopup(positionID){
+ async function editTaskPopup(positionID, id){
     let button = document.getElementById("editTaskButton");
     button.disabled = true;
     let newTask = document.getElementById("addTasktitleInput");
     if (oldTask[0] === newTask.value){
-    await addTaskPopup(positionID);} else {
+    await addTaskPopup2(positionID, id);} else {
        await deleteForEdit(oldTask[0]);
-        await addTaskPopup(positionID);
+        await addTaskPopup2(positionID, id);
     }
   }

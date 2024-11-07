@@ -111,6 +111,11 @@
   .column {
     width: 100%;
   }
+
+  .dropSection{
+    display: flex;
+    overflow-x: scroll;
+  }
 }
 
 .sidebar {

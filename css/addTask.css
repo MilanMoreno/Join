@@ -428,13 +428,21 @@ select:focus {
   border: 1px solid #29abe2;
 }
 
+
+.scrollhidden{
+  overflow: hidden;
+}
+
+
 @media (max-width: 1300px) {
+  .addTaskSection{
+    overflow-y: auto;
+  }
+
   .addTaskBody {
     flex-direction: column !important;
     width: 440px;
-    margin-left: 70px;
-    overflow-y: scroll;
-    height: 600px;
+    margin: auto;
   }
 
   #addTaskForm {
@@ -444,19 +452,13 @@ select:focus {
   .addTaskFooter {
     width: 440px !important;
     position: unset;
-    padding-bottom: 120px;
+    padding-bottom: 80px;
     margin-inline: 70px;
     margin-top: 5px;
   }
 
   #addTaskForm {
     max-height: unset;
-  }
-
-  .addTaskFooter {
-    width: 440px !important;
-    position: unset;
-    padding-bottom: 120px;
   }
 
   .middleLine {
@@ -605,7 +607,16 @@ select:focus {
 
   .addTaskLeft,
   .addTaskRight {
-    width: 100vw;
+    width: 95vw;
+    margin-inline: 8px;
+  }
+
+  .addTaskHeader{
+    margin-left: 8px;
+  }
+
+  .addTaskSubmit {
+    margin-right: 8px;
   }
 }
 
@@ -628,7 +639,7 @@ select:focus {
   }
 }
 
-@media (max-height: 920px) {
+@media (max-height: 920px ) and (min-width: 1300px) {
   .addTaskFooter {
     position: absolute;
     top: 800px;
