@@ -18,10 +18,11 @@ h2 {
 }
 
 .layout-wrapper {
-  height: 80vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   padding-bottom: 0px;
+  margin-bottom: -111px;
 }
 
 .addContactButtonResponsiv {
@@ -60,7 +61,7 @@ h2 {
 
 .contacts {
   width: 456px;
-  height: 100%;
+  height: calc(100vh - 111px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -171,17 +172,9 @@ h2 {
   border: none;
   width: 56px;
   position: absolute;
-  bottom: 0px;
+  bottom: 103px;
   right: 16px;
 }
-
-/*
-div{
-display: flex;
-justify-content: center;
-align-items: center;
-position: relative;
-padding-bottom: 100px;}*/
 
 .createButton {
   background-color: rgb(9, 25, 49);
@@ -199,20 +192,6 @@ padding-bottom: 100px;}*/
   font-weight: 700;
   border: none;
   width: 352px;
-}
-
-.addContactButtonResponsiv {
-  background-color: rgb(9, 25, 49);
-  color: white;
-  align-items: center;
-  justify-content: center;
-  height: 56px;
-  border-radius: 46px;
-  border: none;
-  width: 56px;
-  position: absolute;
-  bottom: 0px;
-  right: 16px;
 }
 
 .createButton {
@@ -274,6 +253,7 @@ padding-bottom: 100px;}*/
 }
 
 .letter_For_PopUp {
+  margin-inline-start: 40px;
   height: 120px;
   width: 120px;
   border-radius: 50%;
@@ -319,7 +299,6 @@ padding-bottom: 100px;}*/
   opacity: 0;
   transition: opacity 0.5s;
 }
-
 
 .list {
   display: flex;
@@ -383,7 +362,11 @@ padding-bottom: 100px;}*/
   display: flex;
   align-items: center;
   padding: 1px 0 90px 20px;
- 
+}
+
+.editResponsiv {
+  display: flex;
+  margin-top: 60px;
 }
 
 .popUp-content {
@@ -392,6 +375,14 @@ padding-bottom: 100px;}*/
   width: 745px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.popUp-content2 {
+  background-color: white;
+  height: 100%;
+  width: 745px;
+  display: flex;
   align-items: center;
 }
 
@@ -416,7 +407,6 @@ padding-bottom: 100px;}*/
   cursor: pointer;
 }
 
-
 .pic_inputs {
   display: flex;
   align-items: center;
@@ -427,26 +417,35 @@ padding-bottom: 100px;}*/
 }
 
 .profile-pic {
-  padding-inline-start: 83px;
+  padding-inline-start: 40px;
   height: 120px;
   width: 120px;
 }
 
-.contact_input{
-    width: 340px;
-    padding-inline-end: 20px;
+.contact_input {
+  width: 340px;
+  padding-inline-end: 20px;
 }
-.center-pic{
+
+.contact_input2 {
+  width: 340px;
+  padding-inline-end: 20px;
+}
+
+.center-pic {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 100px;
- padding-left: 0px;
- padding-right: 40px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 84px;
+  padding-left: 0px;
 }
 .return-mobilePopUp {
   display: flex;
   justify-content: end;
+}
+
+.redOutline{
+  border: 1px solid red!important;
 }
 
 .return-mobilePopUp img {
@@ -468,6 +467,7 @@ padding-bottom: 100px;}*/
   border-radius: 8px;
   border: 1px solid rgb(203, 203, 203);
   object-fit: cover;
+  padding-left: 10px;
 }
 
 .h2-span {
@@ -490,6 +490,7 @@ padding-bottom: 100px;}*/
 }
 
 .contact_button {
+  margin-top: 15px;
   display: flex;
   align-items: center;
   padding: 0px 0 0 0;
@@ -553,7 +554,7 @@ padding-bottom: 100px;}*/
 
 .letter {
   border-bottom: 0.5px solid grey;
-  width: 100%; 
+  width: 100%;
   margin: 0;
   display: flex;
   justify-content: flex-start;
@@ -569,7 +570,6 @@ padding-bottom: 100px;}*/
   width: 322px;
   height: 78px;
   padding-left: 30px;
-  padding-bottom: 37px;
 }
 
 .one_letter {
@@ -605,8 +605,8 @@ padding-bottom: 100px;}*/
 }
 
 .single-letter {
-  height: 120px;
-  width: 120px;
+  min-height: 120px;
+  min-width: 120px;
   height: 120px;
   width: 120px;
   border-radius: 50%;
@@ -637,8 +637,14 @@ h4 {
 .contact-profile {
   display: flex;
   align-items: center;
-  gap: 54px;
+  gap: 56px;
   padding: 24px 0 24px 0;
+}
+
+@media (max-width: 1200px) {
+  .contact-profile {
+    gap: 26px;
+  }
 }
 
 .h4_edit-delete {
@@ -734,14 +740,10 @@ h4 {
   padding: 8px 16px;
 }
 
-        .edit-window{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding-bottom: 84px;
-          padding-left: 42px;
-        
-        }
-
-
- 
+.edit-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 84px;
+  padding-left: 0px;
+}

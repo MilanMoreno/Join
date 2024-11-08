@@ -132,4 +132,5 @@ ul {
 
 #overlay{
   z-index: 99;
+  overflow-y: auto;
 }
