@@ -538,3 +538,51 @@ h2 {
             
     
         }
+
+
+
+        /* Das wäre um den Abstand zu add button gut zu positionieren in der Mobilversion(also nicht der Button mit den pünktchen
+        @media(max-width:400px){
+   
+        .addContactButtonResponsiv {
+          background-color: rgb(9, 25, 49);
+          color: white;
+          align-items: center;
+          justify-content: center;
+          height: 56px;
+          border-radius: 46px;
+          border: none;
+          width: 56px;
+          position: absolute;
+          bottom: 30px;
+          right: 16px;
+        }
+    }
+        */
+        @media(max-width:400px){
+
+            .contactInformation {
+                font-size: 18px;
+                height: 66px;
+            }
+    
+    .contact-profile {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 0 0px 0;
+        }
+
+        .h2Contacts{
+            padding: 0px 0px 10px 0px;
+            font-size: 40px;
+        }
+        .moreAboutContent {
+            gap: 10px;
+
+
+    }
+    .text span {
+        font-size: 20px;
+}
+        }

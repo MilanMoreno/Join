@@ -72,7 +72,6 @@ function hideModal(bgPopUp, popUp, header) {
     header.classList.remove('stretch');
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('name').addEventListener('input', updateSubmitButtonState);
@@ -80,17 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
     document.getElementById('email').addEventListener('input', updateeditSubmitButtonState);
     document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
 });
-
-
-
-
 
 
 
@@ -102,11 +96,6 @@ function updateeditSubmitButtonState() {
     const submitButton = document.getElementById('createSubmit');
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
-
-
-
-
-
 
 function createNewContact(event) {
     event.preventDefault();
@@ -149,10 +138,6 @@ function createNewContact(event) {
         openClosePopUp('close');
     }
 }
-
-
-
-
 
 function validateNameField() {
     let name = document.getElementById('name').value;
@@ -254,18 +239,6 @@ function resetErrorMessages() {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 function validateEditNameField() {
     let name = document.getElementById('editName').value;
     if (!validateName(name)) {
@@ -295,13 +268,6 @@ function validateEditPhoneField() {
     }
     updateeditSubmitButtonState();
 }
-
-
-
-
-
-
-
 
 function validateEditNameFieldBlur() {
     let name = document.getElementById('editName').value;
@@ -467,7 +433,6 @@ async function removeContact(path = 'contact', id) {
         console.error('Löschfehler des Kontakts:', error.message);
     }
 }
-
 
 function clearDetailedView() {
     const target = document.getElementById('content');
