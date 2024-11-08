@@ -36,6 +36,8 @@ function closePopUp(){
 oldTask = []
 
 function editTask(title, category, dueDate, description, positionID, id, Prio){
+    oldTask = []
+    document.getElementById("overlay").onclick = null;
     let addTaskSection = document.getElementById("detailCard")
     oldTask.push (title)
     addTaskSection.innerHTML = fillEditTaskSection(title, category, dueDate, description, positionID, id,);
@@ -62,7 +64,6 @@ async function deleteForEdit(path) {
           headers: {'Content-Type': 'application/json'}
       });
       if (response.ok) {
-          location.reload();
       } else {console.error('Fehler beim Löschen des Tasks:', response.statusText);}
   } catch (error) {
       console.error('Fehler beim Löschen des Tasks:', error);
@@ -75,8 +76,12 @@ async function deleteForEdit(path) {
     button.disabled = true;
     let newTask = document.getElementById("addTasktitleInput");
     if (oldTask[0] === newTask.value){
-    await addTaskPopup2(positionID, id);} else {
+    await addTaskPopup2(positionID, id);
+    document.getElementById("overlay").onclick = closeDetailCard;
+} else {
        await deleteForEdit(oldTask[0]);
         await addTaskPopup2(positionID, id);
+        document.getElementById("overlay").onclick = closeDetailCard;
     }
+
   }

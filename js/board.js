@@ -380,6 +380,7 @@ function closeDetailCard(event) {
     document.getElementById("overlay").classList.add("d-none");
     document.getElementById("overlay").classList.remove("d-flex");
   }
+  
 }
 
 
@@ -389,6 +390,9 @@ function closeDetailCardX() {
   if(document.getElementById("body").classList.contains("scrollhidden")){
     document.getElementById("body").classList.remove("scrollhidden");
   }
+  
+    document.getElementById("overlay").onclick = closeDetailCard;
+  
 }
 
 

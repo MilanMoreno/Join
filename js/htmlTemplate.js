@@ -49,11 +49,13 @@ async function generateAssingTo() {
     document.getElementById("assingedList").innerHTML = assigned;
   }
   document.getElementById("hideAssignlist").classList.remove("d-none");
+  document.getElementById("assingedList").classList.remove("d-none");
 }
 
 
 function hideAssignlist() {
   document.getElementById("hideAssignlist").classList.add("d-none");
+  document.getElementById("assingedList").classList.add("d-none");
   renderSelectedContacts();
 }
 
@@ -108,8 +110,8 @@ function addTaskTemplate() {
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
-            <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
-            <div id="electedContacts" class="d-flex"></div>
+            <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"></div><div id="assingedList" class="assingedList d-none" onclick="event.stopPropagation();"></div>
+            <div id="electedContacts" class="d-flex "></div>
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
@@ -178,7 +180,7 @@ function fillAddTaskSection(positionId) {
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
-            <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
+            <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"></div><div id="assingedList" class="assingedList d-none" onclick="event.stopPropagation();"></div>
             <div id="electedContacts" class="d-flex"></div>
           </div>
           <div class="middleLine"></div>
@@ -255,16 +257,16 @@ function fillEditTaskSection(
             <p id="requiredDate" class="required d-none">This field is required</p>
             <p>Prio</p>
             <div class="d-flex d-space">
-                <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
-                <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
+                <button type="button" id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
+                <button type="button" id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
+                <button type="button" id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
             <p>Assigned to</p>
             <div class="assingedField d-flex"><input id="assinged" class="assingedInput" type="text" placeholder="Select contacts to assign" onfocus="generateAssingTo()" oninput="filterContacts()"><img class="icon" src="./assets/img/arrow_drop_down.png" alt=""></div>
-            <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"><div id="assingedList" class="assingedList" onclick="event.stopPropagation();"></div></div>
+            <div id="hideAssignlist" class="d-none" onclick="hideAssignlist()"></div><div id="assingedList" class="assingedList d-none" onclick="event.stopPropagation();"></div>
             <div id="electedContacts" class="d-flex"></div>
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
-                <input id="subTaskAdd" type="text" placeholder="Add new subtask">
+                <input id="subTaskAdd" type="text" placeholder="Add new subtask"  onkeydown="checkEnter(event, 'subTaskAdd')">
                 <img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt="">
                 <div id="activSubTask" class="d-none d-center">
                     <img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt="">
@@ -278,7 +280,7 @@ function fillEditTaskSection(
                 <p class="red note">*</p><p class="note">This field is required</p>
             </div>
             <div class="editTaskSubmit d-flex d-space">
-                <button id="editTaskButton" onclick="editTaskPopup('${positionID}', '${id}')" class="createTask d-flex editTask" >Ok <img src="./assets/img/icon_check-white.svg" alt=""></button>
+                <button type="button" id="editTaskButton" onclick="editTaskPopup('${positionID}', '${id}')" class="createTask d-flex editTask" >Ok <img src="./assets/img/icon_check-white.svg" alt=""></button>
             </div>
             <select name="Category" id="addTaskCategory" class="d-none">
                 <option value="${category}">${category}</option>
@@ -290,45 +292,7 @@ function fillEditTaskSection(
 
 
           </div>
-          <!-- <div class="middleLine"></div>
-          <div class="addTaskRight d-flex">
-            <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            <input type="date" name="Date" id="addTaskDate" value="${dueDate}" >
-            <p id="requiredDate" class="required d-none">This field is required</p>
-            <p>Prio</p>
-            <div class="d-flex d-space">
-                <button id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
-                <button id="medium" onclick="setPrio('medium')">Medium <img id="mediumColor" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" class="d-none" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
-                <button id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
-            <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-           <select name="Category" id="addTaskCategory" >
-                <option value="${category}">${category}</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="User Story">User Story</option>
-           </select>
-           <p id="requiredCat" class="required d-none">This field is required</p>
-            <p>Subtasks</p>
-            <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
-                <input id="subTaskAdd" type="text" placeholder="Add new subtask">
-                <img id="subTaskPlus" class="subTaskPlus" src="./assets/img/icon_subtasks.svg" alt="">
-                <div id="activSubTask" class="d-none d-center">
-                    <img onclick="cancelSubTask()" class="subTaskCross" src="./assets/img/icon_closeVectorBlack.svg" alt="">
-                    <div class="middleLineShort"></div>
-                    <img onclick="addSubTask()" class="subTaskCheck" src="./assets/img/check.png" alt="">
-                </div>
-            </div>
-            <ul id="subTaskView">${subTask}</ul> -->
-        
-    </div>
-    <!-- <div class="addTaskFooter d-flex d-space">
-            <div class="addTaskNote d-flex">
-                <p class="red note">*</p><p class="note">This field is required</p>
-            </div>
-            <div class="addTaskSubmit d-flex d-space">
-                <button id="editTaskButton" onclick="editTaskPopup('${positionID}')" class="createTask d-flex" >Edit Task <img src="./assets/img/icon_check-white.svg" alt=""></button>
-            </div>
-        </div>
-    </div> -->
+          
   </form>
   
     `;

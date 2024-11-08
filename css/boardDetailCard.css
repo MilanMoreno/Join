@@ -5,6 +5,7 @@
   padding-block: 4px;
   width: fit-content;
   height: 28px;
+  overflow-y: hidden;
 }
 
 .detailCard {
@@ -16,6 +17,7 @@
   border-radius: 30px;
   font-size: 20px;
   margin-block: 100px;
+  overflow-y: hidden;
 }
 
 .detailSection {
@@ -132,5 +134,11 @@ ul {
 
 #overlay{
   z-index: 99;
-  overflow-y: auto;
+  
+}
+
+@media (max-height: 1110px){
+  #overlay{
+    overflow-y: auto;
+  }
 }

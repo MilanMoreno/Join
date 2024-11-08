@@ -150,7 +150,7 @@ async function addTaskPopup(positionId) {
 
 async function addTaskPopup2(positionId, id) {
   let button = document.getElementById("editTaskButton")
-  event.preventDefault()
+ 
   if (!checkRequired()) {return;}
   if (button !== null && document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== '') {button.disabled = true;}
   if (document.getElementById("addTasktitleInput").value !== '' && document.getElementById("addTaskDate").value !== '' && document.getElementById("addTaskCategory").value !== ''){
@@ -160,7 +160,7 @@ async function addTaskPopup2(positionId, id) {
   const jsonString = JSON.stringify(task);
   await postData(task.Title, task);
   await loadTasks();
-  openDetailCard(id);
+  closeDetailCardX();
 }
 }
 

@@ -363,14 +363,12 @@
 }
 
 #assingedList {
-  position: relative;
   max-height: 250px;
   width: 440px;
   overflow-y: auto;
   background-color: #ffffff;
   z-index: 5;
-  top: 600px;
-  left: 200px;
+  
 }
 
 .assingedList:hover {
@@ -583,6 +581,10 @@ select:focus {
 }
 
 @media (max-width: 450px) {
+  .white{
+    filter: unset;
+  }
+
   .addTaskContent {
     font-size: 16px;
   }
