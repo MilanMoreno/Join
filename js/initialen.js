@@ -3,7 +3,6 @@
     window.location.href = './index.html';
   }
   
-
   function getInitials(name) {
     const nameParts = name.trim().split(' ');
     if (nameParts.length === 1) {

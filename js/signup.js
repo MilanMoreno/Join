@@ -1,28 +1,22 @@
 async function handleSignUp(event) {
     event.preventDefault();
     const usersArray = await loadUsers();
-
     let emailField = document.getElementById("inputSignUpMail");
     let passwordField = document.getElementById("inputSignUpPassword1");
     let confirmPasswordField = document.getElementById("inputSignUpPassword2");
     let acceptCheckbox = document.getElementById("checkboxAccept");
     let errorDisplay = document.getElementById("passwordIncorrect");
-
     if (!acceptCheckbox.checked) {
         displayErrorMessage("You must accept the terms of use", acceptCheckbox);
         return;
-    }
-
-    if (!checkEmailAvailability(usersArray, emailField.value)) {
+    }if (!checkEmailAvailability(usersArray, emailField.value)) {
         displayErrorMessage("Email is already registered", emailField);
         return;
     }
-
     let newUser = buildUserObject();
     if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
         showSuccessMessage();
-    } 
-}
+    }}
 
 async function checkEmailAvailability(usersArray, email) {
     return !usersArray.some(user => user.mail === email);
@@ -35,15 +29,13 @@ async function verifyPassword(user, passwordField, confirmPasswordField) {
     if (!password || !confirmPassword) {
         displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
         return false;
-    }
-    if (password === confirmPassword) {
+    } if (password === confirmPassword) {
         await submitData("users", user);
         return true;
     } else {
         displayErrorMessage("Passwords do not match", confirmPasswordField);
         return false;
-    }
-}
+    }}
 
 async function loadUsers() {
     let usersArray = [];
@@ -91,7 +83,6 @@ async function login() {
     let email = document.getElementById("inputEmailLogIn").value;
     let password = document.getElementById("inputPasswordLogIn").value;
     let matchedUser = usersArray.find(user => user.mail === email && user.password === password);
-
     if (matchedUser) {
         localStorage.setItem("user", JSON.stringify(matchedUser));
         window.location.href = "./summary.html";
@@ -104,13 +95,11 @@ function handleLogin(event) {
     event.preventDefault();
     const emailInput = document.getElementById("inputEmailLogIn").value;
     const passwordInput = document.getElementById("inputPasswordLogIn").value;
-
     loginUser(emailInput, passwordInput);
 }
 
 async function loginUser(email, password) {
     const usersArray = await loadUsers();
-
     const matchedUser = usersArray.find(user => user.mail === email && user.password === password);
     if (matchedUser) {
         saveUserToLocal(matchedUser);

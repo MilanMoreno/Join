@@ -1,64 +1,18 @@
 let contacts = [];
 let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/contact";
 
-
 async function loadContacts() {
-  try {
-    const response = await fetch(`${Second_URL}.json`);
-    if (!response.ok) {
-      throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);
-    }
+  try {const response = await fetch(`${Second_URL}.json`);
+    if (!response.ok) {throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);}
     const contactData = await response.json();
     if (!contactData) {
       console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
-      return;
-    }
+      return;}
     contacts.length = 0;
     for (const key in contactData) {
       if (contactData.hasOwnProperty(key)) {
-        contacts.push(contactData[key]);
-      }
-    }
-  } catch (error) {
-    console.error("Fehler beim Laden der Daten:", error);
-  }
-}
-
-
-async function generateAssingTo() {
-  await loadContacts();
-  if (document.getElementById("assingedList").innerHTML === "") {
-    let assigned = "";
-    for (let i = 0; i < contacts.length; i++) {
-      const element = contacts[i].name;
-      const circle = generateCircle(element);
-      const isChecked = selectedCheckboxes.includes(element) ? "checked" : "";
-      assigned += `
-    <div class="d-flex assingUser">
-    <label class="container" >
-      <div class="d-flex assingLeft" id="container${i}">
-        <div>${circle}</div>
-        <p>${element}</p>
-      </div>    
-      <input id="${element}" type="checkbox" ${isChecked} onclick="checkboxshow(${i})">
-      <img src="imgs/ckeckMark.png" alt="" class="white d-none checkmark" id="check${i}">
-      <img src="imgs/mark.png" alt="" class=" checkmark" id="mark${i}"}]>
-    </label>
-    </div>`;
-    }
-    document.getElementById("assingedList").innerHTML = assigned;
-  }
-  document.getElementById("hideAssignlist").classList.remove("d-none");
-  document.getElementById("assingedList").classList.remove("d-none");
-}
-
-
-function hideAssignlist() {
-  document.getElementById("hideAssignlist").classList.add("d-none");
-  document.getElementById("assingedList").classList.add("d-none");
-  renderSelectedContacts();
-}
-
+        contacts.push(contactData[key]);}}
+  } catch (error) {console.error("Fehler beim Laden der Daten:", error);}}
 
 function generateCircle(names) {
   let initial = "";
@@ -70,7 +24,6 @@ function generateCircle(names) {
   return initial;
 }
 
-
 function getInitialsDetail(names) {
   let initial = "";
   const color = getRandomColor();
@@ -81,16 +34,27 @@ function getInitialsDetail(names) {
   return initial;
 }
 
-
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
   let color = "#";
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+  }return color;}
 
+function generateAssingToTemplate(i, circle, element, isChecked){
+  return /*html*/`
+  <div class="d-flex assingUser">
+  <label class="container" >
+    <div class="d-flex assingLeft" id="container${i}">
+      <div>${circle}</div>
+      <p>${element}</p>
+    </div>    
+    <input id="${element}" type="checkbox" ${isChecked} onclick="checkboxshow(${i})">
+    <img src="imgs/ckeckMark.png" alt="" class="white d-none checkmark" id="check${i}">
+    <img src="imgs/mark.png" alt="" class=" checkmark" id="mark${i}">
+  </label>
+  </div>`;
+}
 
 function addTaskTemplate() {
   return /*html*/ `
@@ -102,10 +66,8 @@ function addTaskTemplate() {
         <div class="d-flex d-space addTaskBody">
           <div class="addTaskLeft d-flex">
             <div class="d-flex"><p>Title</p><p class="red">*</p></div>
-            
               <input id="addTasktitleInput" type="text" placeholder="Enter a title" >
               <p id="requiredTitle" class="required d-none">This field is required</p>
-            
             <p>Description</p>
             <textarea cols="50" placeholder="Enter a Description" name="Discription" id="addTaskDiscription"></textarea>
             <p>Assigned to</p>
@@ -115,8 +77,7 @@ function addTaskTemplate() {
           </div>
           <div class="middleLine"></div>
           <div class="addTaskRight d-flex">
-            <div class="d-flex"><p>Due date</p><p class="red">*</p></div>
-            
+            <div class="d-flex"><p>Due date</p><p class="red">*</p></div>      
             <input type="date" name="Date" id="addTaskDate" onblur="validateDateInput()">
             <p id="requiredDate" class="required d-none">This field is required</p>
             <p id="pastDate" class="required d-none">The date must not be in the past</p>
@@ -125,15 +86,13 @@ function addTaskTemplate() {
                 <button type="button" id="urgent" onclick="setPrio('urgent')">Urgent <img id="urgentColor" src="./assets/img/icon_PrioAltaRed.svg" alt=""><img id="urgentWhite" class="urgentWhite d-none" src="./assets/img/PrioWhite.svg" alt=""></button>
                 <button type="button" id="medium" onclick="setPrio('medium')" class="colormedium">Medium <img id="mediumColor" class="d-none" src="./assets/img/icon_PrioMediaOrange.svg" alt=""><img id="mediumWhite" src="./assets/img/icon_PrioMediaWhite.svg" alt=""></button>
                 <button type="button" id="low" onclick="setPrio('low')">Low <img id="lowColor" src="./assets/img/icon_PrioBajaGreen.svg" alt=""><img id="lowWhite" class="d-none" src="./assets/img/PrioWhite.svg" alt=""></button></div>
-            <div class="d-flex"><p>Category</p><p class="red">*</p></div>
-          
+            <div class="d-flex"><p>Category</p><p class="red">*</p></div>         
             <select name="Category" id="addTaskCategory" >
                 <option disabled selected value="">Select task Category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
            </select>
-           <p id="requiredCat" class="required d-none">This field is required</p>
-          
+           <p id="requiredCat" class="required d-none">This field is required</p>         
             <p>Subtasks</p>
             <div id="pointer" onclick="openAddSubTask()" class="d-flex subTask">
                 <input id="subTaskAdd" type="text" placeholder="Add new subtask" onkeydown="checkEnter(event, 'subTaskAdd')">
@@ -161,7 +120,6 @@ function addTaskTemplate() {
   <div id="confirmationMessage" class="confirmation hidden">Task added to board <img class="conformationImg" src="./assets/img/icon_board.svg" alt=""></div>
     `;
 }
-
 
 function fillAddTaskSection(positionId) {
   return /*html*/ `
@@ -229,15 +187,7 @@ function fillAddTaskSection(positionId) {
     `;
 }
 
-
-function fillEditTaskSection(
-  titleId,
-  category,
-  dueDate,
-  Description,
-  positionID,
-  id
-) {
+function fillEditTaskSection(titleId, category, dueDate, Description, positionID, id) {
   let subTask = fillsubtask(id);
   return /*html*/ `
   <form id="addTaskForm">
@@ -289,11 +239,142 @@ function fillEditTaskSection(
            </select>
         </div>
     </div>
-
-
-          </div>
-          
-  </form>
-  
+    </div>  
+  </form>  
     `;
+}
+
+function filterContactsTemplate(circle, element, isChecked) {
+  return /*html*/`
+      <div class="d-flex assingUser">
+        <label class="container">
+          <div class="d-flex assingLeft">
+            <div>${circle}</div>
+            <p>${element}</p>
+          </div>
+          <input id="${element}" type="checkbox" onclick="toggleCheckbox('${element}')" ${isChecked ? "checked" : ""}>
+          <span class="checkmark"></span>
+        </label>
+      </div>`;
+}
+
+function fillsubtaskTemplate(index, element) {
+  return /*html*/`
+  <li class="subTaskList">
+    <p id="subtask-text-${index}">${element}</p>
+    <div id="subTaskLeft-${index}" class="subTaskLeft">
+      <img class="subTaskEdit" onclick="editSubTask(${index})" src="./assets/img/edit.svg" alt="Edit">
+      <div class="middleLineShort"></div>
+      <img class="subTaskDelete" onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete">
+    </div>
+    <div id="edit-input-${index}-div" class="editInput d-none">
+      <input type="text" id="edit-input-${index}"  class="edit-input" value="${element}">
+      <div id="save-btn-${index}" class="d-none d-flex d-align">
+        <img onclick="saveSubTask(${index})" class="subTaskCheck" src="./assets/img/check.png" alt="">
+        <div class="middleLineShort"></div>
+        <img class="subTaskDelete" onclick="deleteSubTask(0)" src="./assets/img/delete.svg" alt="Delete">
+      </div>
+    </div>
+  </li>`;
+}
+
+function renderSubTaskTemplate(index, element){
+  return /*html*/`
+  <li class="subTaskList">
+  <p id="subtask-text-${index}">${element}</p>
+  <div id="subTaskLeft-${index}" class="subTaskLeft">
+  <img class="subTaskEdit" onclick="editSubTask(${index})" src="./assets/img/edit.svg" alt="Edit">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(${index})" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  <div id="edit-input-${index}-div" class="editInput d-none">
+  <input type="text" id="edit-input-${index}"  class="edit-input" value="${element}">
+  <div id="save-btn-${index}" class="d-none d-flex d-align">
+  <img onclick="saveSubTask(${index})" class="subTaskCheck" src="./assets/img/check.png" alt="">
+  <div class="middleLineShort"></div>
+  <img class="subTaskDelete" onclick="deleteSubTask(0)" src="./assets/img/delete.svg" alt="Delete">
+  </div>
+  </div>
+  </li>`;
+}
+
+function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, formattedDate, priosrc) {
+  contentSection.innerHTML = "";
+  contentSection.innerHTML = /*html*/ `
+        <div id="detailCard" class="detailCard">
+            <div class="d-flex d-space">
+                <div class="detailCardCategory ${catClass} d-flex d-center">${task[id].Category}</div>
+                <img onclick="closeDetailCardX()" class="closeCard" src="./assets/img/icon_closeVectorBlack.svg" alt="">
+            </div>
+            <h2>${task[id].Title}</h2>
+            <div>
+                <p class="detailDescription">${task[id].Description}</p>
+                <div class="d-flex detailDate">
+                    <p class="detailDue">DueDate:</p>
+                    <p>${formattedDate}</p> 
+                </div>
+                <div class="d-flex detailPrio">
+                    <p class="detailPr">Priority:</p>
+                    <p class="d-flex dPrio">${task[id].Prio} ${priosrc}</p>
+                </div>
+            </div>
+            <ul class=" assignContainer">
+                <p class="detailAssign">Assigned To:</p>
+                ${assign}
+            </ul>
+            <p class="detailSubtask">Subtasks</p>
+            <ul id="subtasksContainer${id}" class="subtask-container">
+                ${cardSubTask}
+        </ul>
+        <div class="d-flex detailDeleteEdit">
+            <div class="deleteEdit d-flex" onclick="deleteTask('${task[id].Title}')">
+                <img src="./assets/img/delete.svg" alt="">
+                <p>Delete</p>
+            </div>
+            <div class="detailMiddleline"></div>
+            <div class="deleteEdit d-flex" onclick="editTask('${task[id].Title}', '${task[id].Category}', '${task[id].DueDate}', '${task[id].Description}' ,'${task[id].PositionID}' ,'${id}' ,'${task[id].Prio}')">
+                <img src="./assets/img/edit.svg" alt="">
+                <p>Edit</p>
+            </div>
+        </div>
+        <div class="mobileDragTask">
+          <p>Select board position</p>
+          <select class="mobileSelect" onchange="changePosition(${id},'${task[id].Title}')" name="positionSwitch" id="positionSwitch">
+            <option disabled selected value="">Choose New Position</option>
+            <option value="toDo">To do</option>
+            <option value="inProgress">In Progress</option>
+            <option value="awaitFeedback">Await Feedback</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        </div>   
+    `;
+}
+
+function filterSubTaskTemplate(id, i, checked, element){
+  return /*html*/`<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id} c-pointer" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;  
+}
+
+function fillTemplate(title, category, text, assigned, prio, id) {
+  let priosrc = checkPrio(prio);
+  let catClass = checkCategory(category);
+  let content = limitTextLength(text);
+  let initials = getInitials2(assigned);
+  return /*html*/ `
+    <div class="card" id="${title}" draggable="true" ondragstart="drag(event, ${id}, '${title}')" onclick="openDetailCard(${id})">
+        <div class="cardCategory ${catClass} d-flex d-center">${category}</div>
+        <h3 class="cardTitle">${title}</h3>
+        <p class="cardText">${content}</p>
+        <div class="cardBalken d-flex">
+            <div class="progress-container" id="progressContainer${id}">
+                <div class="progress-bar" id="progressBar${id}"></div>
+            </div>
+            <div class="progress-text" id="progressText${id}"></div>
+        </div>
+        <div class="cardFooter d-flex d-space">
+            <div class="initials-container">${initials}</div>
+            <img class="cardPrio " src="${priosrc}">
+        </div>
+        </div>
+    </div>`;
 }

@@ -2,45 +2,33 @@ function showContactMobile() {
     document.getElementById('content-area').classList.add('dNone');
     document.getElementById('content-area').classList.remove('d-Block');
     document.getElementById('mycontacts').classList.remove('displayNone');
-
 }
-
 
 function checkScreenSize() {
     const mobileWidth = 950;
-
     if (window.matchMedia(`(max-width: ${mobileWidth}px)`).matches) {
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
         document.getElementById('mycontacts').classList.add('displayNone');
         document.getElementById('content-area').classList.remove('dNone');
         document.getElementById('content-area').classList.add('d-Block');
-    }
-}
-
+    }}
 
 window.addEventListener('resize', concealMobileElements)
 
 function concealMobileElements() {
     if (window.innerWidth > 800) {
         document.getElementById('responsiveContactBackButton').classList.add('displayNone');
-        
-    
     } else if (window.innerWidth < 800) {
-        
-    
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
-    }
-}
+    }}
 
 function showEditandDelete() {
     var menu = document.getElementById("editDeleteMenu");
     if (menu.style.display === "none" || menu.style.display === "") {
         menu.style.display = "block";
-
     } else {
         menu.style.display = "none";
-    }
-}
+    }}
 
 window.onclick = function (event) {
     var menu = document.getElementById("editDeleteMenu");
@@ -48,9 +36,7 @@ window.onclick = function (event) {
         if (!event.target.matches('#options_edit_delete')) {
             {
                 menu.style.display = "none";
-            }
-        }
-    } 
+            }}}
 }
 
 function showModal(PopUpBgElement, show, header) {
@@ -73,14 +59,12 @@ function hideModal(bgPopUp, popUp, header) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
     document.getElementById('name').addEventListener('input', updateSubmitButtonState);
     document.getElementById('email').addEventListener('input', updateSubmitButtonState);
     document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function() {   
     document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
     document.getElementById('email').addEventListener('input', updateeditSubmitButtonState);
     document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
@@ -92,38 +76,27 @@ function updateeditSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
     const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
-
     const submitButton = document.getElementById('createSubmit');
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
 
 function createNewContact(event) {
     event.preventDefault();
-
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let tel = document.getElementById('tel').value;
-
     resetErrorMessages();
-
     let isValid = true;
-
     if (!validateName(name)) {
         showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
         isValid = false;
-    }
-
-    if (!validateEmail(email)) {
+    }if (!validateEmail(email)) {
         showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
         isValid = false;
-    }
-
-    if (!validatePhoneNumber(tel)) {
+    }if (!validatePhoneNumber(tel)) {
         showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + beginnend).");
         isValid = false;
-    }
-
-    if (isValid) {
+    }if (isValid) {
         let button = document.getElementById("createSubmit");
         button.disabled = true;
         const nextColor = selectNextColor();
@@ -136,8 +109,7 @@ function createNewContact(event) {
         contactList.push(data);
         submitContact('contact');
         openClosePopUp('close');
-    }
-}
+    }}
 
 function validateNameField() {
     let name = document.getElementById('name').value;
@@ -202,7 +174,6 @@ function validateEmailFieldBlur() {
     updateeditSubmitButtonState();
 }
 
-
 function validateName(name) {
     const namePattern = /^[A-Za-zÄÖÜäöüß]+(?: [A-Za-zÄÖÜäöüß]+)*$/;
     return name.length >= 2 && namePattern.test(name);
@@ -249,8 +220,8 @@ function validateEditNameField() {
         hideErrorMessage('editNameError', 'editName');
     }
     updateeditSubmitButtonState();
-    
 }
+
 function validateEditEmailField() {
     let email = document.getElementById('editEmail').value;
     if (!validateEmail(email)) {
@@ -280,7 +251,6 @@ function validateEditNameFieldBlur() {
     }
 }
 
-
 function validateEditEmailFieldBlur() {
     let email = document.getElementById('editEmail').value;
     if (!validateEmail(email)) {
@@ -289,7 +259,6 @@ function validateEditEmailFieldBlur() {
         hideErrorMessage('editEmailError', 'editEmail');
     }
 }
-
 
 function validateEditPhoneFieldBlur() {
     let tel = document.getElementById('editTel').value;
@@ -304,11 +273,9 @@ function updateSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
     const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
-
     const submitButton = document.getElementById('createSubmit');
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
-
 
 function checkFormFields() {
     const field1 = document.getElementById('editName').value.trim();
@@ -317,7 +284,7 @@ function checkFormFields() {
     const submitButton = document.getElementById('editSubmit');
     submitButton.disabled = !(field1 && field2 && field3);
   }
-
+  
   function checkFormFields2() {
     const field1 = document.getElementById('name').value.trim();
     const field2 = document.getElementById('email').value.trim();
@@ -331,37 +298,25 @@ function resetEditErrorMessages() {
     errorElements.forEach(element => {
         element.innerText = '';
         element.style.display = 'none';
-    });
-}
-
+    });}
 
 async function modifyContact(event) {
     event.preventDefault();
-
     let name = document.getElementById('editName').value;
     let email = document.getElementById('editEmail').value;
     let tel = document.getElementById('editTel').value;
-
     resetEditErrorMessages();
-
     let isValid = true;
-
     if (!validateName(name)) {
         showErrorMessage('editNameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
         isValid = false;
-    }
-
-    if (!validateEmail(email)) {
+    }if (!validateEmail(email)) {
         showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
         isValid = false;
-    }
-
-    if (!validatePhoneNumber(tel)) {
+    }if (!validatePhoneNumber(tel)) {
         showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + beginnend).");
         isValid = false;
-    }
-
-    if (isValid) {
+    }if (isValid) {
         let button = document.getElementById("editSubmit");
         button.disabled = true;
         preventFormSubmit('update');
@@ -377,10 +332,7 @@ async function modifyContact(event) {
         openClosePopUp('close', key = true);
         await fetchData();
         updateDetail();
-    }
-
-}
-
+    }}
 
 function preventFormSubmit(key) {
     let target;
@@ -398,17 +350,14 @@ function modifyContactDetails() {
     let name = document.getElementById('editName');
     let email = document.getElementById('editEmail');
     let tel = document.getElementById('editTel');
-
     let data =
     {
         'name': name.value,
         'email': email.value,
         'telefonnummer': tel.value
-
     };
     return data;
 }
-
 
 async function removeContact(path = 'contact', id) {
     try {
@@ -421,15 +370,9 @@ async function removeContact(path = 'contact', id) {
         });
         if (!response.ok) {
             throw new Error('Löschfehler des Kontakts');
-        }
-
-       
-        await fetchData();
-        
-       
-        clearDetailedView();
-        
-  
+        }    
+        await fetchData();       
+        clearDetailedView(); 
         currentEditKey = null;
     } catch (error) {
         console.error('Löschfehler des Kontakts:', error.message);
