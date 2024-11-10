@@ -74,14 +74,12 @@ nav {
   background-color: transparent;
 }
 
-
 .bottom-menu-link1 {
   display: flex;
   flex-direction: column;
   gap: 18px;
   padding: 0 0 0 0;
 }
-
 
 .bottom-menu-link1 a {
   text-decoration: none;
@@ -141,19 +139,3 @@ nav {
     width: 24px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

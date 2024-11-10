@@ -2,7 +2,9 @@ main,
 body {
   overflow-x: hidden;
 }
-html, body {
+
+html,
+body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -23,7 +25,6 @@ html, body {
   margin-top: 110px;
   margin-left: 91px;
   margin-right: 110px;
-  
 }
 
 .addTask {
@@ -312,7 +313,7 @@ html, body {
   z-index: 1;
 }
 
-.mobileDragTask{
+.mobileDragTask {
   margin-bottom: 70px;
   display: none;
 }
@@ -473,7 +474,7 @@ html, body {
 }
 
 @media (max-width: 700px) {
-  .card{
+  .card {
     margin-inline: 10px;
   }
 
@@ -485,18 +486,18 @@ html, body {
     width: 100%;
   }
 
-  .noTask{
+  .noTask {
     width: 214px;
   }
 
-  .dropSection{
+  .dropSection {
     display: flex;
     overflow-x: scroll;
     min-height: 200px;
     height: auto;
   }
 
-  .mobileDragTask{
+  .mobileDragTask {
     display: unset;
   }
 }
@@ -505,7 +506,7 @@ html, body {
   display: none;
 }
 
-.mobileSelect{
+.mobileSelect {
   margin-bottom: 70px;
 }
 
@@ -515,19 +516,20 @@ html, body {
   }
 }
 
-@media (max-height: 1050px){
-  .detailCard{
-    height: fit-content!important;
-    margin-block: 10px!important;
+@media (max-height: 1050px) {
+  .detailCard {
+    height: fit-content !important;
+    margin-block: 10px !important;
   }
 }
 
-@media (max-width: 550px){
-  .detailCard{
-    width: 95vw!important;
-
+@media (max-width: 550px) {
+  .detailCard {
+    width: 95vw !important;
   }
-  .assignList, .detailDate, .detailDescription{
+  .assignList,
+  .detailDate,
+  .detailDescription {
     width: auto;
   }
 }

@@ -132,13 +132,12 @@ ul {
   align-items: center;
 }
 
-#overlay{
+#overlay {
   z-index: 99;
-  
 }
 
-@media (max-height: 1110px){
-  #overlay{
+@media (max-height: 1110px) {
+  #overlay {
     overflow-y: auto;
   }
 }

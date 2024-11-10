@@ -11,26 +11,29 @@ async function loadTasks() {
     task.length = 0;
     for (const key in taskData) {
       if (taskData.hasOwnProperty(key)) {
-        task.push(taskData[key]);}}
-    } catch (error) {console.error("Fehler beim Laden der Daten:", error);}
-    render();
-    loadContacts();}
+        task.push(taskData[key]);
+      }}
+  } catch (error) {console.error("Fehler beim Laden der Daten:", error);}
+  render();
+  loadContacts();
+}
 
 function render(filtered) {
   let tasks = "";
   if (filtered === undefined) {
-    tasks = task;} else {tasks = filtered;}
+    tasks = task;
+  } else {tasks = filtered;}
   emptyContent();
   for (let i = 0; i < tasks.length; i++) {
     const element = tasks[i];
     const assignedTo =
-     tasks[i].AssignedTo && tasks[i].AssignedTo.length > 0
+      tasks[i].AssignedTo && tasks[i].AssignedTo.length > 0
         ? tasks[i].AssignedTo
         : "";
     contentHTML = fillTemplate(tasks[i].Title, tasks[i].Category, tasks[i].Description, assignedTo, tasks[i].Prio, i);
     document.getElementById(`${tasks[i].PositionID}`).innerHTML += contentHTML;
     updateProgress(i);}
-    checkPlaceholderVisibility();}
+  checkPlaceholderVisibility();}
 
 function emptyContent() {
   document.getElementById(`toDo`).innerHTML = `<div id="toDoPlaceholder" class="noTask d-flex"><p>No tasks To do</p></div>`;
@@ -45,7 +48,7 @@ function getInitials2(names) {
     return initial;} else {
     const maxVisibleContacts = 5;
     const extraContacts = names.length - maxVisibleContacts;
-    names.slice(0, maxVisibleContacts).forEach(element => {
+    names.slice(0, maxVisibleContacts).forEach((element) => {
       const color = getRandomColor();
       const nameParts = element.split(" ");
       const initials = nameParts.map((part) => part.charAt(0)).join("");
@@ -83,19 +86,19 @@ function updateProgress(id) {
   const progressBarElement = document.getElementById(progressBarID);
   if (totalSubtasks === 0) {
     document.getElementById(`progressContainer${id}`).classList.add("d-none");
-  } else {if (progressBarElement) {
+  } else {
+    if (progressBarElement) {
       progressBarElement.style.width = `${progressPercentage}%`;}
     const progressTextElement = document.getElementById(progressTextID);
     if (progressTextElement) {
-      progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;}}}
+      progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
+    }}}
 
 function taskLenght(id) {
   let result;
   if (task[id].Subtask && task[id].Subtask[0]) {
     result = task[id].Subtask[0].length;
-  } else {
-    result = 0;
-  }
+  } else {result = 0;}
   return result;
 }
 
@@ -106,8 +109,7 @@ function numberOfChecked(id) {
       const element = task[id].checkboxState[0][i].checked;
       if (element === true) {
         count = count + 1;
-      } else {count = count + 0;}
-    }
+      } else {count = count + 0;}}
   } else {return count;}
   return count;
 }
@@ -123,9 +125,9 @@ function checkPrio(prio) {
   } else if (prio === "low") {
     prioImgSrc = low;
   } else {
-    prioImgSrc = "";
-  }
-  return prioImgSrc;}
+    prioImgSrc = "";}
+  return prioImgSrc;
+}
 
 function checkPrioDetail(prio) {
   const urgent = "./assets/img/icon_PrioAltaRed.svg";
@@ -140,7 +142,8 @@ function checkPrioDetail(prio) {
   } else {
     prioImgSrc = "";
   }
-  return prioImgSrc;}
+  return prioImgSrc;
+}
 
 function checkCategory(category) {
   if (category === "Technical Task") {
@@ -148,17 +151,14 @@ function checkCategory(category) {
   } else if (category === "User Story") {
     catClass = "user";
   } else if (category === "") {
-    catClass = "";
-  }
+    catClass = "";}
   return catClass;
 }
 
 function limitTextLength(text) {
   if (text.length > 50) {
     content = text.slice(0, 50) + "...";
-  } else {
-    content = text;
-  }
+  } else {content = text;}
   return content;
 }
 
@@ -175,10 +175,10 @@ function openDetailCard(id) {
   document.getElementById("body").classList.add("scrollhidden");
 }
 
-async function changePosition(id, title){
-  const position = document.getElementById("positionSwitch").value
-  idUpdate = id
-  savedTitle = title
+async function changePosition(id, title) {
+  const position = document.getElementById("positionSwitch").value;
+  idUpdate = id;
+  savedTitle = title;
   await updateTaskPosition(position);
   await loadTasks();
   closeDetailCardX();
@@ -199,7 +199,8 @@ function filterContact(id) {
       contact += `<li class="assignList d-flex">${initial}${element}</li>`;
     }
   } else {contact += "";}
-  return contact;}
+  return contact;
+}
 
 function filterSubTask(id) {
   let subTask = "";
@@ -208,19 +209,16 @@ function filterSubTask(id) {
       const element = task[id].Subtask[0][i];
       const checkedTask = task[id].checkboxState[0][i].checked;
       const checked = filterCheckBox(checkedTask);
-      subTask += filterSubTaskTemplate(id, i, checked, element)}
+      subTask += filterSubTaskTemplate(id, i, checked, element);}
   } else {
-    return subTask;
-  }
+    return subTask;}
   return subTask;
 }
 
 function filterCheckBox(checked) {
   if (checked === true) {
     return "checked";
-  } else {
-    return "unchecked";
-  }
+  } else {return "unchecked";}
 }
 
 function updatecheckbox(id, i) {
@@ -240,11 +238,9 @@ function closeDetailCard(event) {
 function closeDetailCardX() {
   document.getElementById("overlay").classList.add("d-none");
   document.getElementById("overlay").classList.remove("d-flex");
-  if(document.getElementById("body").classList.contains("scrollhidden")){
-    document.getElementById("body").classList.remove("scrollhidden");
-  }
-    document.getElementById("overlay").onclick = closeDetailCard;
-}
+  if (document.getElementById("body").classList.contains("scrollhidden")) {
+    document.getElementById("body").classList.remove("scrollhidden");}
+  document.getElementById("overlay").onclick = closeDetailCard;}
 
 function checkPlaceholderVisibility() {
   const sections = [
@@ -258,8 +254,7 @@ function checkPlaceholderVisibility() {
       placeholder: document.getElementById("donePlaceholder"),},];
   for (const section of sections) {
     const hasContent = section.container.querySelectorAll(".card").length > 0;
-    section.placeholder.style.display = hasContent ? "none" : "flex";
-  }}
+    section.placeholder.style.display = hasContent ? "none" : "flex";}}
 
 let draggedElement;
 let idUpdate;
@@ -344,9 +339,7 @@ function renderTasks(filteredTasks) {
 }
 
 function filterTasks(id) {
-  const filterInput = document
-    .getElementById(id)
-    .value.toLowerCase();
+  const filterInput = document.getElementById(id).value.toLowerCase();
   const filteredTasks = task.filter((task) => {
     return (
       task.Title.toLowerCase().includes(filterInput) ||

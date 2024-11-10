@@ -1,40 +1,38 @@
-.editTaskX{
-    display: flex;
-    justify-content: end;
+.editTaskX {
+  display: flex;
+  justify-content: end;
 }
 
-.editFooter{
-    justify-content: space-between;
-
+.editFooter {
+  justify-content: space-between;
 }
 
-.editSubtaskView{
-    height: 50px!important;
+.editSubtaskView {
+  height: 50px !important;
 }
 
-.editTask{
-    width: auto!important;
+.editTask {
+  width: auto !important;
 }
 
+@media (max-width: 550px) {
+  .addTaskLeft {
+    width: auto !important;
+  }
 
-@media (max-width: 550px){
-    .addTaskLeft {
-        width: auto!important;
-    }
+  .addTaskBody {
+    width: 100%;
+  }
 
-    .addTaskBody{
-        width: 100%;
-    }
+  #assingedList {
+    width: 300px !important;
+  }
 
-    #assingedList{
-        width: 300px !important;
-    }
+  .checkmark {
+    left: 200px !important;
+  }
 
-    .checkmark{
-        left: 200px!important;
-    }
-
-    .container{
-        font-size: 16px;
-    }
+  .container {
+    font-size: 16px;
+  }
 }

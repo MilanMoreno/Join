@@ -368,7 +368,6 @@
   overflow-y: auto;
   background-color: #ffffff;
   z-index: 5;
-  
 }
 
 .assingedList:hover {
@@ -426,14 +425,12 @@ select:focus {
   border: 1px solid #29abe2;
 }
 
-
-.scrollhidden{
+.scrollhidden {
   overflow: hidden;
 }
 
-
 @media (max-width: 1300px) {
-  .addTaskSection{
+  .addTaskSection {
     overflow-y: auto;
   }
 
@@ -505,7 +502,7 @@ select:focus {
 }
 
 ::-webkit-scrollbar {
-  width: 8px!important;
+  width: 8px !important;
   height: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -581,7 +578,7 @@ select:focus {
 }
 
 @media (max-width: 450px) {
-  .white{
+  .white {
     filter: unset;
   }
 
@@ -613,7 +610,7 @@ select:focus {
     margin-inline: 8px;
   }
 
-  .addTaskHeader{
+  .addTaskHeader {
     margin-left: 8px;
   }
 
@@ -641,7 +638,7 @@ select:focus {
   }
 }
 
-@media (max-height: 920px ) and (min-width: 1300px) {
+@media (max-height: 920px) and (min-width: 1300px) {
   .addTaskFooter {
     position: absolute;
     top: 800px;
