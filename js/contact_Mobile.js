@@ -100,12 +100,7 @@ function createNewContact(event) {
         let button = document.getElementById("createSubmit");
         button.disabled = true;
         const nextColor = selectNextColor();
-        let data = {
-            'name': name,
-            'email': email,
-            'telefonnummer': tel,
-            'color': nextColor
-        };
+        let data = {'name': name, 'email': email, 'telefonnummer': tel, 'color': nextColor};
         contactList.push(data);
         submitContact('contact');
         openClosePopUp('close');
