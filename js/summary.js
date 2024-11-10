@@ -1,6 +1,10 @@
 let task = [];
 let BASE_URL_TASK = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
+/**
+ * This function is used to Load saved Task from Firebase.
+ * 
+ */
 async function loadTask() {
   try {const response = await fetch(`${BASE_URL_TASK}.json`);
     if (!response.ok) {
@@ -16,6 +20,10 @@ async function loadTask() {
       }}} catch (error) {console.error("Fehler beim Laden der Daten:", error);}
   updateSummary();}
 
+/**
+ * This function updates the summary page with the data from the Board.
+ * 
+ */ 
 function updateSummary() {
     const positionCounts = {toDo: 0, done: 0, awaitFeedback: 0, inProgress: 0,};
     let totalTasks = 0;

@@ -1,3 +1,8 @@
+/**
+ * This function delete the Task from Firebase.
+ * 
+ * @param {number} id - This is the id frome the Task on with Place the task is saved at Firebase.
+ */
 async function deleteTask(id) {
     let firebaseURL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/" + id + ".json"
     try {
@@ -12,6 +17,11 @@ async function deleteTask(id) {
       console.error('Fehler beim Löschen des Tasks:', error);
 }}
 
+/**
+ * This function fill the AddTask Popup from the board page.
+ * 
+ * @param {string} positionId - Give the position on the board who the new Task are saved.
+ */
 function fillAddTaskPopUp(positionId){
     selectedCheckboxes = [];
     subTask = [];
@@ -24,6 +34,9 @@ function fillAddTaskPopUp(positionId){
     setMinDate();
 }
 
+/**
+ * This function close the AddTask popup at the board Page.
+ */
 function closePopUp(){
     document.getElementById("addTaskSectionBackground").classList.add ("d-none");
     document.getElementById("main").classList.remove ("scrollhidden");
@@ -32,6 +45,17 @@ function closePopUp(){
 
 oldTask = []
 
+/**
+ * This Function open the Edit Task popup at the board page.
+ * 
+ * @param {string} title - Title from the Saved Task
+ * @param {string} category -Category from the Saved Task
+ * @param {number} dueDate - Date from the Saved Task
+ * @param {string} description - Discription from the Saved Task
+ * @param {string} positionID - Position ID from the Saved Task
+ * @param {number} id -Id from the Saved Task
+ * @param {string} Prio -Priority from the Saved Task
+ */
 function editTask(title, category, dueDate, description, positionID, id, Prio){
     oldTask = []
     document.getElementById("overlay").onclick = null;
@@ -43,6 +67,9 @@ function editTask(title, category, dueDate, description, positionID, id, Prio){
     setMinDate();
 }
 
+/**
+ * This function Mark the right priority button at the Edit popup
+ */
 function checkPrioEdit(prioCheck){
     prio = prioCheck
     if(prio == ""){}else{
@@ -51,6 +78,11 @@ function checkPrioEdit(prioCheck){
     document.getElementById(`${prioCheck}White`).classList.remove (`d-none`);}
 }
 
+/**
+ * This Function delete the old Task when the title change
+ * 
+ * @param {string} path - Give the path frome firebase. 
+ */
 async function deleteForEdit(path) {
     let firebaseURL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/" + path + ".json"
     if (event) event.preventDefault();
@@ -65,6 +97,12 @@ async function deleteForEdit(path) {
       console.error('Fehler beim Löschen des Tasks:', error);
   }}
 
+  /**
+   * This help function edit the Saved task at firebase 
+   * 
+   * @param {string} positionID - Position from the Saved Task
+   * @param {number} id - Id from the Saved Task
+   */
  async function editTaskPopup(positionID, id){
     let button = document.getElementById("editTaskButton");
     button.disabled = true;
@@ -79,12 +117,18 @@ async function deleteForEdit(path) {
     }
   }
 
+  /**
+   * This function close the Assign to List at the form.
+   */
   function hideAssignlist() {
     document.getElementById("hideAssignlist").classList.add("d-none");
     document.getElementById("assingedList").classList.add("d-none");
     renderSelectedContacts();
   }
 
+  /**
+   * This Open and generate the Assign to List at the form.
+   */
   async function generateAssingTo() {
     await loadContacts();
     if (document.getElementById("assingedList").innerHTML === "") {
