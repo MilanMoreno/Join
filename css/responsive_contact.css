@@ -489,11 +489,6 @@ h2 {
             }
 
 
-          
-        
-
-
-
         @media (max-width: 380px) {
 
             .error-message {
@@ -509,9 +504,6 @@ h2 {
                     padding: 0;
                 }
         }
-
-
-
 
 
         @media (min-height: 660px) and (max-height:700px){

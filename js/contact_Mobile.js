@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
 function updateeditSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
@@ -97,47 +96,7 @@ function updateeditSubmitButtonState() {
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
 
-function createNewContact(event) {
-    event.preventDefault();
 
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let tel = document.getElementById('tel').value;
-
-    resetErrorMessages();
-
-    let isValid = true;
-
-    if (!validateName(name)) {
-        showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
-        isValid = false;
-    }
-
-    if (!validateEmail(email)) {
-        showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
-        isValid = false;
-    }
-
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
-        isValid = false;
-    }
-
-    if (isValid) {
-        let button = document.getElementById("createSubmit");
-        button.disabled = true;
-        const nextColor = selectNextColor();
-        let data = {
-            'name': name,
-            'email': email,
-            'telefonnummer': tel,
-            'color': nextColor
-        };
-        contactList.push(data);
-        submitContact('contact');
-        openClosePopUp('close');
-    }
-}
 
 function validateNameField() {
     let name = document.getElementById('name').value;
@@ -332,6 +291,47 @@ function resetEditErrorMessages() {
     });
 }
 
+function createNewContact(event) {
+    event.preventDefault();
+
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let tel = document.getElementById('tel').value;
+
+    resetErrorMessages();
+
+    let isValid = true;
+
+    if (!validateName(name)) {
+        showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
+        isValid = false;
+    }
+
+    if (!validateEmail(email)) {
+        showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
+        isValid = false;
+    }
+
+    if (!validatePhoneNumber(tel)) {
+        showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
+        isValid = false;
+    }
+
+    if (isValid) {
+        let button = document.getElementById("createSubmit");
+        button.disabled = true;
+        const nextColor = selectNextColor();
+        let data = {
+            'name': name,
+            'email': email,
+            'telefonnummer': tel,
+            'color': nextColor
+        };
+        contactList.push(data);
+        submitContact('contact');
+        openClosePopUp('close');
+    }
+}
 
 async function modifyContact(event) {
     event.preventDefault();
@@ -392,51 +392,8 @@ function preventFormSubmit(key) {
     });
 }
 
-function modifyContactDetails() {
-    let name = document.getElementById('editName');
-    let email = document.getElementById('editEmail');
-    let tel = document.getElementById('editTel');
-
-    let data =
-    {
-        'name': name.value,
-        'email': email.value,
-        'telefonnummer': tel.value
-
-    };
-    return data;
-}
 
 
-async function removeContact(path = 'contact', id) {
-    try {
-        const url = `${BASE_URL}${path}/${id}.json`;
-        let response = await fetch(url, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json",
-            },
-        });
-        if (!response.ok) {
-            throw new Error('Löschfehler des Kontakts');
-        }
 
-       
-        await fetchData();
-        
-       
-        clearDetailedView();
-        
-  
-        currentEditKey = null;
-    } catch (error) {
-        console.error('Löschfehler des Kontakts:', error.message);
-    }
-}
 
-function clearDetailedView() {
-    const target = document.getElementById('content');
-    if (target) {
-        target.innerHTML = ''; 
-    }
-}
+
