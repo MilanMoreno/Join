@@ -1,6 +1,11 @@
 let task = [];
 let BASE_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
+/**
+ * Fetches tasks from a Firebase database, processes the data, 
+ * and updates the `task` array. If no data is received, logs an error. 
+ * After loading tasks, it renders the tasks and loads contacts.
+ */
 async function loadTasks() {
   try {
     const response = await fetch(`${BASE_URL}.json`);
@@ -18,6 +23,11 @@ async function loadTasks() {
   loadContacts();
 }
 
+/**
+ * This function render the Task wich loaded frome the Firebase Database.
+ * 
+ * @param {string} filtered - if set than it rander only filtered Task.
+ */
 function render(filtered) {
   let tasks = "";
   if (filtered === undefined) {
@@ -35,13 +45,12 @@ function render(filtered) {
     updateProgress(i);}
   checkPlaceholderVisibility();}
 
-function emptyContent() {
-  document.getElementById(`toDo`).innerHTML = `<div id="toDoPlaceholder" class="noTask d-flex"><p>No tasks To do</p></div>`;
-  document.getElementById(`inProgress`).innerHTML = `<div id="progressPlaceholder" class="noTask d-flex"><p>No tasks In progress</p></div>`;
-  document.getElementById(`awaitFeedback`).innerHTML = `<div id="feedbackPlaceholder" class="noTask d-flex"><p>No tasks Await feedback</p></div>`;
-  document.getElementById(`done`).innerHTML = `<div id="donePlaceholder" class="noTask d-flex"><p>No tasks Done</p></div>`;
-}
-
+/**
+ * This function generate initials for  selectet contacts at the Task card. 
+ * 
+ * @param {string} names - is the name from the contact.
+ *  
+ */
 function getInitials2(names) {
   let initial = "";
   if (names.length === 0) {initial += "";
@@ -58,6 +67,12 @@ function getInitials2(names) {
       initial += `<div class="initials" style="background-color: grey;">+${extraContacts}</div>`;}
     return initial;}}
 
+    /**
+     * This function generate the initials for the Deital Card.
+     * 
+     * @param {string} names - is the name from the contact.
+ *  
+     */
 function getInitialsDetail(names) {
   let initial = "";
   const color = getRandomColor();
@@ -68,15 +83,11 @@ function getInitialsDetail(names) {
   return initial;
 }
 
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
+/**
+ * This function update the Progressbar.
+ * 
+ * @param {number} id - is the id from the Task card.
+ */
 function updateProgress(id) {
   let progressBarID = "progressBar" + id;
   let progressTextID = "progressText" + id;
@@ -92,8 +103,13 @@ function updateProgress(id) {
     const progressTextElement = document.getElementById(progressTextID);
     if (progressTextElement) {
       progressTextElement.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
-    }}}
+}}}
 
+/**
+ * This function returns the length from the Task List.
+ * 
+ * @param {number} id - id from the Task.
+ */
 function taskLenght(id) {
   let result;
   if (task[id].Subtask && task[id].Subtask[0]) {
@@ -102,6 +118,11 @@ function taskLenght(id) {
   return result;
 }
 
+/**
+ * This function returns the count of checked task. 
+ * 
+ * @param {number} id - ID from the task.
+ */
 function numberOfChecked(id) {
   let count = 0;
   if (task[id].checkboxState && task[id].checkboxState[0]) {
@@ -114,21 +135,11 @@ function numberOfChecked(id) {
   return count;
 }
 
-function checkPrio(prio) {
-  const urgent = "./assets/img/icon_PrioAltaRed.svg";
-  const medium = "./assets/img/icon_PrioMediaOrange.svg";
-  const low = "./assets/img/icon_PrioBajaGreen.svg";
-  if (prio === "urgent") {
-    prioImgSrc = urgent;
-  } else if (prio === "medium") {
-    prioImgSrc = medium;
-  } else if (prio === "low") {
-    prioImgSrc = low;
-  } else {
-    prioImgSrc = "";}
-  return prioImgSrc;
-}
-
+/**
+ * This function check the priority and returns the correct img src for the detrail card.
+ * 
+ * @param {string} prio - Used priority
+ */
 function checkPrioDetail(prio) {
   const urgent = "./assets/img/icon_PrioAltaRed.svg";
   const medium = "./assets/img/icon_PrioMediaOrange.svg";
@@ -145,23 +156,11 @@ function checkPrioDetail(prio) {
   return prioImgSrc;
 }
 
-function checkCategory(category) {
-  if (category === "Technical Task") {
-    catClass = "technical";
-  } else if (category === "User Story") {
-    catClass = "user";
-  } else if (category === "") {
-    catClass = "";}
-  return catClass;
-}
-
-function limitTextLength(text) {
-  if (text.length > 50) {
-    content = text.slice(0, 50) + "...";
-  } else {content = text;}
-  return content;
-}
-
+/**
+ * This function open the detail card.
+ * 
+ * @param {number} id - Id from the Task
+ */
 function openDetailCard(id) {
   let contentSection = document.getElementById("overlay");
   let assign = filterContact(id);
@@ -175,6 +174,12 @@ function openDetailCard(id) {
   document.getElementById("body").classList.add("scrollhidden");
 }
 
+/**
+ * This function change the Position after Drag and Drop from the task
+ * 
+ * @param {number} id - Task ID
+ * @param {string} title - Task title
+ */
 async function changePosition(id, title) {
   const position = document.getElementById("positionSwitch").value;
   idUpdate = id;
@@ -184,11 +189,11 @@ async function changePosition(id, title) {
   closeDetailCardX();
 }
 
-function formatDateToDDMMYYYY(dateString) {
-  const [year, month, day] = dateString.split("-");
-  return `${day}/${month}/${year}`;
-}
-
+/**
+ * This function filter the selectet Contacts for the deitail card
+ * 
+ * @param {number} id - Task ID
+ */
 function filterContact(id) {
   let tasks = task;
   let contact = "";
@@ -202,6 +207,11 @@ function filterContact(id) {
   return contact;
 }
 
+/**
+ * This function filter the Subtask and checkmark the checked Subtask.
+ * 
+ * @param {number} id - Task ID
+ */
 function filterSubTask(id) {
   let subTask = "";
   if (task[id].Subtask && task[id].Subtask[0]) {
@@ -215,17 +225,33 @@ function filterSubTask(id) {
   return subTask;
 }
 
+/**
+ * This function check wich subtask are checked
+ * 
+ * @param {true or false} checked - if checked or not
+ */
 function filterCheckBox(checked) {
   if (checked === true) {
     return "checked";
   } else {return "unchecked";}
 }
 
+/**
+ * This function Updates the firebase and progressbar when a subtask checked
+ * 
+ * @param {number} id - Task ID
+ * @param {number} i - Subtask Position
+ */
 function updatecheckbox(id, i) {
   updateCheckboxStateInFirebase(i, id);
   updateProgress(id);
 }
 
+/**
+ * This function close the Detail card when clicked at the backgrund.
+ * 
+ * @param {event} event - give the positon from the click. 
+ */
 function closeDetailCard(event) {
   const overlay = document.getElementById("overlay");
   const detailCard = document.getElementById("overlay");
@@ -235,31 +261,17 @@ function closeDetailCard(event) {
   }
 }
 
-function closeDetailCardX() {
-  document.getElementById("overlay").classList.add("d-none");
-  document.getElementById("overlay").classList.remove("d-flex");
-  if (document.getElementById("body").classList.contains("scrollhidden")) {
-    document.getElementById("body").classList.remove("scrollhidden");}
-  document.getElementById("overlay").onclick = closeDetailCard;}
-
-function checkPlaceholderVisibility() {
-  const sections = [
-    { container: document.getElementById("toDo"),
-      placeholder: document.getElementById("toDoPlaceholder"),},
-    { container: document.getElementById("inProgress"),
-      placeholder: document.getElementById("progressPlaceholder"),},
-    { container: document.getElementById("awaitFeedback"),
-      placeholder: document.getElementById("feedbackPlaceholder"),},
-    { container: document.getElementById("done"),
-      placeholder: document.getElementById("donePlaceholder"),},];
-  for (const section of sections) {
-    const hasContent = section.container.querySelectorAll(".card").length > 0;
-    section.placeholder.style.display = hasContent ? "none" : "flex";}}
-
 let draggedElement;
 let idUpdate;
 let savedTitle;
 
+/**
+ * This function saves the Information for Drag and Drop
+ * 
+ * @param {event} event 
+ * @param {number} id - Task Id
+ * @param {string} name - Task Title
+ */
 function drag(event, id, name) {
   draggedElement = event.target;
   idUpdate = id;
@@ -268,15 +280,30 @@ function drag(event, id, name) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
+/**
+ * This function show the outline from the drop container when drag over.
+ * 
+ * @param {event} event - position of the element 
+ */
 function allowDrop(event) {
   event.preventDefault();
   event.currentTarget.classList.add("drag-over");
 }
 
+/**
+ * This function Remove the outline when drag Leave.
+ *  
+ * @param {event} event - position of the element
+ */
 function dragLeave(event) {
   event.currentTarget.classList.remove("drag-over");
 }
 
+/**
+ * This function finish the drag an drop when droped and update the position.
+ * 
+ * @param {event} event - position of the element
+ */
 function drop(event) {
   event.preventDefault();
   event.currentTarget.classList.remove("drag-over");
@@ -288,12 +315,23 @@ function drop(event) {
   updateTaskPosition(dropTargetID);
 }
 
+/**
+ * This function help the update and geneerate the Information
+ * 
+ * @param {string} dropTargetID - ID from drop container
+ */
 async function updateTaskPosition(dropTargetID) {
   task[idUpdate].PositionID = dropTargetID;
   taskSave = task[idUpdate];
   await updatePosition(task.Title, taskSave);
 }
 
+/**
+ * This function update the firebase database when a subtask are checked
+ * 
+ * @param {number} checkboxId - ID witch subtask are checked
+ * @param {number} taskId - Task ID
+ */
 async function updateCheckboxStateInFirebase(checkboxId, taskId) {
   const checkbox = document.getElementById(`${taskId}${checkboxId}`);
   const checkboxState = { checked: checkbox.checked };
@@ -304,16 +342,19 @@ async function updateCheckboxStateInFirebase(checkboxId, taskId) {
     `https://creative33-9f884-default-rtdb.firebaseio.com/task/${taskTitle}/checkboxState/0.json`,
     {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: {"Content-Type": "application/json",},
       body: JSON.stringify(data),
-    }
-  )
+  })
     .then((response) => response.json())
     .catch((error) => console.error("Error updating checkbox state:", error));
 }
 
+/**
+ * This function update the firebase database when Task are drag and drop to a new position.
+ * 
+ * @param {string} path - task path in firebase
+ * @param {string} data - contains the new data
+ */
 async function updatePosition(path = "", data = {}) {
   const title = savedTitle;
   path = title;
@@ -327,17 +368,11 @@ async function updatePosition(path = "", data = {}) {
   return (responseToJson = await response.json());
 }
 
-function renderTasks(filteredTasks) {
-  const taskList = document.getElementById("taskList");
-  taskList.innerHTML = "";
-  filteredTasks.forEach((task) => {
-    const taskItem = document.createElement("div");
-    taskItem.classList.add("task-item");
-    taskItem.innerHTML = `<h3>${task.title}</h3><p>${task.description}</p>`;
-    taskList.appendChild(taskItem);
-  });
-}
-
+/**
+ * This function filter the task at the board page.
+ * 
+ * @param {number} id - ID from the input.
+ */
 function filterTasks(id) {
   const filterInput = document.getElementById(id).value.toLowerCase();
   const filteredTasks = task.filter((task) => {
@@ -347,8 +382,4 @@ function filterTasks(id) {
     );
   });
   render(filteredTasks);
-}
-
-function focusInput(inputId) {
-  document.getElementById(inputId).focus();
 }

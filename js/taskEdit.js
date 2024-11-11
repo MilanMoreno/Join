@@ -141,3 +141,118 @@ async function deleteForEdit(path) {
       document.getElementById("assingedList").innerHTML = assigned;}
     document.getElementById("hideAssignlist").classList.remove("d-none");
     document.getElementById("assingedList").classList.remove("d-none");}
+
+/**
+ * This function limit the text length on the Task Card
+ * 
+ * @param {string} text - Is the text to shorten.
+ */
+function limitTextLength(text) {
+    if (text.length > 50) {
+      content = text.slice(0, 50) + "...";
+    } else {content = text;}
+    return content;
+  }
+
+/**
+ * This function returns the correct date format.
+ * 
+ * @param {number} dateString - Is the original date format
+ */
+function formatDateToDDMMYYYY(dateString) {
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+  }
+  
+/**
+ * This function check witch Category is used and return the correct class.
+ * 
+ * @param {string} category - Is the used Category
+ */
+function checkCategory(category) {
+    if (category === "Technical Task") {
+      catClass = "technical";
+    } else if (category === "User Story") {
+      catClass = "user";
+    } else if (category === "") {
+      catClass = "";}
+    return catClass;
+  }
+
+/**
+ * This function check the used Priority and returns the correct img src.
+ * 
+ * @param {string} prio 
+ */
+function checkPrio(prio) {
+    const urgent = "./assets/img/icon_PrioAltaRed.svg";
+    const medium = "./assets/img/icon_PrioMediaOrange.svg";
+    const low = "./assets/img/icon_PrioBajaGreen.svg";
+    if (prio === "urgent") {
+      prioImgSrc = urgent;
+    } else if (prio === "medium") {
+      prioImgSrc = medium;
+    } else if (prio === "low") {
+      prioImgSrc = low;
+    } else {
+      prioImgSrc = "";}
+    return prioImgSrc;
+  }
+
+/**
+ * This function generate a random color for the Background for contact initials at the Task card.
+ */
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+/**
+* This function clear the board.
+*/
+function emptyContent() {
+    document.getElementById(`toDo`).innerHTML = `<div id="toDoPlaceholder" class="noTask d-flex"><p>No tasks To do</p></div>`;
+    document.getElementById(`inProgress`).innerHTML = `<div id="progressPlaceholder" class="noTask d-flex"><p>No tasks In progress</p></div>`;
+    document.getElementById(`awaitFeedback`).innerHTML = `<div id="feedbackPlaceholder" class="noTask d-flex"><p>No tasks Await feedback</p></div>`;
+    document.getElementById(`done`).innerHTML = `<div id="donePlaceholder" class="noTask d-flex"><p>No tasks Done</p></div>`;
+  }
+
+/**
+ * This function focus the inputfield when click at the div container detectet. 
+ * 
+ * @param {string} inputId - Is the ID from the inputfield wich are clicked.
+ */
+function focusInput(inputId) {
+    document.getElementById(inputId).focus();
+  }
+
+/**
+ * This function check if the div container contains task else show Placeholder.
+ */
+function checkPlaceholderVisibility() {
+    const sections = [
+      { container: document.getElementById("toDo"),
+        placeholder: document.getElementById("toDoPlaceholder"),},
+      { container: document.getElementById("inProgress"),
+        placeholder: document.getElementById("progressPlaceholder"),},
+      { container: document.getElementById("awaitFeedback"),
+        placeholder: document.getElementById("feedbackPlaceholder"),},
+      { container: document.getElementById("done"),
+        placeholder: document.getElementById("donePlaceholder"),},];
+    for (const section of sections) {
+      const hasContent = section.container.querySelectorAll(".card").length > 0;
+      section.placeholder.style.display = hasContent ? "none" : "flex";}}
+
+/**
+ * This function close the detail card at click at the cross.
+ */
+function closeDetailCardX() {
+    document.getElementById("overlay").classList.add("d-none");
+    document.getElementById("overlay").classList.remove("d-flex");
+    if (document.getElementById("body").classList.contains("scrollhidden")) {
+      document.getElementById("body").classList.remove("scrollhidden");}
+    document.getElementById("overlay").onclick = closeDetailCard;}
