@@ -390,9 +390,3 @@ function rgbToHsl(r, g, b) {
     } else s = 0;
     return [h * 360, s * 100, l * 100];
 }
-
-/**
- * Selects the next color from the color palette.
- * 
- * @returns {string} The selected color.
- */

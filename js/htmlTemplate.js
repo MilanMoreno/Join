@@ -67,16 +67,24 @@ function getRandomColor() {
  * @param {true or false} isChecked - mark the contacts as checked or not
  */
 function generateAssingToTemplate(i, circle, element, isChecked){
+  let unchecked = ""
+  let checked = "d-none"
+  let background = "backgroundAssing"
+  if (isChecked == ""){
+    unchecked = "d-none";
+    checked = ""
+    background = ""
+  }
   return /*html*/`
   <div class="d-flex assingUser">
   <label class="container" >
-    <div class="d-flex assingLeft" id="container${i}">
+    <div class="d-flex assingLeft ${background}" id="container${i}">
       <div>${circle}</div>
       <p>${element}</p>
     </div>    
     <input id="${element}" type="checkbox" ${isChecked} onclick="checkboxshow(${i})">
-    <img src="imgs/ckeckMark.png" alt="" class="white d-none checkmark" id="check${i}">
-    <img src="imgs/mark.png" alt="" class=" checkmark" id="mark${i}">
+    <img src="imgs/ckeckMark.png" alt="" class="white ${unchecked} checkmark" id="check${i}">
+    <img src="imgs/mark.png" alt="" class="${checked} checkmark" id="mark${i}">
   </label>
   </div>`;
 }
