@@ -302,9 +302,9 @@ h2 {
 
 .list {
   display: flex;
-  flex-direction: column; /* Falls die Inhalte vertikal gestapelt werden sollen */
-  justify-content: center; /* Zentriert den Inhalt vertikal, wenn Platz vorhanden ist */
-  align-items: center; /* Zentriert die Kinderelemente horizontal */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 .popUp {

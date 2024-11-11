@@ -343,6 +343,7 @@ function createNewContact(event) {
     }
 }
 
+
 async function modifyContact(event) {
     event.preventDefault();
     let name = document.getElementById('editName').value;
