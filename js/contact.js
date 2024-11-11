@@ -75,7 +75,6 @@ function displayContact(container, contact) {
 }
 
 
-
 function modifyContactDetails() {
     let name = document.getElementById('editName');
     let email = document.getElementById('editEmail');
@@ -110,15 +109,19 @@ async function removeContact(path = 'contact', id) {
     }
 }
 
+
 function clearDetailedView() {
     const target = document.getElementById('content');
     if (target) {
         target.innerHTML = ''; 
     }
 }
+
+
 function getInitials(name) {
     return name.split(' ').map(word => word.charAt(0).toUpperCase()).join(' ');
 }
+
 
 let saveId = ""
 
@@ -194,24 +197,15 @@ function calculateBrightness(color) {
 
 
 function rgbToHsl(r, g, b) {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-    if (max === min) {
-        h = s = 0;
-    } else {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h = 0, s, l = (max + min) / 2;
+    if (max !== min) {
         const d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
+        h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
         h /= 6;
-    }
+    } else s = 0;
     return [h * 360, s * 100, l * 100];
 }
 
@@ -225,22 +219,15 @@ function selectNextColor() {
 
 
 async function submitContact(path) {
-    for (let index = 0; index < contactList.length; index++) {
-        const element = contactList[index];
+    for (const element of contactList) {
         selectedContact = element;
         saveHighlight();
-        let response = await fetch(BASE_URL + path + '.json', {
+        const response = await fetch(`${BASE_URL}${path}.json`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(element)
         });
-        if (response.ok) {
-            updateColorCounter();
-        } else {
-            console.error('Failed to save contact');
-        }
+        response.ok ? updateColorCounter() : console.error('Failed to save contact');
     }
     fetchData();
 }
@@ -301,7 +288,6 @@ function scrollToNewContact() {
 }
 
 
-
 function openClosePopUp(param, key) {
     concealMobileElements();
     let target = validatePopUp(key);
@@ -317,6 +303,7 @@ function openClosePopUp(param, key) {
     }
 
 }
+
 
 function validatePopUp(key) {
     return key ? 'EditModalBackground' : 'modalBackground';
@@ -368,6 +355,3 @@ function contactInfoHtml(root, contactId) {
 
     `;
 }
-
-
-
