@@ -8,7 +8,6 @@ function showContactMobile() {
 
 function checkScreenSize() {
     const mobileWidth = 950;
-
     if (window.matchMedia(`(max-width: ${mobileWidth}px)`).matches) {
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
         document.getElementById('mycontacts').classList.add('displayNone');
@@ -17,30 +16,27 @@ function checkScreenSize() {
     }
 }
 
-
 window.addEventListener('resize', concealMobileElements)
 
 function concealMobileElements() {
     if (window.innerWidth > 800) {
         document.getElementById('responsiveContactBackButton').classList.add('displayNone');
-        
     
     } else if (window.innerWidth < 800) {
-        
-    
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
     }
 }
+
 
 function showEditandDelete() {
     var menu = document.getElementById("editDeleteMenu");
     if (menu.style.display === "none" || menu.style.display === "") {
         menu.style.display = "block";
-
     } else {
         menu.style.display = "none";
     }
 }
+
 
 window.onclick = function (event) {
     var menu = document.getElementById("editDeleteMenu");
@@ -53,6 +49,7 @@ window.onclick = function (event) {
     } 
 }
 
+
 function showModal(PopUpBgElement, show, header) {
     PopUpBgElement.classList.remove('displayNone', 'hide');
     PopUpBgElement.classList.add('show');
@@ -60,6 +57,7 @@ function showModal(PopUpBgElement, show, header) {
     show.classList.add('slide-in');
     header.classList.add('stretch');
 }
+
 
 function hideModal(bgPopUp, popUp, header) {
     popUp.classList.remove('slide-in');
@@ -72,12 +70,14 @@ function hideModal(bgPopUp, popUp, header) {
     header.classList.remove('stretch');
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('name').addEventListener('input', updateSubmitButtonState);
     document.getElementById('email').addEventListener('input', updateSubmitButtonState);
     document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -91,11 +91,9 @@ function updateeditSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
     const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
-
     const submitButton = document.getElementById('createSubmit');
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
-
 
 
 function validateNameField() {
@@ -128,6 +126,7 @@ function validatePhoneField() {
     updateSubmitButtonState();
 }
 
+
 function validateNameFieldBlur() {
     let name = document.getElementById('name').value;
     if (!validateName(name)) {
@@ -139,6 +138,7 @@ function validateNameFieldBlur() {
      updateeditSubmitButtonState();
 }
 
+
 function validatePhoneFieldBlur() {
     let tel = document.getElementById('tel').value;
     if (!validatePhoneNumber(tel)) {
@@ -149,6 +149,7 @@ function validatePhoneFieldBlur() {
     updateSubmitButtonState();
     updateeditSubmitButtonState();
 }
+
 
 function validateEmailFieldBlur() {
     let email = document.getElementById('email').value;
@@ -168,15 +169,18 @@ function validateName(name) {
 
 }
 
+
 function validateEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     return emailPattern.test(email);
 }
 
+
 function validatePhoneNumber(phoneNumber) {
     const phonePattern = /^\+[0-9]+$/;
     return phonePattern.test(phoneNumber);
 }
+
 
 function showErrorMessage(errorElementId, message) {
     const errorElement = document.getElementById(errorElementId);
@@ -185,10 +189,12 @@ function showErrorMessage(errorElementId, message) {
     errorElement.style.display = 'block';
 }
 
+
 function hideErrorMessage(errorElementId) {
     const errorElement = document.getElementById(errorElementId);
     errorElement.innerText = '';
 }
+
 
 function resetErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
@@ -197,6 +203,7 @@ function resetErrorMessages() {
         element.style.display = 'none';
     });
 }
+
 
 function validateEditNameField() {
     let name = document.getElementById('editName').value;
@@ -208,6 +215,8 @@ function validateEditNameField() {
     updateeditSubmitButtonState();
     
 }
+
+
 function validateEditEmailField() {
     let email = document.getElementById('editEmail').value;
     if (!validateEmail(email)) {
@@ -218,6 +227,7 @@ function validateEditEmailField() {
     updateeditSubmitButtonState();
 }
 
+
 function validateEditPhoneField() {
     let tel = document.getElementById('editTel').value;
     if (!validatePhoneNumber(tel)) {
@@ -227,6 +237,7 @@ function validateEditPhoneField() {
     }
     updateeditSubmitButtonState();
 }
+
 
 function validateEditNameFieldBlur() {
     let name = document.getElementById('editName').value;
@@ -257,11 +268,11 @@ function validateEditPhoneFieldBlur() {
     }
 }
 
+
 function updateSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
     const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
-
     const submitButton = document.getElementById('createSubmit');
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
@@ -275,6 +286,7 @@ function checkFormFields() {
     submitButton.disabled = !(field1 && field2 && field3);
   }
 
+
   function checkFormFields2() {
     const field1 = document.getElementById('name').value.trim();
     const field2 = document.getElementById('email').value.trim();
@@ -282,6 +294,7 @@ function checkFormFields() {
     const submitButton = document.getElementById('createSubmit');
     submitButton.disabled = !(field1 && field2 && field3);
   }
+
 
 function resetEditErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
@@ -291,22 +304,19 @@ function resetEditErrorMessages() {
     });
 }
 
+
 function createNewContact(event) {
     event.preventDefault();
-
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let tel = document.getElementById('tel').value;
-
-    resetErrorMessages();
-
+     resetErrorMessages();
     let isValid = true;
 
     if (!validateName(name)) {
         showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
         isValid = false;
     }
-
     if (!validateEmail(email)) {
         showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
         isValid = false;
@@ -335,11 +345,9 @@ function createNewContact(event) {
 
 async function modifyContact(event) {
     event.preventDefault();
-
     let name = document.getElementById('editName').value;
     let email = document.getElementById('editEmail').value;
     let tel = document.getElementById('editTel').value;
-
     resetEditErrorMessages();
 
     let isValid = true;
@@ -348,17 +356,14 @@ async function modifyContact(event) {
         showErrorMessage('editNameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
         isValid = false;
     }
-
     if (!validateEmail(email)) {
         showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
         isValid = false;
     }
-
     if (!validatePhoneNumber(tel)) {
         showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
         isValid = false;
     }
-
     if (isValid) {
         let button = document.getElementById("editSubmit");
         button.disabled = true;
