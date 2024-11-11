@@ -256,3 +256,134 @@ function closeDetailCardX() {
     if (document.getElementById("body").classList.contains("scrollhidden")) {
       document.getElementById("body").classList.remove("scrollhidden");}
     document.getElementById("overlay").onclick = closeDetailCard;}
+
+/**
+ * This function check keydown enter key.
+ * 
+ * @param {event} event 
+ * @param {string} inputId - Id from inputfield
+ */
+function checkEnter(event, inputId) {
+    const enabledInputs = ["subTaskAdd"];
+    if (event.key === "Enter" && enabledInputs.includes(inputId)) {
+      addSubTask();
+    }
+  }
+
+/**
+ * This function remove all highlihts from the priority at the form
+ *  
+ */
+function removeOtherClasslist() {
+    document.getElementById(`urgent`).classList = ``;
+    document.getElementById(`urgentColor`).classList = ``;
+    document.getElementById(`urgentWhite`).classList = `d-none`;
+    document.getElementById(`medium`).classList = ``;
+    document.getElementById(`mediumColor`).classList = ``;
+    document.getElementById(`mediumWhite`).classList = `d-none`;
+    document.getElementById(`low`).classList = ``;
+    document.getElementById(`lowColor`).classList = ``;
+    document.getElementById(`lowWhite`).classList = `d-none`;
+  }
+  
+  /**
+   * This function open the Subtask Input
+   */
+  function openAddSubTask() {
+    document.getElementById("activSubTask").classList.remove("d-none");
+    document.getElementById("activSubTask").classList.add("d-flex");
+    document.getElementById("subTaskPlus").classList.add("d-none");
+  }
+  
+/**
+* This function close the subtask input
+*/
+  function cancelSubTask() {
+    document.getElementById("subTaskAdd").value = "";
+    document.getElementById("activSubTask").classList.add("d-none");
+    document.getElementById("activSubTask").classList.remove("d-flex");
+    document.getElementById("subTaskPlus").classList.remove("d-none");
+    event.stopPropagation();
+  }
+  
+  /**
+   * This function change the highlight from the priority at the form
+   * 
+   * @param {string} p - variable for the priority
+   */
+  function addClasslist(p) {
+    document.getElementById(`${p}`).classList = `color${p}`;
+    document.getElementById(`${p}Color`).classList = `d-none`;
+    document.getElementById(`${p}White`).classList = ``;
+  }
+  
+  /** 
+   * This function remove the highlight from the priority at the form when other prio set
+   * 
+   * @param {string} p - variable for the priority
+   */
+  function removeClasslist(p) {
+    document.getElementById(`${p}`).classList = ``;
+    document.getElementById(`${p}Color`).classList = ``;
+    document.getElementById(`${p}White`).classList = `d-none`;
+  }
+
+/**
+ * This function set the priority to the selectet.
+ * 
+ * @param {string} p - variable for the priority
+ */
+function setPrio(p) {
+    event.preventDefault();
+    const prios = p;
+    if (prio == p) {
+      prio = "";
+    } else {
+      prio = p;
+    }
+    if (document.getElementById(`${p}`).classList.contains(`color${p}`)) {
+      removeClasslist(p);
+    } else {
+      removeOtherClasslist();
+      addClasslist(p);
+    }}
+
+/**
+ * This function switch the checkmark in the form at the assign list when cklicked
+ * 
+ * @param {*} i - is the number from the container ID
+ */
+function checkboxshow(i){
+    if(document.getElementById(`check${i}`).classList.contains("d-none")){
+      document.getElementById(`container${i}`).classList.add ("backgroundAssing")
+    document.getElementById(`check${i}`).classList.remove ("d-none");
+    document.getElementById(`mark${i}`).classList.add ("d-none");
+    updateSelectedCheckboxes();}
+    else {
+      document.getElementById(`container${i}`).classList.remove ("backgroundAssing")
+      document.getElementById(`check${i}`).classList.add ("d-none");
+    document.getElementById(`mark${i}`).classList.remove ("d-none");
+    updateSelectedCheckboxes();
+    }
+  }
+
+/**
+ * This funtion show the confirmation Massage when the form are submit.
+ */
+function showConfirmationMessage() {
+    const messageElement = document.getElementById('confirmationMessage');
+    messageElement.classList.remove('hidden');
+    messageElement.classList.add('show');
+    setTimeout(() => {
+      messageElement.classList.remove('show');
+      messageElement.classList.add('hidden');
+    }, 900); }
+
+/**
+ * This funtion show the Massage and mark the date input red when the date in the past.
+ */
+function pastDate(){
+    document.getElementById("pastDate").classList.remove("d-none");
+    document.getElementById("addTaskDate").classList.add ("outlineRed");
+      return false
+  }

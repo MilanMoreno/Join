@@ -2,7 +2,9 @@ let BASE_Url = "https://creative33-9f884-default-rtdb.firebaseio.com/task/";
 
 let taskA = []
 
-
+/**
+ * This function load the saved Task from the firebase database.
+ */
 async function loadTask() {
   try {const response = await fetch(`${BASE_Url}.json`);
     if (!response.ok) {
@@ -18,6 +20,9 @@ async function loadTask() {
       }}} catch (error) {
     console.error("Fehler beim Laden der Daten:", error);}}
 
+/**
+ * This Function render the addtask site.
+ */    
 function renderAddTask() {
   let contentSection = document.getElementById("addTaskSide");
   contentSection.innerHTML = "";
@@ -28,6 +33,9 @@ function renderAddTask() {
   setMinDate();
 }
 
+/**
+ * This function set the min date to the current date.
+ */
 function setMinDate() {
   const today = new Date();
   const yyyy = today.getFullYear();
@@ -37,6 +45,9 @@ function setMinDate() {
   document.getElementById("addTaskDate").setAttribute("min", minDate);
 }
 
+/**
+ * This Function validate the date input is not in the past.
+ */
 function validateDateInput() {
   const dateInput = document.getElementById("addTaskDate");
   const selectedDate = new Date(dateInput.value);
@@ -52,18 +63,15 @@ function validateDateInput() {
   }
 }
 
-function pastDate(){
-  document.getElementById("pastDate").classList.remove("d-none");
-  document.getElementById("addTaskDate").classList.add ("outlineRed");
-    return false
-}
-
 let prio = "medium";
 let subTask = [];
 let checkBox = [];
 let selectedCheckboxes = [];
 let positionID = ""
 
+/**
+ * This function submit the form to the firebase function.
+ */
 async function addTaskSummit() {
   let button =  document.getElementById("submitButton");
   event.preventDefault()
@@ -79,6 +87,9 @@ async function addTaskSummit() {
   }
 }
 
+/**
+ * This function check the required fields are not empty.
+ */
 function checkRequired(){
   let titleR = document.getElementById("addTasktitleInput");
   let dateR = document.getElementById("addTaskDate");
@@ -95,6 +106,9 @@ function checkRequired(){
     categoryR.classList.add ("outlineRed");
     return false} else {return true}}
 
+/**
+ * This function reset the required input when filled.
+ */    
 function resetRequired(){
   let titleR = document.getElementById("addTasktitleInput");
   let dateR = document.getElementById("addTaskDate");
@@ -108,10 +122,18 @@ function resetRequired(){
     categoryR.classList.remove ("outlineRed");}
 }
 
+/**
+ * This function go to board after submit the form.
+ */
 function goToBoard(){
   window.location.href = './board.html';
 }
 
+/**
+ * This function submit the form in the popup at the board page. 
+ * 
+ * @param {string} positionId - Give the position were the task to save at the board. 
+ */
 async function addTaskPopup(positionId) {
   let button = document.getElementById("addTaskPopupButton");
   event.preventDefault();
@@ -128,6 +150,12 @@ async function addTaskPopup(positionId) {
   closeDetailCardX();
   await loadTasks();}}
 
+  /**
+   * This function submit the edit popup at the boardpage.
+   * 
+   * @param {string} positionId - Give the position were the task to save at the board. 
+   * @param {number} id - ID frome the edited Task to save it in firebase.
+   */
 async function addTaskPopup2(positionId, id) {
   let button = document.getElementById("editTaskButton")
   if (!checkRequired()) {return;}
@@ -143,16 +171,11 @@ async function addTaskPopup2(positionId, id) {
 }
 }
 
-function showConfirmationMessage() {
-  const messageElement = document.getElementById('confirmationMessage');
-  messageElement.classList.remove('hidden');
-  messageElement.classList.add('show');
-  setTimeout(() => {
-    messageElement.classList.remove('show');
-    messageElement.classList.add('hidden');
-  }, 900); }
-
-function updateSelectedCheckboxes(i) {
+  /**
+   * This function update the selected Checkbox array for assign to at addtask.
+   * 
+   */
+function updateSelectedCheckboxes() {
   selectedCheckboxes = []; 
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach(checkbox => {
@@ -162,20 +185,9 @@ function updateSelectedCheckboxes(i) {
   });
 }
 
-function checkboxshow(i){
-  if(document.getElementById(`check${i}`).classList.contains("d-none")){
-    document.getElementById(`container${i}`).classList.add ("backgroundAssing")
-  document.getElementById(`check${i}`).classList.remove ("d-none");
-  document.getElementById(`mark${i}`).classList.add ("d-none");
-  updateSelectedCheckboxes();}
-  else {
-    document.getElementById(`container${i}`).classList.remove ("backgroundAssing")
-    document.getElementById(`check${i}`).classList.add ("d-none");
-  document.getElementById(`mark${i}`).classList.remove ("d-none");
-  updateSelectedCheckboxes();
-  }
-}
-
+/**
+ * This function update the checkbox array for assign to for edit.
+ */
 function updateSelectedCheckboxes2() {
     if (!Array.isArray(selectedCheckboxes)) {
         selectedCheckboxes = [];
@@ -191,63 +203,9 @@ function updateSelectedCheckboxes2() {
     });
 }
 
-function setPrio(p) {
-  event.preventDefault();
-  const prios = p;
-  if (prio == p) {
-    prio = "";
-  } else {
-    prio = p;
-  }
-  if (document.getElementById(`${p}`).classList.contains(`color${p}`)) {
-    removeClasslist(p);
-  } else {
-    removeOtherClasslist();
-    addClasslist(p);
-  }}
-
-function checkClasslist(p) {
-  document.getElementById(`${p}`).classList.contains(`color${p}`);
-}
-
-function addClasslist(p) {
-  document.getElementById(`${p}`).classList = `color${p}`;
-  document.getElementById(`${p}Color`).classList = `d-none`;
-  document.getElementById(`${p}White`).classList = ``;
-}
-
-function removeClasslist(p) {
-  document.getElementById(`${p}`).classList = ``;
-  document.getElementById(`${p}Color`).classList = ``;
-  document.getElementById(`${p}White`).classList = `d-none`;
-}
-
-function removeOtherClasslist(p) {
-  document.getElementById(`urgent`).classList = ``;
-  document.getElementById(`urgentColor`).classList = ``;
-  document.getElementById(`urgentWhite`).classList = `d-none`;
-  document.getElementById(`medium`).classList = ``;
-  document.getElementById(`mediumColor`).classList = ``;
-  document.getElementById(`mediumWhite`).classList = `d-none`;
-  document.getElementById(`low`).classList = ``;
-  document.getElementById(`lowColor`).classList = ``;
-  document.getElementById(`lowWhite`).classList = `d-none`;
-}
-
-function openAddSubTask() {
-  document.getElementById("activSubTask").classList.remove("d-none");
-  document.getElementById("activSubTask").classList.add("d-flex");
-  document.getElementById("subTaskPlus").classList.add("d-none");
-}
-
-function cancelSubTask() {
-  document.getElementById("subTaskAdd").value = "";
-  document.getElementById("activSubTask").classList.add("d-none");
-  document.getElementById("activSubTask").classList.remove("d-flex");
-  document.getElementById("subTaskPlus").classList.remove("d-none");
-  event.stopPropagation();
-}
-
+/**
+ * This function add Subtask to the form.
+ */
 function addSubTask() {
   if (document.getElementById("subTaskAdd").value === "") {
   }else{
@@ -259,13 +217,9 @@ function addSubTask() {
   event.stopPropagation();}
 }
 
-function checkEnter(event, inputId) {
-  const enabledInputs = ["subTaskAdd"];
-  if (event.key === "Enter" && enabledInputs.includes(inputId)) {
-    addSubTask();
-  }
-}
-
+/**
+ * This function render the subtask at the form.
+ */
 function renderSubTask(){
   let show = document.getElementById("subTaskView");
   show.innerHTML = ""
@@ -275,6 +229,11 @@ for (let index = 0; index < subTask.length; index++) {
 }
 }
 
+/**
+ * This function show the edit input for the subtask.
+ * 
+ * @param {number} index - ID for the selectet subtask 
+ */
 function editSubTask(index) {
   renderSubTask();
   const subTaskText = document.getElementById(`subtask-text-${index}`);
@@ -287,6 +246,11 @@ function editSubTask(index) {
   saveButton.classList.remove('d-none');
 }
 
+/**
+ * This function save the edited subtask.
+ * 
+ * @param {number} index - ID for the selectet subtask 
+ */
 function saveSubTask(index) {
   const editInput = document.getElementById(`edit-input-${index}`);
   if (editInput.value.trim() !== "") {
@@ -297,6 +261,11 @@ function saveSubTask(index) {
   }
 }
 
+/**
+ * This function delete the selectet subtask.
+ * 
+ * @param {number} index - Position for the selectet subtask.
+ */
 function deleteSubTask(index) {
   subTask.splice(index, 1); 
   renderSubTask();
@@ -304,6 +273,11 @@ function deleteSubTask(index) {
 
 let subTask2 = []
 
+/**
+ * This function fill the subtask section at the edit form.
+ * 
+ * @param {number} id - Task ID
+ */
 function fillsubtask(id){
   subTask2 = []
   let subTasks = ""
@@ -319,6 +293,9 @@ function fillsubtask(id){
   return subTasks;
 }
 
+/**
+ * This function filter the contacts by input in the form.
+ */
 function filterContacts() {
   const filterValue = document.getElementById("assinged").value.toLowerCase();
   assigned = "";
@@ -333,6 +310,11 @@ function filterContacts() {
   document.getElementById("assingedList").innerHTML = assigned;
 }
 
+/**
+ * This function set the contact to selectet or unselectet.
+ * 
+ * @param {string} username - contact name
+ */
 function toggleCheckbox(username) {
   if (selectedCheckboxes.includes(username)) {
     selectedCheckboxes = selectedCheckboxes.filter(item => item !== username);
@@ -341,6 +323,9 @@ function toggleCheckbox(username) {
   }
 }
 
+/**
+ * This function render the selectet contacts when the assign to list are closed in initials.
+ */
 function renderSelectedContacts() {
   const electedContactsDiv = document.getElementById('electedContacts');
   electedContactsDiv.innerHTML = ''; 
@@ -356,13 +341,24 @@ function renderSelectedContacts() {
   }
 }
 
+/**
+ * This function help to render the assign to list and fill the selectet array.
+ * 
+ * @param {number} id - Task ID
+ */
 function checkboxHelp(id){
   selectedCheckboxes = task[id].AssignedTo;
   updateSelectedCheckboxes2();
     renderSelectedContacts();
 }
 
-async function postData(path = "", data = {}, id) {
+/**
+ * This function post the data from the form in the firbase database.
+ * 
+ * @param {string} path - path  at the database
+ * @param {string} data - Data to save in the database
+ */
+async function postData(path = "", data = {}) {
   const title = data.Title;
   path = title;
   if (event) event.preventDefault();
@@ -377,19 +373,4 @@ async function postData(path = "", data = {}, id) {
   } catch (error) {
     console.error("Error during postData:", error);
     return { error: "An error occurred during the data post." };
-  }}
-
-async function addTask(event) {
-  if (event) event.preventDefault();
-  const task = {Title: document.getElementById("addTasktitleInput").value, Category: document.getElementById("addTaskCategory").value, Description: document.getElementById("addTaskDiscription").value, DueDate: document.getElementById("addTaskDate").value, Prio: prio, AssignedTo: selectedCheckboxes, Subtask: [subTask], PositionID: "toDo", checkboxState: [checkBox]};
-  try {
-    let response = await fetch(BASE_Url + task.Title + ".json", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",},
-      body: JSON.stringify(task),});
-    if (response.ok) {
-    } else {console.error("Fehler beim Hinzufügen der Aufgabe:", response.status);}
-  } catch (error) {
-    console.error("Fehler beim Abrufen der Daten:", error);
   }}
