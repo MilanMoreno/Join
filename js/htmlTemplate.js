@@ -1,6 +1,9 @@
 let contacts = [];
 let Second_URL = "https://creative33-9f884-default-rtdb.firebaseio.com/contact";
 
+/**
+ * This function Load the contacts from Firebase.
+ */
 async function loadContacts() {
   try {const response = await fetch(`${Second_URL}.json`);
     if (!response.ok) {throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);}
@@ -14,6 +17,11 @@ async function loadContacts() {
         contacts.push(contactData[key]);}}
   } catch (error) {console.error("Fehler beim Laden der Daten:", error);}}
 
+/**
+ * This function generate the circles for the initial.
+ * 
+ * @param {string} names - Name for the Initial.
+ */
 function generateCircle(names) {
   let initial = "";
   const color = getRandomColor();
@@ -24,6 +32,11 @@ function generateCircle(names) {
   return initial;
 }
 
+/**
+ * This function make Initial from the name.
+ * 
+ * @param {string} names - Name for initial.
+ */
 function getInitialsDetail(names) {
   let initial = "";
   const color = getRandomColor();
@@ -34,6 +47,10 @@ function getInitialsDetail(names) {
   return initial;
 }
 
+/**
+ * This function returns a Random color for the Background from the initials.
+ * 
+ */
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
   let color = "#";
@@ -41,6 +58,14 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)];
   }return color;}
 
+/**
+ * This function fill the Template for the assign to List.
+ * 
+ * @param {number} i - is the number from the container ID
+ * @param {string} circle - contains the html code for the initial from the contact
+ * @param {string} element - contains the Name from the contact
+ * @param {true or false} isChecked - mark the contacts as checked or not
+ */
 function generateAssingToTemplate(i, circle, element, isChecked){
   return /*html*/`
   <div class="d-flex assingUser">
@@ -56,6 +81,9 @@ function generateAssingToTemplate(i, circle, element, isChecked){
   </div>`;
 }
 
+/**
+ * This function fill the addtask template for the addtask site.
+ */
 function addTaskTemplate() {
   return /*html*/ `
   <form id="addTaskForm">
@@ -121,6 +149,12 @@ function addTaskTemplate() {
     `;
 }
 
+/**
+ * This function fill the Template for the addtask popup frome the board page
+ * 
+ * @param {string} positionId - Is the Position were the new Task are Saved.
+ * 
+ */
 function fillAddTaskSection(positionId) {
   return /*html*/ `
   <form id="addTaskForm">
@@ -187,6 +221,18 @@ function fillAddTaskSection(positionId) {
     `;
 }
 
+
+/**
+ * This function fill the Edit Task template for the Popup at the boardpage
+ * 
+ * @param {string} titleId - is the old title
+ * @param {string} category - is the old category
+ * @param {number} dueDate - is the old date
+ * @param {string} Description - is the old discription
+ * @param {string} positionID - is the position on the board page
+ * @param {number} id - is the task ID
+ * @returns 
+ */
 function fillEditTaskSection(titleId, category, dueDate, Description, positionID, id) {
   let subTask = fillsubtask(id);
   return /*html*/ `
@@ -244,6 +290,14 @@ function fillEditTaskSection(titleId, category, dueDate, Description, positionID
     `;
 }
 
+/**
+ * This function fill the template for the contact filter at the form 
+ * 
+ * @param {string} circle - Contains the html for the contact initial
+ * @param {string} element - contains the contact name
+ * @param {true or false} isChecked - mark the contact checked or not
+ * @returns 
+ */
 function filterContactsTemplate(circle, element, isChecked) {
   return /*html*/`
       <div class="d-flex assingUser">
@@ -258,6 +312,12 @@ function filterContactsTemplate(circle, element, isChecked) {
       </div>`;
 }
 
+/**
+ * This function fill the template for the Subtask list at the form by edit
+ * 
+ * @param {number} index - give the position number at the list
+ * @param {string} element - contains the text for the subtask
+ */
 function fillsubtaskTemplate(index, element) {
   return /*html*/`
   <li class="subTaskList">
@@ -278,6 +338,12 @@ function fillsubtaskTemplate(index, element) {
   </li>`;
 }
 
+/**
+ * This function render the subtask by add subtask
+ * 
+ * @param {number} index - give the position in the list
+ * @param {string} element  - text for subtask list
+ */
 function renderSubTaskTemplate(index, element){
   return /*html*/`
   <li class="subTaskList">
@@ -298,6 +364,18 @@ function renderSubTaskTemplate(index, element){
   </li>`;
 }
 
+
+/**
+ * This function fill the tamplate for detailcard
+ * 
+ * @param {number} id  - Task ID
+ * @param {*} contentSection 
+ * @param {string} assign - Assign to List
+ * @param {string} cardSubTask - Subtask List 
+ * @param {string} catClass - Category class 
+ * @param {number} formattedDate - due Date
+ * @param {string} priosrc - Priority src for img
+ */
 function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, formattedDate, priosrc) {
   contentSection.innerHTML = "";
   contentSection.innerHTML = /*html*/ `
@@ -351,10 +429,30 @@ function fillDetailTemplate(id, contentSection, assign, cardSubTask, catClass, f
     `;
 }
 
+/**
+ * this function fill the tamplate for the checkbox filter
+ * 
+ * @param {number} id - Task ID
+ * @param {number} i - SubID
+ * @param {true or false} checked - checkbox is checked or not 
+ * @param {string} element - contais the subtask text
+ * 
+ */
 function filterSubTaskTemplate(id, i, checked, element){
   return /*html*/`<li class="d-flex subtaskList"><input id="${id}${i}" type="checkbox" class="subtask-checkbox-${id} c-pointer" onclick="updatecheckbox(${id}, ${i})" ${checked}><p>${element}</p></li> `;  
 }
 
+/**
+ * This function fill the tamplate for the card at the board
+ * 
+ * @param {string} title - Task Title
+ * @param {string} category - Task Category
+ * @param {string} text - Task Discription
+ * @param {string} assigned - Assign to list
+ * @param {string} prio - Priority
+ * @param {number} id - Task ID
+ * @returns 
+ */
 function fillTemplate(title, category, text, assigned, prio, id) {
   let priosrc = checkPrio(prio);
   let catClass = checkCategory(category);
