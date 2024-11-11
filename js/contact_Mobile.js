@@ -1,3 +1,6 @@
+/**
+ * Hides the content area and displays the contact list for mobile view.
+ */
 function showContactMobile() {
     document.getElementById('content-area').classList.add('dNone');
     document.getElementById('content-area').classList.remove('d-Block');
@@ -5,7 +8,9 @@ function showContactMobile() {
 
 }
 
-
+/**
+ * Checks the screen size to determine and adjust element visibility for responsive design.
+ */
 function checkScreenSize() {
     const mobileWidth = 950;
     if (window.matchMedia(`(max-width: ${mobileWidth}px)`).matches) {
@@ -18,6 +23,10 @@ function checkScreenSize() {
 
 window.addEventListener('resize', concealMobileElements)
 
+
+/**
+ * Toggles the visibility of the responsive back button based on window width.
+ */
 function concealMobileElements() {
     if (window.innerWidth > 800) {
         document.getElementById('responsiveContactBackButton').classList.add('displayNone');
@@ -26,7 +35,9 @@ function concealMobileElements() {
         document.getElementById('responsiveContactBackButton').classList.remove('displayNone');
     }
 }
-
+/**
+ * Toggles the display state of the edit/delete menu.
+ */
 
 function showEditandDelete() {
     var menu = document.getElementById("editDeleteMenu");
@@ -37,7 +48,11 @@ function showEditandDelete() {
     }
 }
 
-
+/**
+ * Hides the edit/delete menu when a click is detected outside of it.
+ * 
+ * @param {Event} event - The click event object.
+ */
 window.onclick = function (event) {
     var menu = document.getElementById("editDeleteMenu");
     if(menu){
@@ -49,7 +64,13 @@ window.onclick = function (event) {
     } 
 }
 
-
+/**
+ * Displays a modal with the specified elements and animations.
+ * 
+ * @param {HTMLElement} PopUpBgElement - The background element for the modal.
+ * @param {HTMLElement} show - The content element to display.
+ * @param {HTMLElement} header - The header element to animate.
+ */
 function showModal(PopUpBgElement, show, header) {
     PopUpBgElement.classList.remove('displayNone', 'hide');
     PopUpBgElement.classList.add('show');
@@ -58,7 +79,13 @@ function showModal(PopUpBgElement, show, header) {
     header.classList.add('stretch');
 }
 
-
+/**
+ * Hides a modal by reversing its animations.
+ * 
+ * @param {HTMLElement} bgPopUp - The background element for the modal.
+ * @param {HTMLElement} popUp - The content element to hide.
+ * @param {HTMLElement} header - The header element to animate.
+ */
 function hideModal(bgPopUp, popUp, header) {
     popUp.classList.remove('slide-in');
     popUp.classList.add('slide-out');
@@ -70,6 +97,9 @@ function hideModal(bgPopUp, popUp, header) {
     header.classList.remove('stretch');
 }
 
+/**
+ * Adds event listeners to input elements to update submit button state on input changes.
+ */
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -78,7 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
 });
 
-
+/**
+ * Adds event listeners to input elements in the edit form to update the submit button state.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
@@ -86,7 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
 });
 
-
+/**
+ * Updates the state of the submit button based on input validation.
+ */
 function updateeditSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
@@ -95,93 +129,12 @@ function updateeditSubmitButtonState() {
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
 
-
-function validateNameField() {
-    let name = document.getElementById('name').value;
-    if (!validateName(name)) {
-        showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
-    } else {
-        hideErrorMessage('nameError');
-    }
-    updateSubmitButtonState();
-}
-
-function validateEmailField() {
-    let email = document.getElementById('email').value;
-    if (!validateEmail(email)) {
-        showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-    } else {
-        hideErrorMessage('emailError');
-    }
-    updateSubmitButtonState();
-}
-
-function validatePhoneField() {
-    let tel = document.getElementById('tel').value;
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein.");
-    } else {
-        hideErrorMessage('phoneError');
-    }
-    updateSubmitButtonState();
-}
-
-
-function validateNameFieldBlur() {
-    let name = document.getElementById('name').value;
-    if (!validateName(name)) {
-        showErrorMessage('nameError', "Bitte schreiben Sie den korrekten Namen.");
-    } else {
-        hideErrorMessage('nameError');
-    }
-    updateSubmitButtonState();
-     updateeditSubmitButtonState();
-}
-
-
-function validatePhoneFieldBlur() {
-    let tel = document.getElementById('tel').value;
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('phoneError', "Bitte schreiben Sie die korrekte Telefonnummer beginnend mit einem +.");
-    } else {
-        hideErrorMessage('phoneError');
-    }
-    updateSubmitButtonState();
-    updateeditSubmitButtonState();
-}
-
-
-function validateEmailFieldBlur() {
-    let email = document.getElementById('email').value;
-    if (!validateEmail(email)) {
-        showErrorMessage('emailError', "Bitte schreiben Sie die korrekte E-Mail-Adresse.");
-    } else {
-        hideErrorMessage('emailError');
-    }
-    updateSubmitButtonState();
-    updateeditSubmitButtonState();
-}
-
-
-function validateName(name) {
-    const namePattern = /^[A-Za-zÄÖÜäöüß]+(?: [A-Za-zÄÖÜäöüß]+)*$/;
-    return name.length >= 2 && namePattern.test(name);
-
-}
-
-
-function validateEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    return emailPattern.test(email);
-}
-
-
-function validatePhoneNumber(phoneNumber) {
-    const phonePattern = /^\+[0-9]+$/;
-    return phonePattern.test(phoneNumber);
-}
-
-
+/**
+ * Displays an error message for a specific element.
+ * 
+ * @param {string} errorElementId - The ID of the error message element.
+ * @param {string} message - The message to display.
+ */
 function showErrorMessage(errorElementId, message) {
     const errorElement = document.getElementById(errorElementId);
     errorElement.innerText = message;
@@ -189,13 +142,19 @@ function showErrorMessage(errorElementId, message) {
     errorElement.style.display = 'block';
 }
 
-
+/**
+ * Hides an error message for a specific element.
+ * 
+ * @param {string} errorElementId - The ID of the error message element.
+ */
 function hideErrorMessage(errorElementId) {
     const errorElement = document.getElementById(errorElementId);
     errorElement.innerText = '';
 }
 
-
+/**
+ * Resets all displayed error messages.
+ */
 function resetErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
     errorElements.forEach(element => {
@@ -204,71 +163,9 @@ function resetErrorMessages() {
     });
 }
 
-
-function validateEditNameField() {
-    let name = document.getElementById('editName').value;
-    if (!validateName(name)) {
-        showErrorMessage('editNameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
-    } else {
-        hideErrorMessage('editNameError');
-    }
-    updateeditSubmitButtonState();
-    
-}
-
-
-function validateEditEmailField() {
-    let email = document.getElementById('editEmail').value;
-    if (!validateEmail(email)) {
-        showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-    } else {
-        hideErrorMessage('editEmailError');
-    }
-    updateeditSubmitButtonState();
-}
-
-
-function validateEditPhoneField() {
-    let tel = document.getElementById('editTel').value;
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein.");
-    } else {
-        hideErrorMessage('editPhoneError');
-    }
-    updateeditSubmitButtonState();
-}
-
-
-function validateEditNameFieldBlur() {
-    let name = document.getElementById('editName').value;
-    if (!validateName(name)) {
-        showErrorMessage('editNameError', "Bitte schreiben Sie den korrekten Namen.");
-    } else {
-        hideErrorMessage('editNameError');
-    }
-}
-
-
-function validateEditEmailFieldBlur() {
-    let email = document.getElementById('editEmail').value;
-    if (!validateEmail(email)) {
-        showErrorMessage('editEmailError', "Bitte schreiben Sie die korrekte E-Mail-Adresse.");
-    } else {
-        hideErrorMessage('editEmailError');
-    }
-}
-
-
-function validateEditPhoneFieldBlur() {
-    let tel = document.getElementById('editTel').value;
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('editPhoneError', "Bitte schreiben Sie die korrekte Telefonnummer.");
-    } else {
-        hideErrorMessage('editPhoneError');
-    }
-}
-
-
+/**
+ * Updates the state of the submit button based on input validation for creating a new contact.
+ */
 function updateSubmitButtonState() {
     const nameValid = validateName(document.getElementById('name').value);
     const emailValid = validateEmail(document.getElementById('email').value);
@@ -277,7 +174,9 @@ function updateSubmitButtonState() {
     submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
 
-
+/**
+ * Checks if all fields in the edit form contain values and updates the state of the submit button.
+ */
 function checkFormFields() {
     const field1 = document.getElementById('editName').value.trim();
     const field2 = document.getElementById('editEmail').value.trim();
@@ -286,7 +185,9 @@ function checkFormFields() {
     submitButton.disabled = !(field1 && field2 && field3);
   }
 
-
+/**
+ * Checks if all fields in the create contact form contain values and updates the state of the submit button.
+ */
   function checkFormFields2() {
     const field1 = document.getElementById('name').value.trim();
     const field2 = document.getElementById('email').value.trim();
@@ -295,7 +196,9 @@ function checkFormFields() {
     submitButton.disabled = !(field1 && field2 && field3);
   }
 
-
+/**
+ * Resets all displayed error messages for edit form fields.
+ */
 function resetEditErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
     errorElements.forEach(element => {
@@ -304,7 +207,11 @@ function resetEditErrorMessages() {
     });
 }
 
-
+/**
+ * Creates a new contact, validates form inputs, and adds contact to the list if valid.
+ * 
+ * @param {Event} event - The form submit event.
+ */
 function createNewContact(event) {
     event.preventDefault();
     let name = document.getElementById('name').value;
@@ -343,49 +250,11 @@ function createNewContact(event) {
     }
 }
 
-
-async function modifyContact(event) {
-    event.preventDefault();
-    let name = document.getElementById('editName').value;
-    let email = document.getElementById('editEmail').value;
-    let tel = document.getElementById('editTel').value;
-    resetEditErrorMessages();
-
-    let isValid = true;
-
-    if (!validateName(name)) {
-        showErrorMessage('editNameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
-        isValid = false;
-    }
-    if (!validateEmail(email)) {
-        showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
-        isValid = false;
-    }
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
-        isValid = false;
-    }
-    if (isValid) {
-        let button = document.getElementById("editSubmit");
-        button.disabled = true;
-        preventFormSubmit('update');
-        contactList.length = 0;
-        contactList.push(modifyContactDetails());
-        const response = await fetch(`${BASE_URL}contact/${currentEditKey}.json`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(contactList[0]),
-        });
-        openClosePopUp('close', key = true);
-        await fetchData();
-        updateDetail();
-    }
-
-}
-
-
+/**
+ * Prevents form submission for specified form types.
+ * 
+ * @param {string} key - The form type key ('new' or 'update').
+ */
 function preventFormSubmit(key) {
     let target;
     if (key == 'new') {
@@ -396,4 +265,111 @@ function preventFormSubmit(key) {
     document.getElementById(target), addEventListener('submit', function (event) {
         event.preventDefault();
     });
+}
+
+/**
+ * Fetches data from the server and updates `storedData`.
+ * Displays contacts and updates the color counter if data is retrieved successfully.
+ * 
+ * @async
+ * @function
+ */
+async function fetchData() {
+    storedData = [];
+    try {
+        let returnValue = await fetch(BASE_URL + '.json');
+        let returnValueAsJson = await returnValue.json();
+        let info = returnValueAsJson.contact;
+        storedData.push(returnValueAsJson.contact);
+        displayContacts(info);
+        let colorCounterResponse = await fetch(BASE_URL + 'colorIndex.json');
+        let colorCounterData = await colorCounterResponse.json();
+        if (colorCounterData !== null) {
+            colorCounter = colorCounterData;
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+/**
+ * Removes a contact from the server and updates the contact list.
+ * 
+ * @async
+ * @param {string} [path='contact'] - The endpoint path for deleting the contact.
+ * @param {string} id - The ID of the contact to remove.
+ */
+async function removeContact(path = 'contact', id) {
+    try {
+        const url = `${BASE_URL}${path}/${id}.json`;
+        let response = await fetch(url, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json", },
+        });
+        if (!response.ok) {
+            throw new Error('Löschfehler des Kontakts');}
+        await fetchData();
+        clearDetailedView();       
+        currentEditKey = null;
+    } catch (error) {
+        console.error('Löschfehler des Kontakts:', error.message);
+    }
+}
+
+/**
+ * Submits contact data to the server.
+ * 
+ * @async
+ * @param {string} path - The server endpoint path for submission.
+ */
+async function submitContact(path) {
+    for (const element of contactList) {
+        selectedContact = element;
+        saveHighlight();
+        const response = await fetch(`${BASE_URL}${path}.json`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(element)
+        });
+        response.ok ? updateColorCounter() : console.error('Failed to save contact');
+    }
+    fetchData();
+}
+
+/**
+ * Applies highlight to a newly added contact.
+ */
+function applyNewContactHighlight() {
+    let serializedContact = localStorage.getItem('highlightKey')
+    if (serializedContact === null) {
+        return
+    } else
+        selectedContact = JSON.parse(serializedContact)
+    currentEditKey = findContactInStoredData();
+    showDetailedContact(currentEditKey);
+    localStorage.removeItem('highlightKey');
+    scrollToNewContact();
+}
+
+/**
+ * Opens or closes a popup window based on the provided parameter.
+ * 
+ * @param {string} param - The action ('open' or 'close') to perform.
+ * @param {boolean} key - Whether to validate a specific popup type.
+ */
+function openClosePopUp(param, key) {
+    concealMobileElements();
+    let target = validatePopUp(key);
+    let bgPopUp = document.getElementById(target);
+    let popUp = bgPopUp.querySelector('.popUp');
+    let header = document.getElementById('header');
+    if (param === 'open') {
+        showModal(bgPopUp, popUp, header);
+    } else if (param === 'close') {
+        hideModal(bgPopUp, popUp, header)
+    } else {
+        param.stopPropagation();
+    }
+
 }

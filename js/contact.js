@@ -1,31 +1,46 @@
+/**
+ * Stores the list of contacts.
+ * @type {Array}
+ */
 let contactList = [];
+
+/**
+ * Stores fetched data.
+ * @type {Array}
+ */
 let storedData = [];
+/**
+ * Counter to manage color selection.
+ * @type {number}
+ */
 let colorCounter = 0;
+/**
+ * List of generated colors.
+ * @type {Array}
+ */
 let generatedColors = [];
+/**
+ * Holds the key of the contact currently being edited.
+ * @type {string|null}
+ */
 let currentEditKey = null;
+/**
+ * Holds the contact currently selected.
+ * @type {Object|null}
+ */
 let selectedContact = null;
+/**
+ * An array of available colors for display.
+ * @type {Array}
+ */
+
 const availableColors = generateColorPalette(20);
 
-
-async function fetchData() {
-    storedData = [];
-    try {
-        let returnValue = await fetch(BASE_URL + '.json');
-        let returnValueAsJson = await returnValue.json();
-        let info = returnValueAsJson.contact;
-        storedData.push(returnValueAsJson.contact);
-        displayContacts(info);
-        let colorCounterResponse = await fetch(BASE_URL + 'colorIndex.json');
-        let colorCounterData = await colorCounterResponse.json();
-        if (colorCounterData !== null) {
-            colorCounter = colorCounterData;
-        }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-
+/**
+ * Displays a list of contacts by rendering it into the DOM.
+ * 
+ * @param {Object} contactData - The contact data to display.
+ */
 function displayContacts(contactData) {
     let container = document.getElementById('contacts');
     container.innerHTML = '';
@@ -38,7 +53,12 @@ function displayContacts(contactData) {
     highlightContactList();
 }
 
-
+/**
+ * Organizes contacts into groups by the first letter of their names.
+ * 
+ * @param {Object} contactData - The contact data to categorize.
+ * @returns {Object} An object where keys are letters and values are arrays of contacts.
+ */
 function categorizeContacts(contactData) {
     const organizedContacts = Object.keys(contactData).reduce((groups, id) => {
         const firstLetter = contactData[id].name[0].toUpperCase();
@@ -52,7 +72,13 @@ function categorizeContacts(contactData) {
     return organizedContacts;
 }
 
-
+/**
+ * Creates and displays a contact group for a specific letter.
+ * 
+ * @param {HTMLElement} container - The container element for displaying contacts.
+ * @param {string} letter - The letter grouping the contacts.
+ * @param {Array} contacts - The contacts associated with the letter.
+ */
 function createContactGroup(container, letter, contacts) {
     container.innerHTML += `<h3 class="letter">${letter}</h3>`;
     contacts.forEach(contact => {
@@ -60,7 +86,12 @@ function createContactGroup(container, letter, contacts) {
     });
 }
 
-
+/**
+ * Renders a contact card into the specified container.
+ * 
+ * @param {HTMLElement} container - The container element.
+ * @param {Object} contact - The contact data to display.
+ */
 function displayContact(container, contact) {
     const contactShade = contact.color || getRandomHexColor();
     container.innerHTML += `
@@ -74,7 +105,11 @@ function displayContact(container, contact) {
     `;
 }
 
-
+/**
+ * Modifies contact details based on input values.
+ * 
+ * @returns {Object} An object containing modified contact details.
+ */
 function modifyContactDetails() {
     let name = document.getElementById('editName');
     let email = document.getElementById('editEmail');
@@ -90,26 +125,9 @@ function modifyContactDetails() {
     return data;
 }
 
-
-async function removeContact(path = 'contact', id) {
-    try {
-        const url = `${BASE_URL}${path}/${id}.json`;
-        let response = await fetch(url, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json", },
-        });
-        if (!response.ok) {
-            throw new Error('Löschfehler des Kontakts');}
-        await fetchData();
-        clearDetailedView();       
-        currentEditKey = null;
-    } catch (error) {
-        console.error('Löschfehler des Kontakts:', error.message);
-    }
-}
-
-
+/**
+ * Clears the detailed contact view.
+ */
 function clearDetailedView() {
     const target = document.getElementById('content');
     if (target) {
@@ -117,14 +135,22 @@ function clearDetailedView() {
     }
 }
 
-
+/**
+ * Returns the initials of a given name.
+ * 
+ * @param {string} name - The name to get initials from.
+ * @returns {string} The initials of the name.
+ */
 function getInitials(name) {
     return name.split(' ').map(word => word.charAt(0).toUpperCase()).join(' ');
 }
 
-
 let saveId = ""
-
+/**
+ * Displays detailed information for a selected contact.
+ * 
+ * @param {string} contactId - The ID of the contact to display.
+ */
 function showDetailedContact(contactId) {
     saveId = contactId;
     let root = storedData[0][contactId];
@@ -141,12 +167,18 @@ function showDetailedContact(contactId) {
     applyBackgroundColor(contactId);
 }
 
-
+/**
+ * Updates and redisplays contact details.
+ */
 function updateDetail(){
     showDetailedContact(`${saveId}`);
 }
 
-
+/**
+ * Sets the content of the edit popup for a contact.
+ * 
+ * @param {Object} root - The contact data to populate the popup.
+ */
 function setEditPopupContent(root) {
     document.getElementById('letterForPopUp').innerHTML = `${root['name'][0]}`;
     document.getElementById('editName').value = root['name'];
@@ -155,7 +187,11 @@ function setEditPopupContent(root) {
 
 }
 
-
+/**
+ * Applies a background color to a contact's profile display element.
+ * 
+ * @param {string} contactId - The ID of the contact to style.
+ */
 function applyBackgroundColor(contactId) {
     let root = storedData[0][contactId];
     let profileLetterElement = document.getElementById('singleLetterProfile');
@@ -165,7 +201,12 @@ function applyBackgroundColor(contactId) {
     }
 }
 
-
+/**
+ * Generates a color palette.
+ * 
+ * @param {number} numberColors - The number of colors to generate.
+ * @returns {Array} An array of hex color strings.
+ */
 function generateColorPalette(numberColors) {
     const availableColors = [];
     const hexValuesForColor = '0123456789ABCDEF';
@@ -185,31 +226,6 @@ function generateColorPalette(numberColors) {
     return availableColors;
 }
 
-
-function calculateBrightness(color) {
-    let hex = color.substring(1);
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    const [h, s, l] = rgbToHsl(r, g, b);
-    return l;
-}
-
-
-function rgbToHsl(r, g, b) {
-    r /= 255; g /= 255; b /= 255;
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h = 0, s, l = (max + min) / 2;
-    if (max !== min) {
-        const d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
-        h /= 6;
-    } else s = 0;
-    return [h * 360, s * 100, l * 100];
-}
-
-
 function selectNextColor() {
     const color = availableColors[colorCounter % availableColors.length];
     colorCounter++;
@@ -217,22 +233,9 @@ function selectNextColor() {
     return color;
 }
 
-
-async function submitContact(path) {
-    for (const element of contactList) {
-        selectedContact = element;
-        saveHighlight();
-        const response = await fetch(`${BASE_URL}${path}.json`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(element)
-        });
-        response.ok ? updateColorCounter() : console.error('Failed to save contact');
-    }
-    fetchData();
-}
-
-
+/**
+ * Updates the color counter on the server.
+ */
 function updateColorCounter() {
     fetch(BASE_URL + 'colorIndex.json', {
         method: "PUT",
@@ -249,26 +252,19 @@ function updateColorCounter() {
         .catch(error => console.error('Error updating color index:', error));
 }
 
-
+/**
+ * Saves the currently selected contact highlight to local storage.
+ */
 function saveHighlight() {
     let serializedContact = JSON.stringify(selectedContact);
     localStorage.setItem('highlightKey', serializedContact);
 }
 
-
-function applyNewContactHighlight() {
-    let serializedContact = localStorage.getItem('highlightKey')
-    if (serializedContact === null) {
-        return
-    } else
-        selectedContact = JSON.parse(serializedContact)
-    currentEditKey = findContactInStoredData();
-    showDetailedContact(currentEditKey);
-    localStorage.removeItem('highlightKey');
-    scrollToNewContact();
-}
-
-
+/**
+ * Finds a contact in the stored data based on the selected contact's name.
+ * 
+ * @returns {string} The key of the matching contact.
+ */
 function findContactInStoredData() {
     let contactData = storedData[0]
 
@@ -279,7 +275,9 @@ function findContactInStoredData() {
     }
 }
 
-
+/**
+ * Scrolls to a newly added or selected contact in the list.
+ */
 function scrollToNewContact() {
     document.getElementById(currentEditKey).scrollIntoView({
         behavior: 'smooth',
@@ -288,28 +286,20 @@ function scrollToNewContact() {
 }
 
 
-function openClosePopUp(param, key) {
-    concealMobileElements();
-    let target = validatePopUp(key);
-    let bgPopUp = document.getElementById(target);
-    let popUp = bgPopUp.querySelector('.popUp');
-    let header = document.getElementById('header');
-    if (param === 'open') {
-        showModal(bgPopUp, popUp, header);
-    } else if (param === 'close') {
-        hideModal(bgPopUp, popUp, header)
-    } else {
-        param.stopPropagation();
-    }
-
-}
-
-
+/**
+ * Validates which popup background to use based on the key.
+ * 
+ * @param {boolean} key - Indicator of which popup background to use.
+ * @returns {string} The ID of the target background element.
+ */
 function validatePopUp(key) {
     return key ? 'EditModalBackground' : 'modalBackground';
 }
-
-
+/**
+ * Generates a random hex color.
+ * 
+ * @returns {string} A random hex color string.
+ */
 function getRandomHexColor() {
     const letters = '89ABCDEF';
     let color = '#';
@@ -319,12 +309,21 @@ function getRandomHexColor() {
     return color;
 }
 
+/**
+ * Highlights the contact list element by applying a CSS class.
+ */
 
 function highlightContactList() {
     document.getElementById('link-contact').classList.add('bg-focus');
 }
 
-
+/**
+ * Generates HTML for displaying contact information.
+ * 
+ * @param {Object} root - The contact data to display.
+ * @param {string} contactId - The ID of the contact.
+ * @returns {string} The generated HTML string for the contact profile.
+ */
 function contactInfoHtml(root, contactId) {
     return `
         <div class="contact-profile">
@@ -355,3 +354,45 @@ function contactInfoHtml(root, contactId) {
 
     `;
 }
+
+/**
+ * Calculates the brightness of a hex color.
+ * 
+ * @param {string} color - The hex color string.
+ * @returns {number} The calculated brightness value.
+ */
+function calculateBrightness(color) {
+    let hex = color.substring(1);
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    const [h, s, l] = rgbToHsl(r, g, b);
+    return l;
+}
+
+/**
+ * Converts RGB values to HSL.
+ * 
+ * @param {number} r - The red component (0-255).
+ * @param {number} g - The green component (0-255).
+ * @param {number} b - The blue component (0-255).
+ * @returns {Array} An array containing HSL values.
+ */
+function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h = 0, s, l = (max + min) / 2;
+    if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+        h /= 6;
+    } else s = 0;
+    return [h * 360, s * 100, l * 100];
+}
+
+/**
+ * Selects the next color from the color palette.
+ * 
+ * @returns {string} The selected color.
+ */
