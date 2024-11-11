@@ -24,12 +24,12 @@
             </div>
                     <form class="input-container dflex-c-c column" onsubmit="login(event)">
                         <input id="inputEmailLogIn" class="inputfield" type="email" placeholder="Email" required="">
-                        <input id="inputPasswordLogIn" class="inputfield" type="password" placeholder="Password" required="">
+                        <input id="inputPasswordLogIn" class="inputfield" type="password" placeholder="Password" required="" onkeyup="if (event.key === 'Enter') login(event)">
                         <div id="Loginerror" class="d-none"></div>
-                        <button type="submit" class="btn-small cursor-pointer">Log in</button>
+                        <button type="button" class="btn-small cursor-pointer" onclick="login(event)" >Log in</button>
                       </form>
                     <a onclick="guestLogin()" href="./summary.html">
-                        <button type="button" class="btn-outline cursor-pointer">Guest Log in</button>
+                        <button type="button" class="btn-outline cursor-pointer" >Guest Log in</button>
                     </a>
                 </div>
         </div>

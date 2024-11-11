@@ -391,9 +391,3 @@ function preventFormSubmit(key) {
         event.preventDefault();
     });
 }
-
-
-
-
-
-

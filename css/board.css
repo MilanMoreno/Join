@@ -3,10 +3,19 @@ body {
   overflow-x: hidden;
 }
 
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #hideAssignlist {
-  position: relative;
-  top: -600px;
-  left: -200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100vw;
   height: 125vh;
   overflow-x: hidden;
@@ -16,7 +25,6 @@ body {
   margin-top: 110px;
   margin-left: 91px;
   margin-right: 110px;
-  
 }
 
 .addTask {
@@ -81,6 +89,11 @@ body {
   width: 280px;
   font-size: 20px;
   font-weight: 400;
+}
+
+.findTaskInput:focus {
+  border: none;
+  outline: none;
 }
 
 .findTaskInput::placeholder {
@@ -227,7 +240,7 @@ body {
 }
 
 #overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -275,6 +288,8 @@ body {
 .dropSection {
   min-height: 400px;
   border: 2px dashed #00000000;
+  height: calc(100vh - 300px);
+  overflow-y: auto;
 }
 
 .drag-over {
@@ -298,7 +313,7 @@ body {
   z-index: 1;
 }
 
-.mobileDragTask{
+.mobileDragTask {
   margin-bottom: 70px;
   display: none;
 }
@@ -459,7 +474,7 @@ body {
 }
 
 @media (max-width: 700px) {
-  .card{
+  .card {
     margin-inline: 10px;
   }
 
@@ -472,16 +487,17 @@ body {
   }
 
   .noTask {
-    max-width: 100%;
+    width: 214px;
   }
 
-  .dropSection{
+  .dropSection {
     display: flex;
     overflow-x: scroll;
     min-height: 200px;
+    height: auto;
   }
 
-  .mobileDragTask{
+  .mobileDragTask {
     display: unset;
   }
 }
@@ -490,7 +506,7 @@ body {
   display: none;
 }
 
-.mobileSelect{
+.mobileSelect {
   margin-bottom: 70px;
 }
 
@@ -500,19 +516,20 @@ body {
   }
 }
 
-@media (max-height: 1050px){
-  .detailCard{
-    height: fit-content!important;
-    margin-block: 10px!important;
+@media (max-height: 1050px) {
+  .detailCard {
+    height: fit-content !important;
+    margin-block: 10px !important;
   }
 }
 
-@media (max-width: 550px){
-  .detailCard{
-    width: 95vw!important;
-
+@media (max-width: 550px) {
+  .detailCard {
+    width: 95vw !important;
   }
-  .assignList, .detailDate, .detailDescription{
+  .assignList,
+  .detailDate,
+  .detailDescription {
     width: auto;
   }
 }

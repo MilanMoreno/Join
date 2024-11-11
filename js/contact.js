@@ -75,6 +75,47 @@ function displayContact(container, contact) {
 }
 
 
+
+function modifyContactDetails() {
+    let name = document.getElementById('editName');
+    let email = document.getElementById('editEmail');
+    let tel = document.getElementById('editTel');
+
+    let data =
+    {
+        'name': name.value,
+        'email': email.value,
+        'telefonnummer': tel.value
+
+    };
+    return data;
+}
+
+
+async function removeContact(path = 'contact', id) {
+    try {
+        const url = `${BASE_URL}${path}/${id}.json`;
+        let response = await fetch(url, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json", },
+        });
+        if (!response.ok) {
+            throw new Error('Löschfehler des Kontakts');}
+        await fetchData();
+        clearDetailedView();       
+        currentEditKey = null;
+    } catch (error) {
+        console.error('Löschfehler des Kontakts:', error.message);
+    }
+}
+
+function clearDetailedView() {
+    const target = document.getElementById('content');
+    if (target) {
+        target.innerHTML = ''; 
+    }
+}
 function getInitials(name) {
     return name.split(' ').map(word => word.charAt(0).toUpperCase()).join(' ');
 }
@@ -329,43 +370,4 @@ function contactInfoHtml(root, contactId) {
 }
 
 
-function modifyContactDetails() {
-    let name = document.getElementById('editName');
-    let email = document.getElementById('editEmail');
-    let tel = document.getElementById('editTel');
 
-    let data =
-    {
-        'name': name.value,
-        'email': email.value,
-        'telefonnummer': tel.value
-
-    };
-    return data;
-}
-
-
-async function removeContact(path = 'contact', id) {
-    try {
-        const url = `${BASE_URL}${path}/${id}.json`;
-        let response = await fetch(url, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json", },
-        });
-        if (!response.ok) {
-            throw new Error('Löschfehler des Kontakts');}
-        await fetchData();
-        clearDetailedView();       
-        currentEditKey = null;
-    } catch (error) {
-        console.error('Löschfehler des Kontakts:', error.message);
-    }
-}
-
-function clearDetailedView() {
-    const target = document.getElementById('content');
-    if (target) {
-        target.innerHTML = ''; 
-    }
-}

@@ -108,11 +108,15 @@
     gap: 16px;
   }
 
+  .noTask {
+    width: 214px;
+  }
+
   .column {
     width: 100%;
   }
 
-  .dropSection{
+  .dropSection {
     display: flex;
     overflow-x: scroll;
   }
