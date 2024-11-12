@@ -62,7 +62,6 @@
             </div>
             <button type="submit" class="btn-small cp">Sign up</button>
         </form>
-        
             
         </div>
         <div id="bgSignupSuccesfully" class="d-none dflex-c-c">
@@ -78,39 +77,42 @@
 
     <script>
 
+ // Function for real-time validation (input event)
+ document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
+    // Function to validate on field blur (when focus leaves input)
+    document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
 
-// Event listener for real-time email validation
-document.getElementById('inputSignUpMail').addEventListener('input', function() {
+    function validateEmailField() {
         const emailInput = document.getElementById('inputSignUpMail');
         const errorMessage = document.getElementById('inputSignUpMailError');
 
         // Regular expression to validate email (checks for text before @, text after @, and a dot after @)
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+        // If input is empty or invalid, show error
         if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
             emailInput.classList.add('error');
             errorMessage.style.display = 'block';
         } else {
+            // If valid, hide error message
             emailInput.classList.remove('error');
             errorMessage.style.display = 'none';
         }
-    });
+    }
 
-    // Main sign-up function with email validation logic
+    // Main sign-up function
     async function handleSignUp(event) {
         event.preventDefault(); // Prevent form submission
 
+        // Validate email one more time on submit
         const emailInput = document.getElementById('inputSignUpMail');
         const errorMessage = document.getElementById('inputSignUpMailError');
-
-        // Regular expression to validate email
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // Basic email validation before submitting
         if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
             emailInput.classList.add('error');
             errorMessage.style.display = 'block';
-            return false; // Prevent further handling if email is invalid
+            return false; // Prevent submission if email is invalid
         }
 
         // Additional logic for password confirmation
