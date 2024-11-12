@@ -23,7 +23,7 @@
                 <div class="text-segment"></div>
             </div>
             <form class="input-container dflex-c-c column" id="addContactForm" onsubmit="login(event)">
-                <input id="email" class="inputfield" type="text" placeholder="Email" onblur="validateEditField('email')" oninput="checkFormFields2()" onkeyup="if (event.key === 'Enter') login(event)" required>
+                <input id="email" class="inputfield" type="text" placeholder="Email" onblur="validateEditField('email')" oninput="checkFormFields2()" required="" onkeyup="if (event.key === 'Enter') login(event)">
                 <div id="emailError" class="error-message"></div>
             
                 <input id="password" class="inputfield" type="password" placeholder="Passwort" onblur="validateEditField('password')" oninput="checkFormFields2()" onkeyup="if (event.key === 'Enter') login(event)">
