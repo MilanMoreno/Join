@@ -12,6 +12,14 @@
     <script src="./js/signupdatabase.js"></script>
     <script src="./js/signup.js"></script>
     <script src="./js/contactsfirebase.js"></script>
+    <style> .error-message {
+        color: red;
+        font-size: 0.9em;
+        display: none;
+    }
+    .inputfield.error {
+        border: 2px solid red;
+    }</style>
 </head>
 <body>
     <img class="logo-end" src="imgs/join_logo_dark.png" alt="join-logo">
@@ -24,18 +32,38 @@
                 <h1>Sign up</h1>
                 <div class="text-line"></div>
             </div>
+
+
+                <!----
             <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
-                <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required="">
-                <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required="">
-                <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required="">
-                <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Password" required="">
+                <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
+                <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
+                <div id="inputSignUpMailError" class="error-message">Please enter a valid email.</div>
+                <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
+                <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
                 <div id="passwordIncorrect" class="d-none"></div>
                 <div class="checkbox-signup">
-                    <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required="">
+                    <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
                     <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
                 </div>
                 <button type="submit" class="btn-small cp">Sign up</button>
             </form>
+        -->
+        <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
+            <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
+            <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
+            <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
+            <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
+            <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
+            <div id="passwordIncorrect" class="d-none"></div>
+            <div class="checkbox-signup">
+                <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
+                <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
+            </div>
+            <button type="submit" class="btn-small cp">Sign up</button>
+        </form>
+        
+            
         </div>
         <div id="bgSignupSuccesfully" class="d-none dflex-c-c">
             <div class="btn-signup-succesfully dflex-c-c">
@@ -47,7 +75,66 @@
         <a href="./privacy-police.html">Privacy Policy</a>
         <a href="./legal_notice.html">Legal Notice</a>
     </section>
+
     <script>
-  </script>
+
+
+// Event listener for real-time email validation
+document.getElementById('inputSignUpMail').addEventListener('input', function() {
+        const emailInput = document.getElementById('inputSignUpMail');
+        const errorMessage = document.getElementById('inputSignUpMailError');
+
+        // Regular expression to validate email (checks for text before @, text after @, and a dot after @)
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
+            emailInput.classList.add('error');
+            errorMessage.style.display = 'block';
+        } else {
+            emailInput.classList.remove('error');
+            errorMessage.style.display = 'none';
+        }
+    });
+
+    // Main sign-up function with email validation logic
+    async function handleSignUp(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const emailInput = document.getElementById('inputSignUpMail');
+        const errorMessage = document.getElementById('inputSignUpMailError');
+
+        // Regular expression to validate email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Basic email validation before submitting
+        if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
+            emailInput.classList.add('error');
+            errorMessage.style.display = 'block';
+            return false; // Prevent further handling if email is invalid
+        }
+
+        // Additional logic for password confirmation
+        const passwordField = document.getElementById('inputSignUpPassword1');
+        const confirmPasswordField = document.getElementById('inputSignUpPassword2');
+        const errorDisplay = document.getElementById('passwordIncorrect');
+
+        if (passwordField.value !== confirmPasswordField.value) {
+            errorDisplay.classList.remove('d-none');
+            errorDisplay.innerText = 'Passwords do not match';
+            passwordField.classList.add('error');
+            confirmPasswordField.classList.add('error');
+            return false;
+        } else {
+            errorDisplay.classList.add('d-none');
+            passwordField.classList.remove('error');
+            confirmPasswordField.classList.remove('error');
+        }
+
+        // Further logic for sign-up (e.g., submitting user data) goes here...
+        alert('Sign-up successful!');
+        return true;
+    }
+    </script>
+
 </body>
 </html>
