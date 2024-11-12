@@ -34,22 +34,24 @@
             </div>
 
 
-                <!----
             <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
                 <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
+                <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
+            
                 <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
-                <div id="inputSignUpMailError" class="error-message">Please enter a valid email.</div>
+                <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
+            
                 <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
                 <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
                 <div id="passwordIncorrect" class="d-none"></div>
+            
                 <div class="checkbox-signup">
                     <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
                     <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
                 </div>
                 <button type="submit" class="btn-small cp">Sign up</button>
             </form>
-        -->
-        <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
+        <!--<form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
             <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
             <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
             <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
@@ -61,7 +63,7 @@
                 <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
             </div>
             <button type="submit" class="btn-small cp">Sign up</button>
-        </form>
+        </form>-->
             
         </div>
         <div id="bgSignupSuccesfully" class="d-none dflex-c-c">
@@ -77,45 +79,71 @@
 
     <script>
 
- // Function for real-time validation (input event)
- document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
-    // Function to validate on field blur (when focus leaves input)
+  // E-Mail und Name Validierung
+  document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
     document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
+    document.getElementById('inputSignUpName').addEventListener('input', validateNameField);
+    document.getElementById('inputSignUpName').addEventListener('blur', validateNameField);
 
+    // Funktion für E-Mail Validierung
     function validateEmailField() {
         const emailInput = document.getElementById('inputSignUpMail');
         const errorMessage = document.getElementById('inputSignUpMailError');
-
-        // Regular expression to validate email (checks for text before @, text after @, and a dot after @)
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // If input is empty or invalid, show error
         if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
             emailInput.classList.add('error');
             errorMessage.style.display = 'block';
         } else {
-            // If valid, hide error message
             emailInput.classList.remove('error');
             errorMessage.style.display = 'none';
         }
     }
 
-    // Main sign-up function
+    // Funktion für Name Validierung
+    function validateNameField() {
+        const nameInput = document.getElementById('inputSignUpName');
+        const errorMessage = document.getElementById('inputSignUpNameError');
+        // Nur Buchstaben und Leerzeichen sind erlaubt (keine Zahlen oder Sonderzeichen)
+        const namePattern = /^[A-Za-z\s]+$/;
+
+        if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
+            nameInput.classList.add('error');
+            errorMessage.style.display = 'block';
+        } else {
+            nameInput.classList.remove('error');
+            errorMessage.style.display = 'none';
+        }
+    }
+
+    // Hauptanmeldefunktion
     async function handleSignUp(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); // Verhindert die Formularabsendung
 
-        // Validate email one more time on submit
+        // Überprüfen der E-Mail und des Namens erneut bei der Anmeldung
         const emailInput = document.getElementById('inputSignUpMail');
-        const errorMessage = document.getElementById('inputSignUpMailError');
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailErrorMessage = document.getElementById('inputSignUpMailError');
+        const nameInput = document.getElementById('inputSignUpName');
+        const nameErrorMessage = document.getElementById('inputSignUpNameError');
 
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const namePattern = /^[A-Za-z\s]+$/;
+
+        // Überprüfen der E-Mail
         if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
             emailInput.classList.add('error');
-            errorMessage.style.display = 'block';
-            return false; // Prevent submission if email is invalid
+            emailErrorMessage.style.display = 'block';
+            return false; // Verhindert das Absenden des Formulars, wenn die E-Mail ungültig ist
         }
 
-        // Additional logic for password confirmation
+        // Überprüfen des Namens
+        if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
+            nameInput.classList.add('error');
+            nameErrorMessage.style.display = 'block';
+            return false; // Verhindert das Absenden des Formulars, wenn der Name ungültig ist
+        }
+
+        // Validierung der Passwörter
         const passwordField = document.getElementById('inputSignUpPassword1');
         const confirmPasswordField = document.getElementById('inputSignUpPassword2');
         const errorDisplay = document.getElementById('passwordIncorrect');
@@ -132,7 +160,7 @@
             confirmPasswordField.classList.remove('error');
         }
 
-        // Further logic for sign-up (e.g., submitting user data) goes here...
+        // Weiteres Logik für das Absenden der Benutzerdaten hier...
         alert('Sign-up successful!');
         return true;
     }
