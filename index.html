@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
@@ -11,10 +12,9 @@
     <script src="./js/signupdatabase.js"></script>
     <script src="./js/signup.js"></script>
     <script src="./js/contactsfirebase.js"></script>
-<script src="js/login.js"></script>
-      </style>
-  </head>
-  <body>
+    <script src="js/login.js"></script>
+</head>
+<body>
     <img class="logo-launch" src="imgs/join_logo_dark.png" alt="logo of Join">
     <section class="container-login-signup dflex-c-c screen-animation">
         <div class="log-in-overlay dflex-c-c column">
@@ -22,18 +22,22 @@
                 <h1>Log in</h1>
                 <div class="text-segment"></div>
             </div>
-                    <form class="input-container dflex-c-c column" onsubmit="login(event)">
-                        <input id="inputEmailLogIn" class="inputfield" type="email" placeholder="Email" required="">
-                        <input id="inputPasswordLogIn" class="inputfield" type="password" placeholder="Password" required="" onkeyup="if (event.key === 'Enter') login(event)">
-                        <div id="Loginerror" class="d-none"></div>
-                        <button type="button" class="btn-small cursor-pointer" onclick="login(event)" >Log in</button>
-                      </form>
-                    <a onclick="guestLogin()" href="./summary.html">
-                        <button type="button" class="btn-outline cursor-pointer" >Guest Log in</button>
-                    </a>
-                </div>
+            <form class="input-container dflex-c-c column" id="addContactForm" onsubmit="login(event)">
+                <input id="email" class="inputfield" type="text" placeholder="Email" onblur="validateEditField('email')" oninput="checkFormFields2()" onkeyup="if (event.key === 'Enter') login(event)" required>
+                <div id="emailError" class="error-message"></div>
+            
+                <input id="password" class="inputfield" type="password" placeholder="Passwort" onblur="validateEditField('password')" oninput="checkFormFields2()" onkeyup="if (event.key === 'Enter') login(event)">
+                <div id="passwordError" class="error-message"></div>
+            
+                <div id="Loginerror" class="d-none"></div>
+                <button type="button" class="btn-small cursor-pointer" onclick="login(event)">Log in</button>
+            </form>
+            <a onclick="guestLogin()" href="./summary.html">
+                <button type="button" class="btn-outline cursor-pointer">Guest Log in</button>
+            </a>
         </div>
     </section>
+
     <section class="login-head screen-animation">
         <div class="login-head-top-right dflex-c-c">
             <span>Not a Join user?</span>
@@ -42,10 +46,91 @@
             </a>
         </div>
     </section>
+
     <section class="login-footer dflex-c-c screen-animation">
         <a href="./privacy-police.html">Privacy Policy</a>
         <a href="./legal_notice.html">Legal Notice</a>
     </section>
+
     <script src="js/signup.js"></script>
 
-</body></html>
+    <script>
+        // Fügt Event-Listener für die Eingabefelder hinzu, um die Fehleranzeige zu entfernen, wenn der Benutzer tippt.
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.inputfield');
+            inputs.forEach(input => {
+                input.addEventListener('input', removeErrorStyling);
+            });
+        });
+
+        /**
+         * Entfernt die roten Fehlerstile und versteckt die Fehlermeldung, wenn der Benutzer Text eingibt.
+         * @param {Event} event - Das Eingabeereignis.
+         */
+        function removeErrorStyling(event) {
+            const inputField = event.target;
+            inputField.classList.remove('error'); // Entfernt die Klasse für das rote Feld.
+            const errorElement = document.getElementById(`${inputField.id}Error`);
+            if (errorElement) {
+                errorElement.innerText = '';
+                errorElement.style.display = 'none';
+            }
+        }
+
+        // Der folgende Teil bleibt unverändert
+        function showErrorMessage(errorElementId, message) {
+            const errorElement = document.getElementById(errorElementId);
+            errorElement.innerText = message;
+            errorElement.style.color = 'red';
+            errorElement.style.display = 'block';
+        }
+
+        function hideErrorMessage(errorElementId) {
+            const errorElement = document.getElementById(errorElementId);
+            errorElement.innerText = '';
+        }
+
+        function validateInput(variable, value) {
+            if (variable === "email") {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+                return emailPattern.test(value);
+            }
+            if (variable === "password") {
+                return validatePassword(value);
+            }
+            return false;
+        }
+
+        function validatePassword(password) {
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return passwordPattern.test(password);
+        }
+
+        function validateEditField(fieldID) {
+            let errottext = checkErrorText(fieldID);
+
+            if (!validateInput(fieldID, document.getElementById(fieldID).value)) {
+                showErrorMessage(`${fieldID}Error`, `${errottext}`);
+            } else {
+                hideErrorMessage(`${fieldID}Error`);
+            }
+        }
+
+        function checkErrorText(fieldID) {
+            if (fieldID === "email") {
+                return "Please select a valid e-mail address (beispiel@domain.com).";
+            } else if (fieldID === "password") {
+                return "Please enter your correct password (as during Sign Up).";
+            }
+        }
+
+        function checkFormFields2() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const submitButton = document.getElementById('createSubmit');
+            submitButton.disabled = !(email && password);
+        }
+
+    </script>
+</body>
+</html>
