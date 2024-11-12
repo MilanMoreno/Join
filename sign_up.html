@@ -42,8 +42,10 @@
                 <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
             
                 <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
+                <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters, and contain at least one uppercase letter, one lowercase letter, and one number.</div>
+            
                 <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
-                <div id="passwordIncorrect" class="d-none"></div>
+                <div id="inputSignUpPassword2Error" class="error-message">Passwords do not match.</div>
             
                 <div class="checkbox-signup">
                     <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
@@ -79,11 +81,15 @@
 
     <script>
 
-  // E-Mail und Name Validierung
-  document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
+     // E-Mail, Name und Passwort Validierung
+     document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
     document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
     document.getElementById('inputSignUpName').addEventListener('input', validateNameField);
     document.getElementById('inputSignUpName').addEventListener('blur', validateNameField);
+    document.getElementById('inputSignUpPassword1').addEventListener('input', validatePasswordField);
+    document.getElementById('inputSignUpPassword1').addEventListener('blur', validatePasswordField);
+    document.getElementById('inputSignUpPassword2').addEventListener('input', validateConfirmPasswordField);
+    document.getElementById('inputSignUpPassword2').addEventListener('blur', validateConfirmPasswordField);
 
     // Funktion für E-Mail Validierung
     function validateEmailField() {
@@ -116,18 +122,53 @@
         }
     }
 
+    // Funktion für Passwort Validierung
+    function validatePasswordField() {
+        const passwordInput = document.getElementById('inputSignUpPassword1');
+        const errorMessage = document.getElementById('inputSignUpPassword1Error');
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Mindestens 6 Zeichen, ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl
+
+        if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
+            passwordInput.classList.add('error');
+            errorMessage.style.display = 'block';
+        } else {
+            passwordInput.classList.remove('error');
+            errorMessage.style.display = 'none';
+        }
+    }
+
+    // Funktion für Passwort Bestätigung Validierung
+    function validateConfirmPasswordField() {
+        const passwordInput = document.getElementById('inputSignUpPassword1');
+        const confirmPasswordInput = document.getElementById('inputSignUpPassword2');
+        const errorMessage = document.getElementById('inputSignUpPassword2Error');
+
+        if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
+            confirmPasswordInput.classList.add('error');
+            errorMessage.style.display = 'block';
+        } else {
+            confirmPasswordInput.classList.remove('error');
+            errorMessage.style.display = 'none';
+        }
+    }
+
     // Hauptanmeldefunktion
     async function handleSignUp(event) {
         event.preventDefault(); // Verhindert die Formularabsendung
 
-        // Überprüfen der E-Mail und des Namens erneut bei der Anmeldung
+        // Überprüfen der E-Mail, des Namens und der Passwörter erneut bei der Anmeldung
         const emailInput = document.getElementById('inputSignUpMail');
         const emailErrorMessage = document.getElementById('inputSignUpMailError');
         const nameInput = document.getElementById('inputSignUpName');
         const nameErrorMessage = document.getElementById('inputSignUpNameError');
+        const passwordInput = document.getElementById('inputSignUpPassword1');
+        const passwordErrorMessage = document.getElementById('inputSignUpPassword1Error');
+        const confirmPasswordInput = document.getElementById('inputSignUpPassword2');
+        const confirmPasswordErrorMessage = document.getElementById('inputSignUpPassword2Error');
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const namePattern = /^[A-Za-z\s]+$/;
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Mindestens 6 Zeichen, ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl
 
         // Überprüfen der E-Mail
         if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
@@ -143,24 +184,21 @@
             return false; // Verhindert das Absenden des Formulars, wenn der Name ungültig ist
         }
 
-        // Validierung der Passwörter
-        const passwordField = document.getElementById('inputSignUpPassword1');
-        const confirmPasswordField = document.getElementById('inputSignUpPassword2');
-        const errorDisplay = document.getElementById('passwordIncorrect');
-
-        if (passwordField.value !== confirmPasswordField.value) {
-            errorDisplay.classList.remove('d-none');
-            errorDisplay.innerText = 'Passwords do not match';
-            passwordField.classList.add('error');
-            confirmPasswordField.classList.add('error');
-            return false;
-        } else {
-            errorDisplay.classList.add('d-none');
-            passwordField.classList.remove('error');
-            confirmPasswordField.classList.remove('error');
+        // Überprüfen des Passworts
+        if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
+            passwordInput.classList.add('error');
+            passwordErrorMessage.style.display = 'block';
+            return false; // Verhindert das Absenden des Formulars, wenn das Passwort ungültig ist
         }
 
-        // Weiteres Logik für das Absenden der Benutzerdaten hier...
+        // Überprüfen der Passwortbestätigung
+        if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
+            confirmPasswordInput.classList.add('error');
+            confirmPasswordErrorMessage.style.display = 'block';
+            return false; // Verhindert das Absenden des Formulars, wenn die Passwörter nicht übereinstimmen
+        }
+
+        // Validierung erfolgreich, Anmeldedaten weiterverarbeiten...
         alert('Sign-up successful!');
         return true;
     }
