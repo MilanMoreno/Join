@@ -33,26 +33,6 @@
                 <div class="text-line"></div>
             </div>
 
-<!----
-            <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
-                <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
-                <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
-            
-                <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
-                <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
-            
-                <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
-                <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters, and contain at least one uppercase letter, one lowercase letter, and one number.</div>
-            
-                <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
-                <div id="inputSignUpPassword2Error" class="error-message">Passwords do not match.</div>
-            
-                <div class="checkbox-signup">
-                    <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
-                    <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
-                </div>
-                <button type="submit" class="btn-small cp">Sign up</button>
-            </form>-->
             <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
                 <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
                 <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
@@ -87,168 +67,187 @@
     </section>
 
     <script>
-    // E-Mail, Name und Passwort Validierung
-    document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
-    document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
-    document.getElementById('inputSignUpName').addEventListener('input', validateNameField);
-    document.getElementById('inputSignUpName').addEventListener('blur', validateNameField);
-    document.getElementById('inputSignUpPassword1').addEventListener('input', validatePasswordField);
-    document.getElementById('inputSignUpPassword1').addEventListener('blur', validatePasswordField);
-    document.getElementById('inputSignUpPassword2').addEventListener('input', validateConfirmPasswordField);
-    document.getElementById('inputSignUpPassword2').addEventListener('blur', validateConfirmPasswordField);
+   // E-Mail, Name und Passwort Validierung
+// Diese Event-Listener überwachen die Eingabefelder und rufen die entsprechenden Validierungsfunktionen auf, 
+// sowohl bei Eingabe (input) als auch beim Verlassen des Feldes (blur).
+document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
+document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
+document.getElementById('inputSignUpName').addEventListener('input', validateNameField);
+document.getElementById('inputSignUpName').addEventListener('blur', validateNameField);
+document.getElementById('inputSignUpPassword1').addEventListener('input', validatePasswordField);
+document.getElementById('inputSignUpPassword1').addEventListener('blur', validatePasswordField);
+document.getElementById('inputSignUpPassword2').addEventListener('input', validateConfirmPasswordField);
+document.getElementById('inputSignUpPassword2').addEventListener('blur', validateConfirmPasswordField);
 
-    // Funktion für E-Mail Validierung
-    function validateEmailField() {
-        const emailInput = document.getElementById('inputSignUpMail');
-        const errorMessage = document.getElementById('inputSignUpMailError');
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Funktion für E-Mail Validierung
+// Überprüft, ob die E-Mail-Adresse dem gültigen Format entspricht (z.B. example@domain.com).
+// Falls nicht, wird eine Fehlermeldung angezeigt und das Eingabefeld erhält eine Fehlerklasse.
+function validateEmailField() {
+    const emailInput = document.getElementById('inputSignUpMail');
+    const errorMessage = document.getElementById('inputSignUpMailError');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
-            emailInput.classList.add('error');
-            errorMessage.style.display = 'block';
-        } else {
-            emailInput.classList.remove('error');
-            errorMessage.style.display = 'none';
-        }
+    if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
+        emailInput.classList.add('error');
+        errorMessage.style.display = 'block';
+    } else {
+        emailInput.classList.remove('error');
+        errorMessage.style.display = 'none';
+    }
+}
+
+// Funktion für Name Validierung
+// Überprüft, ob der eingegebene Name nur aus Buchstaben und Leerzeichen besteht.
+// Wenn der Name ungültige Zeichen enthält, wird eine Fehlermeldung angezeigt.
+function validateNameField() {
+    const nameInput = document.getElementById('inputSignUpName');
+    const errorMessage = document.getElementById('inputSignUpNameError');
+    const namePattern = /^[A-Za-z\s]+$/; // Nur Buchstaben und Leerzeichen
+
+    if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
+        nameInput.classList.add('error');
+        errorMessage.style.display = 'block';
+    } else {
+        nameInput.classList.remove('error');
+        errorMessage.style.display = 'none';
+    }
+}
+
+// Funktion für Passwort Validierung
+// Überprüft, ob das Passwort mindestens 6 Zeichen lang ist, 
+// einen Großbuchstaben, einen Kleinbuchstaben und eine Zahl enthält.
+function validatePasswordField() {
+    const passwordInput = document.getElementById('inputSignUpPassword1');
+    const errorMessage = document.getElementById('inputSignUpPassword1Error');
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Mindestens 6 Zeichen, ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl
+
+    if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
+        passwordInput.classList.add('error');
+        errorMessage.style.display = 'block';
+    } else {
+        passwordInput.classList.remove('error');
+        errorMessage.style.display = 'none';
+    }
+}
+
+// Funktion für Passwort Bestätigung Validierung
+// Überprüft, ob das Passwort und die Passwortbestätigung übereinstimmen. 
+// Falls sie nicht übereinstimmen, wird eine Fehlermeldung angezeigt.
+function validateConfirmPasswordField() {
+    const passwordInput = document.getElementById('inputSignUpPassword1');
+    const confirmPasswordInput = document.getElementById('inputSignUpPassword2');
+    const errorMessage = document.getElementById('inputSignUpPassword2Error');
+
+    if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
+        confirmPasswordInput.classList.add('error');
+        errorMessage.style.display = 'block';
+    } else {
+        confirmPasswordInput.classList.remove('error');
+        errorMessage.style.display = 'none';
+    }
+}
+
+// Hauptanmeldefunktion
+// Wird beim Absenden des Formulars aufgerufen, um alle Validierungen durchzuführen und den Benutzer zu erstellen.
+// Wenn alle Eingaben korrekt sind, wird der Benutzer gespeichert und zum nächsten Schritt weitergeleitet.
+async function handleSignUp(event) {
+    event.preventDefault(); // Verhindert das Formularabsenden
+
+    const usersArray = await loadUsers();
+    const emailField = document.getElementById("inputSignUpMail");
+    const passwordField = document.getElementById("inputSignUpPassword1");
+    const confirmPasswordField = document.getElementById("inputSignUpPassword2");
+    const acceptCheckbox = document.getElementById("checkboxAccept");
+
+    // Überprüfen ob der Benutzer die AGB akzeptiert hat
+    if (!acceptCheckbox.checked) {
+        displayErrorMessage("You must accept the terms of use", acceptCheckbox);
+        return;
     }
 
-    // Funktion für Name Validierung
-    function validateNameField() {
-        const nameInput = document.getElementById('inputSignUpName');
-        const errorMessage = document.getElementById('inputSignUpNameError');
-        // Nur Buchstaben und Leerzeichen sind erlaubt (keine Zahlen oder Sonderzeichen)
-        const namePattern = /^[A-Za-z\s]+$/;
-
-        if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
-            nameInput.classList.add('error');
-            errorMessage.style.display = 'block';
-        } else {
-            nameInput.classList.remove('error');
-            errorMessage.style.display = 'none';
-        }
+    // Überprüfen der E-Mail-Verfügbarkeit
+    if (!checkEmailAvailability(usersArray, emailField.value)) {
+        displayErrorMessage("Email is already registered", emailField);
+        return;
     }
 
-    // Funktion für Passwort Validierung
-    function validatePasswordField() {
-        const passwordInput = document.getElementById('inputSignUpPassword1');
-        const errorMessage = document.getElementById('inputSignUpPassword1Error');
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Mindestens 6 Zeichen, ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl
+    // Benutzerobjekt erstellen
+    let newUser = buildUserObject();
 
-        if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
-            passwordInput.classList.add('error');
-            errorMessage.style.display = 'block';
-        } else {
-            passwordInput.classList.remove('error');
-            errorMessage.style.display = 'none';
-        }
+    // Überprüfen des Passworts und der Bestätigung
+    if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
+        showSuccessMessage();
     }
+}
 
-    // Funktion für Passwort Bestätigung Validierung
-    function validateConfirmPasswordField() {
-        const passwordInput = document.getElementById('inputSignUpPassword1');
-        const confirmPasswordInput = document.getElementById('inputSignUpPassword2');
-        const errorMessage = document.getElementById('inputSignUpPassword2Error');
+// Überprüft, ob die angegebene E-Mail-Adresse bereits in der Benutzerdatenbank vorhanden ist.
+async function checkEmailAvailability(usersArray, email) {
+    return !usersArray.some((user) => user.mail === email);
+}
 
-        if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
-            confirmPasswordInput.classList.add('error');
-            errorMessage.style.display = 'block';
-        } else {
-            confirmPasswordInput.classList.remove('error');
-            errorMessage.style.display = 'none';
-        }
+// Verifiziert, dass die Passwörter übereinstimmen und speichert die Benutzerdaten, falls dies der Fall ist.
+// Gibt eine Fehlermeldung aus, wenn die Passwörter nicht übereinstimmen.
+async function verifyPassword(user, passwordField, confirmPasswordField) {
+    const password = passwordField.value.trim();
+    const confirmPassword = confirmPasswordField.value.trim();
+
+    if (!password || !confirmPassword) {
+        displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
+        return false;
     }
-
-    // Hauptanmeldefunktion
-    async function handleSignUp(event) {
-        event.preventDefault(); // Verhindert das Formularabsenden
-
-        const usersArray = await loadUsers();
-        const emailField = document.getElementById("inputSignUpMail");
-        const passwordField = document.getElementById("inputSignUpPassword1");
-        const confirmPasswordField = document.getElementById("inputSignUpPassword2");
-        const acceptCheckbox = document.getElementById("checkboxAccept");
-        const errorDisplay = document.getElementById("passwordIncorrect");
-
-        // Überprüfen ob der Benutzer die AGB akzeptiert hat
-        if (!acceptCheckbox.checked) {
-            displayErrorMessage("You must accept the terms of use", acceptCheckbox);
-            return;
-        }
-
-        // Überprüfen der E-Mail-Verfügbarkeit
-        if (!checkEmailAvailability(usersArray, emailField.value)) {
-            displayErrorMessage("Email is already registered", emailField);
-            return;
-        }
-
-        // Benutzerobjekt erstellen
-        let newUser = buildUserObject();
-
-        // Überprüfen des Passworts und der Bestätigung
-        if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
-            showSuccessMessage();
-        }
+    if (password === confirmPassword) {
+        await submitData("users", user); // Daten speichern
+        return true;
+    } else {
+        displayErrorMessage("Passwords do not match", confirmPasswordField);
+        return false;
     }
+}
 
-    async function checkEmailAvailability(usersArray, email) {
-        return !usersArray.some((user) => user.mail === email);
+// Lädt die Benutzerdaten von einem Server oder einer Datenquelle und gibt sie als Array zurück.
+async function loadUsers() {
+    let usersArray = [];
+    let usersData = await fetchData("users");
+    for (let [userID, userData] of Object.entries(usersData || {})) {
+        userData.id = userID;
+        usersArray.push(userData);
     }
+    return usersArray;
+}
 
-    async function verifyPassword(user, passwordField, confirmPasswordField) {
-        const password = passwordField.value.trim();
-        const confirmPassword = confirmPasswordField.value.trim();
+// Zeigt eine Fehlermeldung an, wenn eine Eingabe nicht den Erwartungen entspricht.
+function displayErrorMessage(message, targetElement) {
+    let errorElement = document.getElementById("passwordIncorrect");
+    errorElement.classList.remove("d-none");
+    errorElement.innerText = message;
+    targetElement.style.border = "2px solid red";
+}
 
-        if (!password || !confirmPassword) {
-            displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
-            return false;
-        }
-        if (password === confirmPassword) {
-            await submitData("users", user);
-            return true;
-        } else {
-            displayErrorMessage("Passwords do not match", confirmPasswordField);
-            return false;
-        }
-    }
+// Baut das Benutzerobjekt mit den Formulardaten.
+function buildUserObject() {
+    let name = document.getElementById("inputSignUpName").value;
+    let email = document.getElementById("inputSignUpMail").value;
+    let password = document.getElementById("inputSignUpPassword1").value;
+    return { name, initials: getInitials(name), password, mail: email };
+}
 
-    async function loadUsers() {
-        let usersArray = [];
-        let usersData = await fetchData("users");
-        for (let [userID, userData] of Object.entries(usersData || {})) {
-            userData.id = userID;
-            usersArray.push(userData);
-        }
-        return usersArray;
-    }
+// Zeigt eine Erfolgsmeldung an, wenn der Benutzer erfolgreich registriert wurde.
+function showSuccessMessage() {
+    document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
+    setTimeout(() => {
+        window.location.href = "./index.html"; // Weiterleitung zur Startseite nach 1.5 Sekunden
+    }, 1500);
+}
 
-    function displayErrorMessage(message, targetElement) {
-        let errorElement = document.getElementById("passwordIncorrect");
-        errorElement.classList.remove("d-none");
-        errorElement.innerText = message;
-        targetElement.style.border = "2px solid red";
-    }
+// Erzeugt Initialen aus dem Benutzernamen (z.B. "Max Mustermann" => "MM").
+function getInitials(name) {
+    return name
+        .split(" ")
+        .filter(Boolean)
+        .map((word) => word[0].toUpperCase())
+        .join("");
+}
 
-    function buildUserObject() {
-        let name = document.getElementById("inputSignUpName").value;
-        let email = document.getElementById("inputSignUpMail").value;
-        let password = document.getElementById("inputSignUpPassword1").value;
-        return { name, initials: getInitials(name), password, mail: email };
-    }
-
-    function showSuccessMessage() {
-        document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
-        setTimeout(() => {
-            window.location.href = "./index.html";
-        }, 1500);
-    }
-
-    function getInitials(name) {
-        return name
-            .split(" ")
-            .filter(Boolean)
-            .map((word) => word[0].toUpperCase())
-            .join("");
-    }
     </script>
 
 </body>
