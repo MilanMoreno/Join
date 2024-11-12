@@ -98,38 +98,6 @@ function hideModal(bgPopUp, popUp, header) {
 }
 
 /**
- * Adds event listeners to input elements to update submit button state on input changes.
- */
-
-// document.addEventListener('DOMContentLoaded', function() {
-
-//     document.getElementById('name').addEventListener('input', updateSubmitButtonState);
-//     document.getElementById('email').addEventListener('input', updateSubmitButtonState);
-//     document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
-// });
-
-// /**
-//  * Adds event listeners to input elements in the edit form to update the submit button state.
-//  */
-// document.addEventListener('DOMContentLoaded', function() {
-    
-//     document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
-//     document.getElementById('email').addEventListener('input', updateeditSubmitButtonState);
-//     document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
-// });
-
-/**
- * Updates the state of the submit button based on input validation.
- */
-// function updateeditSubmitButtonState() {
-//     const nameValid = validateName(document.getElementById('name').value);
-//     const emailValid = validateEmail(document.getElementById('email').value);
-//     const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
-//     const submitButton = document.getElementById('createSubmit');
-//     submitButton.disabled = !(nameValid && emailValid && phoneValid);
-// }
-
-/**
  * Displays an error message for a specific element.
  * 
  * @param {string} errorElementId - The ID of the error message element.
@@ -162,17 +130,6 @@ function resetErrorMessages() {
         element.style.display = 'none';
     });
 }
-
-/**
- * Updates the state of the submit button based on input validation for creating a new contact.
- */
-// function updateSubmitButtonState() {
-//     const nameValid = validateName(document.getElementById('name').value);
-//     const emailValid = validateEmail(document.getElementById('email').value);
-//     const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
-//     const submitButton = document.getElementById('createSubmit');
-//     submitButton.disabled = !(nameValid && emailValid && phoneValid);
-// }
 
 /**
  * Checks if all fields in the edit form contain values and updates the state of the submit button.

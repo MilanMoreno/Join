@@ -26,3 +26,11 @@ function handleOutsideClick(event) {
     document.removeEventListener("click", handleOutsideClick);
   }
 }
+
+/**
+ * This function logout the user.
+ */
+function logout(){
+  localStorage.removeItem('user');
+  window.location.href = 'index.html';  
+}
