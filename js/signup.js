@@ -88,8 +88,8 @@ function guestLogin() {
 
 async function login() {
   const usersArray = await loadUsers();
-  let email = document.getElementById("inputEmailLogIn").value;
-  let password = document.getElementById("inputPasswordLogIn").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
   let matchedUser = usersArray.find(
     (user) => user.mail === email && user.password === password
   );
@@ -106,8 +106,8 @@ async function login() {
 
 function handleLogin(event) {
   event.preventDefault();
-  const emailInput = document.getElementById("inputEmailLogIn").value;
-  const passwordInput = document.getElementById("inputPasswordLogIn").value;
+  const emailInput = document.getElementById("email").value;
+  const passwordInput = document.getElementById("password").value;
   loginUser(emailInput, passwordInput);
 }
 
