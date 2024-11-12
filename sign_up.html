@@ -33,7 +33,26 @@
                 <div class="text-line"></div>
             </div>
 
-
+<!----
+            <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
+                <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
+                <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
+            
+                <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
+                <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
+            
+                <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
+                <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters, and contain at least one uppercase letter, one lowercase letter, and one number.</div>
+            
+                <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
+                <div id="inputSignUpPassword2Error" class="error-message">Passwords do not match.</div>
+            
+                <div class="checkbox-signup">
+                    <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
+                    <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
+                </div>
+                <button type="submit" class="btn-small cp">Sign up</button>
+            </form>-->
             <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
                 <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
                 <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
@@ -53,19 +72,7 @@
                 </div>
                 <button type="submit" class="btn-small cp">Sign up</button>
             </form>
-        <!--<form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
-            <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
-            <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
-            <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
-            <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
-            <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
-            <div id="passwordIncorrect" class="d-none"></div>
-            <div class="checkbox-signup">
-                <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
-                <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
-            </div>
-            <button type="submit" class="btn-small cp">Sign up</button>
-        </form>-->
+        
             
         </div>
         <div id="bgSignupSuccesfully" class="d-none dflex-c-c">
@@ -80,9 +87,8 @@
     </section>
 
     <script>
-
-     // E-Mail, Name und Passwort Validierung
-     document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
+    // E-Mail, Name und Passwort Validierung
+    document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
     document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
     document.getElementById('inputSignUpName').addEventListener('input', validateNameField);
     document.getElementById('inputSignUpName').addEventListener('blur', validateNameField);
@@ -154,53 +160,94 @@
 
     // Hauptanmeldefunktion
     async function handleSignUp(event) {
-        event.preventDefault(); // Verhindert die Formularabsendung
+        event.preventDefault(); // Verhindert das Formularabsenden
 
-        // Überprüfen der E-Mail, des Namens und der Passwörter erneut bei der Anmeldung
-        const emailInput = document.getElementById('inputSignUpMail');
-        const emailErrorMessage = document.getElementById('inputSignUpMailError');
-        const nameInput = document.getElementById('inputSignUpName');
-        const nameErrorMessage = document.getElementById('inputSignUpNameError');
-        const passwordInput = document.getElementById('inputSignUpPassword1');
-        const passwordErrorMessage = document.getElementById('inputSignUpPassword1Error');
-        const confirmPasswordInput = document.getElementById('inputSignUpPassword2');
-        const confirmPasswordErrorMessage = document.getElementById('inputSignUpPassword2Error');
+        const usersArray = await loadUsers();
+        const emailField = document.getElementById("inputSignUpMail");
+        const passwordField = document.getElementById("inputSignUpPassword1");
+        const confirmPasswordField = document.getElementById("inputSignUpPassword2");
+        const acceptCheckbox = document.getElementById("checkboxAccept");
+        const errorDisplay = document.getElementById("passwordIncorrect");
 
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const namePattern = /^[A-Za-z\s]+$/;
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Mindestens 6 Zeichen, ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl
-
-        // Überprüfen der E-Mail
-        if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
-            emailInput.classList.add('error');
-            emailErrorMessage.style.display = 'block';
-            return false; // Verhindert das Absenden des Formulars, wenn die E-Mail ungültig ist
+        // Überprüfen ob der Benutzer die AGB akzeptiert hat
+        if (!acceptCheckbox.checked) {
+            displayErrorMessage("You must accept the terms of use", acceptCheckbox);
+            return;
         }
 
-        // Überprüfen des Namens
-        if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
-            nameInput.classList.add('error');
-            nameErrorMessage.style.display = 'block';
-            return false; // Verhindert das Absenden des Formulars, wenn der Name ungültig ist
+        // Überprüfen der E-Mail-Verfügbarkeit
+        if (!checkEmailAvailability(usersArray, emailField.value)) {
+            displayErrorMessage("Email is already registered", emailField);
+            return;
         }
 
-        // Überprüfen des Passworts
-        if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
-            passwordInput.classList.add('error');
-            passwordErrorMessage.style.display = 'block';
-            return false; // Verhindert das Absenden des Formulars, wenn das Passwort ungültig ist
-        }
+        // Benutzerobjekt erstellen
+        let newUser = buildUserObject();
 
-        // Überprüfen der Passwortbestätigung
-        if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
-            confirmPasswordInput.classList.add('error');
-            confirmPasswordErrorMessage.style.display = 'block';
-            return false; // Verhindert das Absenden des Formulars, wenn die Passwörter nicht übereinstimmen
+        // Überprüfen des Passworts und der Bestätigung
+        if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
+            showSuccessMessage();
         }
+    }
 
-        // Validierung erfolgreich, Anmeldedaten weiterverarbeiten...
-        alert('Sign-up successful!');
-        return true;
+    async function checkEmailAvailability(usersArray, email) {
+        return !usersArray.some((user) => user.mail === email);
+    }
+
+    async function verifyPassword(user, passwordField, confirmPasswordField) {
+        const password = passwordField.value.trim();
+        const confirmPassword = confirmPasswordField.value.trim();
+
+        if (!password || !confirmPassword) {
+            displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
+            return false;
+        }
+        if (password === confirmPassword) {
+            await submitData("users", user);
+            return true;
+        } else {
+            displayErrorMessage("Passwords do not match", confirmPasswordField);
+            return false;
+        }
+    }
+
+    async function loadUsers() {
+        let usersArray = [];
+        let usersData = await fetchData("users");
+        for (let [userID, userData] of Object.entries(usersData || {})) {
+            userData.id = userID;
+            usersArray.push(userData);
+        }
+        return usersArray;
+    }
+
+    function displayErrorMessage(message, targetElement) {
+        let errorElement = document.getElementById("passwordIncorrect");
+        errorElement.classList.remove("d-none");
+        errorElement.innerText = message;
+        targetElement.style.border = "2px solid red";
+    }
+
+    function buildUserObject() {
+        let name = document.getElementById("inputSignUpName").value;
+        let email = document.getElementById("inputSignUpMail").value;
+        let password = document.getElementById("inputSignUpPassword1").value;
+        return { name, initials: getInitials(name), password, mail: email };
+    }
+
+    function showSuccessMessage() {
+        document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
+        setTimeout(() => {
+            window.location.href = "./index.html";
+        }, 1500);
+    }
+
+    function getInitials(name) {
+        return name
+            .split(" ")
+            .filter(Boolean)
+            .map((word) => word[0].toUpperCase())
+            .join("");
     }
     </script>
 
