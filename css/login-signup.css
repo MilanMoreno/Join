@@ -1,3 +1,37 @@
+.error-message {
+  color: red;
+  font-size: 14px;
+  display: none;
+}
+.inputfield.error {
+  border: 2px solid red;
+}
+
+.input-container {
+display: flex;
+flex-direction: column;
+gap: 16px;
+width: 100%;
+}
+
+.error-message {
+color: red;
+font-size: 14px;
+display: none; 
+margin-top: 5px; 
+
+}
+
+.inputfield.error {
+border: 2px solid red;
+}
+
+.error-message.show {
+display: block;
+visibility: visible; 
+}
+
+
 .d-none {
   display: none !important;
 }
