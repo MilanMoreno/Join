@@ -13,9 +13,9 @@
     function checklogin(){
       
         let login = checklocalstorage();
-        if (login === false){
-          document.getElementById("nav").classList.add("d-none");
-          document.getElementById("logout").classList.add("d-none");
+        if (login === true){
+          document.getElementById("nav").classList.remove("d-none");
+          document.getElementById("logout").classList.remove("d-none");
       }
     }
 
@@ -38,7 +38,7 @@
       <a href="summary.html">
         <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
     </a>
-      <nav id="nav">
+      <nav class="d-none" id="nav">
         <a id="link-summary" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
         <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
@@ -75,7 +75,7 @@
       <div class="headerDropdownOption">
         <a href="./legal_notice.html">Legal Notice</a>
         <a href="./privacy-police.html">Privacy Policy</a>
-        <a id="logout" onclick="logout()">Log out</a>
+        <a class="d-none" id="logout" onclick="logout()">Log out</a>
       </div>
     </section>
 </div>
@@ -633,11 +633,7 @@ function handleOutsideClick(event) {
 }
 </script>
 <script>
-  const user = JSON.parse(localStorage.getItem('user'));
   
-  if (!user) {
-    window.location.href = './index.html';
-  }
   
   function getInitials(name) {
     const nameParts = name.trim().split(' ');
