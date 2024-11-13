@@ -15,17 +15,17 @@
     <style> .error-message {
         color: red;
         font-size: 14px;
-        display: none;
+        height: 28px;
     }
     .inputfield.error {
-        border: 2px solid red;
+        border: 1px solid red!important;
     }
     
     /* Sicherstellen, dass der Platz für die Fehlermeldung reserviert wird */
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: unset!important;
     width: 100%;
 }
 
@@ -33,8 +33,7 @@
 .error-message {
     color: red;
     font-size: 14px;
-    display: none; /* Fehler sind standardmäßig ausgeblendet */
-    margin-top: 5px; /* Abstand zum Eingabefeld */
+    margin-bottom: 5px; /* Abstand zum Eingabefeld */
  
     
 }
@@ -66,22 +65,22 @@
             <form onsubmit="return handleSignUp(event)" class="input-container">
                 <div>
                     <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
-                    <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
+                    <div id="inputSignUpNameError" class="error-message"></div>
                 </div>
                 
                 <div>
                     <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
-                    <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
+                    <div id="inputSignUpMailError" class="error-message"></div>
                 </div>
                 
                 <div>
                     <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
-                    <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters, contain at least one <br>uppercase letter, one lowercase letter, and one number.</div>
+                    <div id="inputSignUpPassword1Error" class="error-message"></div>
                 </div>
                 
                 <div>
                     <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
-                    <div id="inputSignUpPassword2Error" class="error-message">Passwords do not match.</div>
+                    <div id="inputSignUpPassword2Error" class="error-message"></div>
                 </div>
             
                 <div class="checkbox-signup">
@@ -128,10 +127,12 @@ function validateEmailField() {
 
     if (emailInput.value.trim() === "" || !emailPattern.test(emailInput.value)) {
         emailInput.classList.add('error');
-        errorMessage.style.display = 'block';
+        errorMessage.innerHTML = "Please enter a valid email (e.g., example@domain.com).";
+        // style.display = 'block';
     } else {
         emailInput.classList.remove('error');
-        errorMessage.style.display = 'none';
+        errorMessage.innerHTML = ""
+        // style.display = 'none';
     }
 }
 
@@ -145,10 +146,10 @@ function validateNameField() {
 
     if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
         nameInput.classList.add('error');
-        errorMessage.style.display = 'block';
+        errorMessage.innerHTML = "Please enter a valid name (letters and spaces only).";
     } else {
         nameInput.classList.remove('error');
-        errorMessage.style.display = 'none';
+        errorMessage.innerHTML = ""
     }
 }
 
@@ -162,10 +163,10 @@ function validatePasswordField() {
 
     if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
         passwordInput.classList.add('error');
-        errorMessage.style.display = 'block';
+        errorMessage.innerHTML = "Password must be 6+ characters, with at least 1 uppercase,<br> 1 lowercase letter, and 1 number."
     } else {
         passwordInput.classList.remove('error');
-        errorMessage.style.display = 'none';
+        errorMessage.innerHTML = ""
     }
 }
 
@@ -179,10 +180,10 @@ function validateConfirmPasswordField() {
 
     if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
         confirmPasswordInput.classList.add('error');
-        errorMessage.style.display = 'block';
+        errorMessage.innerHTML = "Passwords do not match."
     } else {
         confirmPasswordInput.classList.remove('error');
-        errorMessage.style.display = 'none';
+        errorMessage.innerHTML = ""
     }
 }
 
