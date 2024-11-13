@@ -12,8 +12,22 @@
     <link rel="stylesheet" href="./assets/templates/font/inter400.woff2">
     <link rel="stylesheet" href="./assets/templates/font/inter700.woff2">
     <style type="text/css" id="operaUserStyle"></style>
+    <script>
+      function checklogin(){
+        
+          let login = checklocalstorage();
+          if (login === false){
+            document.getElementById("nav").classList.add("d-none");
+            document.getElementById("logout").classList.add("d-none");
+        }
+      }
+
+      function checklocalstorage(){
+        return localStorage.getItem('user') !== null;
+      }
+    </script>
   </head>
-  <body>
+  <body onload="checklogin()">
     <div w3-include-html="./assets/templates/side_menu.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +42,7 @@
       <a href="summary.html">
         <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
     </a>
-      <nav>
+      <nav id="nav">
         <a id="summary-link" href="./summary.html"><img src="./assets/img/icon_summary.svg" alt="Summary">Summary</a>
         <a id="task-link" href="./add_task.html"><img src="./assets/img/icon_addTask.svg" alt="addtask">Add Task</a>
         <a id="board-link" href="./board.html"><img src="./assets/img/icon_board.svg" alt="board">Board</a>
@@ -57,14 +71,14 @@
       <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
       <div class="header-right">
         <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
-        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
+        <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div></div></div>
       </div>
       </header>
     <section id="headerDropdownOption" class="d-noneHead">
       <div class="headerDropdownOption">
         <a href="./legal_notice.html">Legal Notice</a>
         <a href="./privacy-police.html">Privacy Policy</a>
-        <a onclick="logout()">Log out</a>
+        <a id="logout" onclick="logout()">Log out</a>
       </div>
     </section>
 </div>

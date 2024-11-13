@@ -276,17 +276,6 @@ function findContactInStoredData() {
 }
 
 /**
- * Scrolls to a newly added or selected contact in the list.
- */
-function scrollToNewContact() {
-    document.getElementById(currentEditKey).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-}
-
-
-/**
  * Validates which popup background to use based on the key.
  * 
  * @param {boolean} key - Indicator of which popup background to use.

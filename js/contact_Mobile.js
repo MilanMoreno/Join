@@ -160,7 +160,6 @@ function resetEditErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
     errorElements.forEach(element => {
         element.innerText = '';
-        element.style.display = 'none';
     });
 }
 
@@ -298,7 +297,6 @@ function applyNewContactHighlight() {
     currentEditKey = findContactInStoredData();
     showDetailedContact(currentEditKey);
     localStorage.removeItem('highlightKey');
-    scrollToNewContact();
 }
 
 /**

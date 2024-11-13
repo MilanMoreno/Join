@@ -23,49 +23,41 @@ function validateInput(variable, value) {
 
 
 /**
- * Modifies an existing contact, validates form inputs, and updates contact information.
+ * Modifies an existing contact, validates form inputs.
  * 
  * @param {Event} event - The form submit event.
  */
 async function modifyContact(event) {
     event.preventDefault();
-    let name = document.getElementById('editName').value;
-    let email = document.getElementById('editEmail').value;
-    let tel = document.getElementById('editTel').value;
     resetEditErrorMessages();
-
     let isValid = true;
+    if (validateEditField('editName')) {
+        isValid = false;}
+    if (validateEditField('editEmail')) {
+        isValid = false;}
+    if (validateEditField('editTel')) {
+        isValid = false;}
+    if (isValid) {editContact();}
+}
 
-    if (!validateName(name)) {
-        showErrorMessage('editNameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
-        isValid = false;
-    }
-    if (!validateEmail(email)) {
-        showErrorMessage('editEmailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
-        isValid = false;
-    }
-    if (!validatePhoneNumber(tel)) {
-        showErrorMessage('editPhoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
-        isValid = false;
-    }
-    if (isValid) {
-        let button = document.getElementById("editSubmit");
+
+/**
+ * This function updates contact information.
+ * 
+ */
+async function editContact() {
+    let button = document.getElementById("editSubmit");
         button.disabled = true;
         preventFormSubmit('update');
         contactList.length = 0;
         contactList.push(modifyContactDetails());
         const response = await fetch(`${BASE_URL}contact/${currentEditKey}.json`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(contactList[0]),
-        });
+            method: "PUT", headers: {"content-type": "application/json",},
+            body: JSON.stringify(contactList[0]),});
         openClosePopUp('close', key = true);
         await fetchData();
         updateDetail();
-    }
-
+        button.disabled = false;
 }
 
 /**
