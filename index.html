@@ -55,88 +55,115 @@
     <script src="js/signup.js"></script>
     <script>
 
-    // Fügt einen Event-Listener für alle Eingabefelder hinzu, um Fehleranzeige zu entfernen, wenn der Benutzer tippt
-    // Der 'DOMContentLoaded' Event stellt sicher, dass der Code erst ausgeführt wird, wenn die gesamte HTML-Struktur geladen ist.
-    document.addEventListener('DOMContentLoaded', function () {
-        const inputs = document.querySelectorAll('.inputfield'); // Wählt alle Eingabefelder mit der Klasse 'inputfield'
-        inputs.forEach(input => {
-            input.addEventListener('input', removeErrorStyling); // Bei Eingabe wird die Funktion 'removeErrorStyling' aufgerufen
-        });
+ /**
+ * Adds event listeners to input fields for removing error styling when the user types.
+ * The 'DOMContentLoaded' event ensures the code runs only after the entire HTML structure is loaded.
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    const inputs = document.querySelectorAll('.inputfield'); // Selects all input fields with the class 'inputfield'
+    inputs.forEach(input => {
+        input.addEventListener('input', removeErrorStyling); // On input, calls 'removeErrorStyling' function
     });
-    
-    /**
-     * Entfernt die roten Fehlerstile und versteckt die Fehlermeldung, wenn der Benutzer Text eingibt.
-     * Diese Funktion wird aufgerufen, wenn der Benutzer in ein Eingabefeld schreibt.
-     * @param {Event} event - Das Eingabeereignis des Benutzers.
-     */
-    function removeErrorStyling(event) {
-        const inputField = event.target; // Das Eingabefeld, das das Ereignis ausgelöst hat
-        inputField.classList.remove('error'); // Entfernt die 'error'-Klasse, um das rote Rand-Styling zu löschen.
-        
-        const errorElement = document.getElementById(`${inputField.id}Error`); // Sucht nach dem Fehlertext-Element, das dem Eingabefeld zugeordnet ist.
-        if (errorElement) {
-            errorElement.innerText = ''; // Setzt die Fehlermeldung zurück.
-            errorElement.style.display = 'none'; // Versteckt das Fehler-Element.
-        }
+});
+
+/**
+ * Removes the red error styling and hides the error message when the user types in an input field.
+ * 
+ * @param {Event} event - The input event triggered by the user in the input field.
+ */
+function removeErrorStyling(event) {
+    const inputField = event.target; // The input field that triggered the event
+    inputField.classList.remove('error'); // Removes the 'error' class to clear the red border styling.
+
+    const errorElement = document.getElementById(`${inputField.id}Error`); // Finds the associated error message element.
+    if (errorElement) {
+        errorElement.innerText = ''; // Resets the error message.
+        errorElement.style.display = 'none'; // Hides the error message element.
     }
-    
-    // Zeigt eine Fehlermeldung an, wenn das Eingabefeld ungültige Daten enthält
-    // Diese Funktion wird aufgerufen, wenn ein Fehler für ein Eingabefeld angezeigt werden soll.
-    function showErrorMessage(errorElementId, message) {
-        const errorElement = document.getElementById(errorElementId); // Sucht das Fehler-Element basierend auf der ID
-        errorElement.innerText = message; // Setzt die Fehlermeldung
-        errorElement.style.color = 'red'; // Stellt sicher, dass der Text rot ist, um ihn hervorzuheben
-        errorElement.style.display = 'block'; // Zeigt das Fehler-Element an
+}
+
+/**
+ * Displays an error message when an input field contains invalid data.
+ * 
+ * @param {string} errorElementId - The ID of the error element to display the message.
+ * @param {string} message - The error message to display.
+ */
+function showErrorMessage(errorElementId, message) {
+    const errorElement = document.getElementById(errorElementId); // Finds the error element based on its ID
+    errorElement.innerText = message; // Sets the error message
+    errorElement.style.color = 'red'; // Ensures the text is red to highlight the error
+    errorElement.style.display = 'block'; // Displays the error element
+}
+
+/**
+ * Hides the error message for a specific error element.
+ * 
+ * @param {string} errorElementId - The ID of the error element to hide.
+ */
+function hideErrorMessage(errorElementId) {
+    const errorElement = document.getElementById(errorElementId); // Finds the error element based on its ID
+    errorElement.innerText = ''; // Removes the error message
+}
+
+/**
+ * Validates the user input based on the field type (e.g., 'email' or 'password').
+ * 
+ * @param {string} variable - The type of input to validate (e.g., 'email' or 'password').
+ * @param {string} value - The value entered by the user.
+ * @returns {boolean} True if the input is valid, otherwise false.
+ */
+function validateInput(variable, value) {
+    if (variable === "email") {
+        // Validates if the email address is in the correct format
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        return emailPattern.test(value); // Returns true if the email is valid
     }
-    
-    // Versteckt die Fehlermeldung für das angegebene Fehler-Element
-    // Diese Funktion wird aufgerufen, wenn der Fehler entfernt werden soll.
-    function hideErrorMessage(errorElementId) {
-        const errorElement = document.getElementById(errorElementId); // Sucht das Fehler-Element basierend auf der ID
-        errorElement.innerText = ''; // Entfernt die Fehlermeldung
+    if (variable === "password") {
+        return validatePassword(value); // Validates the password using its own function
     }
-    
-    // Überprüft die Eingabe eines Benutzers, basierend auf dem Typ der Variable (z.B. 'email' oder 'password')
-    // Diese Funktion wird für jedes Eingabefeld aufgerufen, um die Gültigkeit zu prüfen.
-    function validateInput(variable, value) {
-        if (variable === "email") {
-            // Überprüft, ob die E-Mail-Adresse im richtigen Format ist
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-            return emailPattern.test(value); // Gibt true zurück, wenn die E-Mail gültig ist
-        }
-        if (variable === "password") {
-            return validatePassword(value); // Validiert das Passwort mit einer eigenen Funktion
-        }
-        return false; // Gibt false zurück, wenn kein unterstützter Wert übergeben wurde
+    return false; // Returns false if an unsupported variable type is provided
+}
+
+/**
+ * Validates the password based on certain criteria (at least 8 characters, uppercase letters, lowercase letters, numbers, and special characters).
+ * 
+ * @param {string} password - The password to validate.
+ * @returns {boolean} True if the password meets the criteria, otherwise false.
+ */
+function validatePassword(password) {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(password); // Returns true if the password matches the criteria
+}
+
+/**
+ * Checks the input field for errors and displays an error message if the input is invalid.
+ * 
+ * @param {string} fieldID - The ID of the input field to validate.
+ */
+function validateEditField(fieldID) {
+    let errorText = checkErrorText(fieldID); // Gets the appropriate error text for the field
+
+    if (!validateInput(fieldID, document.getElementById(fieldID).value)) {
+        showErrorMessage(`${fieldID}Error`, `${errorText}`); // Shows the error message if the input is invalid
+    } else {
+        hideErrorMessage(`${fieldID}Error`); // Hides the error message if the input is valid
     }
-    
-    // Validiert das Passwort anhand von bestimmten Kriterien (mindestens 8 Zeichen, Großbuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen)
-    function validatePassword(password) {
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return passwordPattern.test(password); // Gibt true zurück, wenn das Passwort den Kriterien entspricht
+}
+
+/**
+ * Returns the error text to display for the specified field.
+ * 
+ * @param {string} fieldID - The ID of the field to check for error text.
+ * @returns {string} The error message to display for the field.
+ */
+function checkErrorText(fieldID) {
+    if (fieldID === "email") {
+        return "Email or password is not correct! "; // Error text for invalid email
+    } else if (fieldID === "password") {
+        return "Email or password is not correct!."; // Error text for invalid password
     }
-    
-    // Überprüft das Eingabefeld auf Fehler und zeigt eine Fehlermeldung an, falls die Eingabe ungültig ist
-    // Diese Funktion wird für jedes Eingabefeld aufgerufen, um die Eingabe zu validieren und die Fehler anzuzeigen.
-    function validateEditField(fieldID) {
-        let errottext = checkErrorText(fieldID); // Holt den passenden Fehlertext für das Feld
-    
-        if (!validateInput(fieldID, document.getElementById(fieldID).value)) {
-            showErrorMessage(`${fieldID}Error`, `${errottext}`); // Zeigt die Fehlermeldung an
-        } else {
-            hideErrorMessage(`${fieldID}Error`); // Versteckt die Fehlermeldung, wenn die Eingabe korrekt ist
-        }
-    }
-    
-    // Gibt den Fehlertext zurück, der für das jeweilige Eingabefeld angezeigt werden soll
-    // Diese Funktion wird aufgerufen, um spezifische Fehlermeldungen für E-Mail und Passwort zu definieren.
-    function checkErrorText(fieldID) {
-        if (fieldID === "email") {
-            return "Email or password is not correct! "; // Fehlertext für ungültige E-Mail
-        } else if (fieldID === "password") {
-            return "Email or password is not correct! ."; // Fehlertext für ungültiges Passwort
-        }
-    }
+}
+
 </script>
 
 </body>

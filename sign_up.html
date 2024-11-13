@@ -40,7 +40,7 @@
                 
                 <div>
                     <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
-                    <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters, contain at least one <br>uppercase letter, one lowercase letter, and one number.</div>
+                    <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 4 characters</div>
                 </div>
                 
                 <div>
@@ -121,13 +121,14 @@ function validateNameField() {
 
 /**
  * Validates the password input field to ensure it meets security requirements:
- * at least 6 characters long, contains a lowercase letter, an uppercase letter, and a number.
+ * at least 4 characters long, contains a  letter, or a number.
  * Displays an error message if the password doesn't meet the requirements.
  */
-function validatePasswordField() {
+ function validatePasswordField() {
     const passwordInput = document.getElementById('inputSignUpPassword1');
     const errorMessage = document.getElementById('inputSignUpPassword1Error');
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; 
+  
+    const passwordPattern = /^(?=.*[a-zA-Z]|\d).{4,}$/; 
 
     if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
         passwordInput.classList.add('error');
@@ -137,6 +138,7 @@ function validatePasswordField() {
         errorMessage.style.display = 'none';
     }
 }
+
 
 /**
  * Validates the confirmation password input field to ensure it matches the first password input.
