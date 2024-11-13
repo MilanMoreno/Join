@@ -154,17 +154,20 @@ async function login() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let matchedUser = usersArray.find(
-    (user) => user.mail === email && user.password === password // Find matching user
+    (user) => user.mail === email && user.password === password
   );
   if (matchedUser) {
-    localStorage.setItem("user", JSON.stringify(matchedUser)); // Save user to LocalStorage
-    window.location.href = "./summary.html"; // Redirect to summary page
+    localStorage.setItem("user", JSON.stringify(matchedUser)); 
+    window.location.href = "./summary.html";
   } else {
-    displayErrorMessage(
-      "E-Mail or password are incorrect", // Display error message
-      document.getElementById("Loginerror")
+    displayErrorMessageLogin(
+      "E-Mail or password are incorrect",
     );
   }
+}
+
+function displayErrorMessageLogin(massage){
+  document.getElementById("passwordError").innerHTML = massage
 }
 
 /**
@@ -239,3 +242,4 @@ function showLoginErrorMessage(message) {
   loginErrorElement.classList.remove("d-none"); // Show error
   loginErrorElement.innerHTML = message; // Set error message
 }
+

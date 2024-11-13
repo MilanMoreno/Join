@@ -13,6 +13,10 @@
     <script src="./js/signup.js"></script>
     <script src="./js/contactsfirebase.js"></script>
     <style> 
+    button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
 </style>
 </head>
 <body>
@@ -41,7 +45,7 @@
                 <div>
                     <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
                    
-                    <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 4 characters</div>
+                    <div id="inputSignUpPassword1Error" class="error-message"></div>
                 </div>
                 
                 <div>
@@ -54,7 +58,7 @@
                     <span>I accept the <a href="./privacy-policy.html">Privacy policy</a></span>
                 </div>
             
-                <button type="submit" class="btn-small cp">Sign up</button>
+                <button type="submit" class="btn-small cp" id="signupButton" disabled>Sign up</button>
             </form>
         
             
@@ -135,7 +139,7 @@ function validateNameField() {
 
     if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
         passwordInput.classList.add('error');
-        errorMessage.innerHTML = "Password must be 6+ characters, with at least 1 uppercase,<br> 1 lowercase letter, and 1 number."
+        errorMessage.innerHTML = "Password must be 4+ characters"
     } else {
         passwordInput.classList.remove('error');
         errorMessage.innerHTML = ""
@@ -322,8 +326,29 @@ function hideError(inputId, errorId) {
     const inputElement = document.getElementById(inputId);
     const errorMessage = document.getElementById(errorId);
 
-    inputElement.classList.remove('error'); // Fehlerklasse entfernen
-    errorMessage.classList.remove('show');  // Fehlernachricht ausblenden
+    inputElement.classList.remove('error'); 
+    errorMessage.classList.remove('show');  
+}
+
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', toggleSubmitButton);
+  input.addEventListener('blur', toggleSubmitButton);
+});
+
+document.getElementById('checkboxAccept').addEventListener('change', toggleSubmitButton);
+
+
+function toggleSubmitButton() {
+  const nameValid = document.getElementById('inputSignUpName').value.trim() !== "";
+  const emailValid = document.getElementById('inputSignUpMail').value.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('inputSignUpMail').value);
+  const passwordValid = document.getElementById('inputSignUpPassword1').value.trim().length >= 4;
+  const passwordMatch = document.getElementById('inputSignUpPassword1').value === document.getElementById('inputSignUpPassword2').value;
+  const termsAccepted = document.getElementById('checkboxAccept').checked;
+
+  const isFormValid = nameValid && emailValid && passwordValid && passwordMatch && termsAccepted;
+
+  const signupButton = document.getElementById('signupButton');
+  signupButton.disabled = !isFormValid;
 }
 
     </script>
