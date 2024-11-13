@@ -98,6 +98,38 @@ function hideModal(bgPopUp, popUp, header) {
 }
 
 /**
+ * Adds event listeners to input elements to update submit button state on input changes.
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    document.getElementById('name').addEventListener('input', updateSubmitButtonState);
+    document.getElementById('email').addEventListener('input', updateSubmitButtonState);
+    document.getElementById('tel').addEventListener('input', updateSubmitButtonState);
+});
+
+/**
+ * Adds event listeners to input elements in the edit form to update the submit button state.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    
+    document.getElementById('name').addEventListener('input', updateeditSubmitButtonState);
+    document.getElementById('email').addEventListener('input', updateeditSubmitButtonState);
+    document.getElementById('tel').addEventListener('input', updateeditSubmitButtonState);
+});
+
+/**
+ * Updates the state of the submit button based on input validation.
+ */
+function updateeditSubmitButtonState() {
+    const nameValid = validateName(document.getElementById('name').value);
+    const emailValid = validateEmail(document.getElementById('email').value);
+    const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
+    const submitButton = document.getElementById('createSubmit');
+    submitButton.disabled = !(nameValid && emailValid && phoneValid);
+}
+
+/**
  * Displays an error message for a specific element.
  * 
  * @param {string} errorElementId - The ID of the error message element.
@@ -129,6 +161,17 @@ function resetErrorMessages() {
         element.innerText = '';
         element.style.display = 'none';
     });
+}
+
+/**
+ * Updates the state of the submit button based on input validation for creating a new contact.
+ */
+function updateSubmitButtonState() {
+    const nameValid = validateName(document.getElementById('name').value);
+    const emailValid = validateEmail(document.getElementById('email').value);
+    const phoneValid = validatePhoneNumber(document.getElementById('tel').value);
+    const submitButton = document.getElementById('createSubmit');
+    submitButton.disabled = !(nameValid && emailValid && phoneValid);
 }
 
 /**
@@ -165,7 +208,7 @@ function resetEditErrorMessages() {
 }
 
 /**
- * Creates a new contact.
+ * Creates a new contact, validates form inputs, and adds contact to the list if valid.
  * 
  * @param {Event} event - The form submit event.
  */
@@ -176,23 +219,31 @@ function createNewContact(event) {
     let tel = document.getElementById('tel').value;
      resetErrorMessages();
     let isValid = true;
-    pushCreateNewContact(name, email, tel, isValid)
-}
 
-/**
- * This function adds contact to the list if valid.
- * 
- * @param {*} name 
- * @param {*} email 
- * @param {*} tel 
- * @param {*} isValid 
- */
-function pushCreateNewContact(name, email, tel, isValid){
+    if (!validateName(name)) {
+        showErrorMessage('nameError', "Bitte geben Sie einen gültigen Namen ein (mindestens 2 Buchstaben, keine Zahlen).");
+        isValid = false;
+    }
+    if (!validateEmail(email)) {
+        showErrorMessage('emailError', "Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. beispiel@domain.com).");
+        isValid = false;
+    }
+
+    if (!validatePhoneNumber(tel)) {
+        showErrorMessage('phoneError', "Bitte geben Sie eine gültige Telefonnummer ein (mit + und nur Zahlen).");
+        isValid = false;
+    }
+
     if (isValid) {
         let button = document.getElementById("createSubmit");
         button.disabled = true;
         const nextColor = selectNextColor();
-        let data = {'name': name, 'email': email, 'telefonnummer': tel, 'color': nextColor};
+        let data = {
+            'name': name,
+            'email': email,
+            'telefonnummer': tel,
+            'color': nextColor
+        };
         contactList.push(data);
         submitContact('contact');
         openClosePopUp('close');

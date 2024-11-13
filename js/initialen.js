@@ -3,13 +3,6 @@ if (!user) {
   window.location.href = "./index.html";
 }
 
-
-/**
- * This function generate initials.
- * 
- * @param {*} name 
- * @returns 
- */
 function getInitials(name) {
   const nameParts = name.trim().split(" ");
   if (nameParts.length === 1) {

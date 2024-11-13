@@ -88,7 +88,7 @@
         <div class="headerDropdownOption">
           <a href="./legal_notice.html">Legal Notice</a>
           <a href="./privacy-police.html">Privacy Policy</a>
-          <a onclick="logout()">Log out</a>
+          <a href="./index.html">Log out</a>
         </div>
       </section>
     </div>
@@ -159,15 +159,15 @@
       <div class="contact_input">
         <form class="form" id="addContactForm" onsubmit="createNewContact(event)">
       
-          <input id="name" placeholder="Name" type="text" onblur="validateEditField('name')" oninput="checkFormFields2()">
+          <input id="name" placeholder="Name" type="text" onblur="validateNameFieldBlur()" oninput="checkFormFields2()">
           <div id="nameError" class="error-message"></div>
           
        
-          <input id="email" placeholder="Email" type="email" onblur="validateEditField('email')" oninput="checkFormFields2()">
+          <input id="email" placeholder="Email" type="email" onblur="validateEmailFieldBlur()" oninput="checkFormFields2()">
           <div id="emailError" class="error-message"></div>
 
-          <input type="tel" id="tel" placeholder="Phone" onblur="validateEditField('tel')" oninput="checkFormFields2()">
-          <div id="telError" class="error-message"></div>
+          <input type="tel" id="tel" placeholder="Phone" onblur="validatePhoneFieldBlur()" oninput="checkFormFields2()">
+          <div id="phoneError" class="error-message"></div>
 
           <div class="contact_button">
             <button type="button" onclick="openClosePopUp('close')" class="cancel-Button">Cancel</button>
@@ -200,14 +200,14 @@
 
 
                 <form class="form" id="editContactForm" onsubmit="modifyContact(event)">
-                  <input id="editName" placeholder="Name" type="text" onblur="validateEditField('editName')" oninput="checkFormFields()">
+                  <input id="editName" placeholder="Name" type="text" onblur="validateEditNameFieldBlur()" oninput="checkFormFields()">
                   <div id="editNameError" class="error-message"></div>
               
-                  <input id="editEmail" placeholder="Email" type="email" onblur="validateEditField('editEmail')" oninput="checkFormFields()">
+                  <input id="editEmail" placeholder="Email" type="email" onblur="validateEditEmailFieldBlur()" oninput="checkFormFields()">
                   <div id="editEmailError" class="error-message"></div>
               
-                  <input id="editTel" placeholder="Phone" type="tel" onblur="validateEditField('editTel')" oninput="checkFormFields()">
-                  <div id="editTelError" class="error-message"></div>
+                  <input id="editTel" placeholder="Phone" type="tel" onblur="validateEditPhoneFieldBlur()" oninput="checkFormFields()">
+                  <div id="editPhoneError" class="error-message"></div>
               
                   <div class="contact_button">
                       <button onclick="removeContact('contact', keyForEdit)" type="button" class="cancel-Button">
