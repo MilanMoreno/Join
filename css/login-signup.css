@@ -1,3 +1,27 @@
+.inputfield.error {
+  border: 1px solid red;
+}
+
+.input-container {
+display: flex;
+flex-direction: column;
+width: 100%;
+}
+
+.error-message {
+color: red;
+font-size: 14px; 
+margin-bottom: 5px; 
+height: 28px;
+}
+
+
+.error-message.show {
+display: block;
+visibility: visible; 
+}
+
+
 .d-none {
   display: none !important;
 }
@@ -107,6 +131,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-bottom: 28px;
 }
 
 .checkbox-signup a {
@@ -144,9 +169,6 @@ input[type="password"]:focus {
   background-image: none;
 }
 
-.input-container {
-  gap: 16px;
-}
 
 .footer-link {
   gap: 35px;
