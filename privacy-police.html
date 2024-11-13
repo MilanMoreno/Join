@@ -633,7 +633,7 @@ function handleOutsideClick(event) {
 }
 </script>
 <script>
-  
+  const user = JSON.parse(localStorage.getItem('user'));
   
   function getInitials(name) {
     const nameParts = name.trim().split(' ');

@@ -70,8 +70,6 @@
 .left-summary-area h2 {
   font-size: clamp(2.25rem, 2.025rem + 1.125vw, 3.375rem);
   font-weight: 600;
-  border-right: unset!important;
-  padding-right: unset!important;
 }
 
 .left-summary-area p {
