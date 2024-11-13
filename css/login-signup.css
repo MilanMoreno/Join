@@ -70,7 +70,7 @@ a {
 .signup-mask {
   position: relative;
   padding: 48px 88px;
-  gap: 32px;
+  gap: 0px;
   border-radius: 30px;
   background-color: var(--white);
 }

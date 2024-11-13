@@ -194,3 +194,7 @@ function showLoginErrorMessage(message) {
   loginErrorElement.classList.remove("d-none"); // Fehler anzeigen
   loginErrorElement.innerHTML = message; // Fehlermeldung setzen
 }
+
+
+
+

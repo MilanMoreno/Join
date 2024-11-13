@@ -19,7 +19,37 @@
     }
     .inputfield.error {
         border: 2px solid red;
-    }</style>
+    }
+    
+    /* Sicherstellen, dass der Platz für die Fehlermeldung reserviert wird */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Fehlermeldungen immer sichtbar im Layout, aber standardmäßig ausgeblendet */
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none; /* Fehler sind standardmäßig ausgeblendet */
+    margin-top: 5px; /* Abstand zum Eingabefeld */
+ 
+    
+}
+
+/* Die Fehlerklasse für die Eingabefelder */
+.inputfield.error {
+    border: 2px solid red;
+}
+
+/* Optional: Wenn der Fehler angezeigt wird, wird visibility geändert */
+.error-message.show {
+    display: block;
+    visibility: visible; /* Macht die Fehlermeldung sichtbar, aber sie bleibt im Layout reserviert */
+}
+</style>
 </head>
 <body>
     <img class="logo-end" src="imgs/join_logo_dark.png" alt="join-logo">
@@ -33,23 +63,32 @@
                 <div class="text-line"></div>
             </div>
 
-            <form onsubmit="return handleSignUp(event)" class="input-container dflex-c-c column">
-                <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
-                <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
-            
-                <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
-                <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
-            
-                <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
-                <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters,contain at least<br> one uppercase letter, one lowercase letter, and one number.</div>
-            
-                <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
-                <div id="inputSignUpPassword2Error" class="error-message">Passwords do not match.</div>
+            <form onsubmit="return handleSignUp(event)" class="input-container">
+                <div>
+                    <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
+                    <div id="inputSignUpNameError" class="error-message">Please enter a valid name (letters and spaces only).</div>
+                </div>
+                
+                <div>
+                    <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
+                    <div id="inputSignUpMailError" class="error-message">Please enter a valid email (e.g., example@domain.com).</div>
+                </div>
+                
+                <div>
+                    <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
+                    <div id="inputSignUpPassword1Error" class="error-message">Password must be at least 6 characters, contain at least one <br>uppercase letter, one lowercase letter, and one number.</div>
+                </div>
+                
+                <div>
+                    <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
+                    <div id="inputSignUpPassword2Error" class="error-message">Passwords do not match.</div>
+                </div>
             
                 <div class="checkbox-signup">
                     <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
-                    <span>I accept the <a href="./privacy-police.html">Privacy policy</a></span>
+                    <span>I accept the <a href="./privacy-policy.html">Privacy policy</a></span>
                 </div>
+            
                 <button type="submit" class="btn-small cp">Sign up</button>
             </form>
         
@@ -246,6 +285,21 @@ function getInitials(name) {
         .filter(Boolean)
         .map((word) => word[0].toUpperCase())
         .join("");
+}
+function showError(inputId, errorId) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+
+    inputElement.classList.add('error');  // Fehlerklasse hinzufügen
+    errorMessage.classList.add('show');   // Fehlernachricht sichtbar machen
+}
+
+function hideError(inputId, errorId) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+
+    inputElement.classList.remove('error'); // Fehlerklasse entfernen
+    errorMessage.classList.remove('show');  // Fehlernachricht ausblenden
 }
 
     </script>
