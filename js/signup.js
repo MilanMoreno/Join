@@ -1,8 +1,11 @@
-// Funktion für die Anmeldung
-// Diese Funktion wird aufgerufen, wenn das Anmeldeformular abgesendet wird. Sie validiert die Eingaben,
-// überprüft die E-Mail-Verfügbarkeit, verifiziert das Passwort und speichert den neuen Benutzer, wenn alles korrekt ist.
+/**
+ * Handles the sign-up process by validating user inputs, checking email availability,
+ * verifying password match, and creating a new user if all inputs are correct.
+ * 
+ * @param {Event} event - The event triggered by the form submission.
+ */
 async function handleSignUp(event) {
-  event.preventDefault(); // Verhindert das Formularabsenden
+  event.preventDefault(); // Prevent form submission
   const usersArray = await loadUsers();
   let emailField = document.getElementById("inputSignUpMail");
   let passwordField = document.getElementById("inputSignUpPassword1");
@@ -10,191 +13,230 @@ async function handleSignUp(event) {
   let acceptCheckbox = document.getElementById("checkboxAccept");
   let errorDisplay = document.getElementById("passwordIncorrect");
 
-  // Überprüfen, ob der Benutzer die AGB akzeptiert hat
+  // Check if the user accepted the terms of use
   if (!acceptCheckbox.checked) {
     displayErrorMessage("You must accept the terms of use", acceptCheckbox);
     return;
   }
 
-  // Überprüfen, ob die E-Mail bereits registriert ist
+  // Check if the email is already registered
   if (!checkEmailAvailability(usersArray, emailField.value)) {
     displayErrorMessage("Email is already registered", emailField);
     return;
   }
 
-  // Erstelle das Benutzerobjekt mit den Formulardaten
+  // Build user object with form data
   let newUser = buildUserObject();
 
-  // Überprüft, ob das Passwort und die Bestätigung korrekt sind
+  // Verify if password and confirmation match
   if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
     showSuccessMessage();
   }
 }
 
-// Überprüft die Verfügbarkeit der E-Mail-Adresse
-// Diese Funktion überprüft, ob die angegebene E-Mail-Adresse bereits in der Benutzerdatenbank vorhanden ist.
+/**
+ * Checks if the provided email is available for registration.
+ * 
+ * @param {Array} usersArray - An array of existing users.
+ * @param {string} email - The email address to check.
+ * @returns {boolean} True if the email is available, otherwise false.
+ */
 async function checkEmailAvailability(usersArray, email) {
-  return !usersArray.some((user) => user.mail === email); // Gibt true zurück, wenn die E-Mail verfügbar ist
+  return !usersArray.some((user) => user.mail === email); // Returns true if email is available
 }
 
-// Verifiziert, ob die Passwörter übereinstimmen und speichert den Benutzer
-// Diese Funktion prüft, ob das Passwort und die Bestätigung übereinstimmen und speichert den Benutzer,
-// wenn alles korrekt ist. Wenn die Passwörter nicht übereinstimmen, wird eine Fehlermeldung angezeigt.
+/**
+ * Verifies if the password and confirmation match and saves the user if correct.
+ * 
+ * @param {Object} user - The user object with form data.
+ * @param {HTMLElement} passwordField - The password input field.
+ * @param {HTMLElement} confirmPasswordField - The confirm password input field.
+ * @returns {boolean} True if passwords match, otherwise false.
+ */
 async function verifyPassword(user, passwordField, confirmPasswordField) {
   const password = passwordField.value.trim();
   const confirmPassword = confirmPasswordField.value.trim();
 
   if (!password || !confirmPassword) {
     displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
-    return false; // Passwort darf nicht leer sein
+    return false; // Password cannot be empty
   }
 
-  // Wenn die Passwörter übereinstimmen, wird der Benutzer gespeichert
+  // If passwords match, save the user
   if (password === confirmPassword) {
-    await submitData("users", user); // Benutzer speichern
+    await submitData("users", user); // Save user
     return true;
   } else {
-    displayErrorMessage("Passwords do not match", confirmPasswordField); // Fehlermeldung, wenn Passwörter nicht übereinstimmen
+    displayErrorMessage("Passwords do not match", confirmPasswordField); // Error message if passwords don't match
     return false;
   }
 }
 
-// Lädt die Benutzerdaten
-// Diese Funktion lädt die Benutzerdaten von einem Server oder einer Datenquelle und gibt sie als Array zurück.
+/**
+ * Loads user data from the server or data source.
+ * 
+ * @returns {Array} An array of user objects.
+ */
 async function loadUsers() {
   let usersArray = [];
   let usersData = await fetchData("users");
   for (let [userID, userData] of Object.entries(usersData || {})) {
-    userData.id = userID; // ID für jeden Benutzer setzen
-    usersArray.push(userData); // Benutzer zum Array hinzufügen
+    userData.id = userID; // Assign ID to each user
+    usersArray.push(userData); // Add user to array
   }
-  return usersArray; // Gibt das Array mit allen Benutzern zurück
+  return usersArray; // Return array of all users
 }
 
-// Zeigt eine Fehlermeldung an
-// Diese Funktion zeigt eine Fehlermeldung unter dem Eingabefeld an und färbt das Feld rot.
+/**
+ * Displays an error message below the input field and highlights the field in red.
+ * 
+ * @param {string} message - The error message to display.
+ * @param {HTMLElement} targetElement - The input field to highlight.
+ */
 function displayErrorMessage(message, targetElement) {
   let errorElement = document.getElementById("passwordIncorrect");
-  errorElement.classList.remove("d-none"); // Fehler anzeigen
-  errorElement.innerText = message; // Fehlermeldung setzen
-  targetElement.style.border = "2px solid red"; // Eingabefeld rot markieren
+  errorElement.classList.remove("d-none"); // Show error
+  errorElement.innerText = message; // Set error message
+  targetElement.style.border = "2px solid red"; // Highlight input field in red
 }
 
-// Baut das Benutzerobjekt mit den Formulardaten
-// Diese Funktion erstellt ein Benutzerobjekt mit den Daten aus den Eingabefeldern.
+/**
+ * Builds a user object from the form data.
+ * 
+ * @returns {Object} The created user object.
+ */
 function buildUserObject() {
   let name = document.getElementById("inputSignUpName").value;
   let email = document.getElementById("inputSignUpMail").value;
   let password = document.getElementById("inputSignUpPassword1").value;
-  return { name, initials: getInitials(name), password, mail: email }; // Benutzerobjekt zurückgeben
+  return { name, initials: getInitials(name), password, mail: email }; // Return user object
 }
 
-// Zeigt eine Erfolgsmeldung an
-// Diese Funktion zeigt eine Erfolgsmeldung an, wenn die Anmeldung erfolgreich war, und leitet dann auf die Startseite weiter.
+/**
+ * Displays a success message and redirects to the home page after 1.5 seconds.
+ */
 function showSuccessMessage() {
   document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
   setTimeout(() => {
-    window.location.href = "./index.html"; // Weiterleitung zur Startseite nach 1.5 Sekunden
+    window.location.href = "./index.html"; // Redirect to home page after 1.5 seconds
   }, 1500);
 }
 
-// Extrahiert die Initialen aus dem Namen
-// Diese Funktion gibt die Initialen eines Benutzernamens zurück (z.B. "Max Mustermann" => "MM").
+/**
+ * Extracts initials from the user's name.
+ * 
+ * @param {string} name - The user's full name.
+ * @returns {string} The initials of the user's name.
+ */
 function getInitials(name) {
   return name
-    .split(" ") // Den Namen nach Leerzeichen aufteilen
-    .filter(Boolean) // Leere Strings filtern
-    .map((word) => word[0].toUpperCase()) // Den ersten Buchstaben jedes Wortes in Großbuchstaben umwandeln
-    .join(""); // Die Initialen zusammenfügen
+    .split(" ") // Split name by spaces
+    .filter(Boolean) // Filter out empty strings
+    .map((word) => word[0].toUpperCase()) // Convert first letter of each word to uppercase
+    .join(""); // Join initials together
 }
 
-// Gast-Login Funktion
-// Diese Funktion erstellt einen Gastbenutzer und speichert ihn im LocalStorage.
-// Danach wird der Benutzer zur Übersichtsseite weitergeleitet.
+/**
+ * Creates a guest user and saves it in the LocalStorage.
+ * Then redirects the user to the summary page.
+ */
 function guestLogin() {
-  let guestUser = { initials: "G", name: "Guest" }; // Erstelle Gastbenutzer
-  localStorage.setItem("user", JSON.stringify(guestUser)); // Benutzer im LocalStorage speichern
-  window.location.href = "./summary.html"; // Weiterleitung zur Übersichtsseite
+  let guestUser = { initials: "G", name: "Guest" }; // Create guest user
+  localStorage.setItem("user", JSON.stringify(guestUser)); // Save user to LocalStorage
+  window.location.href = "./summary.html"; // Redirect to summary page
 }
 
-// Login Funktion
-// Diese Funktion überprüft, ob die E-Mail und das Passwort mit einem Benutzer übereinstimmen.
-// Falls ja, wird der Benutzer eingeloggt, andernfalls wird eine Fehlermeldung angezeigt.
+/**
+ * Verifies the email and password and logs the user in if they match.
+ * Displays an error message if the email or password is incorrect.
+ */
 async function login() {
   const usersArray = await loadUsers();
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let matchedUser = usersArray.find(
-    (user) => user.mail === email && user.password === password // Benutzer finden
+    (user) => user.mail === email && user.password === password // Find matching user
   );
   if (matchedUser) {
-    localStorage.setItem("user", JSON.stringify(matchedUser)); // Benutzer im LocalStorage speichern
-    window.location.href = "./summary.html"; // Weiterleitung zur Übersichtsseite
+    localStorage.setItem("user", JSON.stringify(matchedUser)); // Save user to LocalStorage
+    window.location.href = "./summary.html"; // Redirect to summary page
   } else {
     displayErrorMessage(
-      "E-Mail or password are incorrect", // Fehlermeldung anzeigen
+      "E-Mail or password are incorrect", // Display error message
       document.getElementById("Loginerror")
     );
   }
 }
 
-// Funktion für den Login-Handler
-// Diese Funktion wird aufgerufen, wenn der Login-Formular abgesendet wird. Sie validiert die Eingaben und ruft die Login-Funktion auf.
+/**
+ * Handles the login form submission, validates inputs, and calls the login function.
+ * 
+ * @param {Event} event - The event triggered by the form submission.
+ */
 function handleLogin(event) {
-  event.preventDefault(); // Verhindert das Formularabsenden
+  event.preventDefault(); // Prevent form submission
   const emailInput = document.getElementById("email").value;
   const passwordInput = document.getElementById("password").value;
-  loginUser(emailInput, passwordInput); // Login durchführen
+  loginUser(emailInput, passwordInput); // Perform login
 }
 
-// Login Benutzer Funktion
-// Diese Funktion überprüft, ob ein Benutzer mit der angegebenen E-Mail und dem Passwort existiert.
-// Wenn ja, wird der Benutzer eingeloggt, andernfalls wird eine Fehlermeldung angezeigt.
+/**
+ * Verifies if the user exists with the provided email and password.
+ * If found, logs the user in; otherwise, displays an error message.
+ * 
+ * @param {string} email - The email entered by the user.
+ * @param {string} password - The password entered by the user.
+ */
 async function loginUser(email, password) {
   const usersArray = await loadUsers();
   const matchedUser = usersArray.find(
     (user) => user.mail === email && user.password === password
   );
   if (matchedUser) {
-    saveUserToLocal(matchedUser); // Speichert den Benutzer im LocalStorage
-    redirectToSummary(); // Weiterleitung zur Übersichtsseite
+    saveUserToLocal(matchedUser); // Save user to LocalStorage
+    redirectToSummary(); // Redirect to summary page
   } else {
-    showLoginErrorMessage("E-Mail or password are incorrect"); // Fehlermeldung anzeigen
+    showLoginErrorMessage("E-Mail or password are incorrect"); // Show error message
   }
 }
 
-// Login als Gast
-// Diese Funktion loggt den Benutzer als Gast ein, ohne dass eine E-Mail oder Passwort erforderlich ist.
+/**
+ * Logs the user in as a guest, saving the guest information in LocalStorage.
+ * Redirects to the summary page.
+ */
 function loginAsGuest() {
   const guestUser = {
-    initials: "G", // Initialen für den Gast
+    initials: "G", // Initials for the guest
     name: "Guest",
   };
-  saveUserToLocal(guestUser); // Speichern des Gastbenutzers im LocalStorage
-  redirectToSummary(); // Weiterleitung zur Übersichtsseite
+  saveUserToLocal(guestUser); // Save guest user to LocalStorage
+  redirectToSummary(); // Redirect to summary page
 }
 
-// Speichert den Benutzer im LocalStorage
-// Diese Funktion speichert die Benutzerdaten im LocalStorage, um sie auf anderen Seiten verfügbar zu machen.
+/**
+ * Saves the user data in LocalStorage to make it available on other pages.
+ * 
+ * @param {Object} user - The user data to save.
+ */
 function saveUserToLocal(user) {
-  const userString = JSON.stringify(user); // Benutzerobjekt in einen JSON-String umwandeln
-  localStorage.setItem("user", userString); // Speichern im LocalStorage
+  const userString = JSON.stringify(user); // Convert user object to JSON string
+  localStorage.setItem("user", userString); // Save to LocalStorage
 }
 
-// Weiterleitung zur Zusammenfassungsseite
-// Diese Funktion leitet den Benutzer zur Übersichtsseite weiter.
+/**
+ * Redirects the user to the summary page.
+ */
 function redirectToSummary() {
-  window.location.href = "./summary.html"; // Weiterleitung zur Übersichtsseite
+  window.location.href = "./summary.html"; // Redirect to summary page
 }
 
-// Zeigt eine Fehlernachricht beim Login an
-// Diese Funktion zeigt eine Fehlermeldung auf der Login-Seite an, wenn die Anmeldeversuche fehlschlagen.
+/**
+ * Displays a login error message if the login fails.
+ * 
+ * @param {string} message - The error message to display.
+ */
 function showLoginErrorMessage(message) {
   const loginErrorElement = document.getElementById("Loginerror");
-  loginErrorElement.classList.remove("d-none"); // Fehler anzeigen
-  loginErrorElement.innerHTML = message; // Fehlermeldung setzen
+  loginErrorElement.classList.remove("d-none"); // Show error
+  loginErrorElement.innerHTML = message; // Set error message
 }
-
-
-
-
