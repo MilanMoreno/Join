@@ -95,7 +95,6 @@ async function loadUsers() {
  */
 function displayErrorMessage(message, targetElement) {
   let errorElement = document.getElementById("passwordIncorrect");
-  errorElement.classList.remove("d-none"); // Show error
   errorElement.innerText = message; // Set error message
   targetElement.style.border = "2px solid red"; // Highlight input field in red
 }
