@@ -135,7 +135,7 @@ function validateNameField() {
 
     if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
         passwordInput.classList.add('error');
-        errorMessage.innerHTML = "Password must be 6+ characters, with at least 1 uppercase,<br> 1 lowercase letter, and 1 number."
+        errorMessage.innerHTML = "Password must be 4+ characters"
     } else {
         passwordInput.classList.remove('error');
         errorMessage.innerHTML = ""
